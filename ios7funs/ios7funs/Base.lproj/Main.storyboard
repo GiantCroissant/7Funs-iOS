@@ -7,10 +7,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--main-->
+        <!--Main-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="main" title="main" id="BYZ-38-t0r" customClass="MainViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main" title="Main" id="BYZ-38-t0r" customClass="MainViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -192,10 +192,10 @@
             </objects>
             <point key="canvasLocation" x="852" y="387"/>
         </scene>
-        <!--Show Infos View Controller-->
+        <!--Show Infos-->
         <scene sceneID="p0G-kN-uQE">
             <objects>
-                <viewController id="G18-l0-r61" customClass="ShowInfosViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Show Infos" id="G18-l0-r61" customClass="ShowInfosViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MTj-r6-1Sg"/>
                         <viewControllerLayoutGuide type="bottom" id="dEK-Md-XyM"/>
