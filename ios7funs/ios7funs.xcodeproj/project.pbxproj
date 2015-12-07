@@ -7,17 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE50681C15BFB60088794A /* MainViewController.swift */; };
+		3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */; };
 		3BD721141C117870006716D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD721131C117870006716D4 /* AppDelegate.swift */; };
-		3BD721161C117870006716D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD721151C117870006716D4 /* ViewController.swift */; };
 		3BD721191C117870006716D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD721171C117870006716D4 /* Main.storyboard */; };
 		3BD7211B1C117870006716D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7211A1C117870006716D4 /* Assets.xcassets */; };
 		3BD7211E1C117870006716D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7211C1C117870006716D4 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3BCE50681C15BFB60088794A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowInfosViewController.swift; path = ShowInfos/ShowInfosViewController.swift; sourceTree = "<group>"; };
 		3BD721101C117870006716D4 /* ios7funs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios7funs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD721131C117870006716D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3BD721151C117870006716D4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3BD721181C117870006716D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3BD7211A1C117870006716D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BD7211D1C117870006716D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -35,6 +37,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3BCE506C1C15C0AC0088794A /* ShowInfos */ = {
+			isa = PBXGroup;
+			children = (
+				3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */,
+			);
+			name = ShowInfos;
+			sourceTree = "<group>";
+		};
 		3BD721071C117870006716D4 = {
 			isa = PBXGroup;
 			children = (
@@ -54,12 +64,13 @@
 		3BD721121C117870006716D4 /* ios7funs */ = {
 			isa = PBXGroup;
 			children = (
-				3BD721131C117870006716D4 /* AppDelegate.swift */,
-				3BD721151C117870006716D4 /* ViewController.swift */,
-				3BD721171C117870006716D4 /* Main.storyboard */,
-				3BD7211A1C117870006716D4 /* Assets.xcassets */,
-				3BD7211C1C117870006716D4 /* LaunchScreen.storyboard */,
 				3BD7211F1C117870006716D4 /* Info.plist */,
+				3BD7211C1C117870006716D4 /* LaunchScreen.storyboard */,
+				3BD721171C117870006716D4 /* Main.storyboard */,
+				3BD721131C117870006716D4 /* AppDelegate.swift */,
+				3BCE50681C15BFB60088794A /* MainViewController.swift */,
+				3BD7211A1C117870006716D4 /* Assets.xcassets */,
+				3BCE506C1C15C0AC0088794A /* ShowInfos */,
 			);
 			path = ios7funs;
 			sourceTree = "<group>";
@@ -135,8 +146,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BD721161C117870006716D4 /* ViewController.swift in Sources */,
+				3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */,
 				3BD721141C117870006716D4 /* AppDelegate.swift in Sources */,
+				3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +298,7 @@
 				3BD721241C117870006716D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

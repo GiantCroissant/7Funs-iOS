@@ -16,7 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+
+        setupCustomNaviationBar()
+
         return true
+    }
+
+    func setupCustomNaviationBar() {
+        let navAppearance = UINavigationBar.appearance()
+        navAppearance.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navAppearance.shadowImage = UIImage()
+        navAppearance.translucent = true
+        navAppearance.backgroundColor = UIColor.clearColor()
+        navAppearance.tintColor = UIColor.whiteColor()
     }
 
     func applicationWillResignActive(application: UIApplication) {
