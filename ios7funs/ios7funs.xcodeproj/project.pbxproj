@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B41D11B1C16C6DA0054FC10 /* RecipeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D11A1C16C6DA0054FC10 /* RecipeManager.swift */; };
+		3B41D12C1C16C9230054FC10 /* DbModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D1271C16C9230054FC10 /* DbModel.swift */; };
+		3B41D12D1C16C9230054FC10 /* ExtendDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D1281C16C9230054FC10 /* ExtendDate.swift */; };
+		3B41D12E1C16C9230054FC10 /* ExtendObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D1291C16C9230054FC10 /* ExtendObservable.swift */; };
+		3B41D12F1C16C9230054FC10 /* JsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D12A1C16C9230054FC10 /* JsonModel.swift */; };
+		3B41D1301C16C9230054FC10 /* RestApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D12B1C16C9230054FC10 /* RestApiModel.swift */; };
+		3B41D1361C16D12E0054FC10 /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B41D1311C16D0E50054FC10 /* Argo.framework */; };
+		3B41D1371C16D12E0054FC10 /* RxMoya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B41D1341C16D1190054FC10 /* RxMoya.framework */; };
+		3B41D1431C16D12E0054FC10 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B41D1381C16D12E0054FC10 /* Alamofire.framework */; };
+		3B41D1441C16D12E0054FC10 /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B41D1391C16D12E0054FC10 /* Curry.framework */; };
+		3B41D1451C16D12E0054FC10 /* Moya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B41D13A1C16D12E0054FC10 /* Moya.framework */; };
+		3B41D1461C16D12E0054FC10 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B41D13B1C16D12E0054FC10 /* ReactiveCocoa.framework */; };
+		3B41D1471C16D12E0054FC10 /* ReactiveMoya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B41D13C1C16D12E0054FC10 /* ReactiveMoya.framework */; };
+		3B41D1481C16D12E0054FC10 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B41D13D1C16D12E0054FC10 /* Realm.framework */; };
+		3B41D1491C16D12E0054FC10 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B41D13E1C16D12E0054FC10 /* RealmSwift.framework */; };
+		3B41D14A1C16D12E0054FC10 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B41D13F1C16D12E0054FC10 /* Result.framework */; };
+		3B41D14B1C16D12E0054FC10 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B41D1401C16D12E0054FC10 /* RxBlocking.framework */; };
+		3B41D14C1C16D12E0054FC10 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B41D1411C16D12E0054FC10 /* RxCocoa.framework */; };
+		3B41D14D1C16D12E0054FC10 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B41D1421C16D12E0054FC10 /* RxSwift.framework */; };
 		3B62E8C01C16A473008AA784 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B62E8BF1C16A473008AA784 /* CardView.swift */; };
 		3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE50681C15BFB60088794A /* MainViewController.swift */; };
 		3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */; };
@@ -28,6 +47,25 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B41D11A1C16C6DA0054FC10 /* RecipeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeManager.swift; path = Recipes/RecipeManager.swift; sourceTree = "<group>"; };
+		3B41D1271C16C9230054FC10 /* DbModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DbModel.swift; path = Models/DbModel.swift; sourceTree = "<group>"; };
+		3B41D1281C16C9230054FC10 /* ExtendDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendDate.swift; path = Models/ExtendDate.swift; sourceTree = "<group>"; };
+		3B41D1291C16C9230054FC10 /* ExtendObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendObservable.swift; path = Models/ExtendObservable.swift; sourceTree = "<group>"; };
+		3B41D12A1C16C9230054FC10 /* JsonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JsonModel.swift; path = Models/JsonModel.swift; sourceTree = "<group>"; };
+		3B41D12B1C16C9230054FC10 /* RestApiModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestApiModel.swift; path = Models/RestApiModel.swift; sourceTree = "<group>"; };
+		3B41D1311C16D0E50054FC10 /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = ios7funs/Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
+		3B41D1341C16D1190054FC10 /* RxMoya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxMoya.framework; path = ios7funs/Carthage/Build/iOS/RxMoya.framework; sourceTree = "<group>"; };
+		3B41D1381C16D12E0054FC10 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = ios7funs/Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		3B41D1391C16D12E0054FC10 /* Curry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Curry.framework; path = ios7funs/Carthage/Build/iOS/Curry.framework; sourceTree = "<group>"; };
+		3B41D13A1C16D12E0054FC10 /* Moya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Moya.framework; path = ios7funs/Carthage/Build/iOS/Moya.framework; sourceTree = "<group>"; };
+		3B41D13B1C16D12E0054FC10 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = ios7funs/Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
+		3B41D13C1C16D12E0054FC10 /* ReactiveMoya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveMoya.framework; path = ios7funs/Carthage/Build/iOS/ReactiveMoya.framework; sourceTree = "<group>"; };
+		3B41D13D1C16D12E0054FC10 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ios7funs/Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		3B41D13E1C16D12E0054FC10 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ios7funs/Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		3B41D13F1C16D12E0054FC10 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ios7funs/Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		3B41D1401C16D12E0054FC10 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = ios7funs/Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
+		3B41D1411C16D12E0054FC10 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = ios7funs/Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		3B41D1421C16D12E0054FC10 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ios7funs/Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		3B62E8BF1C16A473008AA784 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = Utils/CardView.swift; sourceTree = "<group>"; };
 		3BCE50681C15BFB60088794A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowInfosViewController.swift; path = ShowInfos/ShowInfosViewController.swift; sourceTree = "<group>"; };
@@ -55,12 +93,57 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B41D1431C16D12E0054FC10 /* Alamofire.framework in Frameworks */,
+				3B41D1361C16D12E0054FC10 /* Argo.framework in Frameworks */,
+				3B41D1441C16D12E0054FC10 /* Curry.framework in Frameworks */,
+				3B41D1451C16D12E0054FC10 /* Moya.framework in Frameworks */,
+				3B41D1481C16D12E0054FC10 /* Realm.framework in Frameworks */,
+				3B41D1491C16D12E0054FC10 /* RealmSwift.framework in Frameworks */,
+				3B41D1461C16D12E0054FC10 /* ReactiveCocoa.framework in Frameworks */,
+				3B41D1471C16D12E0054FC10 /* ReactiveMoya.framework in Frameworks */,
+				3B41D14A1C16D12E0054FC10 /* Result.framework in Frameworks */,
+				3B41D14B1C16D12E0054FC10 /* RxBlocking.framework in Frameworks */,
+				3B41D14C1C16D12E0054FC10 /* RxCocoa.framework in Frameworks */,
+				3B41D14D1C16D12E0054FC10 /* RxSwift.framework in Frameworks */,
+				3B41D1371C16D12E0054FC10 /* RxMoya.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B41D11C1C16C8C50054FC10 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3B41D1271C16C9230054FC10 /* DbModel.swift */,
+				3B41D1281C16C9230054FC10 /* ExtendDate.swift */,
+				3B41D1291C16C9230054FC10 /* ExtendObservable.swift */,
+				3B41D12A1C16C9230054FC10 /* JsonModel.swift */,
+				3B41D12B1C16C9230054FC10 /* RestApiModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		3B41D1331C16D0EE0054FC10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B41D1381C16D12E0054FC10 /* Alamofire.framework */,
+				3B41D1391C16D12E0054FC10 /* Curry.framework */,
+				3B41D13A1C16D12E0054FC10 /* Moya.framework */,
+				3B41D13B1C16D12E0054FC10 /* ReactiveCocoa.framework */,
+				3B41D13C1C16D12E0054FC10 /* ReactiveMoya.framework */,
+				3B41D13D1C16D12E0054FC10 /* Realm.framework */,
+				3B41D13E1C16D12E0054FC10 /* RealmSwift.framework */,
+				3B41D13F1C16D12E0054FC10 /* Result.framework */,
+				3B41D1401C16D12E0054FC10 /* RxBlocking.framework */,
+				3B41D1411C16D12E0054FC10 /* RxCocoa.framework */,
+				3B41D1421C16D12E0054FC10 /* RxSwift.framework */,
+				3B41D1341C16D1190054FC10 /* RxMoya.framework */,
+				3B41D1311C16D0E50054FC10 /* Argo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3B62E8BE1C16A455008AA784 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +176,7 @@
 				3BCE50831C1698AF0088794A /* Recipes.storyboard */,
 				3BCE50771C168BDD0088794A /* RecipesViewController.swift */,
 				3BCE50871C16A2640088794A /* RecipeDetailViewController.swift */,
+				3B41D11A1C16C6DA0054FC10 /* RecipeManager.swift */,
 			);
 			name = Recipes;
 			sourceTree = "<group>";
@@ -132,6 +216,7 @@
 		3BD721071C117870006716D4 = {
 			isa = PBXGroup;
 			children = (
+				3B41D1331C16D0EE0054FC10 /* Frameworks */,
 				3BD721121C117870006716D4 /* ios7funs */,
 				3BD721111C117870006716D4 /* Products */,
 			);
@@ -148,6 +233,7 @@
 		3BD721121C117870006716D4 /* ios7funs */ = {
 			isa = PBXGroup;
 			children = (
+				3B41D11C1C16C8C50054FC10 /* Models */,
 				3B62E8BE1C16A455008AA784 /* Utils */,
 				3BCE506C1C15C0AC0088794A /* ShowInfos */,
 				3BCE50711C168ABA0088794A /* Videos */,
@@ -177,6 +263,7 @@
 				3BD7210C1C117870006716D4 /* Sources */,
 				3BD7210D1C117870006716D4 /* Frameworks */,
 				3BD7210E1C117870006716D4 /* Resources */,
+				3B41D14F1C16D1C50054FC10 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -237,6 +324,36 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3B41D14F1C16D1C50054FC10 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/ios7funs/Carthage/Build/iOS/Curry.framework",
+				"$(SRCROOT)/ios7funs/Carthage/Build/iOS/Moya.framework",
+				"$(SRCROOT)/ios7funs/Carthage/Build/iOS/RxMoya.framework",
+				"$(SRCROOT)/ios7funs/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/ios7funs/Carthage/Build/iOS/RealmSwift.framework",
+				"$(SRCROOT)/ios7funs/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/ios7funs/Carthage/Build/iOS/Argo.framework",
+				"$(SRCROOT)/ios7funs/Carthage/Build/iOS/ReactiveCocoa.framework",
+				"$(SRCROOT)/ios7funs/Carthage/Build/iOS/ReactiveMoya.framework",
+				"$(SRCROOT)/ios7funs/Carthage/Build/iOS/RxBlocking.framework",
+				"$(SRCROOT)/ios7funs/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/ios7funs/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/ios7funs/Carthage/Build/iOS/Alamofire.framework",
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3BD7210C1C117870006716D4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -247,12 +364,18 @@
 				3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */,
 				3BD721141C117870006716D4 /* AppDelegate.swift in Sources */,
 				3BCE50801C168C1D0088794A /* BonusViewController.swift in Sources */,
+				3B41D12F1C16C9230054FC10 /* JsonModel.swift in Sources */,
 				3BCE507E1C168C100088794A /* LinksViewController.swift in Sources */,
+				3B41D12C1C16C9230054FC10 /* DbModel.swift in Sources */,
 				3BCE50701C168AB60088794A /* VideosViewController.swift in Sources */,
+				3B41D12E1C16C9230054FC10 /* ExtendObservable.swift in Sources */,
 				3BCE50781C168BDD0088794A /* RecipesViewController.swift in Sources */,
+				3B41D12D1C16C9230054FC10 /* ExtendDate.swift in Sources */,
 				3BCE50881C16A2640088794A /* RecipeDetailViewController.swift in Sources */,
+				3B41D11B1C16C6DA0054FC10 /* RecipeManager.swift in Sources */,
 				3B62E8C01C16A473008AA784 /* CardView.swift in Sources */,
 				3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */,
+				3B41D1301C16C9230054FC10 /* RestApiModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +488,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ios7funs/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ios7funs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.giantcroissant.ios7funs;
@@ -376,6 +503,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ios7funs/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ios7funs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.giantcroissant.ios7funs;

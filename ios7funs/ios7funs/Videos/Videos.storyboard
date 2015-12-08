@@ -49,17 +49,17 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kxr-M2-idC" userLabel="Food BG">
-                                                            <rect key="frame" x="12" y="12" width="150" height="83.5"/>
+                                                            <rect key="frame" x="12" y="12" width="150" height="84"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_01" translatesAutoresizingMaskIntoConstraints="NO" id="a6S-zS-xqF">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="83.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="84"/>
                                                                     <animations/>
                                                                 </imageView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spp-se-K2a" userLabel="Time BG">
-                                                                    <rect key="frame" x="101" y="52" width="39" height="21"/>
+                                                                    <rect key="frame" x="101" y="53" width="39" height="21"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33:44" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vn6-b9-eBh">
-                                                                            <rect key="frame" x="2" y="4" width="34.5" height="14.5"/>
+                                                                            <rect key="frame" x="2" y="3" width="35" height="15"/>
                                                                             <animations/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -86,14 +86,14 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="測試用文字，料理美食王_韓式拌飯自己動手做" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="S2A-s2-ldV" userLabel="Video Name">
-                                                            <rect key="frame" x="172" y="12" width="169" height="38.5"/>
+                                                            <rect key="frame" x="172" y="12" width="169" height="39"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rWh-Q5-h24">
-                                                            <rect key="frame" x="172" y="55.5" width="167" height="33.5"/>
+                                                            <rect key="frame" x="172" y="55" width="167" height="34"/>
                                                             <animations/>
                                                             <string key="text">CH37東風電視台料理美食
 8 個月前 觀看次數：37,995</string>

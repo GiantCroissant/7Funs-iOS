@@ -27,6 +27,8 @@ class RecipesViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
 
         self.title = "食譜列表"
+
+        RecipeManager.sharedInstance.loadRecipes()
     }
 
     override func didReceiveMemoryWarning() {

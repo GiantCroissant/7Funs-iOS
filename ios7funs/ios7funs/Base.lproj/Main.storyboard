@@ -124,10 +124,10 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYt-sm-Utd" userLabel="Recipes">
-                                <rect key="frame" x="0.0" y="305" width="250" height="236.5"/>
+                                <rect key="frame" x="0.0" y="305" width="250" height="237"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O21-1d-aca">
-                                        <rect key="frame" x="10" y="5" width="235" height="226.5"/>
+                                        <rect key="frame" x="10" y="5" width="235" height="227"/>
                                         <animations/>
                                         <state key="normal" image="ser_03"/>
                                         <connections>
@@ -135,7 +135,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="食譜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r55-4n-T8U">
-                                        <rect key="frame" x="20" y="196" width="41" height="25"/>
+                                        <rect key="frame" x="20" y="197" width="41" height="25"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -164,10 +164,10 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s5v-VV-6Vs" userLabel="Collections">
-                                <rect key="frame" x="250" y="305" width="125" height="236.5"/>
+                                <rect key="frame" x="250" y="305" width="125" height="237"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RbS-Bn-HVE">
-                                        <rect key="frame" x="5" y="5" width="110" height="226.5"/>
+                                        <rect key="frame" x="5" y="5" width="110" height="227"/>
                                         <animations/>
                                         <state key="normal" image="ser_04"/>
                                         <connections>
@@ -175,7 +175,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的收藏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCr-mj-dth">
-                                        <rect key="frame" x="19" y="196" width="81" height="25"/>
+                                        <rect key="frame" x="19" y="197" width="81" height="25"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -290,7 +290,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="好康菜藍" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gp6-ck-mfM">
-                                        <rect key="frame" x="19.5" y="80" width="81" height="25"/>
+                                        <rect key="frame" x="20" y="80" width="81" height="25"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
