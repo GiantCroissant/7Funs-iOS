@@ -10,6 +10,12 @@
 		3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE50681C15BFB60088794A /* MainViewController.swift */; };
 		3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */; };
 		3BCE506E1C15C6E20088794A /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 3BCE506D1C15C6E20088794A /* Cartfile */; };
+		3BCE50701C168AB60088794A /* VideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE506F1C168AB60088794A /* VideosViewController.swift */; };
+		3BCE50781C168BDD0088794A /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE50771C168BDD0088794A /* RecipesViewController.swift */; };
+		3BCE507A1C168BF10088794A /* CollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE50791C168BF10088794A /* CollectionsViewController.swift */; };
+		3BCE507C1C168C040088794A /* QandAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE507B1C168C040088794A /* QandAViewController.swift */; };
+		3BCE507E1C168C100088794A /* LinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE507D1C168C100088794A /* LinksViewController.swift */; };
+		3BCE50801C168C1D0088794A /* BonusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE507F1C168C1D0088794A /* BonusViewController.swift */; };
 		3BD721141C117870006716D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD721131C117870006716D4 /* AppDelegate.swift */; };
 		3BD721191C117870006716D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD721171C117870006716D4 /* Main.storyboard */; };
 		3BD7211B1C117870006716D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7211A1C117870006716D4 /* Assets.xcassets */; };
@@ -20,6 +26,12 @@
 		3BCE50681C15BFB60088794A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowInfosViewController.swift; path = ShowInfos/ShowInfosViewController.swift; sourceTree = "<group>"; };
 		3BCE506D1C15C6E20088794A /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		3BCE506F1C168AB60088794A /* VideosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideosViewController.swift; path = Videos/VideosViewController.swift; sourceTree = "<group>"; };
+		3BCE50771C168BDD0088794A /* RecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipesViewController.swift; path = Recipes/RecipesViewController.swift; sourceTree = "<group>"; };
+		3BCE50791C168BF10088794A /* CollectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionsViewController.swift; path = Collections/CollectionsViewController.swift; sourceTree = "<group>"; };
+		3BCE507B1C168C040088794A /* QandAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QandAViewController.swift; path = QandA/QandAViewController.swift; sourceTree = "<group>"; };
+		3BCE507D1C168C100088794A /* LinksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinksViewController.swift; path = Links/LinksViewController.swift; sourceTree = "<group>"; };
+		3BCE507F1C168C1D0088794A /* BonusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BonusViewController.swift; path = Bonus/BonusViewController.swift; sourceTree = "<group>"; };
 		3BD721101C117870006716D4 /* ios7funs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios7funs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD721131C117870006716D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BD721181C117870006716D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -47,6 +59,54 @@
 			name = ShowInfos;
 			sourceTree = "<group>";
 		};
+		3BCE50711C168ABA0088794A /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				3BCE506F1C168AB60088794A /* VideosViewController.swift */,
+			);
+			name = Videos;
+			sourceTree = "<group>";
+		};
+		3BCE50721C168B790088794A /* Recipes */ = {
+			isa = PBXGroup;
+			children = (
+				3BCE50771C168BDD0088794A /* RecipesViewController.swift */,
+			);
+			name = Recipes;
+			sourceTree = "<group>";
+		};
+		3BCE50731C168B960088794A /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				3BCE50791C168BF10088794A /* CollectionsViewController.swift */,
+			);
+			name = Collections;
+			sourceTree = "<group>";
+		};
+		3BCE50741C168B9F0088794A /* Q & A */ = {
+			isa = PBXGroup;
+			children = (
+				3BCE507B1C168C040088794A /* QandAViewController.swift */,
+			);
+			name = "Q & A";
+			sourceTree = "<group>";
+		};
+		3BCE50751C168BAC0088794A /* Links */ = {
+			isa = PBXGroup;
+			children = (
+				3BCE507D1C168C100088794A /* LinksViewController.swift */,
+			);
+			name = Links;
+			sourceTree = "<group>";
+		};
+		3BCE50761C168BB40088794A /* Bonus */ = {
+			isa = PBXGroup;
+			children = (
+				3BCE507F1C168C1D0088794A /* BonusViewController.swift */,
+			);
+			name = Bonus;
+			sourceTree = "<group>";
+		};
 		3BD721071C117870006716D4 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +126,13 @@
 		3BD721121C117870006716D4 /* ios7funs */ = {
 			isa = PBXGroup;
 			children = (
+				3BCE506C1C15C0AC0088794A /* ShowInfos */,
+				3BCE50711C168ABA0088794A /* Videos */,
+				3BCE50721C168B790088794A /* Recipes */,
+				3BCE50731C168B960088794A /* Collections */,
+				3BCE50741C168B9F0088794A /* Q & A */,
+				3BCE50751C168BAC0088794A /* Links */,
+				3BCE50761C168BB40088794A /* Bonus */,
 				3BCE506D1C15C6E20088794A /* Cartfile */,
 				3BD7211F1C117870006716D4 /* Info.plist */,
 				3BD7211C1C117870006716D4 /* LaunchScreen.storyboard */,
@@ -73,7 +140,6 @@
 				3BD721131C117870006716D4 /* AppDelegate.swift */,
 				3BCE50681C15BFB60088794A /* MainViewController.swift */,
 				3BD7211A1C117870006716D4 /* Assets.xcassets */,
-				3BCE506C1C15C0AC0088794A /* ShowInfos */,
 			);
 			path = ios7funs;
 			sourceTree = "<group>";
@@ -150,8 +216,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BCE507A1C168BF10088794A /* CollectionsViewController.swift in Sources */,
+				3BCE507C1C168C040088794A /* QandAViewController.swift in Sources */,
 				3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */,
 				3BD721141C117870006716D4 /* AppDelegate.swift in Sources */,
+				3BCE50801C168C1D0088794A /* BonusViewController.swift in Sources */,
+				3BCE507E1C168C100088794A /* LinksViewController.swift in Sources */,
+				3BCE50701C168AB60088794A /* VideosViewController.swift in Sources */,
+				3BCE50781C168BDD0088794A /* RecipesViewController.swift in Sources */,
 				3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
