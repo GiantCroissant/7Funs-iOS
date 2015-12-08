@@ -8,7 +8,13 @@
 
 import UIKit
 
-class RecipesViewController: UIViewController {
+class RecipesViewController: UIViewController, UITableViewDataSource {
+
+    var data = ["Apple", "Apricot", "Banana", "Blueberry", "Cantaloupe", "Cherry",
+        "Clementine", "Coconut", "Cranberry", "Fig", "Grape", "Grapefruit",
+        "Kiwi fruit", "Lemon", "Lime", "Lychee", "Mandarine", "Mango",
+        "Melon", "Nectarine", "Olive", "Orange", "Papaya", "Peach",
+        "Pear", "Pineapple", "Raspberry", "Strawberry"]
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -17,24 +23,28 @@ class RecipesViewController: UIViewController {
         self.navigationController?.navigationBarHidden = false
     }
 
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillAppear(animated)
-
-        // Hide navigation bar.
-        self.navigationController?.navigationBarHidden = true
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.title = "食譜列表"
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    // MARK: - UITableViewDataSource
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("idRecipeCell", forIndexPath: indexPath)
+        return cell
+    }
+
+
 
     /*
     // MARK: - Navigation

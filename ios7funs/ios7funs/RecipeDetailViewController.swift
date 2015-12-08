@@ -1,5 +1,5 @@
 //
-//  CollectionsViewController.swift
+//  RecipeDetailViewController.swift
 //  ios7funs
 //
 //  Created by Bryan Lin on 12/8/15.
@@ -8,14 +8,7 @@
 
 import UIKit
 
-class CollectionsViewController: UIViewController {
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-        // Show navigation bar.
-        self.navigationController?.navigationBarHidden = false
-    }
+class RecipeDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

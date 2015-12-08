@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navAppearance.translucent = true
         navAppearance.backgroundColor = UIColor.clearColor()
         navAppearance.tintColor = UIColor.whiteColor()
+        navAppearance.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
     }
 
     func applicationWillResignActive(application: UIApplication) {

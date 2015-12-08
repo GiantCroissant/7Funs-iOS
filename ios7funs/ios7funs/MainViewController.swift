@@ -39,4 +39,11 @@ class MainViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // Hide navBar.
+        self.navigationController?.navigationBarHidden = true
+    }
+
 }

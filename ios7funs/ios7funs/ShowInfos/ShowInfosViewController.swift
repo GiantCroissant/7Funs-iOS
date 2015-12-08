@@ -17,18 +17,10 @@ class ShowInfosViewController: UIViewController {
         self.navigationController?.navigationBarHidden = false
     }
 
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillAppear(animated)
-
-        // Hide navigation bar.
-        self.navigationController?.navigationBarHidden = true
-    }
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.title = "節目介紹"
     }
 
     override func didReceiveMemoryWarning() {

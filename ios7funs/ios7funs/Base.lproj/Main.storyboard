@@ -35,7 +35,7 @@
                                         <animations/>
                                         <state key="normal" image="ser_01"/>
                                         <connections>
-                                            <segue destination="G18-l0-r61" kind="show" id="WbA-Tj-KMC"/>
+                                            <segue destination="aW3-UI-Ucr" kind="show" id="r9m-Me-Nza"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -64,7 +64,7 @@
                                         <animations/>
                                         <state key="normal" image="ser_02"/>
                                         <connections>
-                                            <segue destination="ADh-Lo-N0C" kind="show" id="ohK-X4-4q8"/>
+                                            <segue destination="dXT-9Y-cQ5" kind="show" id="2Lr-Jw-Dgg"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -93,7 +93,7 @@
                                         <animations/>
                                         <state key="normal" image="ser_03"/>
                                         <connections>
-                                            <segue destination="Em0-5b-b7w" kind="show" id="Ghc-gx-1sK"/>
+                                            <segue destination="vaK-Vt-GuE" kind="show" id="biz-6l-gmZ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -278,7 +278,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="852" y="387"/>
+            <point key="canvasLocation" x="835.5" y="386.5"/>
         </scene>
         <!--Bonus-->
         <scene sceneID="Yvk-4D-wA2">
@@ -416,108 +416,6 @@
             </objects>
             <point key="canvasLocation" x="516.5" y="1973.5"/>
         </scene>
-        <!--Recipes-->
-        <scene sceneID="go5-U7-bJm">
-            <objects>
-                <viewController title="Recipes" id="Em0-5b-b7w" customClass="RecipesViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cUS-Z3-lXa"/>
-                        <viewControllerLayoutGuide type="bottom" id="gMc-JZ-G2F"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="m1a-RO-TAI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pAg-Q3-wSo" userLabel="Top Background">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                <animations/>
-                                <color key="backgroundColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="WpW-x1-rgk"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="pAg-Q3-wSo" firstAttribute="leading" secondItem="m1a-RO-TAI" secondAttribute="leading" id="E4i-ot-ZIK"/>
-                            <constraint firstAttribute="trailing" secondItem="pAg-Q3-wSo" secondAttribute="trailing" id="ZLB-A8-YtG"/>
-                            <constraint firstItem="pAg-Q3-wSo" firstAttribute="top" secondItem="m1a-RO-TAI" secondAttribute="top" id="c8X-HT-yjq"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5jU-kb-hq0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1394.5" y="1468.5"/>
-        </scene>
-        <!--Videos-->
-        <scene sceneID="txc-Rw-Nn6">
-            <objects>
-                <viewController title="Videos" id="ADh-Lo-N0C" customClass="VideosViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="eLm-Uv-Og4"/>
-                        <viewControllerLayoutGuide type="bottom" id="cQ9-PL-sd2"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pp6-kS-4gc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXA-WE-jhr" userLabel="Top Background">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                <animations/>
-                                <color key="backgroundColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="W7Y-rm-yyH"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="hXA-WE-jhr" firstAttribute="leading" secondItem="pp6-kS-4gc" secondAttribute="leading" id="RRi-JZ-slL"/>
-                            <constraint firstItem="hXA-WE-jhr" firstAttribute="top" secondItem="pp6-kS-4gc" secondAttribute="top" id="lTj-Gv-Etf"/>
-                            <constraint firstAttribute="trailing" secondItem="hXA-WE-jhr" secondAttribute="trailing" id="vy2-AZ-tuK"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SMU-ns-Zks" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1480.5" y="497.5"/>
-        </scene>
-        <!--Show Infos-->
-        <scene sceneID="p0G-kN-uQE">
-            <objects>
-                <viewController title="Show Infos" id="G18-l0-r61" customClass="ShowInfosViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="MTj-r6-1Sg"/>
-                        <viewControllerLayoutGuide type="bottom" id="dEK-Md-XyM"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ja9-Eb-Jr5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWJ-Ag-AfJ" userLabel="Top Background">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                <animations/>
-                                <color key="backgroundColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="Stx-mq-lZJ"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="hWJ-Ag-AfJ" secondAttribute="trailing" id="Q5v-2p-4Km"/>
-                            <constraint firstItem="hWJ-Ag-AfJ" firstAttribute="top" secondItem="Ja9-Eb-Jr5" secondAttribute="top" id="hbC-JH-aup"/>
-                            <constraint firstItem="hWJ-Ag-AfJ" firstAttribute="leading" secondItem="Ja9-Eb-Jr5" secondAttribute="leading" id="rL9-8e-ju9"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ejd-cv-MvB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1480.5" y="-237.5"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="hFB-Ic-KJR">
             <objects>
@@ -537,7 +435,31 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hju-iR-xBf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="444" y="387"/>
+            <point key="canvasLocation" x="355.5" y="386.5"/>
+        </scene>
+        <!--ShowInfos-->
+        <scene sceneID="9q0-kU-1Mg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ShowInfos" id="aW3-UI-Ucr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TfV-Eu-ZXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1247" y="93"/>
+        </scene>
+        <!--Recipes-->
+        <scene sceneID="Js8-Bz-UfK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Recipes" id="vaK-Vt-GuE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u8Q-RO-35O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1247" y="435"/>
+        </scene>
+        <!--Videos-->
+        <scene sceneID="3Mt-bO-xPN">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Videos" id="dXT-9Y-cQ5" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4d6-b9-mzY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1247" y="226"/>
         </scene>
     </scenes>
     <resources>
