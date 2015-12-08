@@ -35,14 +35,14 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.95686274510000002" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="idRecipeCell" rowHeight="258" id="eXP-D9-dGp">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="idRecipeCell" rowHeight="258" id="eXP-D9-dGp">
                                         <rect key="frame" x="0.0" y="28" width="365" height="258"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eXP-D9-dGp" id="sfl-Js-dUI">
                                             <rect key="frame" x="0.0" y="0.0" width="365" height="258"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvP-5r-nGN" userLabel="Card">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvP-5r-nGN" userLabel="Card" customClass="CardView" customModule="ios7funs" customModuleProvider="target">
                                                     <rect key="frame" x="5" y="5" width="355" height="248"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0g-mk-wnY" userLabel="Food Background">

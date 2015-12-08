@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B62E8C01C16A473008AA784 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B62E8BF1C16A473008AA784 /* CardView.swift */; };
 		3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE50681C15BFB60088794A /* MainViewController.swift */; };
 		3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */; };
 		3BCE506E1C15C6E20088794A /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 3BCE506D1C15C6E20088794A /* Cartfile */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B62E8BF1C16A473008AA784 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = Utils/CardView.swift; sourceTree = "<group>"; };
 		3BCE50681C15BFB60088794A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowInfosViewController.swift; path = ShowInfos/ShowInfosViewController.swift; sourceTree = "<group>"; };
 		3BCE506D1C15C6E20088794A /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B62E8BE1C16A455008AA784 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3B62E8BF1C16A473008AA784 /* CardView.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		3BCE506C1C15C0AC0088794A /* ShowInfos */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +148,7 @@
 		3BD721121C117870006716D4 /* ios7funs */ = {
 			isa = PBXGroup;
 			children = (
+				3B62E8BE1C16A455008AA784 /* Utils */,
 				3BCE506C1C15C0AC0088794A /* ShowInfos */,
 				3BCE50711C168ABA0088794A /* Videos */,
 				3BCE50721C168B790088794A /* Recipes */,
@@ -240,6 +251,7 @@
 				3BCE50701C168AB60088794A /* VideosViewController.swift in Sources */,
 				3BCE50781C168BDD0088794A /* RecipesViewController.swift in Sources */,
 				3BCE50881C16A2640088794A /* RecipeDetailViewController.swift in Sources */,
+				3B62E8C01C16A473008AA784 /* CardView.swift in Sources */,
 				3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
