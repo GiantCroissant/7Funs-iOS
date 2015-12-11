@@ -8,8 +8,8 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
-
+class MainViewController: UIViewController
+{
     @IBOutlet weak var btnShowInfos: UIButton!
     @IBOutlet weak var btnVideos: UIButton!
     @IBOutlet weak var btnRecipes: UIButton!
@@ -18,7 +18,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var btnLinks: UIButton!
     @IBOutlet weak var btnBonus: UIButton!
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
 
         setImageToScaleAspectFill(btnShowInfos)
@@ -30,7 +31,8 @@ class MainViewController: UIViewController {
         setImageToScaleAspectFill(btnBonus)
     }
 
-    func setImageToScaleAspectFill(button: UIButton) {
+    func setImageToScaleAspectFill(button: UIButton)
+    {
         let image = button.imageView?.image
         let scaledImage = scaleImageToWidth(image!, newWidth: button.frame.size.width)
         button.setImage(scaledImage, forState: UIControlState.Normal)
@@ -38,7 +40,7 @@ class MainViewController: UIViewController {
     }
 
     func scaleImageToWidth(image: UIImage, newWidth: CGFloat) -> UIImage
-    { 
+    {
         let imgWidth = image.size.width
         let imgHeight = image.size.height
 
@@ -57,12 +59,13 @@ class MainViewController: UIViewController {
         return image
     }
 
-
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool)
+    {
         super.viewWillAppear(animated)
 
         // Hide navBar.
