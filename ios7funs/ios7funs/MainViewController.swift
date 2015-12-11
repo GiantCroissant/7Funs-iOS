@@ -22,21 +22,22 @@ class MainViewController: UIViewController
     {
         super.viewDidLoad()
 
-        setImageToScaleAspectFill(btnShowInfos)
-        setImageToScaleAspectFill(btnVideos)
-        setImageToScaleAspectFill(btnRecipes)
-        setImageToScaleAspectFill(btnCollections)
-        setImageToScaleAspectFill(btnQandA)
-        setImageToScaleAspectFill(btnLinks)
-        setImageToScaleAspectFill(btnBonus)
+        scaleButtonImage(btnShowInfos, mode: .Top)
+        scaleButtonImage(btnVideos, mode: .Bottom)
+        scaleButtonImage(btnRecipes, mode: .Top)
+        scaleButtonImage(btnCollections, mode: .Center)
+        scaleButtonImage(btnQandA, mode: .Top)
+        scaleButtonImage(btnLinks, mode: .Top)
+        scaleButtonImage(btnBonus, mode: .Top)
     }
 
-    func setImageToScaleAspectFill(button: UIButton)
+    func scaleButtonImage(button: UIButton, mode: UIViewContentMode)
     {
         let image = button.imageView?.image
         let scaledImage = scaleImageToWidth(image!, newWidth: button.frame.size.width)
+
         button.setImage(scaledImage, forState: UIControlState.Normal)
-        button.imageView?.contentMode = .TopLeft
+        button.imageView?.contentMode = mode
     }
 
     func scaleImageToWidth(image: UIImage, newWidth: CGFloat) -> UIImage
