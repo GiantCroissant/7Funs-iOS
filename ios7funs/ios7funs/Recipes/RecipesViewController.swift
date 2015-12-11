@@ -8,7 +8,9 @@
 
 import UIKit
 
-class RecipesViewController: UIViewController, UITableViewDataSource {
+class RecipesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+    @IBOutlet weak var topBackground: UIView!
 
     var data = ["Apple", "Apricot", "Banana", "Blueberry", "Cantaloupe", "Cherry",
         "Clementine", "Coconut", "Cranberry", "Fig", "Grape", "Grapefruit",
@@ -16,11 +18,33 @@ class RecipesViewController: UIViewController, UITableViewDataSource {
         "Melon", "Nectarine", "Olive", "Orange", "Papaya", "Peach",
         "Pear", "Pineapple", "Raspberry", "Strawberry"]
 
+
+    @IBOutlet weak var tableRecipes: UITableView!
+
+    var recipes = [RecipeUI]()
+
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+
+        print("y = \(scrollView.contentOffset.y)")
+        let y = scrollView.contentOffset.y
+        if (y > 0) {
+            topBackground.backgroundColor = UIColor.orangeColor().colorWithAlphaComponent(1 - ((100 - y) / 100))
+        }
+
+    }
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
         // Show navigation bar.
         self.navigationController?.navigationBarHidden = false
+
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        topBackground.backgroundColor = UIColor.orangeColor().colorWithAlphaComponent(0.3)
     }
 
     override func viewDidLoad() {
@@ -28,8 +52,17 @@ class RecipesViewController: UIViewController, UITableViewDataSource {
 
         self.title = "食譜列表"
 
-        RecipeManager.sharedInstance.loadRecipes()
+        RecipeManager.sharedInstance.updateCachedRecipesOverviews()
+        RecipeManager.sharedInstance.loadRecipes { (recipes) -> () in
+            print("[ RecipeManager ] : load recipes from data completed")
+
+            self.recipes = recipes
+            self.tableRecipes.reloadData()
+        }
+
+        tableRecipes.tableHeaderView = UIView(frame: CGRectMake(0, 0, 320,64))
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -42,7 +75,21 @@ class RecipesViewController: UIViewController, UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("idRecipeCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("idRecipeCell", forIndexPath: indexPath) as! RecipeTableViewCell
+
+        if (indexPath.row >= recipes.count) {
+            return cell
+        }
+
+        let recipe = recipes[indexPath.row]
+        let imageId = recipe.imageId
+        let imageName = recipe.imageName
+
+        RecipeManager.sharedInstance.loadFoodImageById(imageId, imageName: imageName) { (image) -> () in
+
+            cell.imgFood.image = image
+
+        }
         return cell
     }
 

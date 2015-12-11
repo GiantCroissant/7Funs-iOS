@@ -26,6 +26,9 @@
 		3B41D14B1C16D12E0054FC10 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B41D1401C16D12E0054FC10 /* RxBlocking.framework */; };
 		3B41D14C1C16D12E0054FC10 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B41D1411C16D12E0054FC10 /* RxCocoa.framework */; };
 		3B41D14D1C16D12E0054FC10 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B41D1421C16D12E0054FC10 /* RxSwift.framework */; };
+		3B5565851C16F65000CFF1B4 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5565841C16F65000CFF1B4 /* RecipeTableViewCell.swift */; };
+		3B5565871C16F67700CFF1B4 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5565861C16F67700CFF1B4 /* RecipeDetailViewController.swift */; };
+		3B5565891C17F2DA00CFF1B4 /* UIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5565881C17F2DA00CFF1B4 /* UIModel.swift */; };
 		3B62E8C01C16A473008AA784 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B62E8BF1C16A473008AA784 /* CardView.swift */; };
 		3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE50681C15BFB60088794A /* MainViewController.swift */; };
 		3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */; };
@@ -39,7 +42,6 @@
 		3BCE50821C168E1E0088794A /* ShowInfos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BCE50811C168E1E0088794A /* ShowInfos.storyboard */; };
 		3BCE50841C1698AF0088794A /* Recipes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BCE50831C1698AF0088794A /* Recipes.storyboard */; };
 		3BCE50861C1698DA0088794A /* Videos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BCE50851C1698DA0088794A /* Videos.storyboard */; };
-		3BCE50881C16A2640088794A /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE50871C16A2640088794A /* RecipeDetailViewController.swift */; };
 		3BD721141C117870006716D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD721131C117870006716D4 /* AppDelegate.swift */; };
 		3BD721191C117870006716D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD721171C117870006716D4 /* Main.storyboard */; };
 		3BD7211B1C117870006716D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7211A1C117870006716D4 /* Assets.xcassets */; };
@@ -66,6 +68,9 @@
 		3B41D1401C16D12E0054FC10 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = ios7funs/Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		3B41D1411C16D12E0054FC10 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = ios7funs/Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		3B41D1421C16D12E0054FC10 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ios7funs/Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		3B5565841C16F65000CFF1B4 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeTableViewCell.swift; path = Recipes/RecipeTableViewCell.swift; sourceTree = "<group>"; };
+		3B5565861C16F67700CFF1B4 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailViewController.swift; path = Recipes/RecipeDetailViewController.swift; sourceTree = "<group>"; };
+		3B5565881C17F2DA00CFF1B4 /* UIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIModel.swift; path = Models/UIModel.swift; sourceTree = "<group>"; };
 		3B62E8BF1C16A473008AA784 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = Utils/CardView.swift; sourceTree = "<group>"; };
 		3BCE50681C15BFB60088794A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowInfosViewController.swift; path = ShowInfos/ShowInfosViewController.swift; sourceTree = "<group>"; };
@@ -79,7 +84,6 @@
 		3BCE50811C168E1E0088794A /* ShowInfos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ShowInfos.storyboard; path = ShowInfos/ShowInfos.storyboard; sourceTree = "<group>"; };
 		3BCE50831C1698AF0088794A /* Recipes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Recipes.storyboard; path = Recipes/Recipes.storyboard; sourceTree = "<group>"; };
 		3BCE50851C1698DA0088794A /* Videos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Videos.storyboard; path = Videos/Videos.storyboard; sourceTree = "<group>"; };
-		3BCE50871C16A2640088794A /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		3BD721101C117870006716D4 /* ios7funs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios7funs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD721131C117870006716D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BD721181C117870006716D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 		3B41D11C1C16C8C50054FC10 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3B5565881C17F2DA00CFF1B4 /* UIModel.swift */,
 				3B41D1271C16C9230054FC10 /* DbModel.swift */,
 				3B41D1281C16C9230054FC10 /* ExtendDate.swift */,
 				3B41D1291C16C9230054FC10 /* ExtendObservable.swift */,
@@ -173,10 +178,11 @@
 		3BCE50721C168B790088794A /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				3B5565861C16F67700CFF1B4 /* RecipeDetailViewController.swift */,
 				3BCE50831C1698AF0088794A /* Recipes.storyboard */,
 				3BCE50771C168BDD0088794A /* RecipesViewController.swift */,
-				3BCE50871C16A2640088794A /* RecipeDetailViewController.swift */,
 				3B41D11A1C16C6DA0054FC10 /* RecipeManager.swift */,
+				3B5565841C16F65000CFF1B4 /* RecipeTableViewCell.swift */,
 			);
 			name = Recipes;
 			sourceTree = "<group>";
@@ -359,19 +365,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B5565891C17F2DA00CFF1B4 /* UIModel.swift in Sources */,
 				3BCE507A1C168BF10088794A /* CollectionsViewController.swift in Sources */,
 				3BCE507C1C168C040088794A /* QandAViewController.swift in Sources */,
 				3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */,
+				3B5565851C16F65000CFF1B4 /* RecipeTableViewCell.swift in Sources */,
 				3BD721141C117870006716D4 /* AppDelegate.swift in Sources */,
 				3BCE50801C168C1D0088794A /* BonusViewController.swift in Sources */,
 				3B41D12F1C16C9230054FC10 /* JsonModel.swift in Sources */,
 				3BCE507E1C168C100088794A /* LinksViewController.swift in Sources */,
 				3B41D12C1C16C9230054FC10 /* DbModel.swift in Sources */,
 				3BCE50701C168AB60088794A /* VideosViewController.swift in Sources */,
+				3B5565871C16F67700CFF1B4 /* RecipeDetailViewController.swift in Sources */,
 				3B41D12E1C16C9230054FC10 /* ExtendObservable.swift in Sources */,
 				3BCE50781C168BDD0088794A /* RecipesViewController.swift in Sources */,
 				3B41D12D1C16C9230054FC10 /* ExtendDate.swift in Sources */,
-				3BCE50881C16A2640088794A /* RecipeDetailViewController.swift in Sources */,
 				3B41D11B1C16C6DA0054FC10 /* RecipeManager.swift in Sources */,
 				3B62E8C01C16A473008AA784 /* CardView.swift in Sources */,
 				3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */,
@@ -496,6 +504,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.giantcroissant.ios7funs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -511,6 +520,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.giantcroissant.ios7funs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};

@@ -126,7 +126,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYt-sm-Utd" userLabel="Recipes">
                                 <rect key="frame" x="0.0" y="305" width="250" height="237"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O21-1d-aca">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O21-1d-aca">
                                         <rect key="frame" x="10" y="5" width="235" height="227"/>
                                         <animations/>
                                         <state key="normal" image="ser_03"/>

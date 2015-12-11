@@ -31,7 +31,30 @@ class MainViewController: UIViewController {
     }
 
     func setImageToScaleAspectFill(button: UIButton) {
-        button.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
+        let image = button.imageView?.image
+        let scaledImage = scaleImageToWidth(image!, newWidth: button.frame.size.width)
+        button.setImage(scaledImage, forState: UIControlState.Normal)
+        button.imageView?.contentMode = .TopLeft
+    }
+
+    func scaleImageToWidth(image: UIImage, newWidth: CGFloat) -> UIImage
+    { 
+        let imgWidth = image.size.width
+        let imgHeight = image.size.height
+
+        if (imgWidth != newWidth)
+        {
+            let newHeight = floorf(Float(imgHeight * (newWidth / imgWidth)))
+            let newSize = CGSizeMake(newWidth, CGFloat(newHeight))
+
+            UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
+            image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
+            let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+
+            return scaledImage
+        }
+        return image
     }
 
 

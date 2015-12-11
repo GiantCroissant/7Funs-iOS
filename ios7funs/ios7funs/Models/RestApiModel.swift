@@ -51,8 +51,9 @@ public enum RestApi {
 }
 
 extension RestApi : TargetType {
-    public var baseURL: NSURL { return NSURL(string: "http://104.155.232.182")! }
-    
+//    public var baseURL: NSURL { return NSURL(string: "http://104.155.232.182")! }
+    public var baseURL: NSURL { return NSURL(string: "https://www.7funs.com")! }
+
     public var path: String {
         switch self {
         case .Recipes(_):

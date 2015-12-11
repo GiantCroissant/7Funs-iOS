@@ -17,25 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pAg-Q3-wSo" userLabel="Top Background">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                <animations/>
-                                <color key="backgroundColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="WpW-x1-rgk"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rGr-Xh-ssI" userLabel="Page Background">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="258" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NwZ-h3-aJb">
-                                <rect key="frame" x="5" y="69" width="365" height="593"/>
+                                <rect key="frame" x="5" y="8" width="365" height="654"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.95686274510000002" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="idRecipeCell" rowHeight="258" id="eXP-D9-dGp">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="idRecipeCell" rowHeight="258" id="eXP-D9-dGp" customClass="RecipeTableViewCell" customModule="ios7funs" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="365" height="258"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eXP-D9-dGp" id="sfl-Js-dUI">
@@ -48,6 +40,10 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0g-mk-wnY" userLabel="Food Background">
                                                             <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
                                                             <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Wn-fX-Vxq">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
+                                                                    <animations/>
+                                                                </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="這是測試用的文字用來顯示食譜名稱，長度過長會變成三個點" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Zb-gV-cP9">
                                                                     <rect key="frame" x="12" y="164" width="331" height="24"/>
                                                                     <animations/>
@@ -59,11 +55,21 @@
                                                             <animations/>
                                                             <color key="backgroundColor" red="0.86666666670000003" green="0.67843137249999996" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="7Wn-fX-Vxq" secondAttribute="trailing" id="2Mo-Zi-qtA"/>
                                                                 <constraint firstAttribute="bottom" secondItem="0Zb-gV-cP9" secondAttribute="bottom" constant="12" id="45P-RR-lyn"/>
                                                                 <constraint firstItem="0Zb-gV-cP9" firstAttribute="leading" secondItem="a0g-mk-wnY" secondAttribute="leading" constant="12" id="Dva-ms-j3x"/>
+                                                                <constraint firstItem="7Wn-fX-Vxq" firstAttribute="leading" secondItem="a0g-mk-wnY" secondAttribute="leading" id="Ksg-mF-L9l"/>
+                                                                <constraint firstItem="7Wn-fX-Vxq" firstAttribute="top" secondItem="a0g-mk-wnY" secondAttribute="top" id="NyQ-sf-FfO"/>
+                                                                <constraint firstAttribute="bottom" secondItem="7Wn-fX-Vxq" secondAttribute="bottom" id="ZSz-cQ-cZl"/>
                                                                 <constraint firstAttribute="height" constant="200" id="aTm-qQ-FjZ"/>
                                                                 <constraint firstAttribute="trailing" secondItem="0Zb-gV-cP9" secondAttribute="trailing" constant="12" id="anu-Uz-uDq"/>
+                                                                <constraint firstItem="0Zb-gV-cP9" firstAttribute="top" secondItem="7Wn-fX-Vxq" secondAttribute="bottom" id="jYU-qh-h3l"/>
                                                             </constraints>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="jYU-qh-h3l"/>
+                                                                </mask>
+                                                            </variation>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WwI-J7-F3h" userLabel="Add Collection Background">
                                                             <rect key="frame" x="299" y="200" width="56" height="48"/>
@@ -138,14 +144,24 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
+                                            <outlet property="imgFood" destination="7Wn-fX-Vxq" id="AsX-nv-mD1"/>
                                             <segue destination="9OQ-Cy-w8b" kind="show" id="jb8-PZ-lkI"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Em0-5b-b7w" id="dmV-Pt-dJb"/>
+                                    <outlet property="delegate" destination="Em0-5b-b7w" id="rLD-LJ-AiD"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pAg-Q3-wSo" userLabel="Top Background">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="WpW-x1-rgk"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -157,14 +173,24 @@
                             <constraint firstItem="pAg-Q3-wSo" firstAttribute="top" secondItem="m1a-RO-TAI" secondAttribute="top" id="c8X-HT-yjq"/>
                             <constraint firstAttribute="trailing" secondItem="NwZ-h3-aJb" secondAttribute="trailing" constant="5" id="elY-cp-3te"/>
                             <constraint firstAttribute="trailing" secondItem="rGr-Xh-ssI" secondAttribute="trailing" id="ghc-iz-bHy"/>
+                            <constraint firstItem="NwZ-h3-aJb" firstAttribute="top" secondItem="m1a-RO-TAI" secondAttribute="top" constant="8" id="iZA-hL-5Ac"/>
                             <constraint firstItem="gMc-JZ-G2F" firstAttribute="top" secondItem="NwZ-h3-aJb" secondAttribute="bottom" constant="5" id="jpe-VM-w6q"/>
                             <constraint firstItem="rGr-Xh-ssI" firstAttribute="top" secondItem="pAg-Q3-wSo" secondAttribute="bottom" id="mwp-he-K8i"/>
                             <constraint firstItem="NwZ-h3-aJb" firstAttribute="top" secondItem="pAg-Q3-wSo" secondAttribute="bottom" constant="5" id="rSX-LD-gms"/>
                             <constraint firstItem="gMc-JZ-G2F" firstAttribute="top" secondItem="rGr-Xh-ssI" secondAttribute="bottom" id="zuL-oF-Sh3"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="rSX-LD-gms"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableRecipes" destination="NwZ-h3-aJb" id="XhT-rs-cLv"/>
+                        <outlet property="topBackground" destination="pAg-Q3-wSo" id="gBe-k6-rAr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5jU-kb-hq0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

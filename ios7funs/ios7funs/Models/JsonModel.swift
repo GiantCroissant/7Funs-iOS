@@ -38,7 +38,7 @@ public struct RecipesJsonObject {
     public let creatorId: Int
     public let updatorId: Int
     public let imageMeta: RecipesImageMeta
-    public let marks: [Int]
+    public let marks: [RecipesMarkJsonObject]
     public let collected: Int
 }
 
