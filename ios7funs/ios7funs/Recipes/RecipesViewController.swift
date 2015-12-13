@@ -8,28 +8,22 @@
 
 import UIKit
 
-class RecipesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RecipesViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var topBackground: UIView!
-
-    var data = ["Apple", "Apricot", "Banana", "Blueberry", "Cantaloupe", "Cherry",
-        "Clementine", "Coconut", "Cranberry", "Fig", "Grape", "Grapefruit",
-        "Kiwi fruit", "Lemon", "Lime", "Lychee", "Mandarine", "Mango",
-        "Melon", "Nectarine", "Olive", "Orange", "Papaya", "Peach",
-        "Pear", "Pineapple", "Raspberry", "Strawberry"]
-
-
     @IBOutlet weak var tableRecipes: UITableView!
 
     var recipes = [RecipeUI]()
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
 
+        /*
         print("y = \(scrollView.contentOffset.y)")
         let y = scrollView.contentOffset.y
         if (y > 0) {
             topBackground.backgroundColor = UIColor.orangeColor().colorWithAlphaComponent(1 - ((100 - y) / 100))
         }
+        */
 
     }
 
@@ -44,7 +38,9 @@ class RecipesViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
+        /*
         topBackground.backgroundColor = UIColor.orangeColor().colorWithAlphaComponent(0.3)
+        */
     }
 
     override func viewDidLoad() {
@@ -53,14 +49,13 @@ class RecipesViewController: UIViewController, UITableViewDataSource, UITableVie
         self.title = "食譜列表"
 
         RecipeManager.sharedInstance.updateCachedRecipesOverviews()
-        RecipeManager.sharedInstance.loadRecipes { (recipes) -> () in
-            print("[ RecipeManager ] : load recipes from data completed")
-
+        RecipeManager.sharedInstance.loadRecipes() { recipes in
             self.recipes = recipes
+
+            print("[ RecipesViewController ] : self.recipes count : \(self.recipes.count)")
+
             self.tableRecipes.reloadData()
         }
-
-        tableRecipes.tableHeaderView = UIView(frame: CGRectMake(0, 0, 320,64))
     }
 
 
@@ -69,9 +64,23 @@ class RecipesViewController: UIViewController, UITableViewDataSource, UITableVie
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - UITableViewDataSource
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+
+// MARK: - UITableViewDataSource
+extension RecipesViewController : UITableViewDataSource {
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return recipes.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -85,24 +94,14 @@ class RecipesViewController: UIViewController, UITableViewDataSource, UITableVie
         let imageId = recipe.imageId
         let imageName = recipe.imageName
 
-        RecipeManager.sharedInstance.loadFoodImageById(imageId, imageName: imageName) { (image) -> () in
+        cell.imgFood.image = nil
+        cell.imgFood.tag = imageId
 
-            cell.imgFood.image = image
-
+        RecipeManager.sharedInstance.loadFoodImage(imageId, imageName: imageName) { image in
+            if (cell.imgFood.tag == imageId) {
+                cell.imgFood.image = image
+            }
         }
         return cell
     }
-
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

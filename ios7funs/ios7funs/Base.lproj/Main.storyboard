@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Avy-C5-PZE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Avy-C5-PZE">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -21,7 +21,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vpZ-ZR-S6Z" userLabel="Status Background">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
-                                <animations/>
                                 <color key="backgroundColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="8CM-XX-UQL"/>
@@ -32,7 +31,6 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDh-Hh-AEs">
                                         <rect key="frame" x="10" y="10" width="355" height="106"/>
-                                        <animations/>
                                         <color key="backgroundColor" red="0.69019607839999997" green="0.69411764710000001" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" image="ser_01"/>
                                         <connections>
@@ -41,12 +39,10 @@
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nHq-to-fkY" userLabel="Dummy">
                                         <rect key="frame" x="345" y="0.0" width="30" height="121"/>
-                                        <animations/>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXL-0k-nVB">
                                         <rect key="frame" x="245" y="39" width="100" height="48"/>
-                                        <animations/>
                                         <string key="text">料理美食王
 節目資訊</string>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -54,7 +50,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="nHq-to-fkY" secondAttribute="bottom" id="3Kb-cn-aRl"/>
@@ -88,7 +83,6 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ub-2J-TzO">
                                         <rect key="frame" x="10" y="5" width="355" height="154"/>
-                                        <animations/>
                                         <state key="normal" image="ser_02"/>
                                         <connections>
                                             <segue destination="dXT-9Y-cQ5" kind="show" id="2Lr-Jw-Dgg"/>
@@ -96,7 +90,6 @@
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="影音" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwX-Nk-kby">
                                         <rect key="frame" x="20" y="124" width="41" height="25"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -104,7 +97,6 @@
                                         <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="qwX-Nk-kby" secondAttribute="bottom" constant="15" id="3Kx-oy-92U"/>
@@ -128,7 +120,6 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O21-1d-aca">
                                         <rect key="frame" x="10" y="5" width="235" height="227"/>
-                                        <animations/>
                                         <state key="normal" image="ser_03"/>
                                         <connections>
                                             <segue destination="vaK-Vt-GuE" kind="show" id="biz-6l-gmZ"/>
@@ -136,7 +127,6 @@
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="食譜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r55-4n-T8U">
                                         <rect key="frame" x="20" y="197" width="41" height="25"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -144,7 +134,6 @@
                                         <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="O21-1d-aca" firstAttribute="leading" secondItem="AYt-sm-Utd" secondAttribute="leading" constant="10" id="Atx-4m-jWa"/>
@@ -168,7 +157,6 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RbS-Bn-HVE">
                                         <rect key="frame" x="5" y="5" width="110" height="227"/>
-                                        <animations/>
                                         <state key="normal" image="ser_04"/>
                                         <connections>
                                             <segue destination="uMa-cA-sKA" kind="show" id="ON4-9D-qAp"/>
@@ -176,7 +164,6 @@
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的收藏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCr-mj-dth">
                                         <rect key="frame" x="19" y="197" width="81" height="25"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -184,7 +171,6 @@
                                         <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="RbS-Bn-HVE" firstAttribute="centerX" secondItem="s5v-VV-6Vs" secondAttribute="centerX" id="3ku-1E-jE4"/>
@@ -208,7 +194,6 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBc-NW-397">
                                         <rect key="frame" x="10" y="5" width="110" height="110"/>
-                                        <animations/>
                                         <state key="normal" title="Q &amp; A" image="ser_05"/>
                                         <connections>
                                             <segue destination="fSW-Od-b2e" kind="show" id="zF6-RE-Kei"/>
@@ -216,7 +201,6 @@
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEB-mG-89M">
                                         <rect key="frame" x="20" y="56" width="61" height="49"/>
-                                        <animations/>
                                         <string key="text">美食
 問與答</string>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -226,7 +210,6 @@
                                         <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="cBc-NW-397" secondAttribute="trailing" constant="5" id="6KV-sF-D69"/>
@@ -243,7 +226,6 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1P-dZ-siy">
                                         <rect key="frame" x="5" y="5" width="115" height="110"/>
-                                        <animations/>
                                         <state key="normal" image="ser_06"/>
                                         <connections>
                                             <segue destination="6Rd-Jr-p9d" kind="show" id="6xE-xc-4yc"/>
@@ -251,14 +233,12 @@
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="外部連結" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7r-q6-pvJ">
                                         <rect key="frame" x="22" y="80" width="80" height="25"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" red="0.1647058824" green="0.1647058824" blue="0.15686274510000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                     </label>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="S7r-q6-pvJ" secondAttribute="bottom" constant="20" id="4v6-HF-wCG"/>
@@ -283,7 +263,6 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwz-8Y-KeD">
                                         <rect key="frame" x="5" y="5" width="110" height="110"/>
-                                        <animations/>
                                         <state key="normal" image="ser_07"/>
                                         <connections>
                                             <segue destination="PQM-Rl-YCe" kind="show" id="4Hd-gi-IUj"/>
@@ -291,7 +270,6 @@
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="好康菜藍" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gp6-ck-mfM">
                                         <rect key="frame" x="20" y="80" width="81" height="25"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -299,7 +277,6 @@
                                         <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Gp6-ck-mfM" secondAttribute="bottom" constant="20" id="6UT-Pc-ZNU"/>
@@ -320,7 +297,6 @@
                                 </variation>
                             </view>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="UfM-Kt-G1H" secondAttribute="trailing" id="166-F5-fbU"/>
@@ -388,14 +364,12 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="51y-QK-HQH" userLabel="Top Background">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                <animations/>
                                 <color key="backgroundColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="0CB-RR-bpV"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="51y-QK-HQH" firstAttribute="leading" secondItem="TCa-Ol-CUr" secondAttribute="leading" id="qRF-FI-ygb"/>
@@ -422,14 +396,12 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xYd-Ik-SJ8" userLabel="Top Background">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                <animations/>
                                 <color key="backgroundColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="Cou-kp-b9i"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="xYd-Ik-SJ8" firstAttribute="leading" secondItem="gzo-wL-zpG" secondAttribute="leading" id="2xG-nB-bXj"/>
@@ -456,14 +428,12 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tpL-gW-LG8" userLabel="Top Background">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                <animations/>
                                 <color key="backgroundColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="sec-4U-gTQ"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="tpL-gW-LG8" firstAttribute="top" secondItem="pA1-AJ-HAp" secondAttribute="top" id="Wnq-Aa-6mN"/>
@@ -474,7 +444,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="umx-pX-fXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="101.5" y="1981.5"/>
+            <point key="canvasLocation" x="1397.5" y="885.5"/>
         </scene>
         <!--Q & A-->
         <scene sceneID="GOu-aL-hkh">
@@ -490,14 +460,12 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6E-24-j8B" userLabel="Top Background">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                <animations/>
                                 <color key="backgroundColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="u45-g0-Zfz"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="y6E-24-j8B" firstAttribute="leading" secondItem="kJ7-3a-JeE" secondAttribute="leading" id="2ON-Xe-qGJ"/>
@@ -520,7 +488,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AD0-0J-P9O">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
