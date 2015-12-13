@@ -8,9 +8,9 @@
 
 import Foundation
 
-public class RecipeUI {
-    public var imageId: Int = 0
-    public var imageName: String = ""
+struct RecipeUIModel {
+    var imageId: Int = 0
+    var imageName: String = ""
 
     init(dbData: Recipes) {
         self.imageId = dbData.id

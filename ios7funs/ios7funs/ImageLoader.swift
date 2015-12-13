@@ -25,9 +25,9 @@ class ImageLoader {
 
     }
 
-    private let baseUrl = "http://img8.mmo.mmo4arab.com/news/2015/12/10/"
+    let imageSaveQuality: CGFloat = 0.25
 
-    func loadImage(imageName: String, completionHandler:(image: UIImage?, imageName: String, fadeIn: Bool) -> ()) {
+    func loadImage(imageName: String, url: String, completionHandler:(image: UIImage?, imageName: String, fadeIn: Bool) -> ()) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
 
             if let image = ImageCache.sharedCache.objectForKey(imageName) as? UIImage {
@@ -44,7 +44,7 @@ class ImageLoader {
                 return
             }
 
-            self.loadImageFromUrl(imageName) { image, url in
+            self.loadImageFromUrl(imageName, url: url) { image, url in
                 dispatch_async(dispatch_get_main_queue()) {
                     completionHandler(image: image, imageName: imageName, fadeIn: true)
                 }
@@ -58,8 +58,7 @@ class ImageLoader {
         return image
     }
 
-    private func loadImageFromUrl(imageName: String, completionHandler:(image: UIImage?, url: String) -> ()) {
-        let url = self.baseUrl + imageName
+    private func loadImageFromUrl(imageName: String, url: String, completionHandler:(image: UIImage?, url: String) -> ()) {
         let nsurl = NSURL(string: url)!
 
         NSURLSession.sharedSession().dataTaskWithURL(nsurl) { data, response, error in
@@ -73,14 +72,14 @@ class ImageLoader {
                 completionHandler(image: image, url: url)
 
                 ImageCache.sharedCache.setObject(image, forKey: imageName, cost: data.length)
-                self.saveImageToFile(nsurl.lastPathComponent!, image: image, quality: 1.0)
+                self.saveImageToFile(nsurl.lastPathComponent!, image: image)
             }
 
             }.resume()
     }
 
-    private func saveImageToFile(filename: String, image: UIImage, quality: CGFloat) {
-        if let jpg = UIImageJPEGRepresentation(image, quality) {
+    private func saveImageToFile(filename: String, image: UIImage) {
+        if let jpg = UIImageJPEGRepresentation(image, imageSaveQuality) {
             let filePath = FileUtils.getFilePathInDocumentsDirectory(filename)
             if jpg.writeToFile(filePath, atomically: true) {
                 dLog("save success : \(filePath)")

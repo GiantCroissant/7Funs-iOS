@@ -17,6 +17,8 @@ class RecipeManager: NSObject {
 
     static let sharedInstance = RecipeManager()
 
+    let fetchAmount = 100
+    let recipeImageBaseUrl = "https://commondatastorage.googleapis.com/funs7-1/uploads/recipe/image/"
     let disposeBag = DisposeBag()
 
     let restApiProvider = RxMoyaProvider<RestApi>(endpointClosure: { (target: RestApi) -> Endpoint<RestApi> in
@@ -38,7 +40,7 @@ class RecipeManager: NSObject {
 
     })
 
-    func loadRecipes(completionHandler: (recipes: [RecipeUI]) -> ()) {
+    func loadRecipes(completionHandler: (recipes: [RecipeUIModel]) -> ()) {
         print("loading recipes data from realm")
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
@@ -47,7 +49,7 @@ class RecipeManager: NSObject {
             {
                 do
                 {
-                    var recipeUIs = [RecipeUI]()
+                    var recipeUIs = [RecipeUIModel]()
                     let realm = try Realm()
                     let recipes = realm.objects(Recipes)
                     print("recipes count = \(recipes.count)")
@@ -56,7 +58,7 @@ class RecipeManager: NSObject {
                     {
                         for i in 1..<recipes.count
                         {
-                            let recipeUI = RecipeUI(dbData: recipes[i])
+                            let recipeUI = RecipeUIModel(dbData: recipes[i])
                             if (recipeUI.imageName != "")
                             {
                                 recipeUIs.append(recipeUI)
@@ -167,98 +169,48 @@ class RecipeManager: NSObject {
     }
 
     func fetchRecipesInChunks(ids: [Int]) {
-        print("fetchRecipesInChunks start...")
-
-        //let total = ids.count
-        let l : [Int] =  Array(ids.prefix(30))
+        let l : [Int] =  Array(ids.prefix(fetchAmount + 1))
 
         self.restApiProvider.request(.RecipesByIdList(l))
             .mapSuccessfulHTTPToObjectArray(RecipesJsonObject).subscribe(onNext: { responeRecipes in
 
-
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
                 autoreleasepool {
-                    do
-                    {
+                    do {
+                        let realm1 = try! Realm()
+                        let recipesOverviews1 = realm1.objects(RecipesOverview)
 
-                        print("responeRecipes = \(responeRecipes)")
+                        var toAddRecipes = [Recipes]()
+                        var toRemoveRecipesOverviews = [RecipesOverview]()
 
-//            self.utilityBackgroundThread(0, background: {
+                        for rr in responeRecipes {
+                            let r = self.convertFromRecipesJsonObject(rr)
+                            let ro = recipesOverviews1.filter("id == %@", rr.id)
 
-                let realm1 = try! Realm()
-                let recipesOverviews1 = realm1.objects(RecipesOverview)
+                            toAddRecipes.append(r)
+                            toRemoveRecipesOverviews.append(ro[0])
+                        }
 
-                var toAddRecipes = [Recipes]()
-                var toRemoveRecipesOverviews = [RecipesOverview]()
-
-                for rr in responeRecipes {
-                    let r = self.convertFromRecipesJsonObject(rr)
-                    let ro = recipesOverviews1.filter("id == %@", rr.id)
-
-                    toAddRecipes.append(r)
-                    toRemoveRecipesOverviews.append(ro[0])
-                }
-
-                realm1.beginWrite()
-                for i in 1..<toAddRecipes.count {
-
-                    print("realm add recipes => \(toAddRecipes[i])")
-
-                    realm1.add(toAddRecipes[i], update: true)
-                    realm1.delete(toRemoveRecipesOverviews[i])
-                }
-                try! realm1.commitWrite()
-
-
-                print("start download images")
-
-                for i in 1..<toAddRecipes.count
-                {
-                    if toAddRecipes[i].image.characters.count > 0
-                    {
-                        let id = toAddRecipes[i].id
-                        let imageName = toAddRecipes[i].image
-                        let prefix = "https://commondatastorage.googleapis.com/funs7-1/uploads/recipe/image/"
-                        let combinedUrl = prefix + String(id) + "/" + imageName
-                        let localPath = "Images/" + String(id)
-
-                        //
-                        self.downloadImage(NSURL(string: combinedUrl)!, folderName: localPath, fileName: imageName)
-                    }
-                    else
-                    {
-                        print("can't download image name : '\(toAddRecipes[i].image)'")
-                    }
-                }
+                        realm1.beginWrite()
+                        for i in 1..<toAddRecipes.count {
+                            realm1.add(toAddRecipes[i], update: true)
+                            realm1.delete(toRemoveRecipesOverviews[i])
+                        }
+                        try! realm1.commitWrite()
 
                     }
+                }
             }
-                }
-//            })
-
-            
         }).addDisposableTo(disposeBag)
         
     }
 
-    func loadFoodImage(imageId: Int, imageName: String, completionHandler:(image: UIImage) -> ()) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-            let subFolderName = "Images/" + String(imageId)
+    func loadFoodImage(imageId: Int, imageName: String, completionHandler:(image: UIImage, imageId: Int, fadeIn: Bool) -> ()) {
+        let imageUrl = recipeImageBaseUrl + String(imageId) + "/" + imageName
+        ImageLoader.sharedInstance.loadImage(imageName, url: imageUrl) { image, imageName, fadeIn in
 
-            let fileURL = self.formCompleteFileUrl(subFolderName, fileName: imageName)
-            self.getDataFromUrl(fileURL) { data in
-                if let d = data {
-                    let image = UIImage(data: d)
+            completionHandler(image: image!, imageId: imageId, fadeIn: fadeIn)
 
-                    dispatch_async(dispatch_get_main_queue()) {
-                        // print("[ Success ] : image loaded => id \(imageId) name \(imageName)")
-                        completionHandler(image: image!)
-                    }
-
-                } else {
-                    print("[ Error ] : no image in file => id \(imageId) name \(imageName)")
-                }
-            }
         }
     }
 
@@ -296,30 +248,6 @@ class RecipeManager: NSObject {
         recipes.reminder = recipesJsonObject.reminder
         recipes.hits = recipesJsonObject.hits
         return recipes
-    }
-
-    func downloadImage(url: NSURL, folderName: String, fileName: String) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-            self.getDataFromUrl(url) { data in
-                do {
-                    let fileManager = NSFileManager.defaultManager()
-                    let documentsURL = try fileManager.URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
-                    let folderURL = documentsURL.URLByAppendingPathComponent(folderName)
-                    if !folderURL.checkPromisedItemIsReachableAndReturnError(nil) {
-                        try fileManager.createDirectoryAtURL(folderURL, withIntermediateDirectories: true, attributes: nil)
-                    }
-                    let fileURL = self.formCompleteFileUrl(folderName, fileName: fileName)
-
-                    let image = UIImage(data: data!)
-                    UIImageJPEGRepresentation(image!, 1.0)!.writeToURL(fileURL, atomically: true)
-
-                    print("image download compelte : \(fileURL)")
-
-                } catch {
-                    print("downloadImage : \(error)")
-                }
-            }
-        }
     }
 
     func getDataFromUrl(url:NSURL, completion: ((data: NSData?) -> Void)) {

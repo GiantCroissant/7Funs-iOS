@@ -13,7 +13,7 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var topBackground: UIView!
     @IBOutlet weak var tableRecipes: UITableView!
 
-    var recipes = [RecipeUI]()
+    var recipes = [RecipeUIModel]()
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
 
@@ -86,6 +86,7 @@ extension RecipesViewController : UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("idRecipeCell", forIndexPath: indexPath) as! RecipeTableViewCell
 
+        // FIXME: This line should be delete.
         if (indexPath.row >= recipes.count) {
             return cell
         }
@@ -97,9 +98,17 @@ extension RecipesViewController : UITableViewDataSource {
         cell.imgFood.image = nil
         cell.imgFood.tag = imageId
 
-        RecipeManager.sharedInstance.loadFoodImage(imageId, imageName: imageName) { image in
+        RecipeManager.sharedInstance.loadFoodImage(imageId, imageName: imageName) { image, imageId, fadeIn in
             if (cell.imgFood.tag == imageId) {
                 cell.imgFood.image = image
+                cell.imgFood.alpha = 1
+                
+                if fadeIn {
+                    cell.imgFood.alpha = 0
+                    UIView.animateWithDuration(0.3) {
+                        cell.imgFood.alpha = 1
+                    }
+                }
             }
         }
         return cell
