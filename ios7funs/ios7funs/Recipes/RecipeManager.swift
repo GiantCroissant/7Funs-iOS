@@ -76,7 +76,7 @@ class RecipeManager: NSObject {
     func updateCachedRecipesOverviews() {
         dLog("updateCachedRecipesOverviews")
 
-        // 
+        //
 
         self.restApiProvider.request(.RecipesOverview).subscribe() { event in
 
