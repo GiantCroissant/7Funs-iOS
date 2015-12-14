@@ -11,7 +11,7 @@ import Foundation
 import RealmSwift
 
 //
-public class Recipes : Object {
+public class Recipe : Object {
     dynamic var id = 0
     dynamic var image = ""
     dynamic var title = ""

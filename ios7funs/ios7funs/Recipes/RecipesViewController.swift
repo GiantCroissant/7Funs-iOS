@@ -14,6 +14,8 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var tableRecipes: UITableView!
 
     var recipes = [RecipeUIModel]()
+    
+//    let bag = DisposeBag()
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
 
@@ -46,6 +48,8 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        dLog("view did load")
+
         self.title = "食譜列表"
 
         RecipeManager.sharedInstance.updateCachedRecipesOverviews()
@@ -56,6 +60,8 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
 
             self.tableRecipes.reloadData()
         }
+        
+//        RecipeManager.sharedInstance.fetchMoreRecipes()
     }
 
 

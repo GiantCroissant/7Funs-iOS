@@ -58,7 +58,6 @@ extension Observable {
     }
     
     func mapSuccessfulHTTPToObjectArray<T: Decodable>(type: T.Type) -> Observable<[T]> {
-        
         return map { response in
             guard let response = response as? RxMoya.Response else {
                 throw ORMError.ORMNoRepresentor
@@ -87,6 +86,8 @@ extension Observable {
             } catch {
                 throw ORMError.ORMCouldNotMakeObjectError
             }
+
+
         }
     }
 }

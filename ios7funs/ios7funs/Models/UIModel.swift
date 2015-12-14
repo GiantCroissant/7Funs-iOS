@@ -12,7 +12,7 @@ struct RecipeUIModel {
     var imageId: Int = 0
     var imageName: String = ""
 
-    init(dbData: Recipes) {
+    init(dbData: Recipe) {
         self.imageId = dbData.id
         self.imageName = dbData.image
     }
