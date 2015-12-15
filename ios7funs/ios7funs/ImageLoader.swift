@@ -31,7 +31,7 @@ class ImageLoader {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
 
             if let image = ImageCache.sharedCache.objectForKey(imageName) as? UIImage {
-                dLog("load from Cache : \(imageName)")
+//                dLog("load from Cache : \(imageName)")
 
                 dispatch_async(dispatch_get_main_queue()) {
                     completionHandler(image: image, imageName: imageName, fadeIn: false)
@@ -40,7 +40,7 @@ class ImageLoader {
             }
 
             if let image = self.loadImageFromFile(imageName) {
-                dLog("load from File : \(imageName)")
+//                dLog("load from File : \(imageName)")
                 ImageCache.sharedCache.setObject(image, forKey: imageName)
 
                 dispatch_async(dispatch_get_main_queue()) {
@@ -50,7 +50,7 @@ class ImageLoader {
             }
 
             self.loadImageFromUrl(imageName, url: url) { image, url in
-                dLog("load from Url : \(imageName)")
+//                dLog("load from Url : \(imageName)")
                 if let image = image {
                     ImageCache.sharedCache.setObject(image, forKey: imageName)
                 }
@@ -91,7 +91,7 @@ class ImageLoader {
         if let jpg = UIImageJPEGRepresentation(image, imageSaveQuality) {
             let filePath = FileUtils.getFilePathInDocumentsDirectory(filename)
             if jpg.writeToFile(filePath, atomically: true) {
-                dLog("save success : \(filePath)")
+//                dLog("save success : \(filePath)")
 
             } else {
                 uLog("save failed : \(filePath)")

@@ -10,7 +10,13 @@ import UIKit
 
 class RecipeTableViewCell: UITableViewCell {
 
+    // FIXME: should load from db
+    var added = false
+
+    @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var imgFood: UIImageView!
+    @IBOutlet weak var btnAddCollection: UIButton!
+    @IBOutlet weak var btnFood: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,4 +29,16 @@ class RecipeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    // FIXME: should write data or delete this function here
+    @IBAction func onAddButtonClick(sender: UIButton) {
+        added = !added
+        if added {
+            let image = UIImage(named: "icon_love_m_pink")
+            sender.setImage(image, forState: .Normal)
+
+        } else {
+            let image = UIImage(named: "icon_love_m")
+            sender.setImage(image, forState: .Normal)
+        }
+    }
 }

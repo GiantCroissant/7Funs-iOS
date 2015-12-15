@@ -11,9 +11,15 @@ import Foundation
 struct RecipeUIModel {
     var imageId: Int = 0
     var imageName: String = ""
+    var title: String = ""
+    var hits: Int = 0
+
+    var added: Bool = false
 
     init(dbData: Recipe) {
         self.imageId = dbData.id
         self.imageName = dbData.image
+        self.title = dbData.title
+        self.hits = dbData.hits
     }
 }

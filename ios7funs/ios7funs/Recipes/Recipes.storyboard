@@ -35,11 +35,24 @@
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvP-5r-nGN" userLabel="Card" customClass="CardView" customModule="ios7funs" customModuleProvider="target">
                                                     <rect key="frame" x="5" y="5" width="355" height="248"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0g-mk-wnY" userLabel="Food Background">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0g-mk-wnY" userLabel="Food Background">
                                                             <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
                                                             <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ku-tp-uXD">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
+                                                                    <connections>
+                                                                        <segue destination="9OQ-Cy-w8b" kind="show" id="pjZ-Cy-GSt"/>
+                                                                    </connections>
+                                                                </button>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Wn-fX-Vxq">
                                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
+                                                                </imageView>
+                                                                <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_list_gradients" translatesAutoresizingMaskIntoConstraints="NO" id="7Im-IM-htS" userLabel="Gradient">
+                                                                    <rect key="frame" x="0.0" y="85" width="355" height="115"/>
+                                                                    <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="115" id="kfN-q9-pbz"/>
+                                                                    </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="這是測試用的文字用來顯示食譜名稱，長度過長會變成三個點" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Zb-gV-cP9">
                                                                     <rect key="frame" x="12" y="164" width="331" height="24"/>
@@ -52,16 +65,27 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="7Wn-fX-Vxq" secondAttribute="trailing" id="2Mo-Zi-qtA"/>
                                                                 <constraint firstAttribute="bottom" secondItem="0Zb-gV-cP9" secondAttribute="bottom" constant="12" id="45P-RR-lyn"/>
+                                                                <constraint firstItem="2Ku-tp-uXD" firstAttribute="top" secondItem="a0g-mk-wnY" secondAttribute="top" id="AEa-w0-XJH"/>
                                                                 <constraint firstItem="0Zb-gV-cP9" firstAttribute="leading" secondItem="a0g-mk-wnY" secondAttribute="leading" constant="12" id="Dva-ms-j3x"/>
                                                                 <constraint firstItem="7Wn-fX-Vxq" firstAttribute="leading" secondItem="a0g-mk-wnY" secondAttribute="leading" id="Ksg-mF-L9l"/>
+                                                                <constraint firstAttribute="trailing" secondItem="7Im-IM-htS" secondAttribute="trailing" id="Md4-08-HoY"/>
                                                                 <constraint firstItem="7Wn-fX-Vxq" firstAttribute="top" secondItem="a0g-mk-wnY" secondAttribute="top" id="NyQ-sf-FfO"/>
+                                                                <constraint firstItem="0Zb-gV-cP9" firstAttribute="top" secondItem="2Ku-tp-uXD" secondAttribute="bottom" id="ORn-2b-Ghp"/>
+                                                                <constraint firstAttribute="bottom" secondItem="7Im-IM-htS" secondAttribute="bottom" id="PbJ-T2-hGF"/>
+                                                                <constraint firstAttribute="bottom" secondItem="2Ku-tp-uXD" secondAttribute="bottom" id="W4Y-ft-aQ3"/>
+                                                                <constraint firstItem="7Im-IM-htS" firstAttribute="leading" secondItem="a0g-mk-wnY" secondAttribute="leading" id="X5A-7K-fVR"/>
                                                                 <constraint firstAttribute="bottom" secondItem="7Wn-fX-Vxq" secondAttribute="bottom" id="ZSz-cQ-cZl"/>
                                                                 <constraint firstAttribute="height" constant="200" id="aTm-qQ-FjZ"/>
                                                                 <constraint firstAttribute="trailing" secondItem="0Zb-gV-cP9" secondAttribute="trailing" constant="12" id="anu-Uz-uDq"/>
+                                                                <constraint firstItem="2Ku-tp-uXD" firstAttribute="leading" secondItem="a0g-mk-wnY" secondAttribute="leading" id="ayr-Pn-hiS"/>
                                                                 <constraint firstItem="0Zb-gV-cP9" firstAttribute="top" secondItem="7Wn-fX-Vxq" secondAttribute="bottom" id="jYU-qh-h3l"/>
+                                                                <constraint firstItem="7Im-IM-htS" firstAttribute="top" secondItem="a0g-mk-wnY" secondAttribute="top" id="kJh-RS-yBr"/>
+                                                                <constraint firstAttribute="trailing" secondItem="2Ku-tp-uXD" secondAttribute="trailing" id="uHP-Lz-prz"/>
                                                             </constraints>
                                                             <variation key="default">
                                                                 <mask key="constraints">
+                                                                    <exclude reference="kJh-RS-yBr"/>
+                                                                    <exclude reference="ORn-2b-Ghp"/>
                                                                     <exclude reference="jYU-qh-h3l"/>
                                                                 </mask>
                                                             </variation>
@@ -69,18 +93,22 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WwI-J7-F3h" userLabel="Add Collection Background">
                                                             <rect key="frame" x="299" y="200" width="56" height="48"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_love_m_pink" translatesAutoresizingMaskIntoConstraints="NO" id="IAv-mR-vnX">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELg-qo-Dwt">
                                                                     <rect key="frame" x="0.0" y="0.0" width="56" height="48"/>
-                                                                </imageView>
+                                                                    <state key="normal" image="icon_love_m"/>
+                                                                    <connections>
+                                                                        <action selector="onAddButtonClick:" destination="Em0-5b-b7w" eventType="touchUpInside" id="vnx-dM-eqq"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                                             <constraints>
-                                                                <constraint firstItem="IAv-mR-vnX" firstAttribute="leading" secondItem="WwI-J7-F3h" secondAttribute="leading" id="5d2-NA-IkN"/>
                                                                 <constraint firstAttribute="height" constant="48" id="BVs-Xq-kNh"/>
                                                                 <constraint firstAttribute="width" constant="56" id="Gbl-43-VrZ"/>
-                                                                <constraint firstAttribute="bottom" secondItem="IAv-mR-vnX" secondAttribute="bottom" id="WDv-Yr-tGm"/>
-                                                                <constraint firstItem="IAv-mR-vnX" firstAttribute="top" secondItem="WwI-J7-F3h" secondAttribute="top" id="r1M-V3-rjJ"/>
-                                                                <constraint firstAttribute="trailing" secondItem="IAv-mR-vnX" secondAttribute="trailing" id="ugO-bA-AnO"/>
+                                                                <constraint firstItem="ELg-qo-Dwt" firstAttribute="leading" secondItem="WwI-J7-F3h" secondAttribute="leading" id="Q83-cf-6Dx"/>
+                                                                <constraint firstAttribute="trailing" secondItem="ELg-qo-Dwt" secondAttribute="trailing" id="dN3-nv-SVk"/>
+                                                                <constraint firstItem="ELg-qo-Dwt" firstAttribute="top" secondItem="WwI-J7-F3h" secondAttribute="top" id="o4t-q1-X15"/>
+                                                                <constraint firstAttribute="bottom" secondItem="ELg-qo-Dwt" secondAttribute="bottom" id="yd4-Ow-Crb"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lba-x1-arn" userLabel="Love Icon">
@@ -131,8 +159,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="btnAddCollection" destination="ELg-qo-Dwt" id="f8z-Vy-r69"/>
+                                            <outlet property="btnFood" destination="2Ku-tp-uXD" id="V1W-35-jCq"/>
                                             <outlet property="imgFood" destination="7Wn-fX-Vxq" id="AsX-nv-mD1"/>
-                                            <segue destination="9OQ-Cy-w8b" kind="show" id="jb8-PZ-lkI"/>
+                                            <outlet property="labelTitle" destination="0Zb-gV-cP9" id="e0T-nx-PFd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -213,11 +243,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cgm-MN-hf0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1493.5" y="1156.5"/>
+            <point key="canvasLocation" x="1518.5" y="1156.5"/>
         </scene>
     </scenes>
     <resources>
-        <image name="icon_love_m_pink" width="56" height="48"/>
+        <image name="food_list_gradients" width="353" height="115"/>
+        <image name="icon_love_m" width="56" height="48"/>
         <image name="icon_love_s" width="40" height="48"/>
     </resources>
 </document>

@@ -86,7 +86,7 @@ class RecipeManager: NSObject {
 
                 switch event {
                 case .Next(let response):
-                    dLog("response : \(response)")
+//                    dLog("response : \(response)")
 
                     let json = try! NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments)
                     as? [[String : AnyObject]]
@@ -228,13 +228,15 @@ class RecipeManager: NSObject {
     }
 
     private func fetchRecipesInChunks(ids: [Int]) {
+        dLog("start")
+
         let recipeIds = Array(ids.prefix(fetchAmount + 1))
-
+        let scheduler = ConcurrentDispatchQueueScheduler(globalConcurrentQueuePriority: .Default)
         restApiProvider.request(.RecipesByIdList(recipeIds))
+            .observeOn(scheduler)
             .mapSuccessfulHTTPToObjectArray(RecipesJsonObject) // <-
+            .subscribeOn(scheduler)
             .subscribe(onNext: { responeRecipes in
-
-//
 
                 autoreleasepool {
                     let realm = try! Realm()
@@ -260,6 +262,9 @@ class RecipeManager: NSObject {
                         realm.delete(finishedOverviews[i])
                     }
                     try! realm.commitWrite()
+
+
+                    dLog("end")
                 }
         }).addDisposableTo(disposeBag)
     }
