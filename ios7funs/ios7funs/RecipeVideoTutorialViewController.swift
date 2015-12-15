@@ -10,12 +10,17 @@ import UIKit
 
 class RecipeVideoTutorialViewController: UIViewController {
 
+    var recipe: RecipeUIModel!
+
     @IBOutlet var test: [UIButton]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+
+        self.title = recipe.title
+        print("recipe : \(recipe.title)")
 
         for button in test {
             button.layer.cornerRadius = 3

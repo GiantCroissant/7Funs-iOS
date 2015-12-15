@@ -11,6 +11,7 @@ import UIKit
 class RecipeDetailViewController: UIViewController {
 
     var recipe: RecipeUIModel!
+
     @IBOutlet weak var page1: UIView!
     @IBOutlet weak var page2: UIView!
 
@@ -36,19 +37,25 @@ class RecipeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = ""
+        self.title = recipe.title
+
         page1.hidden = false
         page2.hidden = true
     }
-
-    /*
-    // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+
+        let vc = segue.destinationViewController
+        if vc.title == "Video Tutorial" {
+            print("found video tutorial VC")
+
+            let videoTutorialVC = vc as! RecipeVideoTutorialViewController
+            videoTutorialVC.recipe = self.recipe
+        }
+
     }
-    */
 
 }

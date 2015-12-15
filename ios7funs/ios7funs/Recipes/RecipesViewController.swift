@@ -70,6 +70,8 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
 
+        navigationItem.title = ""
+
         let detailVC = segue.destinationViewController as! RecipeDetailViewController
 
         let row = (sender?.tag)!
