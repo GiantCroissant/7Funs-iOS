@@ -11,11 +11,34 @@ import UIKit
 class RecipeDetailViewController: UIViewController {
 
     var recipe: RecipeUIModel!
+    @IBOutlet weak var page1: UIView!
+    @IBOutlet weak var page2: UIView!
+
+    @IBAction func onSegmentValueChange(sender: AYOSegmentedControl) {
+
+        switch (sender.selectedIndex) {
+        case 0:
+            page1.hidden = false
+            page2.hidden = true
+            break
+
+        case 1:
+            page1.hidden = true
+            page2.hidden = false
+            break
+
+        default:
+            break
+        }
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = ""
+        page1.hidden = false
+        page2.hidden = true
     }
 
     /*

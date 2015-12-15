@@ -164,10 +164,11 @@ import UIKit
 
         UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: [], animations: {
 
-            self.selectedHighlightView.frame = CGRectMake(label.frame.origin.x,
-                label.frame.origin.y + label.frame.height - CGFloat(4),
+            self.selectedHighlightView.frame = CGRectMake(
+                label.frame.origin.x,
+                label.frame.origin.y + label.frame.height - CGFloat(5),
                 label.frame.width,
-                4)
+                5)
             
             }, completion: nil)
     }
@@ -228,37 +229,74 @@ import UIKit
 
         for (index, button) in items.enumerate() {
 
-            let topConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: mainView, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0)
+            let topConstraint = NSLayoutConstraint(item: button,
+                attribute: NSLayoutAttribute.Top,
+                relatedBy: NSLayoutRelation.Equal,
+                toItem: mainView,
+                attribute: NSLayoutAttribute.Top,
+                multiplier: 1.0,
+                constant: 0)
 
-            let bottomConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: mainView, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 0)
+            let bottomConstraint = NSLayoutConstraint(item: button,
+                attribute: NSLayoutAttribute.Bottom,
+                relatedBy: NSLayoutRelation.Equal,
+                toItem: mainView,
+                attribute: NSLayoutAttribute.Bottom,
+                multiplier: 1.0,
+                constant: 0)
 
             var rightConstraint : NSLayoutConstraint!
 
             if index == items.count - 1 {
+                rightConstraint = NSLayoutConstraint(item: button,
+                    attribute: NSLayoutAttribute.Right,
+                    relatedBy: NSLayoutRelation.Equal,
+                    toItem: mainView,
+                    attribute: NSLayoutAttribute.Right,
+                    multiplier: 1.0,
+                    constant: -padding)
 
-                rightConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: mainView, attribute: NSLayoutAttribute.Right, multiplier: 1.0, constant: -padding)
-
-            }else{
-
+            } else {
                 let nextButton = items[index+1]
-                rightConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: nextButton, attribute: NSLayoutAttribute.Left, multiplier: 1.0, constant: -padding)
+                rightConstraint = NSLayoutConstraint(item: button,
+                    attribute: NSLayoutAttribute.Right,
+                    relatedBy: NSLayoutRelation.Equal,
+                    toItem: nextButton,
+                    attribute: NSLayoutAttribute.Left,
+                    multiplier: 1.0,
+                    constant: -padding)
             }
 
 
             var leftConstraint : NSLayoutConstraint!
-
             if index == 0 {
+                leftConstraint = NSLayoutConstraint(item: button,
+                    attribute: NSLayoutAttribute.Left,
+                    relatedBy: NSLayoutRelation.Equal,
+                    toItem: mainView,
+                    attribute: NSLayoutAttribute.Left,
+                    multiplier: 1.0,
+                    constant: padding)
 
-                leftConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: mainView, attribute: NSLayoutAttribute.Left, multiplier: 1.0, constant: padding)
-
-            }else{
-
+            } else {
                 let prevButton = items[index-1]
-                leftConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: prevButton, attribute: NSLayoutAttribute.Right, multiplier: 1.0, constant: padding)
+                leftConstraint = NSLayoutConstraint(item: button,
+                    attribute: NSLayoutAttribute.Left,
+                    relatedBy: NSLayoutRelation.Equal,
+                    toItem: prevButton,
+                    attribute: NSLayoutAttribute.Right,
+                    multiplier: 1.0,
+                    constant: padding)
 
                 let firstItem = items[0]
 
-                let widthConstraint = NSLayoutConstraint(item: button, attribute: .Width, relatedBy: NSLayoutRelation.Equal, toItem: firstItem, attribute: .Width, multiplier: 1.0  , constant: 0)
+                let widthConstraint = NSLayoutConstraint(item: button,
+                    attribute: .Width,
+                    relatedBy: NSLayoutRelation.Equal,
+                    toItem: firstItem,
+                    attribute: .Width,
+                    multiplier: 1.0,
+                    constant: 0)
 
                 mainView.addConstraint(widthConstraint)
             }
