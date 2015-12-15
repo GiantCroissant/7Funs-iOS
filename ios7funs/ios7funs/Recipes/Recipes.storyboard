@@ -393,10 +393,10 @@
             </objects>
             <point key="canvasLocation" x="939.5" y="1203.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Tutorial-->
         <scene sceneID="Z4S-IH-ZRh">
             <objects>
-                <viewController id="5cF-RS-soK" sceneMemberID="viewController">
+                <viewController title="Tutorial" id="5cF-RS-soK" customClass="RecipeTutorialViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fhg-Y0-Z7i">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="599"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -625,6 +625,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="foodImage" destination="KoV-oK-pc7" id="WdC-hb-M0o"/>
                         <outletCollection property="test" destination="iaP-wj-VFJ" collectionClass="NSMutableArray" id="TmE-Wv-Wxm"/>
                         <outletCollection property="test" destination="qTb-Tm-ann" collectionClass="NSMutableArray" id="RRG-BL-T5j"/>
                         <outletCollection property="test" destination="tls-fZ-Lsf" collectionClass="NSMutableArray" id="m6J-Ca-CnY"/>
