@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B1A33A91C1D246700B9F8EA /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A33A81C1D246700B9F8EA /* ImageLoader.swift */; };
-		3B1A33AB1C1D249700B9F8EA /* Marco.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A33AA1C1D249700B9F8EA /* Marco.swift */; };
-		3B1A33AD1C1D24A200B9F8EA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A33AC1C1D24A200B9F8EA /* Utils.swift */; };
+		3B4178611C20B23F006CB7ED /* AYOSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */; };
+		3B4178651C20B270006CB7ED /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4178621C20B270006CB7ED /* ImageLoader.swift */; };
+		3B4178661C20B270006CB7ED /* Marco.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4178631C20B270006CB7ED /* Marco.swift */; };
+		3B4178671C20B270006CB7ED /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4178641C20B270006CB7ED /* Utils.swift */; };
 		3B41D11B1C16C6DA0054FC10 /* RecipeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D11A1C16C6DA0054FC10 /* RecipeManager.swift */; };
 		3B41D12C1C16C9230054FC10 /* DbModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D1271C16C9230054FC10 /* DbModel.swift */; };
 		3B41D12D1C16C9230054FC10 /* ExtendDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D1281C16C9230054FC10 /* ExtendDate.swift */; };
@@ -52,9 +53,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3B1A33A81C1D246700B9F8EA /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		3B1A33AA1C1D249700B9F8EA /* Marco.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Marco.swift; sourceTree = "<group>"; };
-		3B1A33AC1C1D24A200B9F8EA /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AYOSegmentedControl.swift; path = Utils/AYOSegmentedControl.swift; sourceTree = "<group>"; };
+		3B4178621C20B270006CB7ED /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageLoader.swift; path = Utils/ImageLoader.swift; sourceTree = "<group>"; };
+		3B4178631C20B270006CB7ED /* Marco.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Marco.swift; path = Utils/Marco.swift; sourceTree = "<group>"; };
+		3B4178641C20B270006CB7ED /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Utils/Utils.swift; sourceTree = "<group>"; };
 		3B41D11A1C16C6DA0054FC10 /* RecipeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeManager.swift; path = Recipes/RecipeManager.swift; sourceTree = "<group>"; };
 		3B41D1271C16C9230054FC10 /* DbModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DbModel.swift; path = Models/DbModel.swift; sourceTree = "<group>"; };
 		3B41D1281C16C9230054FC10 /* ExtendDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendDate.swift; path = Models/ExtendDate.swift; sourceTree = "<group>"; };
@@ -158,10 +160,11 @@
 		3B62E8BE1C16A455008AA784 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3B4178621C20B270006CB7ED /* ImageLoader.swift */,
+				3B4178631C20B270006CB7ED /* Marco.swift */,
+				3B4178641C20B270006CB7ED /* Utils.swift */,
+				3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */,
 				3B62E8BF1C16A473008AA784 /* CardView.swift */,
-				3B1A33A81C1D246700B9F8EA /* ImageLoader.swift */,
-				3B1A33AA1C1D249700B9F8EA /* Marco.swift */,
-				3B1A33AC1C1D24A200B9F8EA /* Utils.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -374,14 +377,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B4178661C20B270006CB7ED /* Marco.swift in Sources */,
 				3B5565891C17F2DA00CFF1B4 /* UIModel.swift in Sources */,
 				3BCE507A1C168BF10088794A /* CollectionsViewController.swift in Sources */,
-				3B1A33A91C1D246700B9F8EA /* ImageLoader.swift in Sources */,
 				3BCE507C1C168C040088794A /* QandAViewController.swift in Sources */,
 				3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */,
 				3B5565851C16F65000CFF1B4 /* RecipeTableViewCell.swift in Sources */,
 				3BD721141C117870006716D4 /* AppDelegate.swift in Sources */,
-				3B1A33AD1C1D24A200B9F8EA /* Utils.swift in Sources */,
 				3BCE50801C168C1D0088794A /* BonusViewController.swift in Sources */,
 				3B41D12F1C16C9230054FC10 /* JsonModel.swift in Sources */,
 				3BCE507E1C168C100088794A /* LinksViewController.swift in Sources */,
@@ -389,10 +391,12 @@
 				3BCE50701C168AB60088794A /* VideosViewController.swift in Sources */,
 				3B5565871C16F67700CFF1B4 /* RecipeDetailViewController.swift in Sources */,
 				3B41D12E1C16C9230054FC10 /* ExtendObservable.swift in Sources */,
+				3B4178611C20B23F006CB7ED /* AYOSegmentedControl.swift in Sources */,
+				3B4178671C20B270006CB7ED /* Utils.swift in Sources */,
+				3B4178651C20B270006CB7ED /* ImageLoader.swift in Sources */,
 				3BCE50781C168BDD0088794A /* RecipesViewController.swift in Sources */,
 				3B41D12D1C16C9230054FC10 /* ExtendDate.swift in Sources */,
 				3B41D11B1C16C6DA0054FC10 /* RecipeManager.swift in Sources */,
-				3B1A33AB1C1D249700B9F8EA /* Marco.swift in Sources */,
 				3B62E8C01C16A473008AA784 /* CardView.swift in Sources */,
 				3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */,
 				3B41D1301C16C9230054FC10 /* RestApiModel.swift in Sources */,
