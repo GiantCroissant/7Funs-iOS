@@ -50,7 +50,8 @@ class RecipeManager: NSObject {
                 var recipes = [RecipeUIModel]()
                 let realm = try! Realm()
 
-                for recipeObj in realm.objects(Recipe) {
+                let recipeObjs = realm.objects(Recipe)
+                for recipeObj in recipeObjs {
                     if recipeObj.image.isEmpty {
                         continue
                     }

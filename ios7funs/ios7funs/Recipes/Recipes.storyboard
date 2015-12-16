@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="258" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NwZ-h3-aJb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="258" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NwZ-h3-aJb">
                                 <rect key="frame" x="5" y="69" width="365" height="593"/>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.95686274510000002" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -397,6 +397,10 @@
         <scene sceneID="Z4S-IH-ZRh">
             <objects>
                 <viewController title="Tutorial" id="5cF-RS-soK" customClass="RecipeTutorialViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="w7J-tk-6e6"/>
+                        <viewControllerLayoutGuide type="bottom" id="tDZ-kY-3F3"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Fhg-Y0-Z7i">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="599"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -702,6 +706,10 @@
         <scene sceneID="EYb-4G-VNu">
             <objects>
                 <viewController title="Video Tutorial" id="t5t-2U-khu" customClass="RecipeVideoTutorialViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ebp-WJ-Jur"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lpb-gG-8DX"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kt0-wp-zEi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="599"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
