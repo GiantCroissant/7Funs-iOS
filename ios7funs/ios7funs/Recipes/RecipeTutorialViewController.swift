@@ -10,6 +10,8 @@ import UIKit
 
 class RecipeTutorialViewController: UIViewController {
 
+    var recipe: RecipeUIModel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

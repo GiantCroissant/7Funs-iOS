@@ -16,16 +16,13 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var page2: UIView!
 
     @IBAction func onSegmentValueChange(sender: AYOSegmentedControl) {
-
         switch (sender.selectedIndex) {
         case 0:
-            page1.hidden = false
-            page2.hidden = true
+            showTutorialPage()
             break
 
         case 1:
-            page1.hidden = true
-            page2.hidden = false
+            showVideoTutorialPage()
             break
 
         default:
@@ -33,14 +30,23 @@ class RecipeDetailViewController: UIViewController {
         }
     }
 
+    func showTutorialPage() {
+        self.title = ""
+        page1.hidden = false
+        page2.hidden = true
+    }
+
+    func showVideoTutorialPage() {
+        page1.hidden = true
+        page2.hidden = false
+        self.title = recipe.title
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = recipe.title
-
-        page1.hidden = false
-        page2.hidden = true
+        showTutorialPage()
     }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -50,9 +56,12 @@ class RecipeDetailViewController: UIViewController {
 
         let vc = segue.destinationViewController
         if vc.title == "Video Tutorial" {
-            print("found video tutorial VC")
-
             let videoTutorialVC = vc as! RecipeVideoTutorialViewController
+            videoTutorialVC.recipe = self.recipe
+        }
+
+        if vc.title == "Tutorial" {
+            let videoTutorialVC = vc as! RecipeTutorialViewController
             videoTutorialVC.recipe = self.recipe
         }
 

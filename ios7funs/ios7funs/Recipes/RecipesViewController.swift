@@ -38,6 +38,8 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
+        self.title = "食譜列表"
+
         /*
         topBackground.backgroundColor = UIColor.orangeColor().colorWithAlphaComponent(0.3)
         */
@@ -46,7 +48,7 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "食譜列表"
+
 //        RecipeManager.sharedInstance.updateCachedRecipesOverviews()
 
         RecipeManager.sharedInstance.loadRecipes() { recipes in
@@ -59,6 +61,7 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
         
 //        RecipeManager.sharedInstance.fetchMoreRecipes()
     }
+
 
 
     override func didReceiveMemoryWarning() {
