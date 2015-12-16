@@ -400,8 +400,61 @@
                     <view key="view" contentMode="scaleToFill" id="Fhg-Y0-Z7i">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="599"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79i-K9-stq" userLabel="Image Container">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_01" translatesAutoresizingMaskIntoConstraints="NO" id="YJK-a9-vOa">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.4471883344" blue="0.52511704319999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="211" id="9VN-AM-KnE"/>
+                                    <constraint firstItem="YJK-a9-vOa" firstAttribute="top" secondItem="79i-K9-stq" secondAttribute="top" id="Ofg-de-F5q"/>
+                                    <constraint firstAttribute="trailing" secondItem="YJK-a9-vOa" secondAttribute="trailing" id="P3d-jy-IpL"/>
+                                    <constraint firstItem="YJK-a9-vOa" firstAttribute="leading" secondItem="79i-K9-stq" secondAttribute="leading" id="V51-sg-3Tb"/>
+                                    <constraint firstAttribute="bottom" secondItem="YJK-a9-vOa" secondAttribute="bottom" id="ps1-pj-2uf"/>
+                                </constraints>
+                            </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cjF-JE-wR4" userLabel="Custom Title">
+                                <rect key="frame" x="-4" y="20" width="383" height="44"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Gm-gd-ZaD">
+                                        <rect key="frame" x="171" y="300" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="7Gm-gd-ZaD" firstAttribute="centerY" secondItem="cjF-JE-wR4" secondAttribute="centerY" id="9S1-em-NNa"/>
+                                    <constraint firstItem="7Gm-gd-ZaD" firstAttribute="top" secondItem="cjF-JE-wR4" secondAttribute="top" constant="300" id="Olx-fH-1Ut"/>
+                                    <constraint firstAttribute="height" constant="44" id="rxJ-hq-c7B"/>
+                                    <constraint firstItem="7Gm-gd-ZaD" firstAttribute="centerX" secondItem="cjF-JE-wR4" secondAttribute="centerX" id="zlT-kH-d08"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="9S1-em-NNa"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="79i-K9-stq" secondAttribute="trailing" id="7p0-et-UmX"/>
+                            <constraint firstItem="cjF-JE-wR4" firstAttribute="leading" secondItem="Fhg-Y0-Z7i" secondAttribute="leadingMargin" constant="-20" id="Kop-Kz-dY0"/>
+                            <constraint firstItem="79i-K9-stq" firstAttribute="leading" secondItem="Fhg-Y0-Z7i" secondAttribute="leading" id="VgG-Ti-NTJ"/>
+                            <constraint firstItem="79i-K9-stq" firstAttribute="top" secondItem="Fhg-Y0-Z7i" secondAttribute="top" id="XxI-VI-cSK"/>
+                            <constraint firstItem="cjF-JE-wR4" firstAttribute="top" secondItem="Fhg-Y0-Z7i" secondAttribute="topMargin" constant="20" id="hI3-Mo-buq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cjF-JE-wR4" secondAttribute="trailing" constant="-20" id="jcP-Yd-Dze"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imgFood" destination="YJK-a9-vOa" id="E2b-oJ-bMU"/>
+                        <outlet property="labelFoodTitle" destination="7Gm-gd-ZaD" id="tZG-1K-aRx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aPB-9i-TJm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -642,6 +695,7 @@
     <resources>
         <image name="btn_pic" width="54" height="38"/>
         <image name="btn_video" width="54" height="38"/>
+        <image name="food_01" width="450" height="252"/>
         <image name="food_02" width="450" height="252"/>
         <image name="food_list_gradients" width="353" height="115"/>
         <image name="icon_love_m" width="56" height="48"/>
