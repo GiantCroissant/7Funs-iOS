@@ -13,6 +13,7 @@
 		3B4178671C20B270006CB7ED /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4178641C20B270006CB7ED /* Utils.swift */; };
 		3B4178691C20C252006CB7ED /* RecipeVideoTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4178681C20C252006CB7ED /* RecipeVideoTutorialViewController.swift */; };
 		3B41786B1C20DEBE006CB7ED /* RecipeTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41786A1C20DEBE006CB7ED /* RecipeTutorialViewController.swift */; };
+		3B41786D1C2135DD006CB7ED /* ShowIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41786C1C2135DD006CB7ED /* ShowIntroViewController.swift */; };
 		3B41D11B1C16C6DA0054FC10 /* RecipeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D11A1C16C6DA0054FC10 /* RecipeManager.swift */; };
 		3B41D12C1C16C9230054FC10 /* DbModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D1271C16C9230054FC10 /* DbModel.swift */; };
 		3B41D12D1C16C9230054FC10 /* ExtendDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41D1281C16C9230054FC10 /* ExtendDate.swift */; };
@@ -61,6 +62,7 @@
 		3B4178641C20B270006CB7ED /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Utils/Utils.swift; sourceTree = "<group>"; };
 		3B4178681C20C252006CB7ED /* RecipeVideoTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeVideoTutorialViewController.swift; sourceTree = "<group>"; };
 		3B41786A1C20DEBE006CB7ED /* RecipeTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeTutorialViewController.swift; path = Recipes/RecipeTutorialViewController.swift; sourceTree = "<group>"; };
+		3B41786C1C2135DD006CB7ED /* ShowIntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowIntroViewController.swift; path = ShowInfos/ShowIntroViewController.swift; sourceTree = "<group>"; };
 		3B41D11A1C16C6DA0054FC10 /* RecipeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeManager.swift; path = Recipes/RecipeManager.swift; sourceTree = "<group>"; };
 		3B41D1271C16C9230054FC10 /* DbModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DbModel.swift; path = Models/DbModel.swift; sourceTree = "<group>"; };
 		3B41D1281C16C9230054FC10 /* ExtendDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendDate.swift; path = Models/ExtendDate.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			children = (
 				3BCE50811C168E1E0088794A /* ShowInfos.storyboard */,
 				3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */,
+				3B41786C1C2135DD006CB7ED /* ShowIntroViewController.swift */,
 			);
 			name = ShowInfos;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				3B4178611C20B23F006CB7ED /* AYOSegmentedControl.swift in Sources */,
 				3B4178671C20B270006CB7ED /* Utils.swift in Sources */,
 				3B4178651C20B270006CB7ED /* ImageLoader.swift in Sources */,
+				3B41786D1C2135DD006CB7ED /* ShowIntroViewController.swift in Sources */,
 				3BCE50781C168BDD0088794A /* RecipesViewController.swift in Sources */,
 				3B41D12D1C16C9230054FC10 /* ExtendDate.swift in Sources */,
 				3B41D11B1C16C6DA0054FC10 /* RecipeManager.swift in Sources */,
