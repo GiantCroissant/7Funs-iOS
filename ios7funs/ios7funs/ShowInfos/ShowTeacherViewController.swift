@@ -1,30 +1,25 @@
 //
-//  CollectionsViewController.swift
+//  ShowTeacherViewController.swift
 //  ios7funs
 //
-//  Created by Bryan Lin on 12/8/15.
+//  Created by Bryan Lin on 12/16/15.
 //  Copyright © 2015 Giant Croissant. All rights reserved.
 //
 
 import UIKit
 
-class CollectionsViewController: UIViewController {
+class ShowTeacherViewController: UIViewController {
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-
-
-        // Show navigation bar.
-        self.navigationController?.navigationBarHidden = false
-    }
+    @IBOutlet var photoBG: [UIView]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "我的收藏"
-
         // Do any additional setup after loading the view.
+
+        for photo in photoBG {
+            photo.layer.cornerRadius = 5
+        }
     }
 
     override func didReceiveMemoryWarning() {

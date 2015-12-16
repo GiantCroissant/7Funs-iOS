@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fSW-Od-b2e">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Q & A-->
+        <scene sceneID="GOu-aL-hkh">
+            <objects>
+                <viewController title="Q &amp; A" id="fSW-Od-b2e" customClass="QandAViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fbe-ql-N95"/>
+                        <viewControllerLayoutGuide type="bottom" id="rzW-bj-WcI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kJ7-3a-JeE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6E-24-j8B" userLabel="Top Background">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <color key="backgroundColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="u45-g0-Zfz"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="y6E-24-j8B" firstAttribute="leading" secondItem="kJ7-3a-JeE" secondAttribute="leading" id="2ON-Xe-qGJ"/>
+                            <constraint firstAttribute="trailing" secondItem="y6E-24-j8B" secondAttribute="trailing" id="C2Y-bp-pLs"/>
+                            <constraint firstItem="y6E-24-j8B" firstAttribute="top" secondItem="kJ7-3a-JeE" secondAttribute="top" id="QlK-FZ-w9u"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XJc-1b-n6I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1512.5" y="708.5"/>
+        </scene>
+    </scenes>
+</document>

@@ -37,6 +37,11 @@
 		3B5565871C16F67700CFF1B4 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5565861C16F67700CFF1B4 /* RecipeDetailViewController.swift */; };
 		3B5565891C17F2DA00CFF1B4 /* UIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5565881C17F2DA00CFF1B4 /* UIModel.swift */; };
 		3B62E8C01C16A473008AA784 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B62E8BF1C16A473008AA784 /* CardView.swift */; };
+		3B9DD55F1C214506000FE1DF /* Collections.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9DD55E1C214506000FE1DF /* Collections.storyboard */; };
+		3B9DD5611C214534000FE1DF /* QandA.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9DD5601C214534000FE1DF /* QandA.storyboard */; };
+		3B9DD5631C214554000FE1DF /* Links.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9DD5621C214554000FE1DF /* Links.storyboard */; };
+		3B9DD5661C21456F000FE1DF /* Bonus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9DD5641C21456F000FE1DF /* Bonus.storyboard */; };
+		3BBDCAC91C213E5900A0E4E3 /* ShowTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBDCAC81C213E5900A0E4E3 /* ShowTeacherViewController.swift */; };
 		3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE50681C15BFB60088794A /* MainViewController.swift */; };
 		3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */; };
 		3BCE506E1C15C6E20088794A /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 3BCE506D1C15C6E20088794A /* Cartfile */; };
@@ -86,6 +91,11 @@
 		3B5565861C16F67700CFF1B4 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailViewController.swift; path = Recipes/RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		3B5565881C17F2DA00CFF1B4 /* UIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIModel.swift; path = Models/UIModel.swift; sourceTree = "<group>"; };
 		3B62E8BF1C16A473008AA784 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = Utils/CardView.swift; sourceTree = "<group>"; };
+		3B9DD55E1C214506000FE1DF /* Collections.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Collections.storyboard; path = Collections/Collections.storyboard; sourceTree = "<group>"; };
+		3B9DD5601C214534000FE1DF /* QandA.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = QandA.storyboard; path = QandA/QandA.storyboard; sourceTree = "<group>"; };
+		3B9DD5621C214554000FE1DF /* Links.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Links.storyboard; path = Links/Links.storyboard; sourceTree = "<group>"; };
+		3B9DD5651C21456F000FE1DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Bonus.storyboard; sourceTree = "<group>"; };
+		3BBDCAC81C213E5900A0E4E3 /* ShowTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowTeacherViewController.swift; path = ShowInfos/ShowTeacherViewController.swift; sourceTree = "<group>"; };
 		3BCE50681C15BFB60088794A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowInfosViewController.swift; path = ShowInfos/ShowInfosViewController.swift; sourceTree = "<group>"; };
 		3BCE506D1C15C6E20088794A /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
@@ -181,6 +191,7 @@
 				3BCE50811C168E1E0088794A /* ShowInfos.storyboard */,
 				3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */,
 				3B41786C1C2135DD006CB7ED /* ShowIntroViewController.swift */,
+				3BBDCAC81C213E5900A0E4E3 /* ShowTeacherViewController.swift */,
 			);
 			name = ShowInfos;
 			sourceTree = "<group>";
@@ -211,6 +222,7 @@
 		3BCE50731C168B960088794A /* Collections */ = {
 			isa = PBXGroup;
 			children = (
+				3B9DD55E1C214506000FE1DF /* Collections.storyboard */,
 				3BCE50791C168BF10088794A /* CollectionsViewController.swift */,
 			);
 			name = Collections;
@@ -219,6 +231,7 @@
 		3BCE50741C168B9F0088794A /* Q & A */ = {
 			isa = PBXGroup;
 			children = (
+				3B9DD5601C214534000FE1DF /* QandA.storyboard */,
 				3BCE507B1C168C040088794A /* QandAViewController.swift */,
 			);
 			name = "Q & A";
@@ -227,6 +240,7 @@
 		3BCE50751C168BAC0088794A /* Links */ = {
 			isa = PBXGroup;
 			children = (
+				3B9DD5621C214554000FE1DF /* Links.storyboard */,
 				3BCE507D1C168C100088794A /* LinksViewController.swift */,
 			);
 			name = Links;
@@ -235,6 +249,7 @@
 		3BCE50761C168BB40088794A /* Bonus */ = {
 			isa = PBXGroup;
 			children = (
+				3B9DD5641C21456F000FE1DF /* Bonus.storyboard */,
 				3BCE507F1C168C1D0088794A /* BonusViewController.swift */,
 			);
 			name = Bonus;
@@ -339,10 +354,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B9DD5661C21456F000FE1DF /* Bonus.storyboard in Resources */,
+				3B9DD5631C214554000FE1DF /* Links.storyboard in Resources */,
 				3BD7211E1C117870006716D4 /* LaunchScreen.storyboard in Resources */,
 				3BD7211B1C117870006716D4 /* Assets.xcassets in Resources */,
+				3B9DD5611C214534000FE1DF /* QandA.storyboard in Resources */,
 				3BCE50821C168E1E0088794A /* ShowInfos.storyboard in Resources */,
 				3BD721191C117870006716D4 /* Main.storyboard in Resources */,
+				3B9DD55F1C214506000FE1DF /* Collections.storyboard in Resources */,
 				3BCE50841C1698AF0088794A /* Recipes.storyboard in Resources */,
 				3BCE506E1C15C6E20088794A /* Cartfile in Resources */,
 				3BCE50861C1698DA0088794A /* Videos.storyboard in Resources */,
@@ -408,6 +427,7 @@
 				3BCE50781C168BDD0088794A /* RecipesViewController.swift in Sources */,
 				3B41D12D1C16C9230054FC10 /* ExtendDate.swift in Sources */,
 				3B41D11B1C16C6DA0054FC10 /* RecipeManager.swift in Sources */,
+				3BBDCAC91C213E5900A0E4E3 /* ShowTeacherViewController.swift in Sources */,
 				3B62E8C01C16A473008AA784 /* CardView.swift in Sources */,
 				3B41786B1C20DEBE006CB7ED /* RecipeTutorialViewController.swift in Sources */,
 				3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */,
@@ -418,6 +438,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		3B9DD5641C21456F000FE1DF /* Bonus.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B9DD5651C21456F000FE1DF /* Base */,
+			);
+			name = Bonus.storyboard;
+			sourceTree = "<group>";
+		};
 		3BD721171C117870006716D4 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
