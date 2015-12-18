@@ -60,6 +60,10 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
         }
         
 //        RecipeManager.sharedInstance.fetchMoreRecipes()
+
+
+
+        self.view.makeToast("加入收藏", duration: 10, position: .Top)
     }
 
 

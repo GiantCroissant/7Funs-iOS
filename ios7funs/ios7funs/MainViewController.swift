@@ -16,19 +16,17 @@ class MainViewController: UIViewController
     @IBOutlet weak var btnCollections: UIButton!
     @IBOutlet weak var btnQandA: UIButton!
     @IBOutlet weak var btnLinks: UIButton!
-    @IBOutlet weak var btnBonus: UIButton!
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
-        scaleButtonImage(btnShowInfos, mode: .Top)
+        scaleButtonImage(btnShowInfos, mode: .Center)
         scaleButtonImage(btnVideos, mode: .Center)
         scaleButtonImage(btnRecipes, mode: .Top)
         scaleButtonImage(btnCollections, mode: .Center)
         scaleButtonImage(btnQandA, mode: .Top)
         scaleButtonImage(btnLinks, mode: .Top)
-        scaleButtonImage(btnBonus, mode: .Top)
     }
 
     func scaleButtonImage(button: UIButton, mode: UIViewContentMode)
