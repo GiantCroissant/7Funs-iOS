@@ -25,7 +25,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.95686274510000002" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="xYd-Ik-SJ8" firstAttribute="leading" secondItem="gzo-wL-zpG" secondAttribute="leading" id="2xG-nB-bXj"/>
                             <constraint firstAttribute="trailing" secondItem="xYd-Ik-SJ8" secondAttribute="trailing" id="9TX-mt-Y1L"/>
@@ -37,7 +37,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FYd-4o-RfA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1470.5" y="652.5"/>
+            <point key="canvasLocation" x="695.5" y="442.5"/>
         </scene>
     </scenes>
 </document>

@@ -23,7 +23,7 @@ class MainViewController: UIViewController
         super.viewDidLoad()
 
         scaleButtonImage(btnShowInfos, mode: .Top)
-        scaleButtonImage(btnVideos, mode: .Bottom)
+        scaleButtonImage(btnVideos, mode: .Center)
         scaleButtonImage(btnRecipes, mode: .Top)
         scaleButtonImage(btnCollections, mode: .Center)
         scaleButtonImage(btnQandA, mode: .Top)
@@ -36,6 +36,8 @@ class MainViewController: UIViewController
         let image = button.imageView?.image
         let scaledImage = scaleImageToWidth(image!, newWidth: button.frame.size.width)
 
+        button.layer.cornerRadius = 2
+        button.clipsToBounds = true
         button.setImage(scaledImage, forState: UIControlState.Normal)
         button.imageView?.contentMode = mode
     }

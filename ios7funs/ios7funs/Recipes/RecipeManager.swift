@@ -44,6 +44,7 @@ class RecipeManager: NSObject {
 
     })
 
+    // TODO: findout how to query with amount
     func loadRecipes(completionHandler: (recipes: [RecipeUIModel]) -> ()) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
             autoreleasepool {
@@ -52,6 +53,12 @@ class RecipeManager: NSObject {
 
                 let recipeObjs = realm.objects(Recipe)
                 for recipeObj in recipeObjs {
+
+                    // FIXME: workaround
+                    if (recipes.count >= 100) {
+                        break
+                    }
+
                     if recipeObj.image.isEmpty {
                         continue
                     }
