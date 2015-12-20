@@ -40,6 +40,8 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
 
         self.title = "食譜列表"
 
+
+
         /*
         topBackground.backgroundColor = UIColor.orangeColor().colorWithAlphaComponent(0.3)
         */
@@ -51,12 +53,15 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
 
 //        RecipeManager.sharedInstance.updateCachedRecipesOverviews()
 
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         RecipeManager.sharedInstance.loadRecipes() { recipes in
             self.recipes = recipes
 
             print("[ RecipesViewController ] : self.recipes count : \(self.recipes.count)")
 
             self.tableRecipes.reloadData()
+
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         }
         
 //        RecipeManager.sharedInstance.fetchMoreRecipes()
