@@ -236,9 +236,8 @@ class RecipeManager: NSObject {
     }
 
     private func fetchRecipesInChunks(ids: [Int]) {
-        dLog("start")
-
         let recipeIds = Array(ids.prefix(fetchAmount + 1))
+
         let scheduler = ConcurrentDispatchQueueScheduler(globalConcurrentQueuePriority: .Default)
         restApiProvider.request(.RecipesByIdList(recipeIds))
             .observeOn(scheduler)
@@ -270,10 +269,8 @@ class RecipeManager: NSObject {
                         realm.delete(finishedOverviews[i])
                     }
                     try! realm.commitWrite()
-
-
-                    dLog("end")
                 }
+
         }).addDisposableTo(disposeBag)
     }
 

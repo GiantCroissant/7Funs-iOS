@@ -10,4 +10,10 @@ import UIKit
 
 class QandADetailViewController: UIViewController {
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.title = "回覆問題"
+    }
+
 }

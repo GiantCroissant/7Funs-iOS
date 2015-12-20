@@ -15,41 +15,21 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
 
     var recipes = [RecipeUIModel]()
 
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-
-        /*
-        print("y = \(scrollView.contentOffset.y)")
-        let y = scrollView.contentOffset.y
-        if (y > 0) {
-            topBackground.backgroundColor = UIColor.orangeColor().colorWithAlphaComponent(1 - ((100 - y) / 100))
-        }
-        */
-
-    }
-
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
         // Show navigation bar.
         self.navigationController?.navigationBarHidden = false
-
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
         self.title = "食譜列表"
-
-
-
-        /*
-        topBackground.backgroundColor = UIColor.orangeColor().colorWithAlphaComponent(0.3)
-        */
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
 
 //        RecipeManager.sharedInstance.updateCachedRecipesOverviews()
 
@@ -65,17 +45,7 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
         }
         
 //        RecipeManager.sharedInstance.fetchMoreRecipes()
-
-
-
         self.view.makeToast("加入收藏", duration: 10, position: .Top)
-    }
-
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -85,10 +55,7 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
         navigationItem.title = ""
 
         let detailVC = segue.destinationViewController as! RecipeDetailViewController
-
         let row = (sender?.tag)!
-        print("row = \(row)")
-
         detailVC.recipe = recipes[row]
     }
 

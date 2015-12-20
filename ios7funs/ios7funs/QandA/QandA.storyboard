@@ -139,7 +139,7 @@
                             <constraint firstAttribute="trailing" secondItem="DuS-cP-tB9" secondAttribute="trailing" id="nVd-q9-ihH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="美食問與答" id="KYB-MH-7zr">
+                    <navigationItem key="navigationItem" id="KYB-MH-7zr">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="CzZ-EE-Y6c">
                             <connections>
                                 <segue destination="9S8-6O-dYw" kind="show" id="BXo-Px-gJX"/>
@@ -157,10 +157,10 @@
             </objects>
             <point key="canvasLocation" x="1128.5" y="676.5"/>
         </scene>
-        <!--QandA Detail View Controller-->
+        <!--Reply Question-->
         <scene sceneID="9Rz-FJ-wlQ">
             <objects>
-                <viewController id="VZG-8z-zgy" customClass="QandADetailViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Reply Question" id="VZG-8z-zgy" customClass="QandADetailViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RAe-a7-oqv"/>
                         <viewControllerLayoutGuide type="bottom" id="SJz-5S-20t"/>

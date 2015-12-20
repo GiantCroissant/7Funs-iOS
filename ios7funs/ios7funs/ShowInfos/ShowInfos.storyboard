@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -53,6 +54,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="oCo-Jc-bwp" secondAttribute="trailing" id="4f0-CL-oPS"/>
+                                                    <constraint firstAttribute="width" secondItem="PCF-uS-aCd" secondAttribute="height" multiplier="43:31" id="DoL-0G-FVF"/>
                                                     <constraint firstAttribute="bottom" secondItem="oCo-Jc-bwp" secondAttribute="bottom" id="M3V-0U-Xgo"/>
                                                     <constraint firstItem="oCo-Jc-bwp" firstAttribute="leading" secondItem="PCF-uS-aCd" secondAttribute="leading" id="hpZ-Oy-uye"/>
                                                     <constraint firstItem="oCo-Jc-bwp" firstAttribute="top" secondItem="PCF-uS-aCd" secondAttribute="top" id="rqZ-h3-CMW"/>
@@ -69,10 +71,17 @@
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="PCF-uS-aCd" secondAttribute="bottom" id="Omd-gZ-aqT"/>
                                             <constraint firstItem="0U0-fq-CS7" firstAttribute="leading" secondItem="PCF-uS-aCd" secondAttribute="trailing" id="Val-aG-ejl"/>
+                                            <constraint firstItem="PCF-uS-aCd" firstAttribute="centerY" secondItem="mle-0y-Uw6" secondAttribute="centerY" id="gEJ-Ma-8Z1"/>
                                             <constraint firstItem="PCF-uS-aCd" firstAttribute="top" secondItem="mle-0y-Uw6" secondAttribute="top" id="gcb-ai-nHG"/>
                                             <constraint firstItem="PCF-uS-aCd" firstAttribute="leading" secondItem="mle-0y-Uw6" secondAttribute="leading" id="ka6-L8-NUX"/>
                                             <constraint firstItem="0U0-fq-CS7" firstAttribute="centerY" secondItem="mle-0y-Uw6" secondAttribute="centerY" id="qHO-dx-i2W"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Omd-gZ-aqT"/>
+                                                <exclude reference="gcb-ai-nHG"/>
+                                            </mask>
+                                        </variation>
                                     </view>
                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ANv-Hw-bKf" userLabel="Tab 2">
                                         <rect key="frame" x="187" y="0.0" width="188" height="62"/>
@@ -90,6 +99,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="RPg-Yh-sjn" secondAttribute="trailing" id="D70-q8-cJ6"/>
                                                     <constraint firstAttribute="bottom" secondItem="RPg-Yh-sjn" secondAttribute="bottom" id="IWb-8T-uM5"/>
                                                     <constraint firstItem="RPg-Yh-sjn" firstAttribute="leading" secondItem="bJC-Cc-W7L" secondAttribute="leading" id="Pvd-mK-OaG"/>
+                                                    <constraint firstAttribute="width" secondItem="bJC-Cc-W7L" secondAttribute="height" multiplier="43:31" id="nqI-UX-ztz"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="料理老師" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWf-pU-VAO">
@@ -106,10 +116,13 @@
                                             <constraint firstItem="bJC-Cc-W7L" firstAttribute="leading" secondItem="ANv-Hw-bKf" secondAttribute="leading" id="9Sp-lF-tV6"/>
                                             <constraint firstItem="bWf-pU-VAO" firstAttribute="centerY" secondItem="ANv-Hw-bKf" secondAttribute="centerY" id="M9w-M0-9Za"/>
                                             <constraint firstItem="bJC-Cc-W7L" firstAttribute="width" secondItem="ANv-Hw-bKf" secondAttribute="width" multiplier="86:375" id="cxX-td-CS7"/>
+                                            <constraint firstItem="bJC-Cc-W7L" firstAttribute="centerY" secondItem="ANv-Hw-bKf" secondAttribute="centerY" id="yut-fI-5nV"/>
                                             <constraint firstItem="bWf-pU-VAO" firstAttribute="leading" secondItem="bJC-Cc-W7L" secondAttribute="trailing" id="zbq-Y3-HTy"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
+                                                <exclude reference="0BB-7Y-mTy"/>
+                                                <exclude reference="4f1-90-BtP"/>
                                                 <exclude reference="cxX-td-CS7"/>
                                             </mask>
                                         </variation>
