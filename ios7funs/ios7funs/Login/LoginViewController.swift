@@ -12,6 +12,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var inputEmail: UITextField!
     @IBOutlet weak var inputPassword: UITextField!
+    @IBOutlet weak var contentBottomConstraint: NSLayoutConstraint!
 
     @IBAction func onCancelButtonClick(sender: UIButton) {
         dLog("cancel")
@@ -43,6 +44,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         setupCustomPlaceholders()
+        setupKeyboardObservers()
     }
 
     func setupCustomPlaceholders() {
@@ -68,5 +70,60 @@ class LoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+}
+
+// MARK: - Keyboard observer
+extension LoginViewController {
+
+    func setupKeyboardObservers() {
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "keyboardWillShow:",
+            name: UIKeyboardWillShowNotification,
+            object: nil
+        )
+
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "keyboardWillHide:",
+            name: UIKeyboardWillHideNotification,
+            object: nil
+        )
+    }
+
+    func keyboardWillHide(notification: NSNotification) {
+        let info = notification.userInfo!
+        let animationDuration = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+
+        contentBottomConstraint.constant = 0
+        self.view.setNeedsUpdateConstraints()
+
+        UIView.animateWithDuration(animationDuration) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    func keyboardWillShow(notification: NSNotification) {
+        let info = notification.userInfo!
+        let animationDuration = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        let keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+
+        contentBottomConstraint.constant = keyboardFrame.size.height
+
+        print("keyboardWillShow")
+
+        self.view.setNeedsUpdateConstraints()
+
+        UIView.animateWithDuration(animationDuration) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 
 }

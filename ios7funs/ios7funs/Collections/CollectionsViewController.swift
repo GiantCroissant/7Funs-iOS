@@ -15,8 +15,6 @@ class CollectionsViewController: UIViewController {
 
         // Show navigation bar.
         self.navigationController?.navigationBarHidden = false
-
-
     }
 
     override func viewDidLoad() {
@@ -24,19 +22,11 @@ class CollectionsViewController: UIViewController {
 
         self.title = "我的收藏"
 
-        // Do any additional setup after loading the view.
-
         // TODO: - check login status
         if !LoginManager.logined {
             LoginManager.sharedInstance.showLoginViewController(self)
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     /*
     // MARK: - Navigation

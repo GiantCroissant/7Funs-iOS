@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Login-->
@@ -34,10 +36,14 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_eat" translatesAutoresizingMaskIntoConstraints="NO" id="dgl-Jj-PvP">
                                         <rect key="frame" x="123" y="125" width="129" height="129"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="129" id="3Aj-hy-xt5"/>
-                                            <constraint firstAttribute="height" constant="129" id="pAa-4Z-fas"/>
+                                            <constraint firstAttribute="width" secondItem="dgl-Jj-PvP" secondAttribute="height" multiplier="1:1" id="Xvo-F4-edN"/>
+                                            <constraint firstAttribute="height" constant="129" id="qfr-3N-VJV"/>
                                         </constraints>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LMg-JO-1Sp" userLabel="Dummy">
+                                        <rect key="frame" x="0.0" y="254" width="375" height="413"/>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6e-Pn-6lO" userLabel="Register BG">
                                         <rect key="frame" x="0.0" y="610" width="375" height="57"/>
                                         <subviews>
@@ -152,20 +158,27 @@
                                 <color key="backgroundColor" red="1" green="0.99607843137254903" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Wdo-te-1eP" firstAttribute="leading" secondItem="VCY-OA-LHw" secondAttribute="leading" constant="11" id="5kr-KR-QJp"/>
+                                    <constraint firstItem="LMg-JO-1Sp" firstAttribute="top" secondItem="dgl-Jj-PvP" secondAttribute="bottom" id="7VQ-mT-10H"/>
                                     <constraint firstItem="GLY-eo-BBJ" firstAttribute="top" secondItem="MmL-hR-b63" secondAttribute="bottom" id="7pf-Y5-gNe"/>
+                                    <constraint firstItem="LMg-JO-1Sp" firstAttribute="leading" secondItem="VCY-OA-LHw" secondAttribute="leading" id="8V1-pU-59n"/>
                                     <constraint firstAttribute="trailing" secondItem="WZq-SK-d0Q" secondAttribute="trailing" id="9Z7-86-jgA"/>
                                     <constraint firstAttribute="trailing" secondItem="V22-9K-9bX" secondAttribute="trailing" id="BNW-hO-7Sx"/>
+                                    <constraint firstItem="dgl-Jj-PvP" firstAttribute="top" secondItem="VCY-OA-LHw" secondAttribute="top" constant="125" id="CEg-EE-WQm"/>
                                     <constraint firstItem="uVY-EE-yBf" firstAttribute="leading" secondItem="VCY-OA-LHw" secondAttribute="leading" id="Esx-TI-LsL"/>
                                     <constraint firstItem="uVY-EE-yBf" firstAttribute="top" secondItem="WZq-SK-d0Q" secondAttribute="bottom" constant="20" id="Fkl-wK-qlg"/>
                                     <constraint firstItem="WZq-SK-d0Q" firstAttribute="leading" secondItem="VCY-OA-LHw" secondAttribute="leading" id="KGt-MY-vgf"/>
+                                    <constraint firstAttribute="bottom" secondItem="LMg-JO-1Sp" secondAttribute="bottom" id="MZh-MJ-JVU"/>
                                     <constraint firstItem="V22-9K-9bX" firstAttribute="leading" secondItem="VCY-OA-LHw" secondAttribute="leading" id="NnH-Ga-MTq"/>
                                     <constraint firstItem="g6e-Pn-6lO" firstAttribute="leading" secondItem="VCY-OA-LHw" secondAttribute="leading" id="O8K-57-PZC"/>
                                     <constraint firstItem="GLY-eo-BBJ" firstAttribute="leading" secondItem="VCY-OA-LHw" secondAttribute="leading" id="OB7-eN-zQ8"/>
                                     <constraint firstItem="WZq-SK-d0Q" firstAttribute="top" secondItem="GLY-eo-BBJ" secondAttribute="bottom" id="Oic-lb-fWX"/>
+                                    <constraint firstAttribute="trailing" secondItem="LMg-JO-1Sp" secondAttribute="trailing" id="QcI-4U-gat"/>
                                     <constraint firstItem="g6e-Pn-6lO" firstAttribute="top" secondItem="uVY-EE-yBf" secondAttribute="bottom" id="RRd-bb-bPW"/>
                                     <constraint firstAttribute="trailing" secondItem="g6e-Pn-6lO" secondAttribute="trailing" id="TrD-6S-HNb"/>
                                     <constraint firstAttribute="trailing" secondItem="uVY-EE-yBf" secondAttribute="trailing" id="UY0-wk-12x"/>
                                     <constraint firstItem="MmL-hR-b63" firstAttribute="leading" secondItem="VCY-OA-LHw" secondAttribute="leading" id="W7o-yk-O80"/>
+                                    <constraint firstItem="dgl-Jj-PvP" firstAttribute="top" secondItem="VCY-OA-LHw" secondAttribute="top" constant="125" id="XkW-AF-fFS"/>
+                                    <constraint firstItem="V22-9K-9bX" firstAttribute="top" secondItem="dgl-Jj-PvP" secondAttribute="bottom" constant="193" id="Y5H-Mz-yWQ"/>
                                     <constraint firstItem="dgl-Jj-PvP" firstAttribute="centerX" secondItem="VCY-OA-LHw" secondAttribute="centerX" id="YcG-ZX-ula"/>
                                     <constraint firstItem="dgl-Jj-PvP" firstAttribute="top" secondItem="VCY-OA-LHw" secondAttribute="top" constant="125" id="cpZ-dH-Srp"/>
                                     <constraint firstAttribute="bottom" secondItem="g6e-Pn-6lO" secondAttribute="bottom" id="drh-mW-hmj"/>
@@ -177,24 +190,28 @@
                                     <constraint firstItem="oos-4g-nIM" firstAttribute="leading" secondItem="VCY-OA-LHw" secondAttribute="leading" id="vhK-bt-oim"/>
                                     <constraint firstAttribute="trailing" secondItem="oos-4g-nIM" secondAttribute="trailing" id="w0M-y3-YHP"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="CEg-EE-WQm"/>
+                                        <exclude reference="XkW-AF-fFS"/>
+                                        <exclude reference="cpZ-dH-Srp"/>
+                                        <exclude reference="Y5H-Mz-yWQ"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="LMg-JO-1Sp" firstAttribute="height" secondItem="TyV-Ct-SwE" secondAttribute="height" multiplier="413:667" id="Dr8-lS-g0E"/>
                             <constraint firstItem="VCY-OA-LHw" firstAttribute="leading" secondItem="TyV-Ct-SwE" secondAttribute="leading" id="SFC-nw-3wh"/>
                             <constraint firstItem="VCY-OA-LHw" firstAttribute="top" secondItem="TyV-Ct-SwE" secondAttribute="top" id="V6B-MI-wBf"/>
                             <constraint firstItem="s26-bL-N4q" firstAttribute="top" secondItem="VCY-OA-LHw" secondAttribute="bottom" id="eqh-NL-Ead"/>
-                            <constraint firstItem="VCY-OA-LHw" firstAttribute="top" secondItem="tU1-bP-m6f" secondAttribute="bottom" id="vjB-i1-xRU"/>
                             <constraint firstAttribute="trailing" secondItem="VCY-OA-LHw" secondAttribute="trailing" id="wPt-vD-DEZ"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="vjB-i1-xRU"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="contentBottomConstraint" destination="eqh-NL-Ead" id="4Sc-an-fnO"/>
                         <outlet property="inputEmail" destination="P81-ZK-O6a" id="wyY-Ga-wzN"/>
                         <outlet property="inputPassword" destination="ADK-9V-9rI" id="olc-uk-SXF"/>
                     </connections>
