@@ -408,7 +408,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79i-K9-stq" userLabel="Image Container">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_01" translatesAutoresizingMaskIntoConstraints="NO" id="YJK-a9-vOa">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_default" translatesAutoresizingMaskIntoConstraints="NO" id="YJK-a9-vOa">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                                     </imageView>
                                 </subviews>
@@ -724,7 +724,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wJO-rh-di7" userLabel="Video BG">
                                 <rect key="frame" x="0.0" y="64" width="375" height="211"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_02" translatesAutoresizingMaskIntoConstraints="NO" id="KoV-oK-pc7">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_default_L" translatesAutoresizingMaskIntoConstraints="NO" id="KoV-oK-pc7">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_video_L" translatesAutoresizingMaskIntoConstraints="NO" id="rkJ-6d-18s">
@@ -941,13 +941,12 @@
     <resources>
         <image name="btn_pic" width="54" height="38"/>
         <image name="btn_video" width="54" height="38"/>
-        <image name="food_01" width="450" height="252"/>
-        <image name="food_02" width="450" height="252"/>
         <image name="food_default" width="353" height="200"/>
         <image name="food_list_gradients" width="353" height="115"/>
         <image name="icon_love_m" width="56" height="48"/>
         <image name="icon_love_m_pink" width="56" height="48"/>
         <image name="icon_love_s" width="40" height="48"/>
         <image name="icon_video_L" width="64" height="64"/>
+        <image name="video_default_L" width="375" height="211"/>
     </resources>
 </document>

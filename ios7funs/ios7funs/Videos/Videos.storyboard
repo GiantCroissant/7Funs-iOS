@@ -244,7 +244,7 @@
                                             <constraint firstAttribute="height" constant="51" id="RvX-5o-V8Z"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                        <state key="normal" title="左視角">
+                                        <state key="normal" title="全視角">
                                             <color key="titleColor" red="0.56078431370000004" green="0.46274509800000002" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <variation key="default">
@@ -261,29 +261,12 @@
                                             <constraint firstAttribute="width" constant="171" id="key-gd-jew"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                        <state key="normal" title="右視角">
+                                        <state key="normal" title="俯視角">
                                             <color key="titleColor" red="0.56078431370000004" green="0.46274509800000002" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="key-gd-jew"/>
-                                            </mask>
-                                        </variation>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGF-D8-1j3">
-                                        <rect key="frame" x="193" y="75" width="171" height="51"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="51" id="g15-Ak-rlL"/>
-                                            <constraint firstAttribute="width" constant="171" id="tEw-nF-1pU"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                        <state key="normal" title="英文">
-                                            <color key="titleColor" red="0.56078431370000004" green="0.46274509800000002" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="tEw-nF-1pU"/>
                                             </mask>
                                         </variation>
                                     </button>
@@ -295,7 +278,7 @@
                                             <constraint firstAttribute="width" constant="171" id="zeX-sG-RC5"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                        <state key="normal" title="俯視角">
+                                        <state key="normal" title="英文">
                                             <color key="titleColor" red="0.56078431370000004" green="0.46274509800000002" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <variation key="default">
@@ -304,74 +287,23 @@
                                             </mask>
                                         </variation>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsH-QR-eM0">
-                                        <rect key="frame" x="11" y="137" width="171" height="51"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="171" id="IJF-Fe-Z35"/>
-                                            <constraint firstAttribute="height" constant="51" id="zos-ZD-A0x"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                        <state key="normal" title="台語">
-                                            <color key="titleColor" red="0.56078431370000004" green="0.46274509800000002" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="IJF-Fe-Z35"/>
-                                            </mask>
-                                        </variation>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lm1-zX-BA5">
-                                        <rect key="frame" x="193" y="137" width="171" height="51"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="171" id="8Xi-Tf-2dC"/>
-                                            <constraint firstAttribute="height" constant="51" id="aM6-ln-FC7"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                        <state key="normal" title="廣東話">
-                                            <color key="titleColor" red="0.56078431370000004" green="0.46274509800000002" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="8Xi-Tf-2dC"/>
-                                            </mask>
-                                        </variation>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.95686274510000002" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="KMX-Tt-c9z" firstAttribute="leading" secondItem="h2v-UW-mw0" secondAttribute="leading" constant="11" id="5P1-e8-dwW"/>
                                     <constraint firstItem="WP3-Ok-Jqp" firstAttribute="top" secondItem="KMX-Tt-c9z" secondAttribute="bottom" constant="11" id="7PF-b4-CrY"/>
-                                    <constraint firstItem="kGF-D8-1j3" firstAttribute="leading" secondItem="WP3-Ok-Jqp" secondAttribute="trailing" constant="11" id="BRj-vf-1T6"/>
-                                    <constraint firstAttribute="trailing" secondItem="lm1-zX-BA5" secondAttribute="trailing" constant="11" id="LSB-Ko-sGz"/>
-                                    <constraint firstItem="kGF-D8-1j3" firstAttribute="top" secondItem="QQ2-Bz-Nd0" secondAttribute="bottom" constant="11" id="M29-p0-ANk"/>
                                     <constraint firstItem="QQ2-Bz-Nd0" firstAttribute="width" secondItem="h2v-UW-mw0" secondAttribute="width" multiplier="171:375" id="Od1-cW-hAP"/>
                                     <constraint firstAttribute="trailing" secondItem="QQ2-Bz-Nd0" secondAttribute="trailing" constant="11" id="R05-RA-kMo"/>
                                     <constraint firstItem="KMX-Tt-c9z" firstAttribute="width" secondItem="h2v-UW-mw0" secondAttribute="width" multiplier="171:375" id="Rh6-x2-iKx"/>
-                                    <constraint firstItem="lm1-zX-BA5" firstAttribute="top" secondItem="kGF-D8-1j3" secondAttribute="bottom" constant="11" id="Tll-yG-IcM"/>
-                                    <constraint firstItem="kGF-D8-1j3" firstAttribute="width" secondItem="h2v-UW-mw0" secondAttribute="width" multiplier="171:375" id="Whz-Vy-tCg"/>
                                     <constraint firstItem="QQ2-Bz-Nd0" firstAttribute="leading" secondItem="KMX-Tt-c9z" secondAttribute="trailing" constant="11" id="X56-E0-zPN"/>
-                                    <constraint firstItem="kGF-D8-1j3" firstAttribute="leading" secondItem="WP3-Ok-Jqp" secondAttribute="trailing" constant="11" id="Y5O-hO-AaQ"/>
                                     <constraint firstItem="QQ2-Bz-Nd0" firstAttribute="top" secondItem="h2v-UW-mw0" secondAttribute="top" constant="13" id="YiV-Hg-HrL"/>
-                                    <constraint firstItem="lm1-zX-BA5" firstAttribute="leading" secondItem="tsH-QR-eM0" secondAttribute="trailing" constant="11" id="ciS-Vo-KQG"/>
-                                    <constraint firstAttribute="trailing" secondItem="kGF-D8-1j3" secondAttribute="trailing" constant="11" id="edJ-uc-lew"/>
                                     <constraint firstItem="WP3-Ok-Jqp" firstAttribute="leading" secondItem="h2v-UW-mw0" secondAttribute="leading" constant="11" id="fLr-wF-4W9"/>
-                                    <constraint firstItem="lm1-zX-BA5" firstAttribute="width" secondItem="h2v-UW-mw0" secondAttribute="width" multiplier="171:375" id="fbz-Kc-A0E"/>
-                                    <constraint firstItem="tsH-QR-eM0" firstAttribute="leading" secondItem="h2v-UW-mw0" secondAttribute="leading" constant="11" id="gHy-SJ-aEt"/>
-                                    <constraint firstItem="tsH-QR-eM0" firstAttribute="width" secondItem="h2v-UW-mw0" secondAttribute="width" multiplier="171:375" id="jOW-2U-JOA"/>
-                                    <constraint firstItem="tsH-QR-eM0" firstAttribute="top" secondItem="WP3-Ok-Jqp" secondAttribute="bottom" constant="11" id="kmQ-Wy-B9K"/>
                                     <constraint firstItem="WP3-Ok-Jqp" firstAttribute="width" secondItem="h2v-UW-mw0" secondAttribute="width" multiplier="171:375" id="nVT-uc-AfN"/>
                                     <constraint firstItem="KMX-Tt-c9z" firstAttribute="top" secondItem="h2v-UW-mw0" secondAttribute="top" constant="13" id="njT-R3-Z7z"/>
-                                    <constraint firstItem="lm1-zX-BA5" firstAttribute="leading" secondItem="tsH-QR-eM0" secondAttribute="trailing" constant="11" id="skY-kI-YdO"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="X56-E0-zPN"/>
-                                        <exclude reference="Y5O-hO-AaQ"/>
-                                        <exclude reference="BRj-vf-1T6"/>
-                                        <exclude reference="skY-kI-YdO"/>
-                                        <exclude reference="ciS-Vo-KQG"/>
                                     </mask>
                                 </variation>
                             </view>
