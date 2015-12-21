@@ -10,17 +10,54 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var inputEmail: UITextField!
+    @IBOutlet weak var inputPassword: UITextField!
+
+    @IBAction func onCancelButtonClick(sender: UIButton) {
+        dLog("cancel")
+
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    @IBAction func onLoginButtonClick(sender: UIButton) {
+        let email = inputEmail.text!
+        let password = inputPassword.text!
+
+        // TODO: - Login business logic
+        dLog("email [\(email)]")
+        dLog("password [\(password)]")
+        dLog("TODO: - Login business logic")
+    }
+
+    @IBAction func onRegisterButtonClick(sender: UIButton) {
+        // TODO: - Register business logic
+        dLog("TODO: - Register business logic")
+    }
+
+    @IBAction func onForgotPasswordClick(sender: UIButton) {
+        // TODO: - forget password logic
+        dLog("TODO: - forget password logic")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setupCustomPlaceholders()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setupCustomPlaceholders() {
+        let color = UIColor(hexString: "#adacac")
+
+        inputEmail.attributedPlaceholder = NSAttributedString(
+            string: "登入信箱",
+            attributes: [ NSForegroundColorAttributeName: color ]
+        )
+
+        inputPassword.attributedPlaceholder = NSAttributedString(
+            string: "登入密碼",
+            attributes: [ NSForegroundColorAttributeName: color ]
+        )
     }
-    
 
     /*
     // MARK: - Navigation

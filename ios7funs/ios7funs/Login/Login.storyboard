@@ -27,6 +27,9 @@
                                             <constraint firstAttribute="width" constant="44" id="a45-9W-ea7"/>
                                         </constraints>
                                         <state key="normal" image="close"/>
+                                        <connections>
+                                            <action selector="onCancelButtonClick:" destination="ljr-TR-1ZY" eventType="touchUpInside" id="w3K-Rd-xJ0"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_eat" translatesAutoresizingMaskIntoConstraints="NO" id="dgl-Jj-PvP">
                                         <rect key="frame" x="123" y="125" width="129" height="129"/>
@@ -49,12 +52,18 @@
                                                 <state key="normal" title="忘記密碼？">
                                                     <color key="titleColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onForgotPasswordClick:" destination="ljr-TR-1ZY" eventType="touchUpInside" id="LO7-qP-TXW"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZv-ch-Oki">
                                                 <rect key="frame" x="137" y="8" width="30" height="30"/>
                                                 <state key="normal" title="註冊">
                                                     <color key="titleColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onRegisterButtonClick:" destination="ljr-TR-1ZY" eventType="touchUpInside" id="WZ1-JM-uwf"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -135,6 +144,9 @@
                                         <state key="normal" title="登入">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onLoginButtonClick:" destination="ljr-TR-1ZY" eventType="touchUpInside" id="TCr-Lh-Ue0"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.99607843137254903" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
@@ -182,10 +194,14 @@
                         </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="inputEmail" destination="P81-ZK-O6a" id="wyY-Ga-wzN"/>
+                        <outlet property="inputPassword" destination="ADK-9V-9rI" id="olc-uk-SXF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jP9-m8-Y1u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="538.5" y="559.5"/>
+            <point key="canvasLocation" x="1038.5" y="632.5"/>
         </scene>
     </scenes>
     <resources>

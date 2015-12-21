@@ -64,6 +64,7 @@
 		3BFBD5451C27063D00313896 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFBD5441C27063D00313896 /* ColorUtils.swift */; };
 		3BFBD5691C27847500313896 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BFBD5681C27847500313896 /* Login.storyboard */; };
 		3BFBD56B1C2784BA00313896 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFBD56A1C2784BA00313896 /* LoginViewController.swift */; };
+		3BFBD56D1C278CF100313896 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFBD56C1C278CF100313896 /* LoginManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +127,7 @@
 		3BFBD5441C27063D00313896 /* ColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		3BFBD5681C27847500313896 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Login/Login.storyboard; sourceTree = "<group>"; };
 		3BFBD56A1C2784BA00313896 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Login/LoginViewController.swift; sourceTree = "<group>"; };
+		3BFBD56C1C278CF100313896 /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginManager.swift; path = Login/LoginManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +319,7 @@
 			children = (
 				3BFBD5681C27847500313896 /* Login.storyboard */,
 				3BFBD56A1C2784BA00313896 /* LoginViewController.swift */,
+				3BFBD56C1C278CF100313896 /* LoginManager.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				3B41D11B1C16C6DA0054FC10 /* RecipeManager.swift in Sources */,
 				3BBDCAC91C213E5900A0E4E3 /* ShowTeacherViewController.swift in Sources */,
 				3B62E8C01C16A473008AA784 /* CardView.swift in Sources */,
+				3BFBD56D1C278CF100313896 /* LoginManager.swift in Sources */,
 				3B41786B1C20DEBE006CB7ED /* RecipeTutorialViewController.swift in Sources */,
 				3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */,
 				3B41D1301C16C9230054FC10 /* RestApiModel.swift in Sources */,
