@@ -113,10 +113,15 @@ class MainViewController: UIViewController {
         scaleButtonImage(btnLinks, mode: .Top)
         btnLinks.alpha = 0.0
 
-        UIView.animateWithDuration(1) {
-            self.tempImage.alpha = 0.0
-            self.btnLinks.alpha = 1.0
-        }
+        UIView.animateWithDuration(1,
+            delay: 0,
+            options: UIViewAnimationOptions.CurveEaseOut,
+            animations: {
+                self.tempImage.alpha = 0.0
+                self.btnLinks.alpha = 1.0
+            },
+            completion: nil
+        )
     }
 
 }
