@@ -48,7 +48,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kxr-M2-idC" userLabel="Food BG">
                                                             <rect key="frame" x="12" y="12" width="150" height="84"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_01" translatesAutoresizingMaskIntoConstraints="NO" id="a6S-zS-xqF">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_default" translatesAutoresizingMaskIntoConstraints="NO" id="a6S-zS-xqF">
                                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="84"/>
                                                                 </imageView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spp-se-K2a" userLabel="Time BG">
@@ -191,7 +191,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KcL-Ol-azN" userLabel="Video BG">
                                 <rect key="frame" x="0.0" y="64" width="375" height="211"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_02" translatesAutoresizingMaskIntoConstraints="NO" id="4mx-0U-TWy">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_default_L" translatesAutoresizingMaskIntoConstraints="NO" id="4mx-0U-TWy">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_video_L" translatesAutoresizingMaskIntoConstraints="NO" id="rHC-fK-tyE">
@@ -398,8 +398,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="food_01" width="450" height="252"/>
-        <image name="food_02" width="450" height="252"/>
         <image name="icon_video_L" width="64" height="64"/>
+        <image name="video_default" width="151" height="85"/>
+        <image name="video_default_L" width="375" height="211"/>
     </resources>
 </document>

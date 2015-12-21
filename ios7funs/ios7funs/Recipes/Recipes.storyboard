@@ -47,7 +47,7 @@
                                                                         <segue destination="9OQ-Cy-w8b" kind="show" id="pjZ-Cy-GSt"/>
                                                                     </connections>
                                                                 </button>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Wn-fX-Vxq">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_default" translatesAutoresizingMaskIntoConstraints="NO" id="7Wn-fX-Vxq">
                                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
                                                                 </imageView>
                                                                 <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_list_gradients" translatesAutoresizingMaskIntoConstraints="NO" id="7Im-IM-htS" userLabel="Gradient">
@@ -425,7 +425,7 @@
                                 <rect key="frame" x="-4" y="20" width="383" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Gm-gd-ZaD">
-                                        <rect key="frame" x="171" y="300" width="42" height="20.5"/>
+                                        <rect key="frame" x="171" y="300" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -514,7 +514,7 @@
                                                                         </variation>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 人收藏．991 人看過" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KJ-M8-EAS">
-                                                                        <rect key="frame" x="40" y="14" width="257" height="20.5"/>
+                                                                        <rect key="frame" x="40" y="14" width="257" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                                         <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -943,6 +943,7 @@
         <image name="btn_video" width="54" height="38"/>
         <image name="food_01" width="450" height="252"/>
         <image name="food_02" width="450" height="252"/>
+        <image name="food_default" width="353" height="200"/>
         <image name="food_list_gradients" width="353" height="115"/>
         <image name="icon_love_m" width="56" height="48"/>
         <image name="icon_love_m_pink" width="56" height="48"/>
