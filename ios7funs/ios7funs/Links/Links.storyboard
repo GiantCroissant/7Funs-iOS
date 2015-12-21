@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Links-->
@@ -24,20 +25,80 @@
                                     <constraint firstAttribute="height" constant="64" id="sec-4U-gTQ"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gj2-Ye-YXd" userLabel="Main BG">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lVk-MN-sEV" userLabel="Top BG">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="301.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEg-aJ-NrM">
+                                                <rect key="frame" x="11" y="11" width="353" height="285"/>
+                                                <state key="normal" image="friend_logo_01"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="vEg-aJ-NrM" secondAttribute="trailing" constant="11" id="CId-d9-IMB"/>
+                                            <constraint firstItem="vEg-aJ-NrM" firstAttribute="top" secondItem="lVk-MN-sEV" secondAttribute="top" constant="11" id="J2a-Bl-XVX"/>
+                                            <constraint firstAttribute="bottom" secondItem="vEg-aJ-NrM" secondAttribute="bottom" constant="5.5" id="LOL-ix-Xmq"/>
+                                            <constraint firstItem="vEg-aJ-NrM" firstAttribute="leading" secondItem="lVk-MN-sEV" secondAttribute="leading" constant="11" id="tgh-U4-fA1"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0O8-bA-I5O" userLabel="Bottom BG">
+                                        <rect key="frame" x="0.0" y="301" width="375" height="301.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6S-O6-HLZ">
+                                                <rect key="frame" x="11" y="5.5" width="353" height="285"/>
+                                                <state key="normal" image="friend_logo_02"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="e6S-O6-HLZ" firstAttribute="leading" secondItem="0O8-bA-I5O" secondAttribute="leading" constant="11" id="Nle-LG-V7j"/>
+                                            <constraint firstItem="e6S-O6-HLZ" firstAttribute="top" secondItem="0O8-bA-I5O" secondAttribute="top" constant="5.5" id="Nnr-UD-ReU"/>
+                                            <constraint firstAttribute="bottom" secondItem="e6S-O6-HLZ" secondAttribute="bottom" constant="11" id="bdS-iT-Mh9"/>
+                                            <constraint firstAttribute="trailing" secondItem="e6S-O6-HLZ" secondAttribute="trailing" constant="11" id="sy3-GY-1SA"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="0O8-bA-I5O" firstAttribute="top" secondItem="lVk-MN-sEV" secondAttribute="bottom" id="109-UP-xye"/>
+                                    <constraint firstAttribute="bottom" secondItem="0O8-bA-I5O" secondAttribute="bottom" id="5Na-1w-BDb"/>
+                                    <constraint firstItem="lVk-MN-sEV" firstAttribute="leading" secondItem="gj2-Ye-YXd" secondAttribute="leading" id="7E4-TT-m48"/>
+                                    <constraint firstItem="lVk-MN-sEV" firstAttribute="height" secondItem="gj2-Ye-YXd" secondAttribute="height" multiplier="1:2" id="7Lb-AN-Ml3"/>
+                                    <constraint firstItem="0O8-bA-I5O" firstAttribute="leading" secondItem="gj2-Ye-YXd" secondAttribute="leading" id="9HA-5z-jZU"/>
+                                    <constraint firstAttribute="trailing" secondItem="lVk-MN-sEV" secondAttribute="trailing" id="b1T-S8-W9R"/>
+                                    <constraint firstItem="lVk-MN-sEV" firstAttribute="top" secondItem="gj2-Ye-YXd" secondAttribute="top" id="yoh-7c-ReM"/>
+                                    <constraint firstAttribute="trailing" secondItem="0O8-bA-I5O" secondAttribute="trailing" id="zJI-Gk-rpX"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gj2-Ye-YXd" secondAttribute="trailing" id="7oK-qO-4mo"/>
+                            <constraint firstItem="eqB-CU-KQ4" firstAttribute="top" secondItem="gj2-Ye-YXd" secondAttribute="bottom" id="G6c-gY-Y6i"/>
+                            <constraint firstItem="gj2-Ye-YXd" firstAttribute="top" secondItem="tpL-gW-LG8" secondAttribute="bottom" id="Hwr-dd-k09"/>
                             <constraint firstItem="tpL-gW-LG8" firstAttribute="top" secondItem="pA1-AJ-HAp" secondAttribute="top" id="Wnq-Aa-6mN"/>
                             <constraint firstItem="tpL-gW-LG8" firstAttribute="leading" secondItem="pA1-AJ-HAp" secondAttribute="leading" id="e1r-Pq-8GJ"/>
+                            <constraint firstItem="gj2-Ye-YXd" firstAttribute="leading" secondItem="pA1-AJ-HAp" secondAttribute="leading" id="iPu-81-5C9"/>
                             <constraint firstAttribute="trailing" secondItem="tpL-gW-LG8" secondAttribute="trailing" id="zFa-mz-n2Z"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="btnFriend01" destination="vEg-aJ-NrM" id="c4C-9B-sV5"/>
+                        <outlet property="btnFriend02" destination="e6S-O6-HLZ" id="K2D-0c-TMe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="umx-pX-fXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1326.5" y="985.5"/>
+            <point key="canvasLocation" x="1110.5" y="975.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="friend_logo_01" width="353" height="285"/>
+        <image name="friend_logo_02" width="353" height="285"/>
+    </resources>
 </document>

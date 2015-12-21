@@ -10,11 +10,15 @@ import UIKit
 
 class LinksViewController: UIViewController {
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    @IBOutlet weak var btnFriend01: UIButton!
+    @IBOutlet weak var btnFriend02: UIButton!
 
-        // Show navigation bar.
-        self.navigationController?.navigationBarHidden = false
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        UIButton.scaleButtonImage(btnFriend01, mode: .Center, radius: 3)
+        UIButton.scaleButtonImage(btnFriend02, mode: .Center, radius: 3)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -23,15 +27,10 @@ class LinksViewController: UIViewController {
         self.title = "吃飯好朋友"
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.showNavigationBar()
     }
 
 }

@@ -31,52 +31,23 @@ class MainViewController: UIViewController {
 
         setupRepeatTimer()
 
-        scaleButtonImage(btnShowInfos, mode: .Center)
-        scaleButtonImage(btnVideos, mode: .Center)
-        scaleButtonImage(btnRecipes, mode: .Top)
-        scaleButtonImage(btnCollections, mode: .Center)
-        scaleButtonImage(btnQandA, mode: .Top)
-        scaleButtonImage(btnLinks, mode: .Top)
-    }
-
-    func scaleButtonImage(button: UIButton, mode: UIViewContentMode) {
-        let image = button.imageView?.image
-        let width = button.frame.size.width
-        let scaledImage = scaleImageToWidth(image!, newWidth: width)
-
-        button.layer.cornerRadius = 2
-        button.clipsToBounds = true
-        button.setImage(scaledImage, forState: UIControlState.Normal)
-        button.imageView?.contentMode = mode
+        UIButton.scaleButtonImage(btnShowInfos, mode: .Center)
+        UIButton.scaleButtonImage(btnVideos, mode: .Center)
+        UIButton.scaleButtonImage(btnRecipes, mode: .Top)
+        UIButton.scaleButtonImage(btnCollections, mode: .Center)
+        UIButton.scaleButtonImage(btnQandA, mode: .Top)
+        UIButton.scaleButtonImage(btnLinks, mode: .Top)
     }
 
     func scaleImageViewImage(imageView: UIImageView, mode: UIViewContentMode) {
         let image = imageView.image
         let width = imageView.frame.size.width
-        let scaledImage = scaleImageToWidth(image!, newWidth: width)
+        let scaledImage = UIImage.scaleImageToWidth(image!, newWidth: width)
 
         imageView.layer.cornerRadius = 2
         imageView.clipsToBounds = true
         imageView.image = scaledImage
         imageView.contentMode = mode
-    }
-
-    func scaleImageToWidth(image: UIImage, newWidth: CGFloat) -> UIImage {
-        let imgWidth = image.size.width
-        let imgHeight = image.size.height
-        if (imgWidth != newWidth)
-        {
-            let newHeight = floorf(Float(imgHeight * (newWidth / imgWidth)))
-            let newSize = CGSizeMake(newWidth, CGFloat(newHeight))
-
-            UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
-            image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
-            let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-
-            return scaledImage
-        }
-        return image
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -110,7 +81,7 @@ class MainViewController: UIViewController {
         tempImage.alpha = 1.0
 
         btnLinks.setImage(nextImage, forState: .Normal)
-        scaleButtonImage(btnLinks, mode: .Top)
+        UIButton.scaleButtonImage(btnLinks, mode: .Top)
         btnLinks.alpha = 0.0
 
         UIView.animateWithDuration(1,
