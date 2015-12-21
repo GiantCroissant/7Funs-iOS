@@ -8,8 +8,8 @@
 
 import UIKit
 
-class MainViewController: UIViewController
-{
+class MainViewController: UIViewController {
+
     @IBOutlet weak var btnShowInfos: UIButton!
     @IBOutlet weak var btnVideos: UIButton!
     @IBOutlet weak var btnRecipes: UIButton!
@@ -17,9 +17,19 @@ class MainViewController: UIViewController
     @IBOutlet weak var btnQandA: UIButton!
     @IBOutlet weak var btnLinks: UIButton!
 
-    override func viewDidLoad()
-    {
+    @IBOutlet weak var tempImage: UIImageView!
+
+    let linkImageNames = [
+        "ser_08_logo_a",
+        "ser_08_logo_b"
+    ]
+
+    var currentLinkImageIndex = 0
+
+    override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupRepeatTimer()
 
         scaleButtonImage(btnShowInfos, mode: .Center)
         scaleButtonImage(btnVideos, mode: .Center)
@@ -29,10 +39,10 @@ class MainViewController: UIViewController
         scaleButtonImage(btnLinks, mode: .Top)
     }
 
-    func scaleButtonImage(button: UIButton, mode: UIViewContentMode)
-    {
+    func scaleButtonImage(button: UIButton, mode: UIViewContentMode) {
         let image = button.imageView?.image
-        let scaledImage = scaleImageToWidth(image!, newWidth: button.frame.size.width)
+        let width = button.frame.size.width
+        let scaledImage = scaleImageToWidth(image!, newWidth: width)
 
         button.layer.cornerRadius = 2
         button.clipsToBounds = true
@@ -40,11 +50,20 @@ class MainViewController: UIViewController
         button.imageView?.contentMode = mode
     }
 
-    func scaleImageToWidth(image: UIImage, newWidth: CGFloat) -> UIImage
-    {
+    func scaleImageViewImage(imageView: UIImageView, mode: UIViewContentMode) {
+        let image = imageView.image
+        let width = imageView.frame.size.width
+        let scaledImage = scaleImageToWidth(image!, newWidth: width)
+
+        imageView.layer.cornerRadius = 2
+        imageView.clipsToBounds = true
+        imageView.image = scaledImage
+        imageView.contentMode = mode
+    }
+
+    func scaleImageToWidth(image: UIImage, newWidth: CGFloat) -> UIImage {
         let imgWidth = image.size.width
         let imgHeight = image.size.height
-
         if (imgWidth != newWidth)
         {
             let newHeight = floorf(Float(imgHeight * (newWidth / imgWidth)))
@@ -60,24 +79,44 @@ class MainViewController: UIViewController
         return image
     }
 
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-    }
-
-    override func viewWillAppear(animated: Bool)
-    {
+    override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        // Hide navBar.
         self.navigationController?.navigationBarHidden = true
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-
         navigationItem.title = ""
+    }
+
+    func setupRepeatTimer() {
+        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "changeLinksButtonImage", userInfo: nil, repeats: true)
+    }
+
+    func changeLinksButtonImage() {
+        if (currentLinkImageIndex + 1 < linkImageNames.count) {
+            currentLinkImageIndex += 1
+
+        } else {
+            currentLinkImageIndex = 0
+        }
+
+        let name = linkImageNames[currentLinkImageIndex]
+        let nextImage = UIImage(named: name)
+
+        let preImage = btnLinks.imageView?.image
+        tempImage.image = preImage
+        scaleImageViewImage(tempImage, mode: .Top)
+        tempImage.alpha = 1.0
+
+        btnLinks.setImage(nextImage, forState: .Normal)
+        scaleButtonImage(btnLinks, mode: .Top)
+        btnLinks.alpha = 0.0
+
+        UIView.animateWithDuration(1) {
+            self.tempImage.alpha = 0.0
+            self.btnLinks.alpha = 1.0
+        }
     }
 
 }

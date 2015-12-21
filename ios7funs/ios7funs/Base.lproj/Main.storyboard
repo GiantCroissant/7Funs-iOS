@@ -231,6 +231,9 @@
                                             <segue destination="jbq-k3-Orr" kind="show" id="1vC-5a-cvB"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pqi-iv-jkz" userLabel="Temp Image">
+                                        <rect key="frame" x="5" y="5" width="235" height="110"/>
+                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="吃飯好朋友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omi-kG-yX5">
                                         <rect key="frame" x="20" y="80" width="101" height="25"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -242,9 +245,13 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="pqi-iv-jkz" firstAttribute="trailing" secondItem="MYd-YY-i5X" secondAttribute="trailing" id="4Uu-oU-qHG"/>
                                     <constraint firstItem="MYd-YY-i5X" firstAttribute="top" secondItem="edy-O0-3F3" secondAttribute="top" constant="5" id="686-Rv-LFZ"/>
                                     <constraint firstItem="MYd-YY-i5X" firstAttribute="leading" secondItem="edy-O0-3F3" secondAttribute="leading" constant="5" id="AlD-LJ-04K"/>
+                                    <constraint firstItem="pqi-iv-jkz" firstAttribute="top" secondItem="MYd-YY-i5X" secondAttribute="top" id="UBe-CZ-QnE"/>
                                     <constraint firstAttribute="bottom" secondItem="omi-kG-yX5" secondAttribute="bottom" constant="20" id="dV3-Ie-Xjo"/>
+                                    <constraint firstItem="pqi-iv-jkz" firstAttribute="leading" secondItem="MYd-YY-i5X" secondAttribute="leading" id="i39-mH-2He"/>
+                                    <constraint firstItem="pqi-iv-jkz" firstAttribute="bottom" secondItem="MYd-YY-i5X" secondAttribute="bottom" id="jZ9-P3-Ir5"/>
                                     <constraint firstAttribute="trailing" secondItem="MYd-YY-i5X" secondAttribute="trailing" constant="10" id="kKj-3M-L47"/>
                                     <constraint firstAttribute="bottom" secondItem="MYd-YY-i5X" secondAttribute="bottom" constant="10" id="kll-nI-ogE"/>
                                     <constraint firstItem="omi-kG-yX5" firstAttribute="leading" secondItem="edy-O0-3F3" secondAttribute="leading" constant="20" id="pjb-Y0-TYh"/>
@@ -299,6 +306,7 @@
                         <outlet property="btnRecipes" destination="O21-1d-aca" id="3YR-u5-jqh"/>
                         <outlet property="btnShowInfos" destination="eDh-Hh-AEs" id="wXr-0V-w3D"/>
                         <outlet property="btnVideos" destination="7Ub-2J-TzO" id="Neo-d7-Qik"/>
+                        <outlet property="tempImage" destination="pqi-iv-jkz" id="eSu-1A-W6W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
