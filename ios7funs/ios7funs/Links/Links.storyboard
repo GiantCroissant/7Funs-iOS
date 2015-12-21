@@ -34,6 +34,9 @@
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEg-aJ-NrM">
                                                 <rect key="frame" x="11" y="11" width="353" height="285"/>
                                                 <state key="normal" image="friend_logo_01"/>
+                                                <connections>
+                                                    <segue destination="hPt-vT-C04" kind="show" identifier="id_segue_link_friend_01" id="fC3-hk-Bm5"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -50,6 +53,9 @@
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6S-O6-HLZ">
                                                 <rect key="frame" x="11" y="5.5" width="353" height="285"/>
                                                 <state key="normal" image="friend_logo_02"/>
+                                                <connections>
+                                                    <segue destination="hPt-vT-C04" kind="show" identifier="id_segue_link_friend_02" id="4Kw-dw-xUj"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -96,9 +102,55 @@
             </objects>
             <point key="canvasLocation" x="1110.5" y="975.5"/>
         </scene>
+        <!--Link Friend View Controller-->
+        <scene sceneID="EuG-ny-dWu">
+            <objects>
+                <viewController id="hPt-vT-C04" customClass="LinkFriendViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dFv-0y-xVu"/>
+                        <viewControllerLayoutGuide type="bottom" id="beH-49-mhm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TsR-cJ-CVa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8PV-C7-x6s" userLabel="Top Background">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <color key="backgroundColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="UeT-87-jh4"/>
+                                </constraints>
+                            </view>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xm4-Nt-fHT">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8PV-C7-x6s" firstAttribute="leading" secondItem="TsR-cJ-CVa" secondAttribute="leading" id="69o-17-e5P"/>
+                            <constraint firstItem="Xm4-Nt-fHT" firstAttribute="top" secondItem="8PV-C7-x6s" secondAttribute="bottom" id="Epv-dU-1Ny"/>
+                            <constraint firstItem="beH-49-mhm" firstAttribute="top" secondItem="Xm4-Nt-fHT" secondAttribute="bottom" id="NdJ-n9-6eq"/>
+                            <constraint firstItem="Xm4-Nt-fHT" firstAttribute="leading" secondItem="TsR-cJ-CVa" secondAttribute="leading" id="WBa-Yl-zRe"/>
+                            <constraint firstAttribute="trailing" secondItem="8PV-C7-x6s" secondAttribute="trailing" id="ebI-Ir-JFU"/>
+                            <constraint firstItem="8PV-C7-x6s" firstAttribute="top" secondItem="TsR-cJ-CVa" secondAttribute="top" id="vXH-OG-uQq"/>
+                            <constraint firstAttribute="trailing" secondItem="Xm4-Nt-fHT" secondAttribute="trailing" id="xgf-Pt-SEz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="Xm4-Nt-fHT" id="Uom-7c-2vb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mbs-V1-kIi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1632.5" y="975.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="friend_logo_01" width="353" height="285"/>
         <image name="friend_logo_02" width="353" height="285"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="4Kw-dw-xUj"/>
+    </inferredMetricsTieBreakers>
 </document>

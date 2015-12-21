@@ -33,4 +33,19 @@ class LinksViewController: UIViewController {
         self.showNavigationBar()
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        self.title = ""
+
+        if segue.identifier == "id_segue_link_friend_01" {
+            let dstVC = segue.destinationViewController as! LinkFriendViewController
+            dstVC.url = "http://www.mitdub.com/"
+            dstVC.title = "豆油伯"
+
+        } else if segue.identifier == "id_segue_link_friend_02" {
+            let dstVC = segue.destinationViewController as! LinkFriendViewController
+            dstVC.url = "http://mall.pchome.com.tw/store/QFAE7U"
+            dstVC.title = "Ucom"
+        }
+    }
+
 }

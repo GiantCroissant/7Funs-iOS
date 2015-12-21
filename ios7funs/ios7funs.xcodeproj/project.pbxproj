@@ -46,6 +46,7 @@
 		3B9DD5611C214534000FE1DF /* QandA.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9DD5601C214534000FE1DF /* QandA.storyboard */; };
 		3B9DD5631C214554000FE1DF /* Links.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9DD5621C214554000FE1DF /* Links.storyboard */; };
 		3B9DD5661C21456F000FE1DF /* Bonus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9DD5641C21456F000FE1DF /* Bonus.storyboard */; };
+		3BA2580D1C2824D800FA5A7C /* LinkFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA2580C1C2824D800FA5A7C /* LinkFriendViewController.swift */; };
 		3BBDCAC91C213E5900A0E4E3 /* ShowTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBDCAC81C213E5900A0E4E3 /* ShowTeacherViewController.swift */; };
 		3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE50681C15BFB60088794A /* MainViewController.swift */; };
 		3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */; };
@@ -109,6 +110,7 @@
 		3B9DD5601C214534000FE1DF /* QandA.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = QandA.storyboard; path = QandA/QandA.storyboard; sourceTree = "<group>"; };
 		3B9DD5621C214554000FE1DF /* Links.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Links.storyboard; path = Links/Links.storyboard; sourceTree = "<group>"; };
 		3B9DD5651C21456F000FE1DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Bonus.storyboard; sourceTree = "<group>"; };
+		3BA2580C1C2824D800FA5A7C /* LinkFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinkFriendViewController.swift; path = Links/LinkFriendViewController.swift; sourceTree = "<group>"; };
 		3BBDCAC81C213E5900A0E4E3 /* ShowTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowTeacherViewController.swift; path = ShowInfos/ShowTeacherViewController.swift; sourceTree = "<group>"; };
 		3BCE50681C15BFB60088794A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowInfosViewController.swift; path = ShowInfos/ShowInfosViewController.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 			children = (
 				3B9DD5621C214554000FE1DF /* Links.storyboard */,
 				3BCE507D1C168C100088794A /* LinksViewController.swift */,
+				3BA2580C1C2824D800FA5A7C /* LinkFriendViewController.swift */,
 			);
 			name = Links;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				3BCE50701C168AB60088794A /* VideosViewController.swift in Sources */,
 				3B4178691C20C252006CB7ED /* RecipeVideoTutorialViewController.swift in Sources */,
 				3B4D7BB61C23BFB9009E37AE /* Toast.swift in Sources */,
+				3BA2580D1C2824D800FA5A7C /* LinkFriendViewController.swift in Sources */,
 				3B5565871C16F67700CFF1B4 /* RecipeDetailViewController.swift in Sources */,
 				3B41D12E1C16C9230054FC10 /* ExtendObservable.swift in Sources */,
 				3BFBD5451C27063D00313896 /* ColorUtils.swift in Sources */,
