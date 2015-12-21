@@ -62,6 +62,8 @@
 		3BD7211B1C117870006716D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7211A1C117870006716D4 /* Assets.xcassets */; };
 		3BD7211E1C117870006716D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7211C1C117870006716D4 /* LaunchScreen.storyboard */; };
 		3BFBD5451C27063D00313896 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFBD5441C27063D00313896 /* ColorUtils.swift */; };
+		3BFBD5691C27847500313896 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BFBD5681C27847500313896 /* Login.storyboard */; };
+		3BFBD56B1C2784BA00313896 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFBD56A1C2784BA00313896 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +124,8 @@
 		3BD7211D1C117870006716D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3BD7211F1C117870006716D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BFBD5441C27063D00313896 /* ColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
+		3BFBD5681C27847500313896 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Login/Login.storyboard; sourceTree = "<group>"; };
+		3BFBD56A1C2784BA00313896 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Login/LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +291,7 @@
 		3BD721121C117870006716D4 /* ios7funs */ = {
 			isa = PBXGroup;
 			children = (
+				3BFBD5671C27844800313896 /* Login */,
 				3B41D11C1C16C8C50054FC10 /* Models */,
 				3B62E8BE1C16A455008AA784 /* Utils */,
 				3BCE506C1C15C0AC0088794A /* ShowInfos */,
@@ -305,6 +310,15 @@
 				3BD7211A1C117870006716D4 /* Assets.xcassets */,
 			);
 			path = ios7funs;
+			sourceTree = "<group>";
+		};
+		3BFBD5671C27844800313896 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3BFBD5681C27847500313896 /* Login.storyboard */,
+				3BFBD56A1C2784BA00313896 /* LoginViewController.swift */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,6 +388,7 @@
 				3BCE50821C168E1E0088794A /* ShowInfos.storyboard in Resources */,
 				3BD721191C117870006716D4 /* Main.storyboard in Resources */,
 				3B9DD55F1C214506000FE1DF /* Collections.storyboard in Resources */,
+				3BFBD5691C27847500313896 /* Login.storyboard in Resources */,
 				3BCE50841C1698AF0088794A /* Recipes.storyboard in Resources */,
 				3BCE506E1C15C6E20088794A /* Cartfile in Resources */,
 				3BCE50861C1698DA0088794A /* Videos.storyboard in Resources */,
@@ -429,6 +444,7 @@
 				3B41D12F1C16C9230054FC10 /* JsonModel.swift in Sources */,
 				3BCE507E1C168C100088794A /* LinksViewController.swift in Sources */,
 				3B41D12C1C16C9230054FC10 /* DbModel.swift in Sources */,
+				3BFBD56B1C2784BA00313896 /* LoginViewController.swift in Sources */,
 				3BCE50701C168AB60088794A /* VideosViewController.swift in Sources */,
 				3B4178691C20C252006CB7ED /* RecipeVideoTutorialViewController.swift in Sources */,
 				3B4D7BB61C23BFB9009E37AE /* Toast.swift in Sources */,
