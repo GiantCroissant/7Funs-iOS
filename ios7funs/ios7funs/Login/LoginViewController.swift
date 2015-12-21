@@ -47,6 +47,12 @@ class LoginViewController: UIViewController {
         setupKeyboardObservers()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+    }
+
     func setupCustomPlaceholders() {
         let color = UIColor(hexString: "#adacac")
 
@@ -60,6 +66,8 @@ class LoginViewController: UIViewController {
             attributes: [ NSForegroundColorAttributeName: color ]
         )
     }
+
+
 
     /*
     // MARK: - Navigation
@@ -124,6 +132,17 @@ extension LoginViewController {
         super.viewWillDisappear(animated)
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
+
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+    }
+
+}
+
+extension LoginViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
 }
