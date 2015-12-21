@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B36CBAD1C27D535003666D7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */; };
+		3B36CBAF1C27D673003666D7 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */; };
 		3B4178611C20B23F006CB7ED /* AYOSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */; };
 		3B4178651C20B270006CB7ED /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4178621C20B270006CB7ED /* ImageLoader.swift */; };
 		3B4178661C20B270006CB7ED /* Marco.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4178631C20B270006CB7ED /* Marco.swift */; };
@@ -68,6 +70,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Login/RegisterViewController.swift; sourceTree = "<group>"; };
+		3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForgotPasswordViewController.swift; path = Login/ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AYOSegmentedControl.swift; path = Utils/AYOSegmentedControl.swift; sourceTree = "<group>"; };
 		3B4178621C20B270006CB7ED /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageLoader.swift; path = Utils/ImageLoader.swift; sourceTree = "<group>"; };
 		3B4178631C20B270006CB7ED /* Marco.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Marco.swift; path = Utils/Marco.swift; sourceTree = "<group>"; };
@@ -320,6 +324,8 @@
 				3BFBD5681C27847500313896 /* Login.storyboard */,
 				3BFBD56A1C2784BA00313896 /* LoginViewController.swift */,
 				3BFBD56C1C278CF100313896 /* LoginManager.swift */,
+				3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */,
+				3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -357,6 +363,7 @@
 				TargetAttributes = {
 					3BD7210F1C117870006716D4 = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = F8PCUC479B;
 					};
 				};
 			};
@@ -436,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B4178661C20B270006CB7ED /* Marco.swift in Sources */,
+				3B36CBAF1C27D673003666D7 /* ForgotPasswordViewController.swift in Sources */,
 				3B5565891C17F2DA00CFF1B4 /* UIModel.swift in Sources */,
 				3BCE507A1C168BF10088794A /* CollectionsViewController.swift in Sources */,
 				3BCE507C1C168C040088794A /* QandAViewController.swift in Sources */,
@@ -448,6 +456,7 @@
 				3BCE507E1C168C100088794A /* LinksViewController.swift in Sources */,
 				3B41D12C1C16C9230054FC10 /* DbModel.swift in Sources */,
 				3BFBD56B1C2784BA00313896 /* LoginViewController.swift in Sources */,
+				3B36CBAD1C27D535003666D7 /* RegisterViewController.swift in Sources */,
 				3BCE50701C168AB60088794A /* VideosViewController.swift in Sources */,
 				3B4178691C20C252006CB7ED /* RecipeVideoTutorialViewController.swift in Sources */,
 				3B4D7BB61C23BFB9009E37AE /* Toast.swift in Sources */,
@@ -588,6 +597,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ios7funs/Carthage/Build/iOS",
@@ -595,9 +605,10 @@
 				INFOPLIST_FILE = ios7funs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.giantcroissant.ios7funs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.7funs.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -605,15 +616,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ios7funs/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = ios7funs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.giantcroissant.ios7funs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.7funs.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
