@@ -48,8 +48,8 @@
 		3B9DD5661C21456F000FE1DF /* Bonus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9DD5641C21456F000FE1DF /* Bonus.storyboard */; };
 		3BA2580D1C2824D800FA5A7C /* LinkFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA2580C1C2824D800FA5A7C /* LinkFriendViewController.swift */; };
 		3BA2580F1C28998800FA5A7C /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA2580E1C28998800FA5A7C /* VideoPlayerViewController.swift */; };
-		3BA258131C28D77100FA5A7C /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA258121C28D77100FA5A7C /* YTPlayerView.m */; };
 		3BBDCAC91C213E5900A0E4E3 /* ShowTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBDCAC81C213E5900A0E4E3 /* ShowTeacherViewController.swift */; };
+		3BC240EC1C29171100A79E4D /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 3BC240EB1C29171100A79E4D /* Assets */; };
 		3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE50681C15BFB60088794A /* MainViewController.swift */; };
 		3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */; };
 		3BCE506E1C15C6E20088794A /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 3BCE506D1C15C6E20088794A /* Cartfile */; };
@@ -71,6 +71,7 @@
 		3BDF65B71C28EE0F0040F5DB /* CollectionVideoTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65B61C28EE0F0040F5DB /* CollectionVideoTutorialViewController.swift */; };
 		3BDF65B91C28EE2A0040F5DB /* CollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65B81C28EE2A0040F5DB /* CollectionManager.swift */; };
 		3BDF65BB1C28EE570040F5DB /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65BA1C28EE570040F5DB /* CollectionTableViewCell.swift */; };
+		3BDF65C11C28FF370040F5DB /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65BF1C28FF370040F5DB /* YTPlayerView.m */; };
 		3BFBD5451C27063D00313896 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFBD5441C27063D00313896 /* ColorUtils.swift */; };
 		3BFBD5691C27847500313896 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BFBD5681C27847500313896 /* Login.storyboard */; };
 		3BFBD56B1C2784BA00313896 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFBD56A1C2784BA00313896 /* LoginViewController.swift */; };
@@ -119,10 +120,9 @@
 		3B9DD5651C21456F000FE1DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Bonus.storyboard; sourceTree = "<group>"; };
 		3BA2580C1C2824D800FA5A7C /* LinkFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinkFriendViewController.swift; path = Links/LinkFriendViewController.swift; sourceTree = "<group>"; };
 		3BA2580E1C28998800FA5A7C /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoPlayerViewController.swift; path = Videos/VideoPlayerViewController.swift; sourceTree = "<group>"; };
-		3BA258101C28D74900FA5A7C /* YTPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
 		3BA258111C28D77100FA5A7C /* ios7funs-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ios7funs-Bridging-Header.h"; sourceTree = "<group>"; };
-		3BA258121C28D77100FA5A7C /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
 		3BBDCAC81C213E5900A0E4E3 /* ShowTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowTeacherViewController.swift; path = ShowInfos/ShowTeacherViewController.swift; sourceTree = "<group>"; };
+		3BC240EB1C29171100A79E4D /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = Utils/Assets; sourceTree = "<group>"; };
 		3BCE50681C15BFB60088794A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowInfosViewController.swift; path = ShowInfos/ShowInfosViewController.swift; sourceTree = "<group>"; };
 		3BCE506D1C15C6E20088794A /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
@@ -146,6 +146,8 @@
 		3BDF65B61C28EE0F0040F5DB /* CollectionVideoTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionVideoTutorialViewController.swift; path = Collections/CollectionVideoTutorialViewController.swift; sourceTree = "<group>"; };
 		3BDF65B81C28EE2A0040F5DB /* CollectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionManager.swift; path = Collections/CollectionManager.swift; sourceTree = "<group>"; };
 		3BDF65BA1C28EE570040F5DB /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionTableViewCell.swift; path = Collections/CollectionTableViewCell.swift; sourceTree = "<group>"; };
+		3BDF65BE1C28FF370040F5DB /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YTPlayerView.h; path = Utils/YTPlayerView.h; sourceTree = "<group>"; };
+		3BDF65BF1C28FF370040F5DB /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YTPlayerView.m; path = Utils/YTPlayerView.m; sourceTree = "<group>"; };
 		3BFBD5441C27063D00313896 /* ColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		3BFBD5681C27847500313896 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Login/Login.storyboard; sourceTree = "<group>"; };
 		3BFBD56A1C2784BA00313896 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Login/LoginViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +214,9 @@
 		3B62E8BE1C16A455008AA784 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3BC240EB1C29171100A79E4D /* Assets */,
+				3BDF65BE1C28FF370040F5DB /* YTPlayerView.h */,
+				3BDF65BF1C28FF370040F5DB /* YTPlayerView.m */,
 				3BFBD5441C27063D00313896 /* ColorUtils.swift */,
 				3B4D7BB51C23BFB9009E37AE /* Toast.swift */,
 				3B4178621C20B270006CB7ED /* ImageLoader.swift */,
@@ -219,8 +224,6 @@
 				3B4178641C20B270006CB7ED /* Utils.swift */,
 				3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */,
 				3B62E8BF1C16A473008AA784 /* CardView.swift */,
-				3BA258101C28D74900FA5A7C /* YTPlayerView.h */,
-				3BA258121C28D77100FA5A7C /* YTPlayerView.m */,
 				3BA258111C28D77100FA5A7C /* ios7funs-Bridging-Header.h */,
 			);
 			name = Utils;
@@ -418,6 +421,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BC240EC1C29171100A79E4D /* Assets in Resources */,
 				3B9DD5661C21456F000FE1DF /* Bonus.storyboard in Resources */,
 				3B9DD5631C214554000FE1DF /* Links.storyboard in Resources */,
 				3BD7211E1C117870006716D4 /* LaunchScreen.storyboard in Resources */,
@@ -475,6 +479,7 @@
 				3B36CBAF1C27D673003666D7 /* ForgotPasswordViewController.swift in Sources */,
 				3BDF65BB1C28EE570040F5DB /* CollectionTableViewCell.swift in Sources */,
 				3BDF65B11C28EDCD0040F5DB /* CollectionDetailViewController.swift in Sources */,
+				3BDF65C11C28FF370040F5DB /* YTPlayerView.m in Sources */,
 				3B5565891C17F2DA00CFF1B4 /* UIModel.swift in Sources */,
 				3BCE507A1C168BF10088794A /* CollectionsViewController.swift in Sources */,
 				3BDF65B71C28EE0F0040F5DB /* CollectionVideoTutorialViewController.swift in Sources */,
@@ -484,7 +489,6 @@
 				3B4A47DF1C26FD6100662913 /* QandANewQuestionViewController.swift in Sources */,
 				3B5565851C16F65000CFF1B4 /* RecipeTableViewCell.swift in Sources */,
 				3BD721141C117870006716D4 /* AppDelegate.swift in Sources */,
-				3BA258131C28D77100FA5A7C /* YTPlayerView.m in Sources */,
 				3BCE50801C168C1D0088794A /* BonusViewController.swift in Sources */,
 				3B41D12F1C16C9230054FC10 /* JsonModel.swift in Sources */,
 				3BCE507E1C168C100088794A /* LinksViewController.swift in Sources */,

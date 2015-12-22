@@ -9,9 +9,12 @@
 import UIKit
 
 class VideoPlayerViewController: UIViewController {
+    @IBOutlet weak var youtubePlayer: YTPlayerView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        youtubePlayer.loadWithVideoId("Lv2Q1bAS6mc")
 
         // Do any additional setup after loading the view.
     }

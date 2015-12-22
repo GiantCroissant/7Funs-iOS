@@ -42,7 +42,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="353" height="108"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eMk-rB-rFh" id="v21-AG-L6g">
-                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="108"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="107.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kxr-M2-idC" userLabel="Food BG">
@@ -194,6 +194,10 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_default_L" translatesAutoresizingMaskIntoConstraints="NO" id="4mx-0U-TWy">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y7t-aN-qi5" customClass="YTPlayerView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_video_L" translatesAutoresizingMaskIntoConstraints="NO" id="rHC-fK-tyE">
                                         <rect key="frame" x="156" y="74" width="64" height="64"/>
                                         <constraints>
@@ -222,12 +226,16 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.90038377199999997" green="0.74013470309999996" blue="0.62062401229999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="Y7t-aN-qi5" firstAttribute="top" secondItem="KcL-Ol-azN" secondAttribute="top" id="39m-vD-r1l"/>
+                                    <constraint firstAttribute="trailing" secondItem="Y7t-aN-qi5" secondAttribute="trailing" id="3AT-YW-cRM"/>
                                     <constraint firstAttribute="trailing" secondItem="4mx-0U-TWy" secondAttribute="trailing" id="4Sc-69-QSZ"/>
                                     <constraint firstAttribute="height" constant="211" id="FTb-xN-ZG1"/>
                                     <constraint firstAttribute="bottom" secondItem="4mx-0U-TWy" secondAttribute="bottom" id="NvH-xa-1Z1"/>
+                                    <constraint firstItem="Y7t-aN-qi5" firstAttribute="leading" secondItem="KcL-Ol-azN" secondAttribute="leading" id="Z6S-Ot-Has"/>
                                     <constraint firstItem="rHC-fK-tyE" firstAttribute="centerY" secondItem="KcL-Ol-azN" secondAttribute="centerY" id="edN-nQ-Fke"/>
                                     <constraint firstItem="4mx-0U-TWy" firstAttribute="leading" secondItem="KcL-Ol-azN" secondAttribute="leading" id="fuf-Rm-kE0"/>
                                     <constraint firstAttribute="bottom" secondItem="rFF-Yn-pNP" secondAttribute="bottom" constant="11" id="hqf-Hb-kMj"/>
+                                    <constraint firstAttribute="bottom" secondItem="Y7t-aN-qi5" secondAttribute="bottom" id="q5e-pM-JQX"/>
                                     <constraint firstItem="rHC-fK-tyE" firstAttribute="centerX" secondItem="KcL-Ol-azN" secondAttribute="centerX" id="qFH-Ti-cPC"/>
                                     <constraint firstItem="4mx-0U-TWy" firstAttribute="top" secondItem="KcL-Ol-azN" secondAttribute="top" id="sgX-9j-nOe"/>
                                     <constraint firstAttribute="trailing" secondItem="rFF-Yn-pNP" secondAttribute="trailing" constant="11" id="vhJ-We-z4C"/>
@@ -323,6 +331,9 @@
                             <constraint firstAttribute="trailing" secondItem="Hye-uK-IS0" secondAttribute="trailing" id="usD-Tk-eEV"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="youtubePlayer" destination="Y7t-aN-qi5" id="kB6-r6-YZV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S18-5W-GlG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
