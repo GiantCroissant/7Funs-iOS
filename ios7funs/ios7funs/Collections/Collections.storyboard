@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uMa-cA-sKA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EHW-IQ-Li6">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -9,43 +9,9 @@
     </dependencies>
     <scenes>
         <!--Collections-->
-        <scene sceneID="Gyj-Xk-dBW">
-            <objects>
-                <viewController title="Collections" id="uMa-cA-sKA" customClass="CollectionsViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="K6J-ao-a5D"/>
-                        <viewControllerLayoutGuide type="bottom" id="H9E-1v-KIv"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="gzo-wL-zpG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xYd-Ik-SJ8" userLabel="Top Background">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                <color key="backgroundColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="Cou-kp-b9i"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.96470588239999999" green="0.95686274510000002" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="xYd-Ik-SJ8" firstAttribute="leading" secondItem="gzo-wL-zpG" secondAttribute="leading" id="2xG-nB-bXj"/>
-                            <constraint firstAttribute="trailing" secondItem="xYd-Ik-SJ8" secondAttribute="trailing" id="9TX-mt-Y1L"/>
-                            <constraint firstItem="xYd-Ik-SJ8" firstAttribute="top" secondItem="gzo-wL-zpG" secondAttribute="top" id="c8Q-ac-gOt"/>
-                        </constraints>
-                    </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FYd-4o-RfA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="695.5" y="442.5"/>
-        </scene>
-        <!--Recipes-->
         <scene sceneID="Zet-ng-VUQ">
             <objects>
-                <viewController title="Recipes" id="EHW-IQ-Li6" customClass="RecipesViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Collections" id="EHW-IQ-Li6" customClass="CollectionsViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KWo-Sv-lbX"/>
                         <viewControllerLayoutGuide type="bottom" id="NrH-a8-KGP"/>
@@ -252,10 +218,10 @@
             </objects>
             <point key="canvasLocation" x="435.5" y="1203.5"/>
         </scene>
-        <!--Recipe Detail-->
+        <!--Collection Detail-->
         <scene sceneID="ftg-6Q-X4v">
             <objects>
-                <viewController title="Recipe Detail" id="n04-rC-1LE" customClass="RecipeDetailViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Collection Detail" id="n04-rC-1LE" customClass="CollectionDetailViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="C7q-g8-LiZ"/>
                         <viewControllerLayoutGuide type="bottom" id="UmU-cP-Io4"/>
@@ -432,7 +398,7 @@
         <!--Tutorial-->
         <scene sceneID="XLo-BV-hd0">
             <objects>
-                <viewController title="Tutorial" id="vxr-2K-DA7" customClass="RecipeTutorialViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Tutorial" id="vxr-2K-DA7" customClass="CollectionTutorialViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="75V-Y2-GCO"/>
                         <viewControllerLayoutGuide type="bottom" id="LuS-6f-pWh"/>
@@ -741,7 +707,7 @@
         <!--Video Tutorial-->
         <scene sceneID="mQx-mR-1b5">
             <objects>
-                <viewController title="Video Tutorial" id="fhX-zi-VLr" customClass="RecipeVideoTutorialViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Video Tutorial" id="fhX-zi-VLr" customClass="CollectionVideoTutorialViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UfX-Oy-pcr"/>
                         <viewControllerLayoutGuide type="bottom" id="T2J-El-pbM"/>
