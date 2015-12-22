@@ -14,15 +14,20 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
 
+    var video: VideoUIModel! {
+        didSet {
+            self.lblName.text = video.youtubeVideoId
+
+            dLog("video.youtubeVideoId = \(video.youtubeVideoId)")
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

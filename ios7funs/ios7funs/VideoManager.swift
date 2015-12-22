@@ -36,7 +36,15 @@ class VideoManager {
                         break
                     }
 
+                    // FIXME: workaround , data has too many empty youtubeVideoID
+                    if videoObj.youtubeVideoCode.isEmpty {
+                        continue
+                    }
+
                     let video = VideoUIModel(dbData: videoObj)
+
+                    dLog("video.youtubeId = \(video.youtubeVideoId)")
+
                     videos.append(video)
                 }
 

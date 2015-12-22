@@ -69,14 +69,12 @@ class VideosViewController: UIViewController, UITableViewDataSource {
 
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return videos.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("idVideoCell", forIndexPath: indexPath)
-
-        
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("idVideoCell", forIndexPath: indexPath) as! VideoTableViewCell
+        cell.video = videos[indexPath.row]
         return cell
     }
 
