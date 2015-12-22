@@ -20,10 +20,28 @@ class VideosViewController: UIViewController, UITableViewDataSource {
         "Melon", "Nectarine", "Olive", "Orange", "Papaya", "Peach",
         "Pear", "Pineapple", "Raspberry", "Strawberry"]
 
+    var videos = [VideoUIModel]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         customizeTableDummy()
+
+        VideoManager.sharedInstance.updateCachedVideoOverviews()
+
+        UIUtils.showStatusBarNetworking()
+        self.showToastIndicator()
+
+        VideoManager.sharedInstance.loadVideos() { videos in
+
+            self.videos = videos
+            self.tableVideos.reloadData()
+
+            UIUtils.hideStatusBarNetworking()
+            self.hideToastIndicator()
+        }
+
+        VideoManager.sharedInstance.fetchVideos()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -56,6 +74,9 @@ class VideosViewController: UIViewController, UITableViewDataSource {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("idVideoCell", forIndexPath: indexPath)
+
+        
+
         return cell
     }
 

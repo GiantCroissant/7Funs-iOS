@@ -38,7 +38,7 @@
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <inset key="separatorInset" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="idVideoCell" rowHeight="108" id="eMk-rB-rFh">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="idVideoCell" rowHeight="108" id="eMk-rB-rFh" customClass="VideoTableViewCell" customModule="ios7funs" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="353" height="108"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eMk-rB-rFh" id="v21-AG-L6g">
@@ -54,7 +54,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spp-se-K2a" userLabel="Time BG">
                                                                     <rect key="frame" x="101" y="53" width="39" height="21"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33:44" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vn6-b9-eBh">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33:44" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vn6-b9-eBh" userLabel="Length">
                                                                             <rect key="frame" x="2" y="3" width="35" height="15"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -78,13 +78,13 @@
                                                                 <constraint firstAttribute="trailing" secondItem="spp-se-K2a" secondAttribute="trailing" constant="10" id="WB2-z3-BZt"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="測試用文字，料理美食王_韓式拌飯自己動手做" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="S2A-s2-ldV" userLabel="Video Name">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="測試用文字，料理美食王_韓式拌飯自己動手做" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="S2A-s2-ldV" userLabel="Title">
                                                             <rect key="frame" x="172" y="12" width="169" height="39"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rWh-Q5-h24">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rWh-Q5-h24" userLabel="Description">
                                                             <rect key="frame" x="172" y="55" width="167" height="34"/>
                                                             <string key="text">CH37東風電視台料理美食
 8 個月前 觀看次數：37,995</string>
@@ -119,6 +119,9 @@
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                                 <connections>
+                                                    <outlet property="lblDescription" destination="rWh-Q5-h24" id="ajf-0y-irC"/>
+                                                    <outlet property="lblLength" destination="vn6-b9-eBh" id="WBE-Lw-gPI"/>
+                                                    <outlet property="lblName" destination="S2A-s2-ldV" id="rjG-Az-MpP"/>
                                                     <segue destination="eB4-rO-3vh" kind="show" id="mYp-II-3BS"/>
                                                 </connections>
                                             </tableViewCell>

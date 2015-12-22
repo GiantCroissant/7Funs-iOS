@@ -32,12 +32,25 @@ extension RecipeUIModel {
         let imageId = self.imageId
         let imageName = self.imageName
         RecipeManager.sharedInstance.loadFoodImage(imageId, imageName: imageName) { image, imageId, fadeIn in
-
             if let image = image {
                 completionHandler(image)
             }
         }
     }
-    
+
+}
+
+class VideoUIModel {
+    var id: Int = 0
+    var recipeId: Int = 0
+    var youtubeVideoId: String = ""
+    var type = 0 // type : [ main, top, english ]
+
+    init(dbData: Video) {
+        self.id = dbData.id
+        self.recipeId = dbData.recipeId
+        self.youtubeVideoId = dbData.youtubeVideoCode
+        self.type = dbData.number
+    }
 
 }

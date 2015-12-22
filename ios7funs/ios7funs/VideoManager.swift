@@ -21,6 +21,32 @@ class VideoManager {
     let disposeBag = DisposeBag()
     let restApiProvider = RxMoyaProvider<RestApi>()
 
+    // TODO: findout how to query with amount
+    func loadVideos(completionHandler: (videos: [VideoUIModel]) -> ()) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+            autoreleasepool {
+                var videos = [VideoUIModel]()
+                let realm = try! Realm()
+
+                let videoObjs = realm.objects(Video)
+                for videoObj in videoObjs {
+
+                    // FIXME: workaround
+                    if (videos.count >= 100) {
+                        break
+                    }
+
+                    let video = VideoUIModel(dbData: videoObj)
+                    videos.append(video)
+                }
+
+                dispatch_async(dispatch_get_main_queue()) {
+                    completionHandler(videos: videos)
+                }
+            }
+        }
+    }
+
     func updateCachedVideoOverviews() {
         let scheduler = ConcurrentDispatchQueueScheduler(globalConcurrentQueuePriority: .Default)
         self.restApiProvider
