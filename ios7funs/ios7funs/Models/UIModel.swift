@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct RecipeUIModel {
+class RecipeUIModel {
+
     var imageId: Int = 0
     var imageName: String = ""
     var title: String = ""
@@ -22,4 +23,21 @@ struct RecipeUIModel {
         self.title = dbData.title
         self.hits = dbData.hits
     }
+
+}
+
+extension RecipeUIModel {
+
+    func loadFoodImage(completionHandler:(UIImage?) -> ()) {
+        let imageId = self.imageId
+        let imageName = self.imageName
+        RecipeManager.sharedInstance.loadFoodImage(imageId, imageName: imageName) { image, imageId, fadeIn in
+
+            if let image = image {
+                completionHandler(image)
+            }
+        }
+    }
+    
+
 }

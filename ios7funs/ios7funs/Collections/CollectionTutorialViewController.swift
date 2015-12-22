@@ -12,6 +12,7 @@ class CollectionTutorialViewController: UIViewController {
 
     @IBOutlet weak var imageFood: UIImageView!
     @IBOutlet weak var labelFoodTitle: UILabel!
+    @IBOutlet weak var foodTitle: UILabel!
 
     var blurView: UIVisualEffectView!
     var recipe: RecipeUIModel!
@@ -19,6 +20,12 @@ class CollectionTutorialViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupFoodImage()
+    }
+
+    func setupFoodImage() {
+        
     }
 
 }

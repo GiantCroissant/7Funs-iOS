@@ -22,14 +22,8 @@ class RecipeTutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
-        let imageId = recipe.imageId
-        let imageName = recipe.imageName
-        RecipeManager.sharedInstance.loadFoodImage(imageId, imageName: imageName) { image, imageId, fadeIn in
-
-            if let image = image {
-                self.imgFood.image = image
-            }
+        recipe.loadFoodImage { image in
+            self.imgFood.image = image
         }
 
         labelFoodTitle.text = recipe.title

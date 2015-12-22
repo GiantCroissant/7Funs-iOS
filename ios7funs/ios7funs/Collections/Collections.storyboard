@@ -688,6 +688,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="foodTitle" destination="dlp-iG-4ah" id="dhf-ED-eKb"/>
                         <outlet property="imageFood" destination="UFX-oY-4JF" id="QdG-Oc-o1U"/>
                         <outlet property="labelFoodTitle" destination="auI-d2-oJg" id="qEG-CO-7vy"/>
                     </connections>

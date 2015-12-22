@@ -26,13 +26,10 @@ class RecipeVideoTutorialViewController: UIViewController {
             button.layer.borderColor = UIColor(red: 212/255, green: 205/255, blue: 200/255, alpha: 1).CGColor
         }
 
-        let imageId = recipe.imageId
-        let imageName = recipe.imageName
-        RecipeManager.sharedInstance.loadFoodImage(imageId, imageName: imageName) { image, imageId, fadeIn in
-
+        recipe.loadFoodImage { image in
             self.foodImage.image = image
-
         }
+
     }
 
 }

@@ -30,7 +30,7 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        RecipeManager.sharedInstance.updateCachedRecipesOverviews()
+        RecipeManager.sharedInstance.updateCachedRecipesOverviews()
 
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         RecipeManager.sharedInstance.loadRecipes() { recipes in
@@ -43,7 +43,7 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         }
         
-//        RecipeManager.sharedInstance.fetchMoreRecipes()
+        RecipeManager.sharedInstance.fetchMoreRecipes()
         self.view.makeToast("加入收藏", duration: 10, position: .Top)
     }
 
@@ -66,7 +66,7 @@ extension RecipesViewController : UITableViewDataSource {
     // FIXME: not working
     @IBAction func onAddButtonClick(sender: UIButton) {
         let row = sender.tag
-        var recipe = recipes[row]
+        let recipe = recipes[row]
         recipe.added = !recipe.added
         if recipe.added {
             let image = UIImage(named: "icon_love_m_pink")
