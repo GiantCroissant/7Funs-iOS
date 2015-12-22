@@ -9,30 +9,15 @@
 import UIKit
 
 class VideoPlayerViewController: UIViewController {
+    
     @IBOutlet weak var youtubePlayer: YTPlayerView!
+
+    var video: VideoUIModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        youtubePlayer.loadWithVideoId("Lv2Q1bAS6mc")
-
-        // Do any additional setup after loading the view.
+        youtubePlayer.loadWithVideoId(video.youtubeVideoId)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

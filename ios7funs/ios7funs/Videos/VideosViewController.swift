@@ -81,8 +81,8 @@ class VideosViewController: UIViewController, UITableViewDataSource {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         navigationItem.title = ""
 
-//        let detailVC = segue.destinationViewController as! RecipeDetailViewController
-//        let row = (sender?.tag)!
-//        detailVC.recipe = recipes[row]
+        let dstVC = segue.destinationViewController as! VideoPlayerViewController
+        let row = (sender?.tag)!
+        dstVC.video = videos[row]
     }
 }
