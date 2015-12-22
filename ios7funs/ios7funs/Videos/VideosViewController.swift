@@ -20,20 +20,22 @@ class VideosViewController: UIViewController, UITableViewDataSource {
         "Melon", "Nectarine", "Olive", "Orange", "Papaya", "Peach",
         "Pear", "Pineapple", "Raspberry", "Strawberry"]
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-        // Show navigation bar.
-        self.navigationController?.navigationBarHidden = false
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "節目列表"
-        // Do any additional setup after loading the view.
-
         customizeTableDummy()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.title = "節目列表"
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.showNavigationBar()
     }
 
     func customizeTableDummy() {
@@ -47,11 +49,6 @@ class VideosViewController: UIViewController, UITableViewDataSource {
         tableDummy.layer.shadowPath = shadowPath.CGPath
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
@@ -62,14 +59,11 @@ class VideosViewController: UIViewController, UITableViewDataSource {
         return cell
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+        navigationItem.title = ""
 
+//        let detailVC = segue.destinationViewController as! RecipeDetailViewController
+//        let row = (sender?.tag)!
+//        detailVC.recipe = recipes[row]
+    }
 }

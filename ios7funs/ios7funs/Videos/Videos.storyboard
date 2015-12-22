@@ -45,7 +45,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="353" height="107.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kxr-M2-idC" userLabel="Food BG">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kxr-M2-idC" userLabel="Food BG">
                                                             <rect key="frame" x="12" y="12" width="150" height="84"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_default" translatesAutoresizingMaskIntoConstraints="NO" id="a6S-zS-xqF">
