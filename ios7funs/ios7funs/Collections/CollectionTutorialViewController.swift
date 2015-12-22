@@ -10,26 +10,50 @@ import UIKit
 
 class CollectionTutorialViewController: UIViewController {
 
+    @IBOutlet weak var imageFood: UIImageView!
+    @IBOutlet weak var labelFoodTitle: UILabel!
+
+    var blurView: UIVisualEffectView!
+    var recipe: RecipeUIModel!
+    let headerImageHeight: CGFloat = 211
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+}
+
+extension CollectionTutorialViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        updateFoodLabel(offsetY)
+        updateHeaderImageView(offsetY)
+        updateBlurView(offsetY)
     }
-    
 
-    /*
-    // MARK: - Navigation
+    func updateFoodLabel(offsetY: CGFloat) {
+        let x = labelFoodTitle.frame.origin.x
+        var y = -offsetY + headerImageHeight - 20
+        if (y < 12) {
+            y = 12
+        }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let h = labelFoodTitle.frame.size.height
+        let w = labelFoodTitle.frame.size.width
+        labelFoodTitle.frame = CGRect(x: x, y: y, width: w, height: h)
     }
-    */
 
+    func updateHeaderImageView(offsetY: CGFloat) {
+        let w = imageFood.frame.size.width
+        var h = headerImageHeight - offsetY
+        if (h <= 64) {
+            h = 64
+        }
+
+        imageFood.frame = CGRect(x: 0, y: 0, width: w, height: h)
+    }
+
+    func updateBlurView(offsetY: CGFloat) {
+        blurView.alpha = 1 - ((headerImageHeight - offsetY) / headerImageHeight)
+    }
 }

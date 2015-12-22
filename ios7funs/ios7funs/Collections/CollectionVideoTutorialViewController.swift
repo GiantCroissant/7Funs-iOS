@@ -10,26 +10,34 @@ import UIKit
 
 class CollectionVideoTutorialViewController: UIViewController {
 
+    var recipe: RecipeUIModel!
+
+    @IBOutlet weak var imageFood: UIImageView!
+    @IBOutlet var btnAngles: [UIButton]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.title = recipe.title
+
+        setupButtons()
+        setupFoodImage()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setupButtons() {
+        for button in btnAngles {
+            button.layer.cornerRadius = 3
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor(red: 212/255, green: 205/255, blue: 200/255, alpha: 1).CGColor
+        }
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func setupFoodImage() {
+        let imageId = recipe.imageId
+        let imageName = recipe.imageName
+        RecipeManager.sharedInstance.loadFoodImage(imageId, imageName: imageName) { image, imageId, fadeIn in
+            self.imageFood.image = image
+        }
     }
-    */
 
 }

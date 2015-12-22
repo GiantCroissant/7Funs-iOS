@@ -17,7 +17,6 @@ class RecipeTutorialViewController: UIViewController {
     @IBOutlet weak var foodTitle: UILabel!
 
     var blurView: UIVisualEffectView!
-
     var recipe: RecipeUIModel!
 
     override func viewDidLoad() {

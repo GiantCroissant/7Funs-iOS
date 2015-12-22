@@ -688,9 +688,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="foodTitle" destination="auI-d2-oJg" id="QcN-t0-hq6"/>
-                        <outlet property="imgFood" destination="UFX-oY-4JF" id="Pv0-SQ-7lm"/>
-                        <outlet property="labelFoodTitle" destination="dlp-iG-4ah" id="Mah-TU-6gI"/>
+                        <outlet property="imageFood" destination="UFX-oY-4JF" id="QdG-Oc-o1U"/>
+                        <outlet property="labelFoodTitle" destination="auI-d2-oJg" id="qEG-CO-7vy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BgO-1j-WmA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -851,10 +850,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="foodImage" destination="DQJ-Z4-0J9" id="hZg-bT-w7C"/>
-                        <outletCollection property="test" destination="eKv-Ht-Yre" collectionClass="NSMutableArray" id="kMv-5H-jGM"/>
-                        <outletCollection property="test" destination="Q6s-ah-TYe" collectionClass="NSMutableArray" id="NBE-Zz-gb9"/>
-                        <outletCollection property="test" destination="WGN-ej-bIn" collectionClass="NSMutableArray" id="XLJ-1i-kTz"/>
+                        <outlet property="imageFood" destination="DQJ-Z4-0J9" id="DNY-Zf-9ud"/>
+                        <outletCollection property="btnAngles" destination="Q6s-ah-TYe" collectionClass="NSMutableArray" id="a5f-R3-HtR"/>
+                        <outletCollection property="btnAngles" destination="eKv-Ht-Yre" collectionClass="NSMutableArray" id="iST-js-tLF"/>
+                        <outletCollection property="btnAngles" destination="WGN-ej-bIn" collectionClass="NSMutableArray" id="5T2-B4-YUD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nhx-S4-hTx" userLabel="First Responder" sceneMemberID="firstResponder"/>
