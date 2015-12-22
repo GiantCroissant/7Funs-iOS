@@ -10,4 +10,8 @@ import UIKit
 
 class CollectionTableViewCell: UITableViewCell {
 
+    @IBAction func onAddCollectionClick(sender: UIButton) {
+        dLog("clicked sender tag : \(sender.tag)")
+    }
+
 }

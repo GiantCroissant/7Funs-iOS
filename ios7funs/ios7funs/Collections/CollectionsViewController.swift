@@ -12,6 +12,8 @@ class CollectionsViewController: UIViewController {
 
     @IBOutlet weak var tableCollections: UITableView!
 
+    var collections = [RecipeUIModel]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,14 +35,30 @@ class CollectionsViewController: UIViewController {
         self.showNavigationBar()
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
+        navigationItem.title = ""
+
+        let detailVC = segue.destinationViewController as! CollectionDetailViewController
+        let row = (sender?.tag)!
+        detailVC.recipe = collections[row]
     }
-    */
 
 }
+
+
+extension CollectionsViewController: UITableViewDataSource {
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return collections.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("id_cell_collection", forIndexPath: indexPath)
+            as! CollectionTableViewCell
+
+        return cell
+    }
+
+}
+

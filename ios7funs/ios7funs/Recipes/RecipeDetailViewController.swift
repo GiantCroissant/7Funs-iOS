@@ -49,11 +49,7 @@ class RecipeDetailViewController: UIViewController {
         showTutorialPage()
     }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-
         let vc = segue.destinationViewController
         if vc.title == "Video Tutorial" {
             let videoTutorialVC = vc as! RecipeVideoTutorialViewController
@@ -64,7 +60,6 @@ class RecipeDetailViewController: UIViewController {
             let videoTutorialVC = vc as! RecipeTutorialViewController
             videoTutorialVC.recipe = self.recipe
         }
-
     }
 
 }

@@ -28,7 +28,7 @@
                                 <rect key="frame" x="5" y="69" width="365" height="593"/>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.95686274510000002" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="idRecipeCell" rowHeight="258" id="o8K-zo-Kec" customClass="RecipeTableViewCell" customModule="ios7funs" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="id_cell_collection" rowHeight="258" id="o8K-zo-Kec" customClass="CollectionTableViewCell" customModule="ios7funs" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="365" height="258"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o8K-zo-Kec" id="sBr-cT-AR1">
@@ -102,7 +102,7 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="56" height="48"/>
                                                                     <state key="normal" image="icon_love_m"/>
                                                                     <connections>
-                                                                        <action selector="onAddButtonClick:" destination="EHW-IQ-Li6" eventType="touchUpInside" id="Udr-9n-BVk"/>
+                                                                        <action selector="onAddCollectionClick:" destination="o8K-zo-Kec" eventType="touchUpInside" id="AhA-c6-jFG"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -163,12 +163,6 @@
                                                 <constraint firstItem="x9J-yY-iY9" firstAttribute="leading" secondItem="sBr-cT-AR1" secondAttribute="leading" constant="5" id="xLd-Ub-EtO"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="btnAddCollection" destination="zxZ-67-S9G" id="Z2V-ZT-EeB"/>
-                                            <outlet property="btnFood" destination="XHu-zq-VfK" id="ZZC-QG-rS1"/>
-                                            <outlet property="imgFood" destination="tVa-ng-fPF" id="Qac-b1-cf7"/>
-                                            <outlet property="labelTitle" destination="dOa-j7-HGT" id="jur-c2-d59"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -211,8 +205,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="tableCollections" destination="Z3S-r2-MKm" id="g4X-zg-Fmd"/>
-                        <outlet property="tableRecipes" destination="Z3S-r2-MKm" id="OKj-ro-Uif"/>
-                        <outlet property="topBackground" destination="uMb-rH-PCH" id="2si-7Q-kYG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sFo-lE-qz3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -334,7 +326,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="item1" value=" "/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="onSegmentValueChange:" destination="n04-rC-1LE" eventType="valueChanged" id="OxP-nF-zVT"/>
+                                    <action selector="onValueChange:" destination="n04-rC-1LE" eventType="valueChanged" id="hWP-Xw-4GD"/>
                                 </connections>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="skr-48-iVb" userLabel="Page 1">
@@ -388,8 +380,8 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="page1" destination="skr-48-iVb" id="LpR-q6-47d"/>
-                        <outlet property="page2" destination="zPj-pF-mo3" id="UVr-dH-C8g"/>
+                        <outlet property="page1" destination="skr-48-iVb" id="LUg-c3-SxG"/>
+                        <outlet property="page2" destination="zPj-pF-mo3" id="Clr-uh-Eki"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zTj-T4-XJQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
