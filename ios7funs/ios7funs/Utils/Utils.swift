@@ -19,14 +19,6 @@ class UIUtils {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
 
-    static func showToastIndicator(vc: UIViewController) {
-        vc.view.makeToastActivity(ToastPosition.Center)
-    }
-
-    static func hideToastIndicator(vc: UIViewController) {
-        vc.view.hideToastActivity()
-    }
-
 }
 
 class FileUtils {
@@ -58,6 +50,14 @@ extension UIViewController {
 
     func showNavigationBar() {
         self.navigationController?.navigationBarHidden = false
+    }
+
+    func showToastIndicator() {
+        self.view.makeToastActivity(ToastPosition.Center)
+    }
+
+    func hideToastIndicator() {
+        self.view.hideToastActivity()
     }
 
 }

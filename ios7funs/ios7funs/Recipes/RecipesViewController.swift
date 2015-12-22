@@ -20,7 +20,7 @@ class RecipesViewController: UIViewController {
         RecipeManager.sharedInstance.updateCachedRecipesOverviews()
 
         UIUtils.showStatusBarNetworking()
-        UIUtils.showToastIndicator(self)
+        self.showToastIndicator()
 
         RecipeManager.sharedInstance.loadRecipes() { recipes in
             dLog("recipes count : \(recipes.count)")
@@ -29,7 +29,7 @@ class RecipesViewController: UIViewController {
             self.tableRecipes.reloadData()
 
             UIUtils.hideStatusBarNetworking()
-            UIUtils.hideToastIndicator(self)
+            self.hideToastIndicator()
         }
 
         RecipeManager.sharedInstance.fetchMoreRecipes()
@@ -52,7 +52,7 @@ class RecipesViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        UIUtils.hideToastIndicator(self)
+        self.hideToastIndicator()
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
