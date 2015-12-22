@@ -8,17 +8,33 @@
 
 import UIKit
 
-class RecipesViewController: UIViewController, UITableViewDelegate {
+class RecipesViewController: UIViewController {
 
-    @IBOutlet weak var topBackground: UIView!
     @IBOutlet weak var tableRecipes: UITableView!
 
     var recipes = [RecipeUIModel]()
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-        self.showNavigationBar()
+        RecipeManager.sharedInstance.updateCachedRecipesOverviews()
+
+        UIUtils.showStatusBarNetworking()
+        UIUtils.showToastIndicator(self)
+
+        RecipeManager.sharedInstance.loadRecipes() { recipes in
+            dLog("recipes count : \(recipes.count)")
+
+            self.recipes = recipes
+            self.tableRecipes.reloadData()
+
+            UIUtils.hideStatusBarNetworking()
+            UIUtils.hideToastIndicator(self)
+        }
+
+        RecipeManager.sharedInstance.fetchMoreRecipes()
+
+//      self.view.makeToast("加入收藏", duration: 10, position: .Top)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -27,30 +43,19 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
         self.title = "食譜列表"
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
 
-        RecipeManager.sharedInstance.updateCachedRecipesOverviews()
+        self.showNavigationBar()
+    }
 
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        RecipeManager.sharedInstance.loadRecipes() { recipes in
-            self.recipes = recipes
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillAppear(animated)
 
-            print("[ RecipesViewController ] : self.recipes count : \(self.recipes.count)")
-
-            self.tableRecipes.reloadData()
-
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        }
-        
-        RecipeManager.sharedInstance.fetchMoreRecipes()
-        self.view.makeToast("加入收藏", duration: 10, position: .Top)
+        UIUtils.hideToastIndicator(self)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-
         navigationItem.title = ""
 
         let detailVC = segue.destinationViewController as! RecipeDetailViewController
@@ -63,20 +68,20 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension RecipesViewController : UITableViewDataSource {
 
-    // FIXME: not working
-    @IBAction func onAddButtonClick(sender: UIButton) {
-        let row = sender.tag
-        let recipe = recipes[row]
-        recipe.added = !recipe.added
-        if recipe.added {
-            let image = UIImage(named: "icon_love_m_pink")
-            sender.setImage(image, forState: .Normal)
-
-        } else {
-            let image = UIImage(named: "icon_love_m")
-            sender.setImage(image, forState: .Normal)
-        }
-    }
+//    // FIXME: not working
+//    @IBAction func onAddButtonClick(sender: UIButton) {
+//        let row = sender.tag
+//        let recipe = recipes[row]
+//        recipe.added = !recipe.added
+//        if recipe.added {
+//            let image = UIImage(named: "icon_love_m_pink")
+//            sender.setImage(image, forState: .Normal)
+//
+//        } else {
+//            let image = UIImage(named: "icon_love_m")
+//            sender.setImage(image, forState: .Normal)
+//        }
+//    }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count

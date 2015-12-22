@@ -9,6 +9,26 @@
 import Foundation
 import UIKit
 
+class UIUtils {
+
+    static func showStatusBarNetworking() {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    }
+
+    static func hideStatusBarNetworking() {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+    }
+
+    static func showToastIndicator(vc: UIViewController) {
+        vc.view.makeToastActivity(ToastPosition.Center)
+    }
+
+    static func hideToastIndicator(vc: UIViewController) {
+        vc.view.hideToastActivity()
+    }
+
+}
+
 class FileUtils {
 
     static func getDocumentsDirectory() -> String {

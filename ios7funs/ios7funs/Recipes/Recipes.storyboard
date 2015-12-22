@@ -99,9 +99,6 @@
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELg-qo-Dwt">
                                                                     <rect key="frame" x="0.0" y="0.0" width="56" height="48"/>
                                                                     <state key="normal" image="icon_love_m"/>
-                                                                    <connections>
-                                                                        <action selector="onAddButtonClick:" destination="Em0-5b-b7w" eventType="touchUpInside" id="vnx-dM-eqq"/>
-                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -209,7 +206,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="tableRecipes" destination="NwZ-h3-aJb" id="XhT-rs-cLv"/>
-                        <outlet property="topBackground" destination="pAg-Q3-wSo" id="gBe-k6-rAr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5jU-kb-hq0" userLabel="First Responder" sceneMemberID="firstResponder"/>
