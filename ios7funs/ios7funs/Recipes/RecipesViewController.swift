@@ -18,8 +18,7 @@ class RecipesViewController: UIViewController, UITableViewDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        // Show navigation bar.
-        self.navigationController?.navigationBarHidden = false
+        self.showNavigationBar()
     }
 
     override func viewWillAppear(animated: Bool) {

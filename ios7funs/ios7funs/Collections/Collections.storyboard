@@ -210,6 +210,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="tableCollections" destination="Z3S-r2-MKm" id="g4X-zg-Fmd"/>
                         <outlet property="tableRecipes" destination="Z3S-r2-MKm" id="OKj-ro-Uif"/>
                         <outlet property="topBackground" destination="uMb-rH-PCH" id="2si-7Q-kYG"/>
                     </connections>

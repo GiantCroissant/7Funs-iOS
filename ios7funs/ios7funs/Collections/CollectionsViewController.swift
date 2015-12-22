@@ -10,22 +10,27 @@ import UIKit
 
 class CollectionsViewController: UIViewController {
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-        // Show navigation bar.
-        self.navigationController?.navigationBarHidden = false
-    }
+    @IBOutlet weak var tableCollections: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "我的收藏"
+        //        // TODO: - check login status
+        //        if !LoginManager.logined {
+        //            LoginManager.sharedInstance.showLoginViewController(self)
+        //        }
+    }
 
-//        // TODO: - check login status
-//        if !LoginManager.logined {
-//            LoginManager.sharedInstance.showLoginViewController(self)
-//        }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.title = "我的收藏"
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.showNavigationBar()
     }
 
     /*
