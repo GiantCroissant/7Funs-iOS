@@ -50,6 +50,7 @@
 		3BA2580F1C28998800FA5A7C /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA2580E1C28998800FA5A7C /* VideoPlayerViewController.swift */; };
 		3BBDCAC91C213E5900A0E4E3 /* ShowTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBDCAC81C213E5900A0E4E3 /* ShowTeacherViewController.swift */; };
 		3BC240EC1C29171100A79E4D /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 3BC240EB1C29171100A79E4D /* Assets */; };
+		3BC240EE1C291C1600A79E4D /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC240ED1C291C1600A79E4D /* VideoManager.swift */; };
 		3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE50681C15BFB60088794A /* MainViewController.swift */; };
 		3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */; };
 		3BCE506E1C15C6E20088794A /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 3BCE506D1C15C6E20088794A /* Cartfile */; };
@@ -123,6 +124,7 @@
 		3BA258111C28D77100FA5A7C /* ios7funs-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ios7funs-Bridging-Header.h"; sourceTree = "<group>"; };
 		3BBDCAC81C213E5900A0E4E3 /* ShowTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowTeacherViewController.swift; path = ShowInfos/ShowTeacherViewController.swift; sourceTree = "<group>"; };
 		3BC240EB1C29171100A79E4D /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = Utils/Assets; sourceTree = "<group>"; };
+		3BC240ED1C291C1600A79E4D /* VideoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
 		3BCE50681C15BFB60088794A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowInfosViewController.swift; path = ShowInfos/ShowInfosViewController.swift; sourceTree = "<group>"; };
 		3BCE506D1C15C6E20088794A /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				3BCE50851C1698DA0088794A /* Videos.storyboard */,
 				3BCE506F1C168AB60088794A /* VideosViewController.swift */,
 				3BA2580E1C28998800FA5A7C /* VideoPlayerViewController.swift */,
+				3BC240ED1C291C1600A79E4D /* VideoManager.swift */,
 			);
 			name = Videos;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				3BDF65B11C28EDCD0040F5DB /* CollectionDetailViewController.swift in Sources */,
 				3BDF65C11C28FF370040F5DB /* YTPlayerView.m in Sources */,
 				3B5565891C17F2DA00CFF1B4 /* UIModel.swift in Sources */,
+				3BC240EE1C291C1600A79E4D /* VideoManager.swift in Sources */,
 				3BCE507A1C168BF10088794A /* CollectionsViewController.swift in Sources */,
 				3BDF65B71C28EE0F0040F5DB /* CollectionVideoTutorialViewController.swift in Sources */,
 				3BCE507C1C168C040088794A /* QandAViewController.swift in Sources */,
