@@ -1,32 +1,26 @@
 //
-//  CollectionsViewController.swift
+//  CollectionTutorialViewController.swift
 //  ios7funs
 //
-//  Created by Bryan Lin on 12/8/15.
+//  Created by Bryan Lin on 12/22/15.
 //  Copyright © 2015 Giant Croissant. All rights reserved.
 //
 
 import UIKit
 
-class CollectionsViewController: UIViewController {
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-        // Show navigation bar.
-        self.navigationController?.navigationBarHidden = false
-    }
+class CollectionTutorialViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "我的收藏"
-
-//        // TODO: - check login status
-//        if !LoginManager.logined {
-//            LoginManager.sharedInstance.showLoginViewController(self)
-//        }
+        // Do any additional setup after loading the view.
     }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
 
     /*
     // MARK: - Navigation

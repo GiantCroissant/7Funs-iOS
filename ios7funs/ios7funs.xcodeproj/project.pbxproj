@@ -66,6 +66,11 @@
 		3BD721191C117870006716D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD721171C117870006716D4 /* Main.storyboard */; };
 		3BD7211B1C117870006716D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7211A1C117870006716D4 /* Assets.xcassets */; };
 		3BD7211E1C117870006716D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7211C1C117870006716D4 /* LaunchScreen.storyboard */; };
+		3BDF65B11C28EDCD0040F5DB /* CollectionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65B01C28EDCD0040F5DB /* CollectionDetailViewController.swift */; };
+		3BDF65B31C28EDE20040F5DB /* CollectionTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65B21C28EDE20040F5DB /* CollectionTutorialViewController.swift */; };
+		3BDF65B71C28EE0F0040F5DB /* CollectionVideoTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65B61C28EE0F0040F5DB /* CollectionVideoTutorialViewController.swift */; };
+		3BDF65B91C28EE2A0040F5DB /* CollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65B81C28EE2A0040F5DB /* CollectionManager.swift */; };
+		3BDF65BB1C28EE570040F5DB /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65BA1C28EE570040F5DB /* CollectionTableViewCell.swift */; };
 		3BFBD5451C27063D00313896 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFBD5441C27063D00313896 /* ColorUtils.swift */; };
 		3BFBD5691C27847500313896 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BFBD5681C27847500313896 /* Login.storyboard */; };
 		3BFBD56B1C2784BA00313896 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFBD56A1C2784BA00313896 /* LoginViewController.swift */; };
@@ -136,6 +141,11 @@
 		3BD7211A1C117870006716D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BD7211D1C117870006716D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3BD7211F1C117870006716D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BDF65B01C28EDCD0040F5DB /* CollectionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionDetailViewController.swift; path = Collections/CollectionDetailViewController.swift; sourceTree = "<group>"; };
+		3BDF65B21C28EDE20040F5DB /* CollectionTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionTutorialViewController.swift; path = Collections/CollectionTutorialViewController.swift; sourceTree = "<group>"; };
+		3BDF65B61C28EE0F0040F5DB /* CollectionVideoTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionVideoTutorialViewController.swift; path = Collections/CollectionVideoTutorialViewController.swift; sourceTree = "<group>"; };
+		3BDF65B81C28EE2A0040F5DB /* CollectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionManager.swift; path = Collections/CollectionManager.swift; sourceTree = "<group>"; };
+		3BDF65BA1C28EE570040F5DB /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionTableViewCell.swift; path = Collections/CollectionTableViewCell.swift; sourceTree = "<group>"; };
 		3BFBD5441C27063D00313896 /* ColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		3BFBD5681C27847500313896 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Login/Login.storyboard; sourceTree = "<group>"; };
 		3BFBD56A1C2784BA00313896 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Login/LoginViewController.swift; sourceTree = "<group>"; };
@@ -256,6 +266,11 @@
 			children = (
 				3B9DD55E1C214506000FE1DF /* Collections.storyboard */,
 				3BCE50791C168BF10088794A /* CollectionsViewController.swift */,
+				3BDF65BA1C28EE570040F5DB /* CollectionTableViewCell.swift */,
+				3BDF65B01C28EDCD0040F5DB /* CollectionDetailViewController.swift */,
+				3BDF65B21C28EDE20040F5DB /* CollectionTutorialViewController.swift */,
+				3BDF65B61C28EE0F0040F5DB /* CollectionVideoTutorialViewController.swift */,
+				3BDF65B81C28EE2A0040F5DB /* CollectionManager.swift */,
 			);
 			name = Collections;
 			sourceTree = "<group>";
@@ -455,10 +470,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BDF65B31C28EDE20040F5DB /* CollectionTutorialViewController.swift in Sources */,
 				3B4178661C20B270006CB7ED /* Marco.swift in Sources */,
 				3B36CBAF1C27D673003666D7 /* ForgotPasswordViewController.swift in Sources */,
+				3BDF65BB1C28EE570040F5DB /* CollectionTableViewCell.swift in Sources */,
+				3BDF65B11C28EDCD0040F5DB /* CollectionDetailViewController.swift in Sources */,
 				3B5565891C17F2DA00CFF1B4 /* UIModel.swift in Sources */,
 				3BCE507A1C168BF10088794A /* CollectionsViewController.swift in Sources */,
+				3BDF65B71C28EE0F0040F5DB /* CollectionVideoTutorialViewController.swift in Sources */,
 				3BCE507C1C168C040088794A /* QandAViewController.swift in Sources */,
 				3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */,
 				3BA2580F1C28998800FA5A7C /* VideoPlayerViewController.swift in Sources */,
@@ -491,6 +510,7 @@
 				3B62E8C01C16A473008AA784 /* CardView.swift in Sources */,
 				3BFBD56D1C278CF100313896 /* LoginManager.swift in Sources */,
 				3B41786B1C20DEBE006CB7ED /* RecipeTutorialViewController.swift in Sources */,
+				3BDF65B91C28EE2A0040F5DB /* CollectionManager.swift in Sources */,
 				3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */,
 				3B41D1301C16C9230054FC10 /* RestApiModel.swift in Sources */,
 			);
