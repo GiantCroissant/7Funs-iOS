@@ -89,26 +89,22 @@ class RecipeManager: NSObject {
             .subscribeOn(scheduler)
             .subscribe(
                 onNext: { recipesOverviewJsonObjects in
-                    dLog("onNext")
                     self.updateLocalRecipesOverview(recipesOverviewJsonObjects)
                 },
 
                 onError: { error in
-                    dLog("error = \(error)")
                     dispatch_async(dispatch_get_main_queue()) {
                         onError(error)
                     }
                 },
 
                 onCompleted: {
-                    dLog("onCompleted")
                     dispatch_async(dispatch_get_main_queue()) {
                         onComplete()
                     }
                 },
 
                 onDisposed: {
-                    dLog("onDisposed")
                     dispatch_async(dispatch_get_main_queue()) {
                         onFinished()
                     }
@@ -157,6 +153,9 @@ class RecipeManager: NSObject {
                 try! realm.commitWrite()
             }
 
+            // FIXME: remove below test codes
+            let recipesOverviews = realm.objects(RecipesOverview)
+            dLog("recipesOverviews.count = \(recipesOverviews.count)")
         }
     }
 
