@@ -43,15 +43,18 @@ class MainViewController: UIViewController {
         btnQandA.scaleButtonImage(.Top)
         btnLinks.scaleButtonImage(.Top)
 
-//        UIUtils.showStatusBarNetworking()
+        UIUtils.showStatusBarNetworking()
+        self.showToastIndicator()
+
         RecipeManager.sharedInstance.updateCachedRecipesOverviews()
-        VideoManager.sharedInstance.updateCachedVideoOverviews()
+//        VideoManager.sharedInstance.updateCachedVideoOverviews()
 
         let realm = try! Realm()
         token = realm.addNotificationBlock { notification, realm in
-//            dLog("notification = \(notification)")
-//            dLog("realm = \(realm)")
-//            UIUtils.hideStatusBarNetworking()
+
+            dLog("realm write completed")
+            UIUtils.hideStatusBarNetworking()
+            self.hideToastIndicator()
         }
 
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self

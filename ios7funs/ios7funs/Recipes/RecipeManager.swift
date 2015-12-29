@@ -84,50 +84,68 @@ class RecipeManager: NSObject {
             .observeOn(scheduler)
             .mapSuccessfulHTTPToObjectArray(RecipesOverviewJsonObject)
             .subscribeOn(scheduler)
-            .subscribe(onNext: { recipesOverviewJsonObjects in
+            .subscribe(
+                onNext: { recipesOverviewJsonObjects in
+                    dLog("onNext")
+                    self.updateLocalRecipesOverview(recipesOverviewJsonObjects)
+                },
 
-            autoreleasepool {
-                let realm = try! Realm()
-                let recipes = realm.objects(Recipe)
-                var needToFetchDatas = [RecipesOverview]()
-                for recipesOverviewJsonObject in recipesOverviewJsonObjects {
-                    let results = recipes.filter("id == %@", recipesOverviewJsonObject.id)
-                    if results.count == 0 {
-                        let ro = RecipesOverview()
-                        ro.id = recipesOverviewJsonObject.id
-                        ro.updatedAt = recipesOverviewJsonObject.updatedAt
-                        needToFetchDatas.append(ro)
+                onError: { error in
+                    dLog("error = \(error)")
+                },
 
-                    } else {
-                        if let latestUpdatedDate = NSDate.dateFromRFC3339FormattedString(recipesOverviewJsonObject.updatedAt),
-                            let storedRecipesUdpatedDate = NSDate.dateFromRFC3339FormattedString(results[0].updatedAt) {
-                                let compareResult = latestUpdatedDate.compare(storedRecipesUdpatedDate)
-                                switch compareResult
-                                {
-                                case .OrderedDescending:
-                                    let ro = RecipesOverview()
-                                    ro.id = recipesOverviewJsonObject.id
-                                    ro.updatedAt = recipesOverviewJsonObject.updatedAt
-                                    needToFetchDatas.append(ro)
+                onCompleted: {
+                    dLog("onCompleted")
+                },
 
-                                default:
-                                    break
-                                }
-                        }
+                onDisposed: {
+                    dLog("onDisposed")
+                }
+            )
+            .addDisposableTo(self.disposeBag)
+    }
+
+    func updateLocalRecipesOverview(recipesOverviewJsonObjects: [RecipesOverviewJsonObject]) {
+        autoreleasepool {
+            let realm = try! Realm()
+            let recipes = realm.objects(Recipe)
+            var needToFetchDatas = [RecipesOverview]()
+            for recipesOverviewJsonObject in recipesOverviewJsonObjects {
+                let results = recipes.filter("id == %@", recipesOverviewJsonObject.id)
+                if results.count == 0 {
+                    let ro = RecipesOverview()
+                    ro.id = recipesOverviewJsonObject.id
+                    ro.updatedAt = recipesOverviewJsonObject.updatedAt
+                    needToFetchDatas.append(ro)
+
+                } else {
+                    if let latestUpdatedDate = NSDate.dateFromRFC3339FormattedString(recipesOverviewJsonObject.updatedAt),
+                        let storedRecipesUdpatedDate = NSDate.dateFromRFC3339FormattedString(results[0].updatedAt) {
+                            let compareResult = latestUpdatedDate.compare(storedRecipesUdpatedDate)
+                            switch compareResult
+                            {
+                            case .OrderedDescending:
+                                let ro = RecipesOverview()
+                                ro.id = recipesOverviewJsonObject.id
+                                ro.updatedAt = recipesOverviewJsonObject.updatedAt
+                                needToFetchDatas.append(ro)
+
+                            default:
+                                break
+                            }
                     }
                 }
-
-                if needToFetchDatas.count > 0 {
-                    realm.beginWrite()
-                    for data in needToFetchDatas {
-                        realm.add(data, update: true)
-                    }
-                    try! realm.commitWrite()
-                    dLog("commit write")
-                }
-
             }
-        }).addDisposableTo(self.disposeBag)
+
+            if needToFetchDatas.count > 0 {
+                realm.beginWrite()
+                for data in needToFetchDatas {
+                    realm.add(data, update: true)
+                }
+                try! realm.commitWrite()
+            }
+
+        }
     }
 
     func fetchMoreRecipes() {

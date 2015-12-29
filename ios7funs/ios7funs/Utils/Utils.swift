@@ -57,11 +57,21 @@ extension UIViewController {
     }
 
     func showToastIndicator() {
+//        let blockView = UIView(frame: self.view.frame)
+//
+////        blockView.alpha = 0.0
+//
+//        print("blockview = \(blockView.frame)")
+//
+//        self.view.addSubview(blockView)
+//        self.view.bringSubviewToFront(blockView)
         self.view.makeToastActivity(ToastPosition.Center)
     }
 
     func hideToastIndicator() {
         self.view.hideToastActivity()
+
+
     }
 
 }

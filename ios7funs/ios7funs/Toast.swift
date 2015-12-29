@@ -335,7 +335,10 @@ extension UIView {
     
     private func createToastActivityView() -> UIView {
         let style = ToastManager.shared.style
-        
+
+        let blockTouchBackground = UIView(frame: UIScreen.mainScreen().bounds)
+        dLog("blockTouchBackground size = \(blockTouchBackground.frame)")
+
         let activityView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: style.activitySize.width, height: style.activitySize.height))
         activityView.backgroundColor = style.backgroundColor
         activityView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleBottomMargin]
@@ -352,8 +355,11 @@ extension UIView {
         activityIndicatorView.center = CGPoint(x: activityView.bounds.size.width / 2.0, y: activityView.bounds.size.height / 2.0)
         activityView.addSubview(activityIndicatorView)
         activityIndicatorView.startAnimating()
+
+        blockTouchBackground.addSubview(activityView)
+        activityView.center = CGPoint(x: blockTouchBackground.bounds.size.width / 2.0, y: blockTouchBackground.bounds.size.height / 2.0)
         
-        return activityView
+        return blockTouchBackground
     }
     
     // MARK: - Private Show/Hide Methods

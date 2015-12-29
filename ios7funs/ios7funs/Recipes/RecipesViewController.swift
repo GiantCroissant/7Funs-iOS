@@ -137,7 +137,7 @@ extension RecipesViewController : UITableViewDataSource {
         let imageName = recipe.imageName
         let title = recipe.title
 
-        cell.imgFood.image = nil
+//        cell.imgFood.image = nfff
 
         // FIXME: should change to row ?
         cell.imgFood.tag = imageId
