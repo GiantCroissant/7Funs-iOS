@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainViewController: UIViewController {
 
@@ -26,9 +27,12 @@ class MainViewController: UIViewController {
     ]
 
     var currentLinkImageIndex = 0
+    var token: NotificationToken?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        dLog(" HI ")
 
         setupRepeatChangeLinkImageTimer()
 
@@ -38,6 +42,26 @@ class MainViewController: UIViewController {
         btnCollections.scaleButtonImage(.Center)
         btnQandA.scaleButtonImage(.Top)
         btnLinks.scaleButtonImage(.Top)
+
+//        UIUtils.showStatusBarNetworking()
+        RecipeManager.sharedInstance.updateCachedRecipesOverviews()
+
+        let realm = try! Realm()
+        token = realm.addNotificationBlock { notification, realm in
+            dLog("notification = \(notification)")
+            dLog("realm = \(realm)")
+
+//            UIUtils.hideStatusBarNetworking()
+        }
+
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+    }
+
+    deinit {
+        let realm = try! Realm()
+        if let token = token {
+            realm.removeNotification(token)
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -96,3 +120,14 @@ extension MainViewController {
     }
 
 }
+
+
+// MARK: - UIGestureRecognizerDelegate
+extension MainViewController: UIGestureRecognizerDelegate {
+
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+
+}
+

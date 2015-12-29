@@ -17,7 +17,7 @@ class RecipesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        RecipeManager.sharedInstance.updateCachedRecipesOverviews()
+
 
         UIUtils.showStatusBarNetworking()
         self.showToastIndicator()
@@ -32,7 +32,7 @@ class RecipesViewController: UIViewController {
             self.hideToastIndicator()
         }
 
-        RecipeManager.sharedInstance.fetchMoreRecipes()
+//        RecipeManager.sharedInstance.fetchMoreRecipes()
 
 //      self.view.makeToast("加入收藏", duration: 10, position: .Top)
     }

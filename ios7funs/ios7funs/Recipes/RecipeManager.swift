@@ -82,114 +82,29 @@ class RecipeManager: NSObject {
     }
 
     func updateCachedRecipesOverviews() {
-        dLog("updateCachedRecipesOverviews")
+        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+        let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
+        self.restApiProvider.request(.RecipesOverview)
+            .observeOn(scheduler)
+            .mapSuccessfulHTTPToObjectArray(RecipesOverviewJsonObject)
+            .subscribeOn(scheduler)
+            .subscribe(onNext: { recipesOverviewJsonObjects in
 
-        //
+            autoreleasepool {
+                let realm = try! Realm()
+                let recipes = realm.objects(Recipe)
+                var needToFetchDatas = [RecipesOverview]()
+                for recipesOverviewJsonObject in recipesOverviewJsonObjects {
+                    let results = recipes.filter("id == %@", recipesOverviewJsonObject.id)
+                    if results.count == 0 {
+                        let ro = RecipesOverview()
+                        ro.id = recipesOverviewJsonObject.id
+                        ro.updatedAt = recipesOverviewJsonObject.updatedAt
+                        needToFetchDatas.append(ro)
 
-        self.restApiProvider.request(.RecipesOverview).subscribe() { event in
-
-            // UI
-
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-
-                switch event {
-                case .Next(let response):
-//                    dLog("response : \(response)")
-
-                    let json = try! NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments)
-                    as? [[String : AnyObject]]
-
-                    var recipesOverviewJsonObjects = [RecipesOverviewJsonObject]()
-
-                    for dict in json! {
-                        let decoded = RecipesOverviewJsonObject.decode(JSON.parse(dict))
-                        switch decoded {
-                        case .Success(let result):
-                            recipesOverviewJsonObjects.append(result)
-                            break
-
-                        default:
-                            break
-                        }
-                    }
-
-                    autoreleasepool {
-                        let realm = try! Realm()
-                        let recipes = realm.objects(Recipe)
-                        var needToFetchDatas = [RecipesOverview]()
-                        for recipesOverviewJsonObject in recipesOverviewJsonObjects {
-                            let results = recipes.filter("id == %@", recipesOverviewJsonObject.id)
-                            if results.count == 0 {
-                                let ro = RecipesOverview()
-                                ro.id = recipesOverviewJsonObject.id
-                                ro.updatedAt = recipesOverviewJsonObject.updatedAt
-                                needToFetchDatas.append(ro)
-
-                            } else {
-                                if let latestUpdatedDate = NSDate.dateFromRFC3339FormattedString(recipesOverviewJsonObject.updatedAt),
-                                    let storedRecipesUdpatedDate = NSDate.dateFromRFC3339FormattedString(results[0].updatedAt) {
-                                        let compareResult = latestUpdatedDate.compare(storedRecipesUdpatedDate)
-                                        switch compareResult
-                                        {
-                                        case .OrderedDescending:
-                                            let ro = RecipesOverview()
-                                            ro.id = recipesOverviewJsonObject.id
-                                            ro.updatedAt = recipesOverviewJsonObject.updatedAt
-                                            needToFetchDatas.append(ro)
-
-                                        default:
-                                            break
-                                        }
-                                }
-                            }
-                        }
-
-                        if needToFetchDatas.count > 0 {
-                            realm.beginWrite()
-                            for data in needToFetchDatas {
-                                realm.add(data, update: true)
-                            }
-                            try! realm.commitWrite()
-                            
-                            print("commit write")
-                        }
-                    }
-
-
-                    break
-
-                case .Error(let error):
-                    dLog("error: \(error)")
-                    break
-
-                default:
-                    break
-                }
-            }
-        }.addDisposableTo(self.disposeBag)
-    }
-
-
-            /*
-            self.restApiProvider.request(.RecipesOverview).
-            observer.subscribe(onNext: { recipesOverviewJsonObjects in
-
-                dLog("end")
-                autoreleasepool {
-                    let realm = try! Realm()
-                    let recipes = realm.objects(Recipe)
-                    var needToFetchDatas = [RecipesOverview]()
-                    for recipesOverviewJsonObject in recipesOverviewJsonObjects {
-                        let results = recipes.filter("id == %@", recipesOverviewJsonObject.id)
-                        if results.count == 0 {
-                            let ro = RecipesOverview()
-                            ro.id = recipesOverviewJsonObject.id
-                            ro.updatedAt = recipesOverviewJsonObject.updatedAt
-                            needToFetchDatas.append(ro)
-
-                        } else {
-                            if let latestUpdatedDate = NSDate.dateFromRFC3339FormattedString(recipesOverviewJsonObject.updatedAt),
-                                let storedRecipesUdpatedDate = NSDate.dateFromRFC3339FormattedString(results[0].updatedAt) {
+                    } else {
+                        if let latestUpdatedDate = NSDate.dateFromRFC3339FormattedString(recipesOverviewJsonObject.updatedAt),
+                            let storedRecipesUdpatedDate = NSDate.dateFromRFC3339FormattedString(results[0].updatedAt) {
                                 let compareResult = latestUpdatedDate.compare(storedRecipesUdpatedDate)
                                 switch compareResult
                                 {
@@ -202,25 +117,21 @@ class RecipeManager: NSObject {
                                 default:
                                     break
                                 }
-                            }
                         }
-                    }
-
-                    if needToFetchDatas.count > 0 {
-                        realm.beginWrite()
-                        for data in needToFetchDatas {
-                            realm.add(data, update: true)
-                        }
-                        try! realm.commitWrite()
-
-                        print("commit write")
                     }
                 }
 
-                }).addDisposableTo(self.disposeBag)
+                if needToFetchDatas.count > 0 {
+                    realm.beginWrite()
+                    for data in needToFetchDatas {
+                        realm.add(data, update: true)
+                    }
+                    try! realm.commitWrite()
+                }
 
-                */
-
+            }
+        }).addDisposableTo(self.disposeBag)
+    }
 
     func fetchMoreRecipes() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
@@ -240,7 +151,7 @@ class RecipeManager: NSObject {
 
         let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
         let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
-        restApiProvider.request(.RecipesByIdList(recipeIds))
+        self.restApiProvider.request(.RecipesByIdList(recipeIds))
             .observeOn(scheduler)
             .mapSuccessfulHTTPToObjectArray(RecipesJsonObject) // <-
             .subscribeOn(scheduler)
