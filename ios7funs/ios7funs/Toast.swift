@@ -337,7 +337,6 @@ extension UIView {
         let style = ToastManager.shared.style
 
         let blockTouchBackground = UIView(frame: UIScreen.mainScreen().bounds)
-        dLog("blockTouchBackground size = \(blockTouchBackground.frame)")
 
         let activityView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: style.activitySize.width, height: style.activitySize.height))
         activityView.backgroundColor = style.backgroundColor

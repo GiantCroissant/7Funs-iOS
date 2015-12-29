@@ -27,12 +27,9 @@ class MainViewController: UIViewController {
     ]
 
     var currentLinkImageIndex = 0
-    var token: NotificationToken?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        dLog(" HI ")
 
         setupRepeatChangeLinkImageTimer()
 
@@ -43,28 +40,28 @@ class MainViewController: UIViewController {
         btnQandA.scaleButtonImage(.Top)
         btnLinks.scaleButtonImage(.Top)
 
-        UIUtils.showStatusBarNetworking()
-        self.showToastIndicator()
 
-        RecipeManager.sharedInstance.updateCachedRecipesOverviews()
-//        VideoManager.sharedInstance.updateCachedVideoOverviews()
+        fetchRecipeOverview()
 
-        let realm = try! Realm()
-        token = realm.addNotificationBlock { notification, realm in
-
-            dLog("realm write completed")
-            UIUtils.hideStatusBarNetworking()
-            self.hideToastIndicator()
-        }
+        //        VideoManager.sharedInstance.updateCachedVideoOverviews()  
 
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 
-    deinit {
-        let realm = try! Realm()
-        if let token = token {
-            realm.removeNotification(token)
-        }
+    func fetchRecipeOverview() {
+        self.showToastIndicator()
+
+        RecipeManager.sharedInstance.fetchRecipeOverview(
+            onError: { error in
+                self.showTimeoutAlertView(onReconnect: {
+                    self.fetchRecipeOverview()
+                })
+            },
+
+            onFinished: {
+                self.hideToastIndicator()
+            }
+        )
     }
 
     override func viewWillAppear(animated: Bool) {

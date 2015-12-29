@@ -57,21 +57,26 @@ extension UIViewController {
     }
 
     func showToastIndicator() {
-//        let blockView = UIView(frame: self.view.frame)
-//
-////        blockView.alpha = 0.0
-//
-//        print("blockview = \(blockView.frame)")
-//
-//        self.view.addSubview(blockView)
-//        self.view.bringSubviewToFront(blockView)
+        UIUtils.showStatusBarNetworking()
         self.view.makeToastActivity(ToastPosition.Center)
     }
 
     func hideToastIndicator() {
+        UIUtils.hideStatusBarNetworking()
         self.view.hideToastActivity()
+    }
 
+    func showTimeoutAlertView(onReconnect reconnectHandler: (() -> Void)) {
+        let alert = UIAlertController(title: "網路忙碌中", message: "請檢查網路狀態，並嘗試重新連線", preferredStyle: .Alert)
+        let reconnect = UIAlertAction(title: "重新連線", style: UIAlertActionStyle.Default, handler: { action in
+            reconnectHandler()
+        })
+        let cancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil)
 
+        alert.addAction(reconnect)
+        alert.addAction(cancel)
+
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
 }

@@ -76,7 +76,10 @@ class RecipeManager: NSObject {
         }
     }
 
-    func updateCachedRecipesOverviews() {
+    func fetchRecipeOverview(onComplete onComplete: (() -> Void) = {}
+        , onError: (ErrorType -> Void) = { _ in }
+        , onFinished: (() -> Void) = {}) {
+
         let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
         let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
         self.restApiProvider
@@ -92,14 +95,23 @@ class RecipeManager: NSObject {
 
                 onError: { error in
                     dLog("error = \(error)")
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onError(error)
+                    }
                 },
 
                 onCompleted: {
                     dLog("onCompleted")
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onComplete()
+                    }
                 },
 
                 onDisposed: {
                     dLog("onDisposed")
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onFinished()
+                    }
                 }
             )
             .addDisposableTo(self.disposeBag)
