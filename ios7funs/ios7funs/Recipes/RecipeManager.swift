@@ -20,7 +20,7 @@ class RecipeManager: NSObject {
 
     static let sharedInstance = RecipeManager()
 
-    let fetchAmount = 100
+    let fetchAmount = 10
     let recipeImageBaseUrl = "https://commondatastorage.googleapis.com/funs7-1/uploads/recipe/image/"
     let disposeBag = DisposeBag()
 
@@ -238,7 +238,8 @@ class RecipeManager: NSObject {
     private func fetchRecipesInChunks(ids: [Int]) {
         let recipeIds = Array(ids.prefix(fetchAmount + 1))
 
-        let scheduler = ConcurrentDispatchQueueScheduler(globalConcurrentQueuePriority: .Default)
+        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+        let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
         restApiProvider.request(.RecipesByIdList(recipeIds))
             .observeOn(scheduler)
             .mapSuccessfulHTTPToObjectArray(RecipesJsonObject) // <-
@@ -256,6 +257,8 @@ class RecipeManager: NSObject {
                         let recipe = self.convertToModel(recipeJson)
 
                         let finishedRecipe = overviews.filter("id == %@", recipeJson.id)
+                        dLog("finishedRecipe = \(finishedRecipe)")
+
                         downloadedRecipes.append(recipe)
                         finishedOverviews.append(finishedRecipe[0])
                     }

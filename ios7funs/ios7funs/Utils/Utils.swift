@@ -52,6 +52,10 @@ extension UIViewController {
         self.navigationController?.navigationBarHidden = false
     }
 
+    func hideNabigationBar() {
+        self.navigationController?.navigationBarHidden = true
+    }
+
     func showToastIndicator() {
         self.view.makeToastActivity(ToastPosition.Center)
     }
@@ -83,12 +87,38 @@ extension UIButton {
     static func scaleButtonImage(button: UIButton, mode: UIViewContentMode, radius: CGFloat = 2) {
         let image = button.imageView?.image
         let width = button.frame.size.width
-        let scaledImage = UIImage.scaleImageToWidth(image!, newWidth: width)
+        let scaledImage = image?.scaleImageToWidth(width)
 
         button.layer.cornerRadius = radius
         button.clipsToBounds = true
         button.setImage(scaledImage, forState: UIControlState.Normal)
         button.imageView?.contentMode = mode
+    }
+
+    func scaleButtonImage(mode: UIViewContentMode, radius: CGFloat = 2) {
+        let image = self.imageView?.image
+        let width = self.frame.size.width
+        let scaledImage = image?.scaleImageToWidth(width)
+
+        self.layer.cornerRadius = radius
+        self.clipsToBounds = true
+        self.setImage(scaledImage, forState: UIControlState.Normal)
+        self.imageView?.contentMode = mode
+    }
+
+}
+
+extension UIImageView {
+
+    func scaleImageViewImage(mode: UIViewContentMode, radius: CGFloat = 2) {
+        let image = self.image
+        let width = self.frame.size.width
+        let scaledImage = image?.scaleImageToWidth(width)
+
+        self.layer.cornerRadius = 2
+        self.clipsToBounds = true
+        self.image = scaledImage
+        self.contentMode = mode
     }
 
 }
@@ -111,6 +141,24 @@ extension UIImage {
             return scaledImage
         }
         return image
+    }
+
+    func scaleImageToWidth(newWidth: CGFloat) -> UIImage {
+        let imgWidth = self.size.width
+        let imgHeight = self.size.height
+        if (imgWidth != newWidth)
+        {
+            let newHeight = floorf(Float(imgHeight * (newWidth / imgWidth)))
+            let newSize = CGSizeMake(newWidth, CGFloat(newHeight))
+
+            UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
+            self.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
+            let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+
+            return scaledImage
+        }
+        return self
     }
 
 }

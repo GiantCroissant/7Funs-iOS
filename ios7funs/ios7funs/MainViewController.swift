@@ -16,9 +16,10 @@ class MainViewController: UIViewController {
     @IBOutlet weak var btnCollections: UIButton!
     @IBOutlet weak var btnQandA: UIButton!
     @IBOutlet weak var btnLinks: UIButton!
-
     @IBOutlet weak var tempImage: UIImageView!
 
+    let kChangeLinkImageTimeInterval: NSTimeInterval = 5
+    let kFadeInOutTimeInterval: NSTimeInterval = 1
     let linkImageNames = [
         "ser_08_logo_a",
         "ser_08_logo_b"
@@ -29,62 +30,61 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupRepeatTimer()
+        setupRepeatChangeLinkImageTimer()
 
-        UIButton.scaleButtonImage(btnShowInfos, mode: .Center)
-        UIButton.scaleButtonImage(btnVideos, mode: .Center)
-        UIButton.scaleButtonImage(btnRecipes, mode: .Top)
-        UIButton.scaleButtonImage(btnCollections, mode: .Center)
-        UIButton.scaleButtonImage(btnQandA, mode: .Top)
-        UIButton.scaleButtonImage(btnLinks, mode: .Top)
-    }
-
-    func scaleImageViewImage(imageView: UIImageView, mode: UIViewContentMode) {
-        let image = imageView.image
-        let width = imageView.frame.size.width
-        let scaledImage = UIImage.scaleImageToWidth(image!, newWidth: width)
-
-        imageView.layer.cornerRadius = 2
-        imageView.clipsToBounds = true
-        imageView.image = scaledImage
-        imageView.contentMode = mode
+        btnShowInfos.scaleButtonImage(.Center)
+        btnVideos.scaleButtonImage(.Center)
+        btnRecipes.scaleButtonImage(.Top)
+        btnCollections.scaleButtonImage(.Center)
+        btnQandA.scaleButtonImage(.Top)
+        btnLinks.scaleButtonImage(.Top)
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.navigationController?.navigationBarHidden = true
+        self.hideNabigationBar()
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         navigationItem.title = ""
     }
 
-    func setupRepeatTimer() {
-        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "changeLinksButtonImage", userInfo: nil, repeats: true)
+}
+
+
+// MARK: - Change Link Images
+extension MainViewController {
+
+    func setupRepeatChangeLinkImageTimer() {
+        NSTimer.scheduledTimerWithTimeInterval(kChangeLinkImageTimeInterval,
+            target: self,
+            selector: "changeLinksButtonImage",
+            userInfo: nil,
+            repeats: true
+        )
     }
 
     func changeLinksButtonImage() {
-        if (currentLinkImageIndex + 1 < linkImageNames.count) {
-            currentLinkImageIndex += 1
+        if (currentLinkImageIndex + 1 >= linkImageNames.count) {
+            currentLinkImageIndex = 0
 
         } else {
-            currentLinkImageIndex = 0
+            currentLinkImageIndex += 1
         }
-
-        let name = linkImageNames[currentLinkImageIndex]
-        let nextImage = UIImage(named: name)
 
         let preImage = btnLinks.imageView?.image
         tempImage.image = preImage
-        scaleImageViewImage(tempImage, mode: .Top)
         tempImage.alpha = 1.0
+        tempImage.scaleImageViewImage(.Top)
 
+        let name = linkImageNames[currentLinkImageIndex]
+        let nextImage = UIImage(named: name)
         btnLinks.setImage(nextImage, forState: .Normal)
-        UIButton.scaleButtonImage(btnLinks, mode: .Top)
         btnLinks.alpha = 0.0
+        btnLinks.scaleButtonImage(.Top)
 
-        UIView.animateWithDuration(1,
+        UIView.animateWithDuration(kFadeInOutTimeInterval,
             delay: 0,
             options: UIViewAnimationOptions.CurveEaseOut,
             animations: {
