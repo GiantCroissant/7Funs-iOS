@@ -45,12 +45,12 @@ class MainViewController: UIViewController {
 
 //        UIUtils.showStatusBarNetworking()
         RecipeManager.sharedInstance.updateCachedRecipesOverviews()
+        VideoManager.sharedInstance.updateCachedVideoOverviews()
 
         let realm = try! Realm()
         token = realm.addNotificationBlock { notification, realm in
-            dLog("notification = \(notification)")
-            dLog("realm = \(realm)")
-
+//            dLog("notification = \(notification)")
+//            dLog("realm = \(realm)")
 //            UIUtils.hideStatusBarNetworking()
         }
 

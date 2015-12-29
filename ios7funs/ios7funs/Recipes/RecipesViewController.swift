@@ -7,34 +7,71 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RecipesViewController: UIViewController {
 
     @IBOutlet weak var tableRecipes: UITableView!
 
+    var isFetching = false
     var recipes = [RecipeUIModel]()
+    var token: NotificationToken?
+
+    // if tableview scroll down to bottom
+
+    // => load more recipes ( 10 - 30 ) 
+
+    //
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
 
 
+
+        // Show Indicator
+
+        // Load recipes from database
+
+        // If count = 0 => ask server for recipes data
+
+            // If got data from server & store to local database
+
+            // Call Load recipes from database again ( X )
+
+            // Load from memory would be better than load from database
+
+        // Else => tableView reload data ( Hide Indicator )
+
+
+
         UIUtils.showStatusBarNetworking()
-        self.showToastIndicator()
-
         RecipeManager.sharedInstance.loadRecipes() { recipes in
-            dLog("recipes count : \(recipes.count)")
-
+//            dLog("recipes count : \(recipes.count)")
             self.recipes = recipes
             self.tableRecipes.reloadData()
 
             UIUtils.hideStatusBarNetworking()
-            self.hideToastIndicator()
         }
 
-//        RecipeManager.sharedInstance.fetchMoreRecipes()
-
 //      self.view.makeToast("加入收藏", duration: 10, position: .Top)
+
+        let realm = try! Realm()
+        token = realm.addNotificationBlock { notification, realm in
+            RecipeManager.sharedInstance.loadRecipes() { recipes in
+                self.recipes = recipes
+                self.tableRecipes.reloadData()
+                self.isFetching = false
+                UIUtils.hideStatusBarNetworking()
+            }
+        }
+    }
+
+    deinit {
+        let realm = try! Realm()
+        if let token = token {
+            realm.removeNotification(token)
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -141,3 +178,27 @@ extension RecipesViewController : UITableViewDataSource {
         return cell
     }
 }
+
+
+extension RecipesViewController: UITableViewDelegate {
+
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        if isFetching {
+            dLog("is fetching!! do nothing")
+            return
+        }
+
+        let distFromBottom = scrollView.contentSize.height - scrollView.contentOffset.y
+        if (distFromBottom <= scrollView.frame.height) {
+            isFetching = true
+            UIUtils.showStatusBarNetworking()
+            RecipeManager.sharedInstance.fetchMoreRecipes()
+        }
+    }
+
+}
+
+
+
+
+

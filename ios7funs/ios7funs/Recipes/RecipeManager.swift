@@ -20,7 +20,7 @@ class RecipeManager: NSObject {
 
     static let sharedInstance = RecipeManager()
 
-    let fetchAmount = 10
+    let kFetchAmount = 10
     let recipeImageBaseUrl = "https://commondatastorage.googleapis.com/funs7-1/uploads/recipe/image/"
     let disposeBag = DisposeBag()
 
@@ -44,7 +44,6 @@ class RecipeManager: NSObject {
 
     })
 
-    // TODO: findout how to query with amount
     func loadRecipes(completionHandler: (recipes: [RecipeUIModel]) -> ()) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
             autoreleasepool {
@@ -54,14 +53,10 @@ class RecipeManager: NSObject {
                 let recipeObjs = realm.objects(Recipe)
                 for recipeObj in recipeObjs {
 
-                    // FIXME: workaround
-                    if (recipes.count >= 100) {
-                        break
-                    }
-
-                    if recipeObj.image.isEmpty {
-                        continue
-                    }
+                    // TODO: remove below lines 
+//                    if recipeObj.image.isEmpty {
+//                        continue
+//                    }
 
                     let recipe = RecipeUIModel(dbData: recipeObj)
                     recipes.append(recipe)
@@ -84,7 +79,8 @@ class RecipeManager: NSObject {
     func updateCachedRecipesOverviews() {
         let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
         let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
-        self.restApiProvider.request(.RecipesOverview)
+        self.restApiProvider
+            .request(.RecipesOverview)
             .observeOn(scheduler)
             .mapSuccessfulHTTPToObjectArray(RecipesOverviewJsonObject)
             .subscribeOn(scheduler)
@@ -127,6 +123,7 @@ class RecipeManager: NSObject {
                         realm.add(data, update: true)
                     }
                     try! realm.commitWrite()
+                    dLog("commit write")
                 }
 
             }
@@ -147,13 +144,12 @@ class RecipeManager: NSObject {
     }
 
     private func fetchRecipesInChunks(ids: [Int]) {
-        let recipeIds = Array(ids.prefix(fetchAmount + 1))
-
+        let recipeIds = Array(ids.prefix(kFetchAmount))
         let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
         let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
         self.restApiProvider.request(.RecipesByIdList(recipeIds))
             .observeOn(scheduler)
-            .mapSuccessfulHTTPToObjectArray(RecipesJsonObject) // <-
+            .mapSuccessfulHTTPToObjectArray(RecipesJsonObject)
             .subscribeOn(scheduler)
             .subscribe(onNext: { responeRecipes in
 
@@ -168,21 +164,20 @@ class RecipeManager: NSObject {
                         let recipe = self.convertToModel(recipeJson)
 
                         let finishedRecipe = overviews.filter("id == %@", recipeJson.id)
-                        dLog("finishedRecipe = \(finishedRecipe)")
-
                         downloadedRecipes.append(recipe)
                         finishedOverviews.append(finishedRecipe[0])
                     }
 
                     realm.beginWrite()
-                    for i in 1..<downloadedRecipes.count {
+                    for i in 0..<downloadedRecipes.count {
                         realm.add(downloadedRecipes[i], update: true)
                     }
 
-                    for i in 1..<finishedOverviews.count {
+                    for i in 0..<finishedOverviews.count {
                         realm.delete(finishedOverviews[i])
                     }
                     try! realm.commitWrite()
+                    dLog("commit write")
                 }
 
         }).addDisposableTo(disposeBag)

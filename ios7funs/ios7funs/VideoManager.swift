@@ -56,9 +56,11 @@ class VideoManager {
     }
 
     func updateCachedVideoOverviews() {
-        let scheduler = ConcurrentDispatchQueueScheduler(globalConcurrentQueuePriority: .Default)
+        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+        let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
         self.restApiProvider
             .request(.VideoOverview)
+            .observeOn(scheduler)
             .mapSuccessfulHTTPToObjectArray(VideoOverviewJsonObject)
             .subscribeOn(scheduler)
             .subscribe(onNext: { videoOverviewJsonObjects in

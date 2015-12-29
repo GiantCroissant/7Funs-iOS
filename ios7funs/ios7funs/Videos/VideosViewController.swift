@@ -27,7 +27,7 @@ class VideosViewController: UIViewController, UITableViewDataSource {
 
         customizeTableDummy()
 
-        VideoManager.sharedInstance.updateCachedVideoOverviews()
+        
 
         UIUtils.showStatusBarNetworking()
         self.showToastIndicator()
