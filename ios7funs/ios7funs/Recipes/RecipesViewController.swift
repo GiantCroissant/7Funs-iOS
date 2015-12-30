@@ -133,6 +133,8 @@ extension RecipesViewController: UITableViewDataSource {
         let imageName = recipe.imageName
         let title = recipe.title
 
+        cell.imgFood.image = ImageLoader.sharedInstance.loadDefaultImage("food_default")
+
         // FIXME: should change to row ?
         cell.imgFood.tag = imageId
         cell.btnFood.tag = indexPath.row

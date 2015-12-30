@@ -27,6 +27,19 @@ class ImageLoader {
 
     let imageSaveQuality: CGFloat = 0.25
 
+    func loadDefaultImage(name: String) -> UIImage {
+        if let image = ImageCache.sharedCache.objectForKey(name) as? UIImage {
+            dLog("from cache")
+
+            return image
+
+        } else {
+            let image = UIImage(named: name)!
+            ImageCache.sharedCache.setObject(image, forKey: name)
+            return image
+        }
+    }
+
     func loadImage(imageName: String, url: String, completionHandler:(image: UIImage?, imageName: String, fadeIn: Bool) -> ()) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
 
