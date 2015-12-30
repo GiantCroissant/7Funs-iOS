@@ -64,6 +64,46 @@ extension DriverConvertibleType where E : DriverConvertibleType {
 }
 
 extension DriverConvertibleType {
+    /**
+     Projects each element of an observable sequence into a new sequence of observable sequences and then
+     transforms an observable sequence of observable sequences into an observable sequence producing values only from the most recent observable sequence.
+
+     It is a combination of `map` + `switchLatest` operator
+
+     - parameter selector: A transform function to apply to each element.
+     - returns: An observable sequence whose elements are the result of invoking the transform function on each element of source producing an
+     Observable of Observable sequences and that at any point in time produces the elements of the most recent inner observable sequence that has been received.
+     */
+    @warn_unused_result(message="http://git.io/rxs.uo")
+    public func flatMapLatest<R>(selector: (E) -> Driver<R>)
+        -> Driver<R> {
+        let source: Observable<R> = self
+            .asObservable()
+            .flatMapLatest(selector)
+        return Driver<R>(source)
+    }
+}
+
+extension DriverConvertibleType {
+
+    /**
+     Projects each element of an observable sequence to an observable sequence and merges the resulting observable sequences into one observable sequence.
+     If element is received while there is some projected observable sequence being merged it will simply be ignored.
+
+     - parameter selector: A transform function to apply to element that was observed while no observable is executing in parallel.
+     - returns: An observable sequence whose elements are the result of invoking the one-to-many transform function on each element of the input sequence that was received while no other sequence was being calculated.
+     */
+    @warn_unused_result(message="http://git.io/rxs.uo")
+    public func flatMapFirst<R>(selector: (E) -> Driver<R>)
+        -> Driver<R> {
+        let source: Observable<R> = self
+            .asObservable()
+            .flatMapFirst(selector)
+        return Driver<R>(source)
+    }
+}
+
+extension DriverConvertibleType {
     
     /**
     Invokes an action for each event in the observable sequence, and propagates all observer messages through the result sequence.

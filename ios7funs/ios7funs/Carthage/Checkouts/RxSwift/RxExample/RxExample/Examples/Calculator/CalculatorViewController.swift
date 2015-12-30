@@ -67,8 +67,6 @@ class CalculatorViewController: ViewController {
     
     let CLEAR_STATE = CalState(previousNumber: nil, action: .Clear, currentNumber: "0", inScreen: "0", replace: true)
     
-    let disposeBag = DisposeBag()
-    
     override func viewDidLoad() {
         let commands:[Observable<Action>] = [
             allClearButton.rx_tap.map { _ in .Clear },
@@ -98,7 +96,7 @@ class CalculatorViewController: ViewController {
         ]
         
         commands
-            .asObservable()
+            .toObservable()
             .merge()
             .scan(CLEAR_STATE) { [unowned self] a, x in
                 return self.tranformState(a, x)

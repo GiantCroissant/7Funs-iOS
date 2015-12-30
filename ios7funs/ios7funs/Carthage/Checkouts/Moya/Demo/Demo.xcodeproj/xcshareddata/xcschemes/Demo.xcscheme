@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5EC197F61A1BB16D00F4DFD4"
-               BuildableName = "DemoTests.xctest"
-               BlueprintName = "DemoTests"
+               BuildableName = "MoyaTests-iOS.xctest"
+               BlueprintName = "MoyaTests-iOS"
                ReferencedContainer = "container:Demo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -48,8 +48,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5EC197F61A1BB16D00F4DFD4"
-               BuildableName = "DemoTests.xctest"
-               BlueprintName = "DemoTests"
+               BuildableName = "MoyaTests-iOS.xctest"
+               BlueprintName = "MoyaTests-iOS"
                ReferencedContainer = "container:Demo.xcodeproj">
             </BuildableReference>
          </TestableReference>

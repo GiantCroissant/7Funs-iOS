@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0957F1DB1C33BE0D00357DF4 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0957F1D91C33BE0D00357DF4 /* FBSDKCoreKit.framework */; };
+		0957F1DC1C33BE0D00357DF4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0957F1DA1C33BE0D00357DF4 /* FBSDKLoginKit.framework */; };
 		3B36CBAD1C27D535003666D7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */; };
 		3B36CBAF1C27D673003666D7 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */; };
 		3B4178611C20B23F006CB7ED /* AYOSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */; };
@@ -81,6 +83,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0957F1D91C33BE0D00357DF4 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ios7funs/Lib3rdParty/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		0957F1DA1C33BE0D00357DF4 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ios7funs/Lib3rdParty/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Login/RegisterViewController.swift; sourceTree = "<group>"; };
 		3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForgotPasswordViewController.swift; path = Login/ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AYOSegmentedControl.swift; path = Utils/AYOSegmentedControl.swift; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 				3B41D14C1C16D12E0054FC10 /* RxCocoa.framework in Frameworks */,
 				3B41D14D1C16D12E0054FC10 /* RxSwift.framework in Frameworks */,
 				3B41D1371C16D12E0054FC10 /* RxMoya.framework in Frameworks */,
+				0957F1DB1C33BE0D00357DF4 /* FBSDKCoreKit.framework in Frameworks */,
+				0957F1DC1C33BE0D00357DF4 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +204,8 @@
 		3B41D1331C16D0EE0054FC10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0957F1D91C33BE0D00357DF4 /* FBSDKCoreKit.framework */,
+				0957F1DA1C33BE0D00357DF4 /* FBSDKLoginKit.framework */,
 				3B41D1381C16D12E0054FC10 /* Alamofire.framework */,
 				3B41D1391C16D12E0054FC10 /* Curry.framework */,
 				3B41D13A1C16D12E0054FC10 /* Moya.framework */,
@@ -650,6 +658,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ios7funs/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/ios7funs/Lib3rdParty",
 				);
 				INFOPLIST_FILE = ios7funs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -671,6 +680,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ios7funs/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/ios7funs/Lib3rdParty",
 				);
 				INFOPLIST_FILE = ios7funs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -26,10 +26,11 @@ public func create<E>(subscribe: (AnyObserver<E>) -> Disposable) -> Observable<E
 /**
 Returns an empty observable sequence, using the specified scheduler to send out the single `Completed` message.
 
+- parameter type: Optional type hint.
 - returns: An observable sequence with no elements.
 */
 @warn_unused_result(message="http://git.io/rxs.uo")
-public func empty<E>() -> Observable<E> {
+public func empty<E>(type: E.Type = E.self) -> Observable<E> {
     return Empty<E>()
 }
 
@@ -38,10 +39,11 @@ public func empty<E>() -> Observable<E> {
 /**
 Returns a non-terminating observable sequence, which can be used to denote an infinite duration.
 
+- parameter type: Optional type hint.
 - returns: An observable sequence whose observers will never get called.
 */
 @warn_unused_result(message="http://git.io/rxs.uo")
-public func never<E>() -> Observable<E> {
+public func never<E>(type: E.Type = E.self) -> Observable<E> {
     return Never()
 }
 
@@ -58,23 +60,30 @@ public func just<E>(element: E) -> Observable<E> {
     return Just(element: element)
 }
 
+/**
+Returns an observable sequence that contains a single element.
+
+- parameter element: Single element in the resulting observable sequence.
+- parameter: Scheduler to send the single element on.
+- returns: An observable sequence containing the single specified element.
+*/
+@warn_unused_result(message="http://git.io/rxs.uo")
+public func just<E>(element: E, scheduler: ImmediateSchedulerType) -> Observable<E> {
+    return JustScheduled(element: element, scheduler: scheduler)
+}
+
 // MARK: of
 
 /**
 This method creates a new Observable instance with a variable number of elements.
 
+- parameter elements: Elements to generate.
+- parameter scheduler: Scheduler to send elements on. If `nil`, elements are sent immediatelly on subscription.
 - returns: The observable sequence whose elements are pulled from the given arguments.
 */
 @warn_unused_result(message="http://git.io/rxs.uo")
-public func sequenceOf<E>(elements: E ...) -> Observable<E> {
-    return AnonymousObservable { observer in
-        for element in elements {
-            observer.on(.Next(element))
-        }
-        
-        observer.on(.Completed)
-        return NopDisposable.instance
-    }
+public func sequenceOf<E>(elements: E ..., scheduler: ImmediateSchedulerType? = nil) -> Observable<E> {
+    return Sequence(elements: elements, scheduler: scheduler)
 }
 
 
@@ -85,15 +94,31 @@ extension SequenceType {
     - returns: The observable sequence whose elements are pulled from the given enumerable sequence.
     */
     @warn_unused_result(message="http://git.io/rxs.uo")
+    @available(*, deprecated=2.0.0, message="Please use toObservable extension.")
     public func asObservable() -> Observable<Generator.Element> {
-        return AnonymousObservable { observer in
-            for element in self {
-                observer.on(.Next(element))
-            }
-            
-            observer.on(.Completed)
-            return NopDisposable.instance
-        }
+        return Sequence(elements: Array(self), scheduler: nil)
+    }
+
+    /**
+    Converts a sequence to an observable sequence.
+
+    - returns: The observable sequence whose elements are pulled from the given enumerable sequence.
+    */
+    @warn_unused_result(message="http://git.io/rxs.uo")
+    public func toObservable(scheduler: ImmediateSchedulerType? = nil) -> Observable<Generator.Element> {
+        return Sequence(elements: Array(self), scheduler: scheduler)
+    }
+}
+
+extension Array {
+    /**
+    Converts a sequence to an observable sequence.
+
+    - returns: The observable sequence whose elements are pulled from the given enumerable sequence.
+    */
+    @warn_unused_result(message="http://git.io/rxs.uo")
+    public func toObservable(scheduler: ImmediateSchedulerType? = nil) -> Observable<Generator.Element> {
+        return Sequence(elements: self, scheduler: scheduler)
     }
 }
 
@@ -102,10 +127,11 @@ extension SequenceType {
 /**
 Returns an observable sequence that terminates with an `error`.
 
+- parameter type: Optional type hint.
 - returns: The observable sequence that terminates with specified error.
 */
 @warn_unused_result(message="http://git.io/rxs.uo")
-public func failWith<E>(error: ErrorType) -> Observable<E> {
+public func failWith<E>(error: ErrorType, _ type: E.Type = E.self) -> Observable<E> {
     return FailWith(error: error)
 }
 

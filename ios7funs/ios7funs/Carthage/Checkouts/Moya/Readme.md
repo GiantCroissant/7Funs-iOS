@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/Moya/Moya.svg?branch=master)](https://travis-ci.org/Moya/Moya) [![codecov.io](https://codecov.io/github/Moya/Moya/coverage.svg?branch=master)](https://codecov.io/github/Moya/Moya?branch=master)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 ![Moya Logo](web/moya_logo_github.png)
 
@@ -155,6 +156,15 @@ or a string, with `mapImage()`, `mapJSON()`, and `mapString()`, respectively. If
 for filtering out certain status codes. This means that you can place your code for
 handling API errors like 400's in the same places as code for handling invalid
 responses.
+
+Community Extensions
+--------------------
+
+Moya has a great community around it and some people have created some very helpful extensions.
+
+- [Moya-ObjectMapper](https://github.com/ivanbruel/Moya-ObjectMapper) - ObjectMapper bindings for Moya for easier JSON serialization
+
+We appreciate all the work being done by the community around Moya. If you would like to have your extension featured in the list above, simply create a pull request adding your extensions to the list.
 
 Contributing
 ------------
