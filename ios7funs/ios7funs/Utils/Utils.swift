@@ -66,12 +66,14 @@ extension UIViewController {
         self.view.hideToastActivity()
     }
 
-    func showTimeoutAlertView(onReconnect reconnectHandler: (() -> Void)) {
+    func showTimeoutAlertView(onReconnect onReconnect: (() -> Void), onCancel: (() -> Void)) {
         let alert = UIAlertController(title: "網路忙碌中", message: "請檢查網路狀態，並嘗試重新連線", preferredStyle: .Alert)
         let reconnect = UIAlertAction(title: "重新連線", style: UIAlertActionStyle.Default, handler: { action in
-            reconnectHandler()
+            onReconnect()
         })
-        let cancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil)
+        let cancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { action in
+            onCancel()
+        })
 
         alert.addAction(reconnect)
         alert.addAction(cancel)

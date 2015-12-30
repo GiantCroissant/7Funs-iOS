@@ -39,26 +39,50 @@ class MainViewController: UIViewController {
         btnQandA.scaleButtonImage(.Top)
         btnLinks.scaleButtonImage(.Top)
 
-
-        fetchRecipeOverview()
+        fetchOverviews()
 
         //        VideoManager.sharedInstance.updateCachedVideoOverviews()  
 
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 
+    func fetchOverviews() {
+        showToastIndicator()
+        fetchRecipeOverview()
+    }
+
     func fetchRecipeOverview() {
-        self.showToastIndicator()
-
         RecipeManager.sharedInstance.fetchRecipeOverview(
-            onError: { error in
-                self.showTimeoutAlertView(onReconnect: {
-                    self.fetchRecipeOverview()
-                })
+            onComplete: {
+                self.fetchVideoOverview()
             },
+            onError: { error in
+                self.showTimeoutAlertView(
+                    onReconnect: {
+                        self.fetchRecipeOverview()
+                    },
+                    onCancel: {
+                        self.hideToastIndicator()
+                    }
+                )
+            }
+        )
+    }
 
-            onFinished: {
+    func fetchVideoOverview() {
+        VideoManager.sharedInstance.fetchVideoOverview(
+            onComplete: {
                 self.hideToastIndicator()
+            },
+            onError: { error in
+                self.showTimeoutAlertView(
+                    onReconnect: {
+                        self.fetchVideoOverview()
+                    },
+                    onCancel: {
+                        self.hideToastIndicator()
+                    }
+                )
             }
         )
     }

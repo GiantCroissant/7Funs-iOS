@@ -84,26 +84,22 @@ class RecipeManager: NSObject {
         let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
         self.restApiProvider
             .request(.RecipesOverview)
-            .observeOn(scheduler)
             .mapSuccessfulHTTPToObjectArray(RecipesOverviewJsonObject)
             .subscribeOn(scheduler)
             .subscribe(
                 onNext: { recipesOverviewJsonObjects in
                     self.updateLocalRecipesOverview(recipesOverviewJsonObjects)
                 },
-
                 onError: { error in
                     dispatch_async(dispatch_get_main_queue()) {
                         onError(error)
                     }
                 },
-
                 onCompleted: {
                     dispatch_async(dispatch_get_main_queue()) {
                         onComplete()
                     }
                 },
-
                 onDisposed: {
                     dispatch_async(dispatch_get_main_queue()) {
                         onFinished()
