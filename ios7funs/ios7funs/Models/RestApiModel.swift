@@ -43,11 +43,10 @@ public enum RestApi {
     //
     case LogIn(username: String, password: String)
     case Register(email: String, name: String, password: String, passwordConfirmation: String)
-    case LogOut(String)
+    case LogOut(token: String)
     
-    //    case Zen
-    //    case UserProfile(String)
-    //    case UserRepositories(String)
+    //
+    case GetMyFavoriteRecipesIds(token: String)
 }
 
 extension RestApi : TargetType {
@@ -93,14 +92,18 @@ extension RestApi : TargetType {
         case .TagById(let id):
             return "/api/tags/\(id)"
             
-            //        case .UserRepositories(let name):
-            //            return "/users/\(name.URLEscapedString)/repos"
+//        case .UserRepositories(let name):
+//            return "/users/\(name.URLEscapedString)/repos"
         case .LogIn:
             return "/oauth/token"
         case .Register:
             return "/rorapi/v1/registrations"
         case .LogOut(_):
             return "/oauth/revoke"
+            
+        //
+        case .GetMyFavoriteRecipesIds:
+            return "/api/self/favorites/recipeIds"
         }
     }
     
@@ -247,6 +250,12 @@ extension RestApi : TargetType {
                 "client_id": clientId,
                 "token": token
             ]
+            
+        case .GetMyFavoriteRecipesIds(let token):
+            return [
+                "client_id": clientId,
+                "token": token
+            ]
             //        default:
             //            return nil
         }
@@ -303,6 +312,9 @@ extension RestApi : TargetType {
         case .Register:
             return "".dataUsingEncoding(NSUTF8StringEncoding)!
         case .LogOut:
+            return "".dataUsingEncoding(NSUTF8StringEncoding)!
+            
+        case .GetMyFavoriteRecipesIds:
             return "".dataUsingEncoding(NSUTF8StringEncoding)!
             
             
