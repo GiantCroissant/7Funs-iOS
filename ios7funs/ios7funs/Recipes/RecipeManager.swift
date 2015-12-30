@@ -155,57 +155,89 @@ class RecipeManager: NSObject {
         }
     }
 
-    func fetchMoreRecipes() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-            autoreleasepool {
-                let realm = try! Realm()
-                let recipesOverviews = realm.objects(RecipesOverview)
-                if recipesOverviews.count > 0 {
-                    let ids = recipesOverviews.map { x in x.id }
-                    self.fetchRecipesInChunks(ids)
-                }
+//    func fetchMoreRecipes() {
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+//            autoreleasepool {
+//                let realm = try! Realm()
+//                let recipesOverviews = realm.objects(RecipesOverview)
+//                if recipesOverviews.count > 0 {
+//                    let ids = recipesOverviews.map { x in x.id }
+//                    self.fetchRecipesInChunks(ids)
+//                }
+//            }
+//        }
+//    }
+
+    func fetchMoreRecipes(onComplete onComplete: (() -> Void) = {},
+        onError: (ErrorType -> Void) = { _ in },
+        onFinished: (() -> Void) = {}) {
+
+        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+        dispatch_async(backgroundQueue) {
+            let realm = try! Realm()
+            let recipesOverviews = realm.objects(RecipesOverview)
+            if recipesOverviews.count <= 0 {
+                return
             }
+
+            let ids = recipesOverviews.map { x in x.id }
+            let recipeIds = Array(ids.prefix(self.kFetchAmount))
+            let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
+
+            self.restApiProvider
+                .request(.RecipesByIdList(recipeIds))
+                .mapSuccessfulHTTPToObjectArray(RecipesJsonObject)
+                .subscribeOn(scheduler)
+                .subscribe(
+                    onNext: { recipeJsons in
+                        self.saveRecipeToLocalDatabase(recipeJsons)
+                    },
+                    onError: { error in
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onError(error)
+                        }
+                    },
+                    onCompleted: {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onComplete()
+                        }
+                    },
+                    onDisposed: {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onFinished()
+                        }
+                    }
+                )
+                .addDisposableTo(self.disposeBag)
         }
     }
 
-    private func fetchRecipesInChunks(ids: [Int]) {
-        let recipeIds = Array(ids.prefix(kFetchAmount))
-        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-        let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
-        self.restApiProvider.request(.RecipesByIdList(recipeIds))
-            .observeOn(scheduler)
-            .mapSuccessfulHTTPToObjectArray(RecipesJsonObject)
-            .subscribeOn(scheduler)
-            .subscribe(onNext: { responeRecipes in
+    private func saveRecipeToLocalDatabase(recipeJsons: [RecipesJsonObject]) {
+        autoreleasepool {
+            let realm = try! Realm()
+            let overviews = realm.objects(RecipesOverview)
 
-                autoreleasepool {
-                    let realm = try! Realm()
-                    let overviews = realm.objects(RecipesOverview)
+            var downloadedRecipes = [Recipe]()
+            var finishedOverviews = [RecipesOverview]()
 
-                    var downloadedRecipes = [Recipe]()
-                    var finishedOverviews = [RecipesOverview]()
+            for recipeJson in recipeJsons {
+                let recipe = self.convertToModel(recipeJson)
 
-                    for recipeJson in responeRecipes {
-                        let recipe = self.convertToModel(recipeJson)
+                let finishedRecipe = overviews.filter("id == %@", recipeJson.id)
+                downloadedRecipes.append(recipe)
+                finishedOverviews.append(finishedRecipe[0])
+            }
 
-                        let finishedRecipe = overviews.filter("id == %@", recipeJson.id)
-                        downloadedRecipes.append(recipe)
-                        finishedOverviews.append(finishedRecipe[0])
-                    }
+            realm.beginWrite()
+            for i in 0..<downloadedRecipes.count {
+                realm.add(downloadedRecipes[i], update: true)
+            }
 
-                    realm.beginWrite()
-                    for i in 0..<downloadedRecipes.count {
-                        realm.add(downloadedRecipes[i], update: true)
-                    }
-
-                    for i in 0..<finishedOverviews.count {
-                        realm.delete(finishedOverviews[i])
-                    }
-                    try! realm.commitWrite()
-                    dLog("commit write")
-                }
-
-        }).addDisposableTo(disposeBag)
+            for i in 0..<finishedOverviews.count {
+                realm.delete(finishedOverviews[i])
+            }
+            try! realm.commitWrite()
+        }
     }
 
     private func convertToModel(jsonObj: RecipesJsonObject) -> Recipe {

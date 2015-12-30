@@ -41,8 +41,7 @@ class MainViewController: UIViewController {
 
         fetchOverviews()
 
-        //        VideoManager.sharedInstance.updateCachedVideoOverviews()  
-
+        // for disabling swipe back to previous view controller
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 

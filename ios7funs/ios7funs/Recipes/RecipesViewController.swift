@@ -15,63 +15,16 @@ class RecipesViewController: UIViewController {
 
     var isFetching = false
     var recipes = [RecipeUIModel]()
-    var token: NotificationToken?
-
-    // if tableview scroll down to bottom
-
-    // => load more recipes ( 10 - 30 ) 
-
-    //
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
-
-
-        // Show Indicator
-
-        // Load recipes from database
-
-        // If count = 0 => ask server for recipes data
-
-            // If got data from server & store to local database
-
-            // Call Load recipes from database again ( X )
-
-            // Load from memory would be better than load from database
-
-        // Else => tableView reload data ( Hide Indicator )
-
-
-
-        UIUtils.showStatusBarNetworking()
-        RecipeManager.sharedInstance.loadRecipes() { recipes in
-//            dLog("recipes count : \(recipes.count)")
-            self.recipes = recipes
-            self.tableRecipes.reloadData()
-
-            UIUtils.hideStatusBarNetworking()
-        }
+        loadRecipes(onEmpty: {
+            dLog("empty local recipes")
+            self.fetchMoreRecipes()
+        })
 
 //      self.view.makeToast("加入收藏", duration: 10, position: .Top)
-
-        let realm = try! Realm()
-        token = realm.addNotificationBlock { notification, realm in
-            RecipeManager.sharedInstance.loadRecipes() { recipes in
-                self.recipes = recipes
-                self.tableRecipes.reloadData()
-                self.isFetching = false
-                UIUtils.hideStatusBarNetworking()
-            }
-        }
-    }
-
-    deinit {
-        let realm = try! Realm()
-        if let token = token {
-            realm.removeNotification(token)
-        }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -99,11 +52,54 @@ class RecipesViewController: UIViewController {
         let row = (sender?.tag)!
         detailVC.recipe = recipes[row]
     }
+}
+
+// MARK: - Recpie Datas
+extension RecipesViewController {
+
+    func fetchMoreRecipes() {
+        if isFetching {
+            return
+        }
+
+        dLog("start fetching")
+
+        isFetching = true
+        UIUtils.showStatusBarNetworking()
+
+        RecipeManager.sharedInstance.fetchMoreRecipes(
+            onComplete: {
+                self.loadRecipes()
+            },
+            onError: { error in
+                // TODO: show alert ?
+            },
+            onFinished: {
+                self.isFetching = false
+                UIUtils.hideStatusBarNetworking()
+
+                dLog("end fetching")
+            }
+        )
+    }
+
+    func loadRecipes(onEmpty onEmpty: (() -> Void) = {}) {
+        UIUtils.showStatusBarNetworking()
+        RecipeManager.sharedInstance.loadRecipes() { recipes in
+            self.recipes = recipes
+            self.tableRecipes.reloadData()
+            UIUtils.hideStatusBarNetworking()
+
+            if (recipes.isEmpty) {
+                onEmpty()
+            }
+        }
+    }
 
 }
 
 // MARK: - UITableViewDataSource
-extension RecipesViewController : UITableViewDataSource {
+extension RecipesViewController: UITableViewDataSource {
 
 //    // FIXME: not working
 //    @IBAction func onAddButtonClick(sender: UIButton) {
@@ -136,8 +132,6 @@ extension RecipesViewController : UITableViewDataSource {
         let imageId = recipe.imageId
         let imageName = recipe.imageName
         let title = recipe.title
-
-//        cell.imgFood.image = nfff
 
         // FIXME: should change to row ?
         cell.imgFood.tag = imageId
@@ -179,20 +173,13 @@ extension RecipesViewController : UITableViewDataSource {
     }
 }
 
-
+// MARK: - UITableViewDelegate
 extension RecipesViewController: UITableViewDelegate {
 
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        if isFetching {
-            dLog("is fetching!! do nothing")
-            return
-        }
-
         let distFromBottom = scrollView.contentSize.height - scrollView.contentOffset.y
         if (distFromBottom <= scrollView.frame.height) {
-            isFetching = true
-            UIUtils.showStatusBarNetworking()
-            RecipeManager.sharedInstance.fetchMoreRecipes()
+            fetchMoreRecipes()
         }
     }
 
