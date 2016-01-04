@@ -55,6 +55,20 @@ class VideoUIModel {
 
 }
 
-class QuestionModel {
-    
+class QuestionUIModel {
+    var id: Int = 0
+    var title: String = ""
+    var description: String = ""
+
+    init(json: MessageJsonObject) {
+        self.id = json.id
+        self.title = json.title ?? ""
+        self.description = json.description ?? ""
+    }
 }
+
+// TODO:
+class AnswerUIModel {
+
+}
+

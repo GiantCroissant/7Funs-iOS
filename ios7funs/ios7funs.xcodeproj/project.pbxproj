@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B12806E1C3A64BF00AE2CC6 /* QandAManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */; };
+		3B1280701C3A6E4200AE2CC6 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12806F1C3A6E4200AE2CC6 /* QuestionTableViewCell.swift */; };
 		3B36CBAD1C27D535003666D7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */; };
 		3B36CBAF1C27D673003666D7 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */; };
 		3B4178611C20B23F006CB7ED /* AYOSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */; };
@@ -83,6 +84,7 @@
 
 /* Begin PBXFileReference section */
 		3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QandAManager.swift; path = QandA/QandAManager.swift; sourceTree = "<group>"; };
+		3B12806F1C3A6E4200AE2CC6 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionTableViewCell.swift; path = QandA/QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Login/RegisterViewController.swift; sourceTree = "<group>"; };
 		3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForgotPasswordViewController.swift; path = Login/ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AYOSegmentedControl.swift; path = Utils/AYOSegmentedControl.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				3B854B621C2401D900F286AD /* QandADetailViewController.swift */,
 				3B4A47DE1C26FD6100662913 /* QandANewQuestionViewController.swift */,
 				3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */,
+				3B12806F1C3A6E4200AE2CC6 /* QuestionTableViewCell.swift */,
 			);
 			name = "Q & A";
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				3BCE507C1C168C040088794A /* QandAViewController.swift in Sources */,
 				3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */,
 				3BA2580F1C28998800FA5A7C /* VideoPlayerViewController.swift in Sources */,
+				3B1280701C3A6E4200AE2CC6 /* QuestionTableViewCell.swift in Sources */,
 				3B4A47DF1C26FD6100662913 /* QandANewQuestionViewController.swift in Sources */,
 				3B5565851C16F65000CFF1B4 /* RecipeTableViewCell.swift in Sources */,
 				3BD721141C117870006716D4 /* AppDelegate.swift in Sources */,
