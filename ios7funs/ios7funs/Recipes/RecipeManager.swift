@@ -52,12 +52,7 @@ class RecipeManager: NSObject {
 
                 let recipeObjs = realm.objects(Recipe)
                 for recipeObj in recipeObjs {
-
-                    // TODO: remove below lines 
-//                    if recipeObj.image.isEmpty {
-//                        continue
-//                    }
-
+                    
                     let recipe = RecipeUIModel(dbData: recipeObj)
                     recipes.append(recipe)
                 }

@@ -29,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lVk-MN-sEV" userLabel="Top BG">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="301.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="302"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEg-aJ-NrM">
                                                 <rect key="frame" x="11" y="11" width="353" height="285"/>
@@ -48,10 +48,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0O8-bA-I5O" userLabel="Bottom BG">
-                                        <rect key="frame" x="0.0" y="301" width="375" height="301.5"/>
+                                        <rect key="frame" x="0.0" y="302" width="375" height="301"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6S-O6-HLZ">
-                                                <rect key="frame" x="11" y="5.5" width="353" height="285"/>
+                                                <rect key="frame" x="11" y="6" width="353" height="284"/>
                                                 <state key="normal" image="friend_logo_02"/>
                                                 <connections>
                                                     <segue destination="hPt-vT-C04" kind="show" identifier="id_segue_link_friend_02" id="4Kw-dw-xUj"/>
@@ -124,6 +124,9 @@
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xm4-Nt-fHT">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="hPt-vT-C04" id="rBf-O0-xLT"/>
+                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

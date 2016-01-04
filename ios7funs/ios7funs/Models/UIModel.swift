@@ -28,7 +28,7 @@ class RecipeUIModel {
 
 extension RecipeUIModel {
 
-    func loadFoodImage(completionHandler:(UIImage?) -> ()) {
+    func loadFoodImage(completionHandler: (UIImage?) -> Void) {
         let imageId = self.imageId
         let imageName = self.imageName
         RecipeManager.sharedInstance.loadFoodImage(imageId, imageName: imageName) { image, imageId, fadeIn in
@@ -53,4 +53,8 @@ class VideoUIModel {
         self.type = dbData.number
     }
 
+}
+
+class QuestionModel {
+    
 }

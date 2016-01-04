@@ -16,24 +16,27 @@ class LinkFriendViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         let request = NSURLRequest(URL: NSURL(string: url)!)
         webView.loadRequest(request)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+}
 
-    /*
-    // MARK: - Navigation
+extension LinkFriendViewController: UIWebViewDelegate {
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func webViewDidStartLoad(webView: UIWebView) {
+        UIUtils.showStatusBarNetworking()
     }
-    */
+
+    func webViewDidFinishLoad(webView: UIWebView) {
+        UIUtils.hideStatusBarNetworking()
+    }
+
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+        UIUtils.hideStatusBarNetworking()
+
+        dLog("error = \(error) ")
+    }
 
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B12806E1C3A64BF00AE2CC6 /* QandAManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */; };
 		3B36CBAD1C27D535003666D7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */; };
 		3B36CBAF1C27D673003666D7 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */; };
 		3B4178611C20B23F006CB7ED /* AYOSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */; };
@@ -81,6 +82,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QandAManager.swift; path = QandA/QandAManager.swift; sourceTree = "<group>"; };
 		3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Login/RegisterViewController.swift; sourceTree = "<group>"; };
 		3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForgotPasswordViewController.swift; path = Login/ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AYOSegmentedControl.swift; path = Utils/AYOSegmentedControl.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				3BCE507B1C168C040088794A /* QandAViewController.swift */,
 				3B854B621C2401D900F286AD /* QandADetailViewController.swift */,
 				3B4A47DE1C26FD6100662913 /* QandANewQuestionViewController.swift */,
+				3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */,
 			);
 			name = "Q & A";
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				3BCE50701C168AB60088794A /* VideosViewController.swift in Sources */,
 				3B4178691C20C252006CB7ED /* RecipeVideoTutorialViewController.swift in Sources */,
 				3B4D7BB61C23BFB9009E37AE /* Toast.swift in Sources */,
+				3B12806E1C3A64BF00AE2CC6 /* QandAManager.swift in Sources */,
 				3BA2580D1C2824D800FA5A7C /* LinkFriendViewController.swift in Sources */,
 				3B5565871C16F67700CFF1B4 /* RecipeDetailViewController.swift in Sources */,
 				3B41D12E1C16C9230054FC10 /* ExtendObservable.swift in Sources */,
