@@ -27,25 +27,22 @@ class ImageLoader {
 
     let imageSaveQuality: CGFloat = 0.25
 
-    func loadDefaultImage(name: String) -> UIImage {
+    // TODO: Fix to background
+    func loadDefaultImage(name: String, onLoaded: (image: UIImage?) -> Void) {
         if let image = ImageCache.sharedCache.objectForKey(name) as? UIImage {
-            dLog("from cache")
-
-            return image
-
-        } else {
-            let image = UIImage(named: name)!
-            ImageCache.sharedCache.setObject(image, forKey: name)
-            return image
+            onLoaded(image: image)
+            return
         }
+
+        let image = UIImage(named: name)!
+        ImageCache.sharedCache.setObject(image, forKey: name)
+        onLoaded(image: image)
     }
 
     func loadImage(imageName: String, url: String, completionHandler:(image: UIImage?, imageName: String, fadeIn: Bool) -> ()) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
 
             if let image = ImageCache.sharedCache.objectForKey(imageName) as? UIImage {
-//                dLog("load from Cache : \(imageName)")
-
                 dispatch_async(dispatch_get_main_queue()) {
                     completionHandler(image: image, imageName: imageName, fadeIn: false)
                 }
@@ -53,7 +50,6 @@ class ImageLoader {
             }
 
             if let image = self.loadImageFromFile(imageName) {
-//                dLog("load from File : \(imageName)")
                 ImageCache.sharedCache.setObject(image, forKey: imageName)
 
                 dispatch_async(dispatch_get_main_queue()) {
@@ -63,7 +59,6 @@ class ImageLoader {
             }
 
             self.loadImageFromUrl(imageName, url: url) { image, url in
-//                dLog("load from Url : \(imageName)")
                 if let image = image {
                     ImageCache.sharedCache.setObject(image, forKey: imageName)
                 }
@@ -78,7 +73,6 @@ class ImageLoader {
     private func loadImageFromFile(imageName: String) -> UIImage? {
         let filePath = FileUtils.getFilePathInDocumentsDirectory(imageName)
         let image = UIImage(contentsOfFile: filePath)
-
         return image
     }
 
@@ -97,14 +91,13 @@ class ImageLoader {
                 self.saveImageToFile(nsurl.lastPathComponent!, image: image)
             }
 
-            }.resume()
+        }.resume()
     }
 
     private func saveImageToFile(filename: String, image: UIImage) {
         if let jpg = UIImageJPEGRepresentation(image, imageSaveQuality) {
             let filePath = FileUtils.getFilePathInDocumentsDirectory(filename)
             if jpg.writeToFile(filePath, atomically: true) {
-//                dLog("save success : \(filePath)")
 
             } else {
                 uLog("save failed : \(filePath)")
