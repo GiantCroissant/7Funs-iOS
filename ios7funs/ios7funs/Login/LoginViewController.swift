@@ -21,6 +21,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     @IBAction func onLoginButtonClick(sender: UIButton) {
+        inputEmail.resignFirstResponder()
+        inputPassword.resignFirstResponder()
+
         let email = inputEmail.text!
         let password = inputPassword.text!
         let data = LoginData(email: email, password: password)
@@ -76,18 +79,23 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupCustomPlaceholders()
-        setupKeyboardObservers()
+        configureCustomPlaceholders()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        hideNabigationBar()
 
-        self.hideNabigationBar()
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
-
+        setupKeyboardObservers()
         configureInputs()
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+    }
+
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
     }
 
     func configureInputs() {
@@ -96,7 +104,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
     }
 
-    func setupCustomPlaceholders() {
+    func configureCustomPlaceholders() {
         let color = UIColor(hexString: "#adacac")
 
         inputEmail.attributedPlaceholder = NSAttributedString(
@@ -158,14 +166,6 @@ extension LoginViewController {
         UIView.animateWithDuration(animationDuration) {
             self.view.layoutIfNeeded()
         }
-    }
-
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
     }
 
 }
