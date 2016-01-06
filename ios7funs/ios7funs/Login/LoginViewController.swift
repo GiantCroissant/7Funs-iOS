@@ -23,11 +23,18 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     @IBAction func onLoginButtonClick(sender: UIButton) {
         let email = inputEmail.text!
         let password = inputPassword.text!
+        let data = LoginData(email: email, password: password)
 
-        // TODO: - Login business logic
-        dLog("email [\(email)]")
-        dLog("password [\(password)]")
-        dLog("TODO: - Login business logic")
+        LoginManager.sharedInstance.login(data,
+            onComplete: {
+                self.showLoginSuccessAlertView(onClickOK: {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                })
+            },
+            onError: { _ in
+                self.showLoginFailedAlertView()
+            }
+        )
     }
 
     @IBOutlet weak var fbButton: FBSDKLoginButton!

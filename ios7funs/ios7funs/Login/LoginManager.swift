@@ -44,31 +44,64 @@ class LoginManager {
         let loginVC = loginStoryboard.instantiateViewControllerWithIdentifier("id_storyboard_login")
         presentViewController.presentViewController(loginVC, animated: true, completion: nil)
     }
-    
+
     func register(data: RegistrationData,
         onComplete: (() -> Void) = {},
         onError: (ErrorType -> Void) = { _ in },
         onFinished: (() -> Void) = {}) {
 
-        let api = RestApi.Register(
-            email: data.email,
-            name: data.userName,
-            password: data.password,
-            passwordConfirmation: data.password
-        )
+            let api = RestApi.Register(
+                email: data.email,
+                name: data.userName,
+                password: data.password,
+                passwordConfirmation: data.password
+            )
+
+            let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+            let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
+            self.restApiProvider
+                .request(api)
+                .mapSuccessfulHTTPToObject(RegisterResultJsonObject)
+                .subscribeOn(scheduler)
+                .subscribe(
+                    onNext: { res in
+                        dLog("res = \(res)")
+
+                        let email = res.data.user.email
+                        LoginManager.userDefaults.setObject(email, forKey: "email")
+                    },
+                    onError: { err in
+                        // TODO: fix register failed message
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onError(err)
+                        }
+                    },
+                    onCompleted: {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onComplete()
+                        }
+                    },
+                    onDisposed: {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onFinished()
+                        }
+                    }
+                )
+                .addDisposableTo(disposeBag)
+    }
+
+    func login(data: LoginData, onComplete: (() -> Void) = {}, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
 
         let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
         let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
         self.restApiProvider
-            .request(api)
-            .mapSuccessfulHTTPToObject(RegisterResultJsonObject)
+            .request(RestApi.LogIn(username: data.email, password: data.password))
+            .mapSuccessfulHTTPToObject(LoginResultJsonObject)
             .subscribeOn(scheduler)
             .subscribe(
                 onNext: { res in
                     dLog("res = \(res)")
-
-                    let email = res.data.user.email
-                    LoginManager.userDefaults.setObject(email, forKey: "email")
+                    LoginManager.userDefaults.setObject(res.accessToken, forKey: "accessToken")
                 },
                 onError: { err in
                     // TODO: fix register failed message
@@ -96,4 +129,9 @@ struct RegistrationData {
     var email = ""
     var password = ""
     var userName = ""
+}
+
+struct LoginData {
+    var email = ""
+    var password = ""
 }

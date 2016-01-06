@@ -81,8 +81,18 @@ extension UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
+    // TODO: refactor these functions
+    // ----------------------------------------------------------------------------------------------------
     func showRegisterFailedAlertView() {
         let alert = UIAlertController(title: "註冊失敗", message: "請檢查資料是否正確", preferredStyle: .Alert)
+        let done = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+        alert.addAction(done)
+
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    func showLoginFailedAlertView() {
+        let alert = UIAlertController(title: "登入失敗", message: "請檢查資料是否正確", preferredStyle: .Alert)
         let done = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
         alert.addAction(done)
 
@@ -98,6 +108,17 @@ extension UIViewController {
 
         self.presentViewController(alert, animated: true, completion: nil)
     }
+
+    func showLoginSuccessAlertView(onClickOK onClickOK: (() -> Void)) {
+        let alert = UIAlertController(title: "登入成功", message: "", preferredStyle: .Alert)
+        let done = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { alert in
+            onClickOK()
+        })
+        alert.addAction(done)
+
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    // ----------------------------------------------------------------------------------------------------
 
 }
 
