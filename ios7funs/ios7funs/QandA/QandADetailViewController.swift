@@ -72,6 +72,8 @@ extension QandADetailViewController {
     }
 
     func configureSendButton() {
+        // TODO: Refactor lines below to extension for UIButton
+        // ----------------------------------------------------------------------------- //
         let size = btnSend.frame.size
 
         let disabledColor = UIColor(hexString: "#b9b9b9")
@@ -85,6 +87,7 @@ extension QandADetailViewController {
         btnSend.setBackgroundImage(diabledBG, forState: UIControlState.Disabled)
         btnSend.setBackgroundImage(normalBG, forState: UIControlState.Normal)
         btnSend.setBackgroundImage(highlightedBG, forState: UIControlState.Highlighted)
+        // ----------------------------------------------------------------------------- //
 
         btnSend.layer.cornerRadius = 5
         btnSend.clipsToBounds = true

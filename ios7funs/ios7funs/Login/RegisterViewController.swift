@@ -16,7 +16,16 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var btnSend: UIButton!
 
     @IBAction func onValueChanged(sender: UISwitch) {
-        btnSend.enabled = sender.on
+        let hasEmail = !(inputEmail.text!.isEmpty)
+        let hasPassword = !(inputEmail.text!.isEmpty)
+        let hasUserName = !(inputUserName.text!.isEmpty)
+
+        if sender.on && hasEmail && hasPassword && hasUserName {
+            btnSend.enabled = true
+
+        } else {
+            btnSend.enabled = false
+        }
     }
 
     @IBAction func onSendRegistration(sender: UIButton) {
@@ -30,6 +39,20 @@ class RegisterViewController: UIViewController {
 
     func configureSendButton() {
         btnSend.enabled = false
+
+        let size = btnSend.frame.size
+
+        let disabledColor = UIColor(hexString: "#b9b9b9")
+        let normalColor = UIColor(hexString: "#ff8022")
+        let highlihgtColor = UIColor(hexString: "#B55B17")
+
+        let diabledBG = ImageUtils.getImageWithColor(disabledColor, size: size)
+        let normalBG = ImageUtils.getImageWithColor(normalColor, size: size)
+        let highlightedBG = ImageUtils.getImageWithColor(highlihgtColor, size: size)
+
+        btnSend.setBackgroundImage(diabledBG, forState: UIControlState.Disabled)
+        btnSend.setBackgroundImage(normalBG, forState: UIControlState.Normal)
+        btnSend.setBackgroundImage(highlightedBG, forState: UIControlState.Highlighted)
     }
 
     override func viewWillAppear(animated: Bool) {
