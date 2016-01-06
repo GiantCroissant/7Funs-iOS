@@ -356,6 +356,9 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SfF-dy-pG2">
                                                 <rect key="frame" x="47" y="7" width="51" height="31"/>
                                                 <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="onValueChanged:" destination="gl5-FI-CuO" eventType="valueChanged" id="71d-gF-Prq"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -378,6 +381,9 @@
                                         <state key="normal" title="送出">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onSendRegistration:" destination="gl5-FI-CuO" eventType="touchUpInside" id="acF-VP-n4H"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.99607843137254903" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
@@ -423,6 +429,12 @@
                             <constraint firstItem="aug-y3-uLS" firstAttribute="top" secondItem="bdr-lm-tn6" secondAttribute="bottom" id="qiZ-hS-c3f"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="btnSend" destination="jS1-oa-scw" id="HdM-KT-nPh"/>
+                        <outlet property="inputEmail" destination="cIx-pt-mza" id="rSR-xc-r7Q"/>
+                        <outlet property="inputPassword" destination="5l0-vu-Jg4" id="ixr-u4-Bz8"/>
+                        <outlet property="inputUserName" destination="OTG-VH-lHR" id="Sc9-mq-2rN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9U6-9S-rDU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
