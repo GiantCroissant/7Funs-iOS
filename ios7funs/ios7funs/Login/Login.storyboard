@@ -59,7 +59,6 @@
                                                     <color key="titleColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="onForgotPasswordClick:" destination="ljr-TR-1ZY" eventType="touchUpInside" id="LO7-qP-TXW"/>
                                                     <segue destination="WWW-uV-ghp" kind="presentation" modalTransitionStyle="flipHorizontal" id="RpM-80-fof"/>
                                                 </connections>
                                             </button>
@@ -69,7 +68,6 @@
                                                     <color key="titleColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="onRegisterButtonClick:" destination="ljr-TR-1ZY" eventType="touchUpInside" id="WZ1-JM-uwf"/>
                                                     <segue destination="gl5-FI-CuO" kind="presentation" modalTransitionStyle="flipHorizontal" id="sSV-bd-rV8"/>
                                                 </connections>
                                             </button>

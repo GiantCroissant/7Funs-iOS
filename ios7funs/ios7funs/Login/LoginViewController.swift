@@ -29,17 +29,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         dLog("password [\(password)]")
         dLog("TODO: - Login business logic")
     }
-
-    @IBAction func onRegisterButtonClick(sender: UIButton) {
-        // TODO: - Register business logic
-        dLog("TODO: - Register business logic")
-    }
-
-    @IBAction func onForgotPasswordClick(sender: UIButton) {
-        // TODO: - forget password logic
-        dLog("TODO: - forget password logic")
-    }
-
+    
     @IBOutlet weak var fbButton: FBSDKLoginButton!
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var nameLabel: UILabel!
