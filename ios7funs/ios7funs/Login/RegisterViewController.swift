@@ -39,20 +39,7 @@ class RegisterViewController: UIViewController {
 
     func configureSendButton() {
         btnSend.enabled = false
-
-        let size = btnSend.frame.size
-
-        let disabledColor = UIColor(hexString: "#b9b9b9")
-        let normalColor = UIColor(hexString: "#ff8022")
-        let highlihgtColor = UIColor(hexString: "#B55B17")
-
-        let diabledBG = ImageUtils.getImageWithColor(disabledColor, size: size)
-        let normalBG = ImageUtils.getImageWithColor(normalColor, size: size)
-        let highlightedBG = ImageUtils.getImageWithColor(highlihgtColor, size: size)
-
-        btnSend.setBackgroundImage(diabledBG, forState: UIControlState.Disabled)
-        btnSend.setBackgroundImage(normalBG, forState: UIControlState.Normal)
-        btnSend.setBackgroundImage(highlightedBG, forState: UIControlState.Highlighted)
+        btnSend.configureHexColorBGForState()
     }
 
     override func viewWillAppear(animated: Bool) {

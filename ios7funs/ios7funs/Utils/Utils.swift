@@ -123,6 +123,23 @@ extension UIButton {
         self.imageView?.contentMode = mode
     }
 
+    func configureHexColorBGForState(disabled: String = "#b9b9b9", normal: String = "#ff8022", highlight: String = "#B55B17") {
+
+        let size = self.frame.size
+
+        let disabledColor = UIColor(hexString: disabled)
+        let normalColor = UIColor(hexString: normal)
+        let highlihgtColor = UIColor(hexString: highlight)
+
+        let diabledBG = ImageUtils.getImageWithColor(disabledColor, size: size)
+        let normalBG = ImageUtils.getImageWithColor(normalColor, size: size)
+        let highlightedBG = ImageUtils.getImageWithColor(highlihgtColor, size: size)
+
+        self.setBackgroundImage(diabledBG, forState: UIControlState.Disabled)
+        self.setBackgroundImage(normalBG, forState: UIControlState.Normal)
+        self.setBackgroundImage(highlightedBG, forState: UIControlState.Highlighted)
+    }
+
 }
 
 extension UIImageView {
