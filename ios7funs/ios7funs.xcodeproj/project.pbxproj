@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B12806E1C3A64BF00AE2CC6 /* QandAManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */; };
-		3B1280701C3A6E4200AE2CC6 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12806F1C3A6E4200AE2CC6 /* QuestionTableViewCell.swift */; };
 		0957F1DB1C33BE0D00357DF4 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0957F1D91C33BE0D00357DF4 /* FBSDKCoreKit.framework */; };
 		0957F1DC1C33BE0D00357DF4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0957F1DA1C33BE0D00357DF4 /* FBSDKLoginKit.framework */; };
+		3B12806E1C3A64BF00AE2CC6 /* QandAManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */; };
+		3B1280701C3A6E4200AE2CC6 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12806F1C3A6E4200AE2CC6 /* QuestionTableViewCell.swift */; };
 		3B36CBAD1C27D535003666D7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */; };
 		3B36CBAF1C27D673003666D7 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */; };
 		3B4178611C20B23F006CB7ED /* AYOSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */; };
@@ -85,10 +85,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QandAManager.swift; path = QandA/QandAManager.swift; sourceTree = "<group>"; };
-		3B12806F1C3A6E4200AE2CC6 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionTableViewCell.swift; path = QandA/QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		0957F1D91C33BE0D00357DF4 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ios7funs/Lib3rdParty/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		0957F1DA1C33BE0D00357DF4 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ios7funs/Lib3rdParty/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QandAManager.swift; path = QandA/QandAManager.swift; sourceTree = "<group>"; };
+		3B12806F1C3A6E4200AE2CC6 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionTableViewCell.swift; path = QandA/QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Login/RegisterViewController.swift; sourceTree = "<group>"; };
 		3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForgotPasswordViewController.swift; path = Login/ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AYOSegmentedControl.swift; path = Utils/AYOSegmentedControl.swift; sourceTree = "<group>"; };
