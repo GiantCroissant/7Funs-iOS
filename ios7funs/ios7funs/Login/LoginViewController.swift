@@ -79,6 +79,14 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
         self.hideNabigationBar()
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+
+        configureInputs()
+    }
+
+    func configureInputs() {
+        if let storedEmail = LoginManager.userDefaults.stringForKey("email") {
+            self.inputEmail.text = storedEmail
+        }
     }
 
     func setupCustomPlaceholders() {

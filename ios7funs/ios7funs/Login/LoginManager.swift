@@ -13,6 +13,8 @@ import RxSwift
 
 class LoginManager {
 
+    static let userDefaults = NSUserDefaults.standardUserDefaults()
+
     static let sharedInstance = LoginManager()
     static var logined = false
     let disposeBag = DisposeBag()
@@ -63,7 +65,10 @@ class LoginManager {
             .subscribeOn(scheduler)
             .subscribe(
                 onNext: { res in
+                    dLog("res = \(res)")
 
+                    let email = res.data.user.email
+                    LoginManager.userDefaults.setObject(email, forKey: "email")
                 },
                 onError: { err in
                     // TODO: fix register failed message

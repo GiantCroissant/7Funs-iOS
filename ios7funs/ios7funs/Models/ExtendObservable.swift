@@ -40,6 +40,8 @@ extension Observable {
             guard let response = representor as? RxMoya.Response else {
                 throw ORMError.ORMNoRepresentor
             }
+
+            // TODO: need this guard ?
             guard ((200...209) ~= response.statusCode) else {
                 if let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [String: AnyObject] {
                     print(json)
@@ -47,6 +49,7 @@ extension Observable {
                 }
                 throw ORMError.ORMNotSuccessfulHTTP
             }
+
             do {
                 guard let json = try NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [String: AnyObject] else {
                     throw ORMError.ORMCouldNotMakeObjectError

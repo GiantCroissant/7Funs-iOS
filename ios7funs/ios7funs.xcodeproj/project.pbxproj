@@ -374,9 +374,9 @@
 			children = (
 				3BFBD5681C27847500313896 /* Login.storyboard */,
 				3BFBD56A1C2784BA00313896 /* LoginViewController.swift */,
-				3BFBD56C1C278CF100313896 /* LoginManager.swift */,
 				3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */,
 				3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */,
+				3BFBD56C1C278CF100313896 /* LoginManager.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";

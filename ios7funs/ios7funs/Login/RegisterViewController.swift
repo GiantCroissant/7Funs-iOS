@@ -35,7 +35,9 @@ class RegisterViewController: UIViewController {
         let data = RegistrationData(email: email, password: password, userName: name)
         LoginManager.sharedInstance.register(data,
             onComplete: {
-                dLog("註冊成功")
+                self.showRegisterSuccessAlertView() {
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
             },
             onError: { err in
                 self.showRegisterFailedAlertView()

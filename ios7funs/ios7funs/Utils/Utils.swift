@@ -89,6 +89,16 @@ extension UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
+    func showRegisterSuccessAlertView(onClickOK onClickOK: (() -> Void)) {
+        let alert = UIAlertController(title: "註冊成功", message: "請登入帳號", preferredStyle: .Alert)
+        let done = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { alert in
+            onClickOK()
+        })
+        alert.addAction(done)
+
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
 }
 
 class ImageUtils {
