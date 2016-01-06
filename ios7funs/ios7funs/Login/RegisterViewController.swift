@@ -25,6 +25,10 @@ class RegisterViewController: UIViewController {
     }
 
     @IBAction func onSendRegistration(sender: UIButton) {
+        inputEmail.resignFirstResponder()
+        inputPassword.resignFirstResponder()
+        inputUserName.resignFirstResponder()
+
         let email = inputEmail.text!
         let name = inputUserName.text!
         let password = inputPassword.text!
