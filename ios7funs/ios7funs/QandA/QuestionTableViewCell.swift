@@ -10,6 +10,8 @@ import UIKit
 
 class QuestionTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var bgProfile: UIView!
+    @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblQuestion: UILabel!
 
     var question: QuestionUIModel?
@@ -18,6 +20,7 @@ class QuestionTableViewCell: UITableViewCell {
         self.question = question
 
         lblQuestion.text = question.description
+        bgProfile.configureToCircularView()
     }
 
     override func awakeFromNib() {
