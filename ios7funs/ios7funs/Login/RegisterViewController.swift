@@ -13,19 +13,15 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var inputEmail: UITextField!
     @IBOutlet weak var inputPassword: UITextField!
     @IBOutlet weak var inputUserName: UITextField!
+    @IBOutlet weak var switchAgreement: UISwitch!
     @IBOutlet weak var btnSend: UIButton!
 
+    @IBAction func onTextChanged(sender: UITextField) {
+        validateInputs()        
+    }
+
     @IBAction func onValueChanged(sender: UISwitch) {
-        let hasEmail = !(inputEmail.text!.isEmpty)
-        let hasPassword = !(inputEmail.text!.isEmpty)
-        let hasUserName = !(inputUserName.text!.isEmpty)
-
-        if sender.on && hasEmail && hasPassword && hasUserName {
-            btnSend.enabled = true
-
-        } else {
-            btnSend.enabled = false
-        }
+        validateInputs()
     }
 
     @IBAction func onSendRegistration(sender: UIButton) {
@@ -50,6 +46,16 @@ class RegisterViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.showNavigationBar()
+    }
+
+    // TODO: reinforce validation
+    func validateInputs() {
+        let hasEmail = !(inputEmail.text!.isEmpty)
+        let hasPassword = !(inputEmail.text!.isEmpty)
+        let hasUserName = !(inputUserName.text!.isEmpty)
+
+        let validInput = switchAgreement.on && hasEmail && hasPassword && hasUserName
+        btnSend.enabled = validInput
     }
     
 }
