@@ -17,10 +17,10 @@ class CollectionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //        // TODO: - check login status
-        //        if !LoginManager.logined {
-        //            LoginManager.sharedInstance.showLoginViewController(self)
-        //        }
+                // TODO: - check login status
+                if !LoginManager.logined {
+                    LoginManager.sharedInstance.showLoginViewController(self)
+                }
     }
 
     override func viewWillAppear(animated: Bool) {

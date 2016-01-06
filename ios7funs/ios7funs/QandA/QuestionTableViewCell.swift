@@ -19,7 +19,7 @@ class QuestionTableViewCell: UITableViewCell {
     func setupViews(question: QuestionUIModel) {
         self.question = question
 
-        lblQuestion.text = question.description
+        lblQuestion.text = question.title
         bgProfile.configureToCircularView()
     }
 
