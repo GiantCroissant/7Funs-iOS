@@ -81,6 +81,14 @@ extension UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
+    func showRegisterFailedAlertView() {
+        let alert = UIAlertController(title: "註冊失敗", message: "請檢查資料是否正確", preferredStyle: .Alert)
+        let done = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+        alert.addAction(done)
+
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
 }
 
 class ImageUtils {

@@ -17,7 +17,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var btnSend: UIButton!
 
     @IBAction func onTextChanged(sender: UITextField) {
-        validateInputs()        
+        validateInputs()
     }
 
     @IBAction func onValueChanged(sender: UISwitch) {
@@ -25,7 +25,22 @@ class RegisterViewController: UIViewController {
     }
 
     @IBAction func onSendRegistration(sender: UIButton) {
-        dLog("send registration to server")
+        let email = inputEmail.text!
+        let name = inputUserName.text!
+        let password = inputPassword.text!
+
+        // TODO: need to fix this from UI
+//        let passwordConfirm = password
+
+        let data = RegistrationData(email: email, password: password, userName: name)
+        LoginManager.sharedInstance.register(data,
+            onComplete: {
+                dLog("註冊成功")
+            },
+            onError: { err in
+                self.showRegisterFailedAlertView()
+            }
+        )
     }
 
     override func viewDidLoad() {
