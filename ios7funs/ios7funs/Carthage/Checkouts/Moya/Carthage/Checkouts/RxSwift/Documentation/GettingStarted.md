@@ -92,7 +92,7 @@ protocol ObserverType {
 
 **When sequence sends `Complete` or `Error` event all internal resources that compute sequence elements will be freed.**
 
-**To cancel production of sequence elements and free resources immediatelly, call `dispose` on returned subscription.**
+**To cancel production of sequence elements and free resources immediately, call `dispose` on returned subscription.**
 
 If a sequence terminates in finite time, not calling `dispose` or not using `addDisposableTo(disposeBag)` won't cause any permanent resource leaks, but those resources will be used until sequence completes in some way (finishes producing elements or error happens).
 
@@ -111,7 +111,7 @@ Here is an example with `interval` operator.
 ```swift
 let subscription = interval(0.3, scheduler)
     .subscribe { (e: Event<Int64>) in
-        println(e)
+        print(e)
     }
 
 NSThread.sleepForTimeInterval(2)
@@ -156,7 +156,7 @@ In case you have something like:
 let subscription = interval(0.3, scheduler)
             .observeOn(MainScheduler.sharedInstance)
             .subscribe { (e: Event<Int64>) in
-                println(e)
+                print(e)
             }
 
 // ....
@@ -173,7 +173,7 @@ Also in this case:
 let subscription = interval(0.3, scheduler)
             .observeOn(serialScheduler)
             .subscribe { (e: Event<Int64>) in
-                println(e)
+                print(e)
             }
 
 // ...
@@ -239,9 +239,9 @@ In short, consider this example:
 ```swift
 someObservable
   .subscribe { (e: Event<Element>) in
-      println("Event processing started")
+      print("Event processing started")
       // processing
-      println("Event processing ended")
+      print("Event processing ended")
   }
 ```
 
@@ -289,7 +289,7 @@ let searchForMe = searchWikipedia("me")
 let cancel = searchForMe
   // sequence generation starts now, URL requests are fired
   .subscribeNext { results in
-      println(results)
+      print(results)
   }
 
 ```
@@ -351,23 +351,23 @@ func myFrom<E>(sequence: [E]) -> Observable<E> {
 
 let stringCounter = myFrom(["first", "second"])
 
-println("Started ----")
+print("Started ----")
 
 // first time
 stringCounter
     .subscribeNext { n in
-        println(n)
+        print(n)
     }
 
-println("----")
+print("----")
 
 // again
 stringCounter
     .subscribeNext { n in
-        println(n)
+        print(n)
     }
 
-println("Ended ----")
+print("Ended ----")
 ```
 
 This will print:
@@ -391,7 +391,7 @@ Ok, now something more interesting. Let's create that `interval` operator that w
 ```swift
 func myInterval(interval: NSTimeInterval) -> Observable<Int> {
     return create { observer in
-        println("Subscribed")
+        print("Subscribed")
         let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
         let timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue)
 
@@ -399,7 +399,7 @@ func myInterval(interval: NSTimeInterval) -> Observable<Int> {
 
         dispatch_source_set_timer(timer, 0, UInt64(interval * Double(NSEC_PER_SEC)), 0)
         let cancel = AnonymousDisposable {
-            println("Disposed")
+            print("Disposed")
             dispatch_source_cancel(timer)
         }
         dispatch_source_set_event_handler(timer, {
@@ -418,18 +418,18 @@ func myInterval(interval: NSTimeInterval) -> Observable<Int> {
 ```swift
 let counter = myInterval(0.1)
 
-println("Started ----")
+print("Started ----")
 
 let subscription = counter
     .subscribeNext { n in
-       println(n)
+       print(n)
     }
 
 NSThread.sleepForTimeInterval(0.5)
 
 subscription.dispose()
 
-println("Ended ----")
+print("Ended ----")
 ```
 
 This will print
@@ -450,15 +450,15 @@ What if you would write
 ```swift
 let counter = myInterval(0.1)
 
-println("Started ----")
+print("Started ----")
 
 let subscription1 = counter
     .subscribeNext { n in
-       println("First \(n)")
+       print("First \(n)")
     }
 let subscription2 = counter
     .subscribeNext { n in
-       println("Second \(n)")
+       print("Second \(n)")
     }
 
 NSThread.sleepForTimeInterval(0.5)
@@ -469,7 +469,7 @@ NSThread.sleepForTimeInterval(0.5)
 
 subscription2.dispose()
 
-println("Ended ----")
+print("Ended ----")
 ```
 
 this would print:
@@ -515,15 +515,15 @@ The usual choice is a combination of `replay(1).refCount()` aka `shareReplay()`.
 let counter = myInterval(0.1)
     .shareReplay(1)
 
-println("Started ----")
+print("Started ----")
 
 let subscription1 = counter
     .subscribeNext { n in
-       println("First \(n)")
+       print("First \(n)")
     }
 let subscription2 = counter
     .subscribeNext { n in
-       println("Second \(n)")
+       print("Second \(n)")
     }
 
 NSThread.sleepForTimeInterval(0.5)
@@ -534,7 +534,7 @@ NSThread.sleepForTimeInterval(0.5)
 
 subscription2.dispose()
 
-println("Ended ----")
+print("Ended ----")
 ```
 
 this will print
@@ -647,7 +647,7 @@ let subscription = myInterval(0.1)
         return "This is simply \(e)"
     }
     .subscribeNext { n in
-        println(n)
+        print(n)
     }
 ```
 
@@ -745,39 +745,13 @@ If you are unsure how exactly some of the operators work, [playgrounds](../Rx.pl
 
 The are two error mechanisms.
 
-### Anynchronous error handling mechanism in observables
+### Asynchronous error handling mechanism in observables
 
 Error handling is pretty straightforward. If one sequence terminates with error, then all of the dependent sequences will terminate with error. It's usual short circuit logic.
 
 You can recover from failure of observable by using `catch` operator. There are various overloads that enable you to specify recovery in great detail.
 
 There is also `retry` operator that enables retries in case of errored sequence.
-
-### Synchronous error handling
-
-Unfortunately Swift doesn't have a concept of exceptions or some kind of built in error monad so this project introduces `RxResult` enum.
-It is Swift port of Scala [`Try`](http://www.scala-lang.org/api/2.10.2/index.html#scala.util.Try) type. It is also similar to Haskell [`Either`](https://hackage.haskell.org/package/category-extras-0.52.0/docs/Control-Monad-Either.html) monad.
-
-**This will be replaced in Swift 2.0 with try/throws**
-
-```swift
-public enum RxResult<ResultType> {
-    case Success(ResultType)
-    case Error(ErrorType)
-}
-```
-
-To enable writing more readable code, a few `Result` operators are introduced
-
-```swift
-result1.flatMap { okValue in        // success handling block
-    // executed on success
-    return ?
-}.recoverWith { error in            // error handling block
-    //  executed on error
-    return ?
-}
-```
 
 ## Debugging Compile Errors
 
@@ -837,7 +811,7 @@ let subscription = myInterval(0.1)
         return "This is simply \(e)"
     }
     .subscribeNext { n in
-        println(n)
+        print(n)
     }
 
 NSThread.sleepForTimeInterval(0.5)
@@ -872,7 +846,7 @@ NSURLSession.sharedSession().rx_JSON(request)
        return parse()
    }
    .subscribe { n in      // this subscribes on all events including error and completed
-       println(n)
+       print(n)
    }
 ```
 
@@ -882,7 +856,7 @@ In debug mode Rx tracks all allocated resources in a global variable `resourceCo
 
 **Printing `Rx.resourceCount` after pushing a view controller onto navigation stack, using it, and then popping back is usually the best way to detect and debug resource leaks.**
 
-As a sanity check, you can just do a `println` in your view controller `deinit` method.
+As a sanity check, you can just do a `print` in your view controller `deinit` method.
 
 The code would look something like this.
 
@@ -895,18 +869,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
       super.viewDidLoad()
 #if TRACE_RESOURCES
-        println("Number of start resources = \(resourceCount)")
+        print("Number of start resources = \(resourceCount)")
 #endif
     }
 
     deinit {
 #if TRACE_RESOURCES
-        println("View controller disposed with \(resourceCount) resources")
+        print("View controller disposed with \(resourceCount) resources")
 
         var numberOfResourcesThatShouldRemain = startResourceCount
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
         dispatch_after(time, dispatch_get_main_queue(), { () -> Void in
-            println("Resource count after dealloc \(RxSwift.resourceCount), difference \(RxSwift.resourceCount - numberOfResourcesThatShouldRemain)")
+            print("Resource count after dealloc \(RxSwift.resourceCount), difference \(RxSwift.resourceCount - numberOfResourcesThatShouldRemain)")
         })
 #endif
     }
@@ -926,27 +900,27 @@ It will also broadcast it's current value immediately on subscription.
 ```swift
 let variable = Variable(0)
 
-println("Before first subscription ---")
+print("Before first subscription ---")
 
 variable
     .subscribeNext { n in
-        println("First \(n)")
+        print("First \(n)")
     }
 
-println("Before send 1")
+print("Before send 1")
 
 variable.value = 1
 
-println("Before second subscription ---")
+print("Before second subscription ---")
 
 variable
     .subscribeNext { n in
-        println("Second \(n)")
+        print("Second \(n)")
     }
 
 variable.value = 2
 
-println("End ---")
+print("End ---")
 ```
 
 will print
@@ -972,32 +946,37 @@ There are two built in ways this library supports KVO.
 ```swift
 // KVO
 extension NSObject {
-    public func rx_observe<Element>(keyPath: String, retainSelf: Bool = true) -> Observable<Element?> {}
+    public func rx_observe<E>(type: E.Type, _ keyPath: String, options: NSKeyValueObservingOptions, retainSelf: Bool = true) -> Observable<E?> {}
 }
 
 #if !DISABLE_SWIZZLING
 // KVO
 extension NSObject {
-    public func rx_observeWeakly<Element>(keyPath: String) -> Observable<Element?> {}
+    public func rx_observeWeakly<E>(type: E.Type, _ keyPath: String, options: NSKeyValueObservingOptions) -> Observable<E?> {}
 }
 #endif
 ```
 
-**If Swift compiler doesn't have a way to deduce observed type (return Observable type), it will report error about function not existing.**
+Example how to observe frame of `UIView`.
 
-Here are some ways you can give him hints about observed type:
+**WARNING: UIKit isn't KVO compliant, but this will work.**
 
 ```swift
-view.rx_observe("frame") as Observable<CGRect?>
+view
+  .rx_observe(CGRect.self, "frame")
+  .subscribeNext { frame in
+    ...
+  }
 ```
 
 or
 
 ```swift
-view.rx_observe("frame")
-    .map { (rect: CGRect?) in
-        //
-    }
+view
+  .rx_observeWeakly(CGRect.self, "frame")
+  .subscribeNext { frame in
+    ...
+  }
 ```
 
 ### `rx_observe`
@@ -1011,12 +990,12 @@ view.rx_observe("frame")
 E.g.
 
 ```swift
-self.rx_observe("view.frame", retainSelf = false) as Observable<CGRect?>
+self.rx_observe(CGRect.self, "view.frame", retainSelf: false)
 ```
 
 ### `rx_observeWeakly`
 
-`rx_observeWeakly` has somewhat worse performance because it has to handle object deallocation in case of weak references.
+`rx_observeWeakly` has somewhat slower then `rx_observe` because it has to handle object deallocation in case of weak references.
 
 It can be used in all cases where `rx_observe` can be used and additionally
 
@@ -1026,16 +1005,18 @@ It can be used in all cases where `rx_observe` can be used and additionally
 E.g.
 
 ```swift
-someSuspiciousViewController.rx_observeWeakly("behavingOk") as Observable<Bool?>
+someSuspiciousViewController.rx_observeWeakly(Bool.self, "behavingOk")
 ```
 
 ### Observing structs
 
-KVO is an Objective-C mechanism so it relies heavily on `NSValue`. RxCocoa has additional specializations for `CGRect`, `CGSize` and `CGPoint` that make it convenient to observe those types.
+KVO is an Objective-C mechanism so it relies heavily on `NSValue`.
 
-When observing some other structures it is necessary to extract those structures from `NSValue` manually, or creating your own observable sequence specializations.
+**RxCocoa has built in support for KVO observing of `CGRect`, `CGSize` and `CGPoint` structs.**
 
-[Here](../RxCocoa/Common/Observables/NSObject+Rx+CoreGraphics.swift) are examples how to correctly extract structures from `NSValue`.
+When observing some other structures it is necessary to extract those structures from `NSValue` manually.
+
+[Here](../RxCocoa/Common/KVORepresentable+CoreGraphics.swift) are examples how to extend KVO observing mechanism and `rx_observe*` methods for other structs by implementing `KVORepresentable` protocol.
 
 ## UI layer tips
 
@@ -1069,19 +1050,20 @@ Let's say you have something like this:
 let searchResults = searchText
     .throttle(0.3, $.mainScheduler)
     .distinctUntilChanged
-    .map { query in
+    .flatMapLatest { query in
         API.getSearchResults(query)
             .retry(3)
             .startWith([]) // clears results on new search term
             .catchErrorJustReturn([])
     }
-    .switchLatest()
     .shareReplay(1)              // <- notice the `shareReplay` operator
 ```
 
 What you usually want is to share search results once calculated. That is what `shareReplay` means.
 
 **It is usually a good rule of thumb in the UI layer to add `shareReplay` at the end of transformation chain because you really want to share calculated results. You don't want to fire separate HTTP connections when binding `searchResults` to multiple UI elements.**
+
+**Also take a look at `Driver` unit. It is designed to transparently wrap those `shareReply` calls, make sure elements are observed on main UI thread and that no error can be bound to UI.**
 
 ## Making HTTP requests
 
@@ -1108,7 +1090,7 @@ let responseJSON = NSURLSession.sharedSession().rx_JSON(request)
 let cancelRequest = responseJSON
     // this will fire the request
     .subscribeNext { json in
-        println(json)
+        print(json)
     }
 
 NSThread.sleepForTimeInterval(3)
@@ -1140,7 +1122,7 @@ NSURLSession.sharedSession().rx_response(myNSURLRequest)
         }
     }
     .subscribe { event in
-        println(event) // if error happened, this will also print out error to console
+        print(event) // if error happened, this will also print out error to console
     }
 ```
 ### Logging HTTP traffic

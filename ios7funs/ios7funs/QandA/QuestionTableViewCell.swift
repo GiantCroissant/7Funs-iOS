@@ -10,17 +10,22 @@ import UIKit
 
 class QuestionTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var question: UILabel!
-    
+    @IBOutlet weak var lblQuestion: UILabel!
+
+    var question: QuestionUIModel?
+
+    func setupViews(question: QuestionUIModel) {
+        self.question = question
+
+        lblQuestion.text = question.description
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

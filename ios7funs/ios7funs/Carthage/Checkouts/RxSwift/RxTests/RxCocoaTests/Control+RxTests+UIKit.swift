@@ -14,19 +14,17 @@ import XCTest
 extension ControlTests {
     func testSubscribeEnabledToTrue() {
         let subject = UIControl()
-        let enabledSequence = Variable<Bool>(false)
-        enabledSequence.subscribe(subject.rx_enabled)
+        let disposable = just(true).subscribe(subject.rx_enabled)
+        defer { disposable.dispose() }
 
-        enabledSequence.value = true
         XCTAssert(subject.enabled == true, "Expected enabled set to true")
     }
 
     func testSubscribeEnabledToFalse() {
         let subject = UIControl()
-        let enabledSequence = Variable<Bool>(true)
-        enabledSequence.subscribe(subject.rx_enabled)
+        let disposable = just(false).subscribe(subject.rx_enabled)
+        defer { disposable.dispose() }
 
-        enabledSequence.value = false
         XCTAssert(subject.enabled == false, "Expected enabled set to false")
     }
 }
@@ -56,7 +54,7 @@ extension ControlTests {
         let createView: () -> UICollectionView = { UICollectionView(frame: CGRectMake(0, 0, 1, 1), collectionViewLayout: layout) }
 
         ensureEventDeallocated(createView) { (view: UICollectionView) in view.rx_itemSelected }
-        ensureEventDeallocated(createView) { (view: UICollectionView) in view.rx_modelSelected() as ControlEvent<Int> }
+        ensureEventDeallocated(createView) { (view: UICollectionView) in view.rx_modelSelected(Int.self) }
     }
 
     func testCollectionView_DelegateEventCompletesOnDealloc1() {
@@ -71,7 +69,7 @@ extension ControlTests {
 
             return (collectionView, s)
         }
-        ensureEventDeallocated(createView) { (view: UICollectionView) in view.rx_modelSelected() as ControlEvent<Int> }
+        ensureEventDeallocated(createView) { (view: UICollectionView) in view.rx_modelSelected(Int.self) }
     }
 
     func testCollectionView_DelegateEventCompletesOnDealloc2() {
@@ -88,7 +86,7 @@ extension ControlTests {
 
             return (collectionView, s)
         }
-        ensureEventDeallocated(createView) { (view: UICollectionView) in view.rx_modelSelected() as ControlEvent<Int> }
+        ensureEventDeallocated(createView) { (view: UICollectionView) in view.rx_modelSelected(Int.self) }
     }
 
     func testCollectionView_ModelSelected1() {
@@ -109,7 +107,7 @@ extension ControlTests {
 
         var selectedItem: Int? = nil
 
-        let s = collectionView.rx_modelSelected()
+        let s = collectionView.rx_modelSelected(Int.self)
             .subscribeNext { (item: Int) in
                 selectedItem = item
             }
@@ -140,8 +138,8 @@ extension ControlTests {
 
         var selectedItem: Int? = nil
 
-        let s = collectionView.rx_modelSelected()
-            .subscribeNext { (item: Int) in
+        let s = collectionView.rx_modelSelected(Int.self)
+            .subscribeNext { item in
                 selectedItem = item
             }
 
@@ -154,6 +152,22 @@ extension ControlTests {
     }
 }
 
+// UILabel
+extension ControlTests {
+    func testLabel_HasWeakReference() {
+        ensureControlObserverHasWeakReference(UILabel(), { (label: UILabel) -> AnyObserver<NSAttributedString?> in label.rx_attributedText }, { Variable<NSAttributedString?>(nil).asObservable() })
+    }
+
+    func testLabel_NextElementsSetsValue() {
+        let subject = UILabel()
+        let attributedTextSequence = Variable<NSAttributedString?>(nil)
+        let disposable = attributedTextSequence.subscribe(subject.rx_attributedText)
+        defer { disposable.dispose() }
+
+        attributedTextSequence.value = NSAttributedString(string: "Hello!")
+        XCTAssert(subject.attributedText == attributedTextSequence.value, "Expected attributedText to have been set")
+    }
+}
 
 // UITableView
 extension ControlTests {
@@ -161,11 +175,11 @@ extension ControlTests {
         let createView: () -> UITableView = { UITableView(frame: CGRectMake(0, 0, 1, 1)) }
 
         ensureEventDeallocated(createView) { (view: UITableView) in view.rx_itemSelected }
-        ensureEventDeallocated(createView) { (view: UITableView) in view.rx_modelSelected() as ControlEvent<Int> }
+        ensureEventDeallocated(createView) { (view: UITableView) in view.rx_modelSelected(Int.self) }
         ensureEventDeallocated(createView) { (view: UITableView) in view.rx_itemDeleted }
         ensureEventDeallocated(createView) { (view: UITableView) in view.rx_itemMoved }
         ensureEventDeallocated(createView) { (view: UITableView) in view.rx_itemInserted }
-        ensureEventDeallocated(createView) { (view: UITableView) in view.rx_modelSelected() as ControlEvent<Int> }
+        ensureEventDeallocated(createView) { (view: UITableView) in view.rx_modelSelected(Int.self) }
     }
 
     func testTableView_DelegateEventCompletesOnDealloc1() {
@@ -179,7 +193,7 @@ extension ControlTests {
 
             return (tableView, dataSourceSubscription)
         }
-        ensureEventDeallocated(createView) { (view: UITableView) in view.rx_modelSelected() as ControlEvent<Int> }
+        ensureEventDeallocated(createView) { (view: UITableView) in view.rx_modelSelected(Int.self) }
     }
 
     func testTableView_DelegateEventCompletesOnDealloc2() {
@@ -194,7 +208,7 @@ extension ControlTests {
 
             return (tableView, dataSourceSubscription)
         }
-        ensureEventDeallocated(createView) { (view: UITableView) in view.rx_modelSelected() as ControlEvent<Int> }
+        ensureEventDeallocated(createView) { (view: UITableView) in view.rx_modelSelected(Int.self) }
     }
 
     func testTableView_ModelSelected1() {
@@ -213,8 +227,8 @@ extension ControlTests {
 
         var selectedItem: Int? = nil
         
-        let s = tableView.rx_modelSelected()
-            .subscribeNext { (item: Int) in
+        let s = tableView.rx_modelSelected(Int.self)
+            .subscribeNext { item in
                 selectedItem = item
             }
 
@@ -243,8 +257,8 @@ extension ControlTests {
 
         var selectedItem: Int? = nil
 
-        let s = tableView.rx_modelSelected()
-            .subscribeNext { (item: Int) in
+        let s = tableView.rx_modelSelected(Int.self)
+            .subscribeNext { item in
                 selectedItem = item
         }
 
@@ -294,6 +308,27 @@ extension ControlTests {
     func testText_DelegateEventCompletesOnDealloc() {
         let createView: () -> UITextView = { UITextView(frame: CGRectMake(0, 0, 1, 1)) }
         ensurePropertyDeallocated(createView, "text") { (view: UITextView) in view.rx_text }
+    }
+}
+
+// UIActivityIndicatorView
+extension ControlTests {
+    func testActivityIndicator_HasWeakReference() {
+        ensureControlObserverHasWeakReference(UIActivityIndicatorView(), { (view: UIActivityIndicatorView) -> AnyObserver<Bool> in view.rx_animating }, { Variable<Bool>(true).asObservable() })
+    }
+
+    func testActivityIndicator_NextElementsSetsValue() {
+        let subject = UIActivityIndicatorView()
+        let boolSequence = Variable<Bool>(false)
+
+        let disposable = boolSequence.subscribe(subject.rx_animating)
+        defer { disposable.dispose() }
+
+        boolSequence.value = true
+        XCTAssertTrue(subject.isAnimating(), "Expected animation to be started")
+
+        boolSequence.value = false
+        XCTAssertFalse(subject.isAnimating(), "Expected animation to be stopped")
     }
 }
 
@@ -358,6 +393,25 @@ extension ControlTests {
     func testSearchBar_DelegateEventCompletesOnDealloc() {
         let createView: () -> UISearchBar = { UISearchBar(frame: CGRectMake(0, 0, 1, 1)) }
         ensurePropertyDeallocated(createView, "a") { (view: UISearchBar) in view.rx_text }
+    }
+}
+
+
+// UIButton
+extension ControlTests {
+    func testButton_tapDeallocates() {
+        let createView: () -> UIButton = { UIButton(frame: CGRectMake(0, 0, 1, 1)) }
+        ensureEventDeallocated(createView) { (view: UIButton) in view.rx_tap }
+    }
+}
+
+#elseif os(tvOS)
+
+// UIButton
+extension ControlTests {
+    func testButton_tapDeallocates() {
+        let createView: () -> UIButton = { UIButton(frame: CGRectMake(0, 0, 1, 1)) }
+        ensureEventDeallocated(createView) { (view: UIButton) in view.rx_primaryAction }
     }
 }
 

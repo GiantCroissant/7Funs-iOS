@@ -122,7 +122,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="question" destination="qkl-3x-lkN" id="hOj-AE-E62"/>
+                                            <outlet property="lblQuestion" destination="qkl-3x-lkN" id="3V5-ia-vdV"/>
                                             <segue destination="VZG-8z-zgy" kind="show" id="kuo-1d-pqU"/>
                                         </connections>
                                     </tableViewCell>

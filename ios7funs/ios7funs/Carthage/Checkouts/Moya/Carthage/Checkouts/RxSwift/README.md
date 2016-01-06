@@ -190,13 +190,12 @@ Writing all of this and properly testing it would be tedious. This is that same 
   searchTextField.rx_text
     .throttle(0.3, MainScheduler.sharedInstance)
     .distinctUntilChanged()
-    .map { query in
+    .flatMapLatest { query in
         API.getSearchResults(query)
             .retry(3)
             .startWith([]) // clears results on new search term
             .catchErrorJustReturn([])
     }
-    .switchLatest()
     .subscribeNext { results in
       // bind to ui
     }
@@ -271,7 +270,7 @@ extension NSURLSession {
 
 Lets assume that there is a scenario where you want to display blurred images in a table view. The images should be first fetched from URL, then decoded and then blurred.
 
-It would also be nice if that entire process could be cancelled if cell exists visible table view area because bandwidth and processor time for blurring are expensive.
+It would also be nice if that entire process could be cancelled if a cell exits the visible table view area because bandwidth and processor time for blurring are expensive.
 
 It would also be nice if we didn't just immediately start to fetch image once the cell enters visible area because if user swipes really fast there could be a lot of requests fired and cancelled.
 
@@ -320,7 +319,7 @@ It uses delegate as a notification mechanism to create an `Observable<String>` t
 extension UISearchBar {
 
     public var rx_delegate: DelegateProxy {
-        return proxyForObject(self) as RxSearchBarDelegateProxy
+        return proxyForObject(RxSearchBarDelegateProxy.self, self)
     }
 
     public var rx_text: Observable<String> {
@@ -480,7 +479,7 @@ $ pod install
 Add this to `Cartfile`
 
 ```
-git "git@github.com:ReactiveX/RxSwift.git" "2.0.0-beta.2"
+github "ReactiveX/RxSwift" "2.0.0-beta.4"
 ```
 
 ```

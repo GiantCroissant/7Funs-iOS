@@ -89,7 +89,155 @@ extension DriverTest {
     }
 }
 
-// conversions
+// MARK: properties
+extension DriverTest {
+    func testDriverSharing_WhenErroring() {
+        let scheduler = TestScheduler(initialClock: 0)
+
+        let observer1 = scheduler.createObserver(Int)
+        let observer2 = scheduler.createObserver(Int)
+        let observer3 = scheduler.createObserver(Int)
+        var disposable1: Disposable!
+        var disposable2: Disposable!
+        var disposable3: Disposable!
+
+        let coldObservable = scheduler.createColdObservable([
+            next(10, 0),
+            next(20, 1),
+            next(30, 2),
+            next(40, 3),
+            error(50, testError)
+            ])
+        let driver = coldObservable.asDriver(onErrorJustReturn: -1)
+
+        scheduler.scheduleAt(200) {
+            disposable1 = driver.asObservable().subscribe(observer1)
+        }
+
+        scheduler.scheduleAt(225) {
+            disposable2 = driver.asObservable().subscribe(observer2)
+        }
+
+        scheduler.scheduleAt(235) {
+            disposable1.dispose()
+        }
+
+        scheduler.scheduleAt(260) {
+            disposable2.dispose()
+        }
+
+        // resubscription
+
+        scheduler.scheduleAt(260) {
+            disposable3 = driver.asObservable().subscribe(observer3)
+        }
+
+        scheduler.scheduleAt(285) {
+            disposable3.dispose()
+        }
+
+        scheduler.start()
+
+        XCTAssertEqual(observer1.messages, [
+            next(210, 0),
+            next(220, 1),
+            next(230, 2)
+        ])
+
+        XCTAssertEqual(observer2.messages, [
+            next(225, 1),
+            next(230, 2),
+            next(240, 3),
+            next(250, -1),
+            completed(250)
+        ])
+
+        XCTAssertEqual(observer3.messages, [
+            next(270, 0),
+            next(280, 1),
+        ])
+
+        XCTAssertEqual(coldObservable.subscriptions, [
+           Subscription(200, 250),
+           Subscription(260, 285),
+        ])
+    }
+
+    func testDriverSharing_WhenCompleted() {
+        let scheduler = TestScheduler(initialClock: 0)
+
+        let observer1 = scheduler.createObserver(Int)
+        let observer2 = scheduler.createObserver(Int)
+        let observer3 = scheduler.createObserver(Int)
+        var disposable1: Disposable!
+        var disposable2: Disposable!
+        var disposable3: Disposable!
+
+        let coldObservable = scheduler.createColdObservable([
+            next(10, 0),
+            next(20, 1),
+            next(30, 2),
+            next(40, 3),
+            error(50, testError)
+            ])
+        let driver = coldObservable.asDriver(onErrorJustReturn: -1)
+
+
+        scheduler.scheduleAt(200) {
+            disposable1 = driver.asObservable().subscribe(observer1)
+        }
+
+        scheduler.scheduleAt(225) {
+            disposable2 = driver.asObservable().subscribe(observer2)
+        }
+
+        scheduler.scheduleAt(235) {
+            disposable1.dispose()
+        }
+
+        scheduler.scheduleAt(260) {
+            disposable2.dispose()
+        }
+
+        // resubscription
+
+        scheduler.scheduleAt(260) {
+            disposable3 = driver.asObservable().subscribe(observer3)
+        }
+
+        scheduler.scheduleAt(285) {
+            disposable3.dispose()
+        }
+
+        scheduler.start()
+
+        XCTAssertEqual(observer1.messages, [
+            next(210, 0),
+            next(220, 1),
+            next(230, 2)
+        ])
+
+        XCTAssertEqual(observer2.messages, [
+            next(225, 1),
+            next(230, 2),
+            next(240, 3),
+            next(250, -1),
+            completed(250)
+        ])
+
+        XCTAssertEqual(observer3.messages, [
+            next(270, 0),
+            next(280, 1),
+        ])
+
+        XCTAssertEqual(coldObservable.subscriptions, [
+            Subscription(200, 250),
+            Subscription(260, 285),
+            ])
+    }
+}
+
+// MARK: conversions
 extension DriverTest {
     func testAsDriver_onErrorJustReturn() {
         let hotObservable = BackgroundThreadPrimitiveHotObservable<Int>()
@@ -145,7 +293,7 @@ extension DriverTest {
     }
 }
 
-// map
+// MARK: map
 extension DriverTest {
     func testAsDriver_map() {
         let hotObservable = BackgroundThreadPrimitiveHotObservable<Int>()
@@ -169,7 +317,7 @@ extension DriverTest {
 
 }
 
-// filter
+// MARK: filter
 extension DriverTest {
     func testAsDriver_filter() {
         let hotObservable = BackgroundThreadPrimitiveHotObservable<Int>()
@@ -193,7 +341,7 @@ extension DriverTest {
 }
 
 
-// switch latest
+// MARK: switch latest
 extension DriverTest {
     func testAsDriver_switchLatest() {
         let hotObservable = BackgroundThreadPrimitiveHotObservable<Driver<Int>>()
@@ -232,7 +380,97 @@ extension DriverTest {
     }
 }
 
-// doOn
+// MARK: flatMapLatest
+extension DriverTest {
+    func testAsDriver_flatMapLatest() {
+        let hotObservable = BackgroundThreadPrimitiveHotObservable<Int>()
+        let hotObservable1 = MainThreadPrimitiveHotObservable<Int>()
+        let hotObservable2 = MainThreadPrimitiveHotObservable<Int>()
+        let errorHotObservable = MainThreadPrimitiveHotObservable<Int>()
+
+        let drivers: [Driver<Int>] = [
+            hotObservable1.asDriver(onErrorJustReturn: -2),
+            hotObservable2.asDriver(onErrorJustReturn: -3),
+            errorHotObservable.asDriver(onErrorJustReturn: -4),
+        ]
+
+        let driver = hotObservable.asDriver(onErrorJustReturn: 2).flatMapLatest { drivers[$0] }
+
+        let results = subscribeTwiceOnBackgroundSchedulerAndOnlyOneSubscription(driver) {
+            XCTAssertTrue(hotObservable.subscriptions == [SubscribedToHotObservable])
+
+            hotObservable.on(.Next(0))
+
+            hotObservable1.on(.Next(1))
+            hotObservable1.on(.Next(2))
+            hotObservable1.on(.Error(testError))
+
+            hotObservable.on(.Next(1))
+
+            hotObservable2.on(.Next(10))
+            hotObservable2.on(.Next(11))
+            hotObservable2.on(.Error(testError))
+
+            hotObservable.on(.Error(testError))
+
+            errorHotObservable.on(.Completed)
+            hotObservable.on(.Completed)
+
+            XCTAssertTrue(hotObservable.subscriptions == [UnsunscribedFromHotObservable])
+        }
+
+        XCTAssertEqual(results, [
+            1, 2, -2,
+            10, 11, -3
+            ])
+    }
+}
+
+// MARK: flatMapFirst
+extension DriverTest {
+    func testAsDriver_flatMapFirst() {
+        let hotObservable = BackgroundThreadPrimitiveHotObservable<Int>()
+        let hotObservable1 = MainThreadPrimitiveHotObservable<Int>()
+        let hotObservable2 = MainThreadPrimitiveHotObservable<Int>()
+        let errorHotObservable = MainThreadPrimitiveHotObservable<Int>()
+
+        let drivers: [Driver<Int>] = [
+            hotObservable1.asDriver(onErrorJustReturn: -2),
+            hotObservable2.asDriver(onErrorJustReturn: -3),
+            errorHotObservable.asDriver(onErrorJustReturn: -4),
+        ]
+
+        let driver = hotObservable.asDriver(onErrorJustReturn: 2).flatMapFirst { drivers[$0] }
+
+        let results = subscribeTwiceOnBackgroundSchedulerAndOnlyOneSubscription(driver) {
+            XCTAssertTrue(hotObservable.subscriptions == [SubscribedToHotObservable])
+
+            hotObservable.on(.Next(0))
+            hotObservable.on(.Next(1))
+
+            hotObservable1.on(.Next(1))
+            hotObservable1.on(.Next(2))
+            hotObservable1.on(.Error(testError))
+
+            hotObservable2.on(.Next(10))
+            hotObservable2.on(.Next(11))
+            hotObservable2.on(.Error(testError))
+
+            hotObservable.on(.Error(testError))
+
+            errorHotObservable.on(.Completed)
+            hotObservable.on(.Completed)
+
+            XCTAssertTrue(hotObservable.subscriptions == [UnsunscribedFromHotObservable])
+        }
+
+        XCTAssertEqual(results, [
+            1, 2, -2,
+            ])
+    }
+}
+
+// MARK: doOn
 extension DriverTest {
     func testAsDriver_doOn() {
         let hotObservable = BackgroundThreadPrimitiveHotObservable<Int>()
@@ -261,7 +499,7 @@ extension DriverTest {
     }
 }
 
-// distinct until change
+// MARK: distinct until change
 extension DriverTest {
     func testAsDriver_distinctUntilChanged1() {
         let hotObservable = BackgroundThreadPrimitiveHotObservable<Int>()
@@ -342,7 +580,7 @@ extension DriverTest {
 
 }
 
-// flat map
+// MARK: flat map
 extension DriverTest {
     func testAsDriver_flatMap() {
         let hotObservable = BackgroundThreadPrimitiveHotObservable<Int>()
@@ -366,7 +604,7 @@ extension DriverTest {
     
 }
 
-// merge
+// MARK: merge
 extension DriverTest {
     func testAsDriver_merge() {
         let hotObservable = BackgroundThreadPrimitiveHotObservable<Int>()
@@ -409,7 +647,7 @@ extension DriverTest {
     }
 }
 
-// debounce
+// MARK: debounce
 extension DriverTest {
     func testAsDriver_debounce() {
         let hotObservable = BackgroundThreadPrimitiveHotObservable<Int>()
@@ -445,7 +683,7 @@ extension DriverTest {
 
 }
 
-// scan
+// MARK: scan
 extension DriverTest {
     func testAsDriver_scan() {
         let hotObservable = BackgroundThreadPrimitiveHotObservable<Int>()
@@ -469,7 +707,7 @@ extension DriverTest {
     
 }
 
-// concat
+// MARK: concat
 extension DriverTest {
     func testAsDriver_concat() {
         let hotObservable1 = BackgroundThreadPrimitiveHotObservable<Int>()
@@ -498,7 +736,7 @@ extension DriverTest {
     }
 }
 
-// combine latest
+// MARK: combine latest
 extension DriverTest {
     func testAsDriver_combineLatest_array() {
         let hotObservable1 = BackgroundThreadPrimitiveHotObservable<Int>()
@@ -553,7 +791,7 @@ extension DriverTest {
     }
 }
 
-// zip
+// MARK: zip
 extension DriverTest {
     func testAsDriver_zip_array() {
         let hotObservable1 = BackgroundThreadPrimitiveHotObservable<Int>()
@@ -608,7 +846,7 @@ extension DriverTest {
     }
 }
 
-// withLatestFrom
+// MARK: withLatestFrom
 extension DriverTest {
     func testAsDriver_withLatestFrom() {
         let hotObservable1 = BackgroundThreadPrimitiveHotObservable<Int>()

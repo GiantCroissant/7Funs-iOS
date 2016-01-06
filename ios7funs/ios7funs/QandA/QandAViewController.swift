@@ -61,8 +61,9 @@ extension QandAViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("id_cell_question", forIndexPath: indexPath) as! QuestionTableViewCell
 
-        cell.question.text = questions[indexPath.row].description
-        
+        let question = questions[indexPath.row]
+        cell.setupViews(question)
+
         return cell
     }
 

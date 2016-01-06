@@ -49,7 +49,6 @@ class GitHubSearchRepositoriesViewController: ViewController, UITableViewDelegat
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
 
-    var disposeBag = DisposeBag()
     let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, Repository>>()
 
     override func viewDidLoad() {
@@ -83,7 +82,7 @@ class GitHubSearchRepositoriesViewController: ViewController, UITableViewDelegat
         let searchResult = searchBar.rx_text.asDriver()
             .throttle(0.3, $.mainScheduler)
             .distinctUntilChanged()
-            .map { query -> Driver<RepositoriesState> in
+            .flatMapLatest { query -> Driver<RepositoriesState> in
                 if query.isEmpty {
                     return Drive.just(RepositoriesState.empty)
                 } else {
@@ -91,7 +90,6 @@ class GitHubSearchRepositoriesViewController: ViewController, UITableViewDelegat
                         .asDriver(onErrorJustReturn: RepositoriesState.empty)
                 }
             }
-            .switchLatest()
 
         searchResult
             .map { $0.serviceState }
