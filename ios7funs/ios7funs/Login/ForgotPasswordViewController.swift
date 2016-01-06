@@ -10,8 +10,16 @@ import UIKit
 
 class ForgotPasswordViewController: UIViewController {
 
-    @IBAction func onBackClick(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.title = "忘記密碼"
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.showNavigationBar()
     }
 
 }

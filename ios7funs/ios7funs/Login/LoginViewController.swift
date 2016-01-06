@@ -29,13 +29,14 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         dLog("password [\(password)]")
         dLog("TODO: - Login business logic")
     }
-    
+
     @IBOutlet weak var fbButton: FBSDKLoginButton!
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var nameLabel: UILabel!
 //    @IBAction func onLoginViaFBButtonClick(sender: UIButton) {
 //        
 //    }
+
 
     func configureFacebook() {
         self.fbButton.readPermissions = ["public_profile", "email", "user_friends"];
@@ -76,6 +77,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
+        self.hideNabigationBar()
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
     }
 
@@ -93,17 +95,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         )
     }
 
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        navigationItem.title = ""
     }
-    */
 
 }
 
@@ -131,8 +125,8 @@ extension LoginViewController {
         let animationDuration = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 
         contentBottomConstraint.constant = 0
+        
         self.view.setNeedsUpdateConstraints()
-
         UIView.animateWithDuration(animationDuration) {
             self.view.layoutIfNeeded()
         }
@@ -145,10 +139,7 @@ extension LoginViewController {
 
         contentBottomConstraint.constant = keyboardFrame.size.height
 
-        print("keyboardWillShow")
-
         self.view.setNeedsUpdateConstraints()
-
         UIView.animateWithDuration(animationDuration) {
             self.view.layoutIfNeeded()
         }
