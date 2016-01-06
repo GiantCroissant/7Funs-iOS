@@ -179,3 +179,14 @@ extension UIImage {
     }
 
 }
+
+
+extension UITextView {
+
+    func getMaxInputTextHeight() -> CGFloat {
+        let fixedWidth = self.frame.size.width
+        let maxHeightSize = CGSize(width: fixedWidth, height: CGFloat.max)
+        let newSize = self.sizeThatFits(maxHeightSize)
+        return newSize.height
+    }
+}
