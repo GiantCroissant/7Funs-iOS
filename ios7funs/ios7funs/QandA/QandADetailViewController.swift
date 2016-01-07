@@ -51,6 +51,11 @@ class QandADetailViewController: UIViewController {
             QandAManager.sharedInstance.postAnswer(questionId, answer: answer, token: token,
                 onComplete: {
                     self.hideToastIndicator()
+                    self.textInput.text = ""
+                    self.textInput.resignFirstResponder()
+
+                    // MARK: - maybe this can be do in textField edit change delegate
+                    self.configureSendButton()
                 }
             )
 
