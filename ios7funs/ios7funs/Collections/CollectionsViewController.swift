@@ -18,7 +18,6 @@ class CollectionsViewController: UIViewController {
         super.viewDidLoad()
 
         if let token = LoginManager.token {
-            dLog("fetching collection from sever : token[\(token)]")
             CollectionManager.sharedInstance.fetchCollections(token)
 
         } else {

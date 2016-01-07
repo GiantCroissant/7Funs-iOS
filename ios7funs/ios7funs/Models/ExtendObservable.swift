@@ -83,16 +83,19 @@ extension Observable {
             }
             
             do {
-                guard let json = try NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [[String : AnyObject]] else { throw ORMError.ORMCouldNotMakeObjectError }
-                
+                guard let json = try NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [[String : AnyObject]] else {
+                    throw ORMError.ORMCouldNotMakeObjectError
+                }
+
                 var objects = [T]()
                 for dict in json {
                     if let obj = self.resultFromJSON(dict, classType:type) {
                         objects.append(obj)
                     }
                 }
-                
                 return objects
+
+
             } catch {
                 throw ORMError.ORMCouldNotMakeObjectError
             }
