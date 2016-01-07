@@ -14,9 +14,16 @@ import RxSwift
 class LoginManager {
 
     static let userDefaults = NSUserDefaults.standardUserDefaults()
+    static var token: String? = LoginManager.userDefaults.stringForKey("accessToken") {
+        didSet {
+            LoginManager.userDefaults.setObject(token, forKey: "accessToken")
+        }
+    }
 
     static let sharedInstance = LoginManager()
-    static var logined = false
+
+    static var logined = false // FIXME: should remove this
+
     let disposeBag = DisposeBag()
 
     let restApiProvider = RxMoyaProvider<RestApi>(endpointClosure: {
@@ -101,7 +108,8 @@ class LoginManager {
             .subscribe(
                 onNext: { res in
                     dLog("res = \(res)")
-                    LoginManager.userDefaults.setObject(res.accessToken, forKey: "accessToken")
+                    let token = res.accessToken
+                    LoginManager.token = token
                 },
                 onError: { err in
                     // TODO: fix register failed message

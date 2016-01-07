@@ -29,17 +29,9 @@ class RecipeTableViewCell: UITableViewCell {
         let imageName = recipe.imageName
         let title = recipe.title
 
-        // TODO: remove this line and set default image to background image view
-        //        ImageLoader.sharedInstance.loadDefaultImage("food_default") { image in
-        //            cell.imgFood.image = image
-        //        }
-
-        // FIXME: should change to row ?
         imgFood.image = nil
         imgFood.tag = imageId
         labelTitle.text = title
-
-        //        btnAddCollection.tag = indexPath.row
 
         RecipeManager.sharedInstance.loadFoodImage(imageId, imageName: imageName) { image, imageId, fadeIn in
 

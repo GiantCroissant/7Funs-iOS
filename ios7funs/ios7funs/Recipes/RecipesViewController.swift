@@ -92,6 +92,15 @@ extension RecipesViewController {
 // MARK: - UITableViewDataSource
 extension RecipesViewController: UITableViewDataSource {
 
+    @IBAction func onAddToCollectionClick(sender: UIButton) {
+        if let token = LoginManager.token {
+            dLog("token = \(token)")
+
+        } else {
+            LoginManager.sharedInstance.showLoginViewController(self)
+        }
+    }
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count
     }

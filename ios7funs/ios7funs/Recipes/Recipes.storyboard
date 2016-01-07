@@ -120,6 +120,9 @@
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELg-qo-Dwt">
                                                                     <rect key="frame" x="0.0" y="0.0" width="56" height="48"/>
                                                                     <state key="normal" image="icon_love_m"/>
+                                                                    <connections>
+                                                                        <action selector="onAddToCollectionClick:" destination="Em0-5b-b7w" eventType="touchUpInside" id="DHZ-T4-gzS"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
