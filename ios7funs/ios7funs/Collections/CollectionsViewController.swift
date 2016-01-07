@@ -17,35 +17,34 @@ class CollectionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-                // TODO: - check login status
-                if !LoginManager.logined {
-                    LoginManager.sharedInstance.showLoginViewController(self)
-                }
+        if let token = LoginManager.token {
+            dLog("fetching collection from sever : token[\(token)]")
+            CollectionManager.sharedInstance.fetchCollections(token)
+
+        } else {
+            LoginManager.sharedInstance.showLoginViewController(self)
+        }
+
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
         self.title = "我的收藏"
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
         self.showNavigationBar()
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
         navigationItem.title = ""
-
         let detailVC = segue.destinationViewController as! CollectionDetailViewController
         let row = (sender?.tag)!
         detailVC.recipe = collections[row]
     }
 
 }
-
 
 extension CollectionsViewController: UITableViewDataSource {
 
@@ -56,9 +55,9 @@ extension CollectionsViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("id_cell_collection", forIndexPath: indexPath)
             as! CollectionTableViewCell
-
+        
         return cell
     }
-
+    
 }
 

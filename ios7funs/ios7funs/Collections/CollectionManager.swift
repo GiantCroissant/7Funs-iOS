@@ -17,13 +17,12 @@ import RealmSwift
 import Alamofire
 
 class CollectionManager: NSObject {
-    
+
     static let sharedInstance = CollectionManager()
-    
+
     let disposeBag = DisposeBag()
-    
+
     let restApiProvider = RxMoyaProvider<RestApi>(endpointClosure: { (target: RestApi) -> Endpoint<RestApi> in
-        
         let url = target.baseURL.URLByAppendingPathComponent(target.path).absoluteString
         let endpoint = Endpoint<RestApi>(
             URL: url,
@@ -31,19 +30,17 @@ class CollectionManager: NSObject {
             method: target.method,
             parameters: target.parameters
         )
-        
+
         switch target {
         default:
             return endpoint
-        }        
+        }
     })
-    
-    func getMyFavoriteRecipesIds(onComplete onComplete: (() -> Void) = {}
+
+    func fetchCollections(token: String, onComplete: (() -> Void) = {}
         , onError: (ErrorType -> Void) = { _ in }
         , onFinished: (() -> Void) = {}) {
-            // TODO: Add token here
-            let token = ""
-            
+
             let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
             let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
             self.restApiProvider
@@ -51,12 +48,16 @@ class CollectionManager: NSObject {
 //                .mapSuccessfulHTTPToObjectArray(RecipesOverviewJsonObject)
                 .subscribeOn(scheduler)
                 .subscribe(
-                    onNext: { recipesIds in
-//                        self.updateLocalRecipesOverview(recipesOverviewJsonObjects)
+                    onNext: { res in
+
+                        dLog("res = \(res)")
                         // MARK: Assume there is response(none at this stage), since the result is not mapped, no json response
+
                         // TODO: Do something with these recipes id from server
                     },
                     onError: { error in
+                        dLog("error = \(error)")
+
                         dispatch_async(dispatch_get_main_queue()) {
                             onError(error)
                         }
