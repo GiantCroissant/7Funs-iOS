@@ -124,6 +124,7 @@
                                         <connections>
                                             <outlet property="bgProfile" destination="Iyd-ig-EcJ" id="MnI-oO-rqr"/>
                                             <outlet property="imgProfile" destination="7pI-Rh-lSZ" id="GtW-mn-J72"/>
+                                            <outlet property="lblAnswerCount" destination="gmL-JD-Oib" id="fjL-Ut-NCv"/>
                                             <outlet property="lblQuestion" destination="qkl-3x-lkN" id="3V5-ia-vdV"/>
                                             <segue destination="VZG-8z-zgy" kind="show" id="kuo-1d-pqU"/>
                                         </connections>

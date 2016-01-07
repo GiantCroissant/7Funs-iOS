@@ -60,12 +60,14 @@ class QuestionUIModel {
     var username: String = ""
     var title: String = ""
     var description: String = ""
+    var answersCount: Int = 0
 
     init(json: MessageJsonObject) {
         self.id = json.id
         self.username = json.user.name
         self.title = json.title ?? ""
         self.description = json.description ?? ""
+        self.answersCount = json.commentsCount
     }
 }
 

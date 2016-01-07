@@ -13,6 +13,7 @@ class QuestionTableViewCell: UITableViewCell {
     @IBOutlet weak var bgProfile: UIView!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblQuestion: UILabel!
+    @IBOutlet weak var lblAnswerCount: UILabel!
 
     var question: QuestionUIModel?
 
@@ -20,6 +21,8 @@ class QuestionTableViewCell: UITableViewCell {
         self.question = question
 
         lblQuestion.text = question.title
+        lblAnswerCount.text = "\(question.answersCount) 篇回覆"
+
         bgProfile.configureToCircularView()
     }
 
