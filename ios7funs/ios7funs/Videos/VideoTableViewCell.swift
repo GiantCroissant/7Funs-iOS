@@ -17,8 +17,6 @@ class VideoTableViewCell: UITableViewCell {
     var video: VideoUIModel! {
         didSet {
             self.lblName.text = video.youtubeVideoId
-
-            dLog("video.youtubeVideoId = \(video.youtubeVideoId)")
         }
     }
 

@@ -26,7 +26,12 @@ class RecipeTableViewCell: UITableViewCell {
         let title = recipe.title
         let favorite = recipe.favorite
 
-        imgFood.image = nil
+        // This line check whether cell is being RE-USE
+        if (imgFood.tag != recipeId) {
+            imgFood.image = nil
+        }
+
+
         imgFood.tag = recipeId
         labelTitle.text = title
 
@@ -51,8 +56,6 @@ class RecipeTableViewCell: UITableViewCell {
     }
 
     private func configureFavoriteButton(favorite: Bool) {
-        dLog("recipeId = \(recipe.id) : favorite: \(favorite)")
-
         let imageName = favorite ? "icon_love_m_pink" : "icon_love_m"
         let image = UIImage(named: imageName)
         btnAddCollection.setImage(image, forState: .Normal)

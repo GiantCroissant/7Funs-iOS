@@ -42,9 +42,6 @@ class VideoManager {
 //                    }
 
                     let video = VideoUIModel(dbData: videoObj)
-
-//                    dLog("video.youtubeId = \(video.youtubeVideoId)")
-
                     videos.append(video)
                 }
 

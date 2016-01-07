@@ -22,10 +22,6 @@ class RecipeUIModel {
         self.title = dbData.title
         self.hits = dbData.hits
         self.favorite = dbData.favorite
-
-        if (favorite) {
-            dLog("favorite recipeId = \(id)")
-        }
     }
 
 }

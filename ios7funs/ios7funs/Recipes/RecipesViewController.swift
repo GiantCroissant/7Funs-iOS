@@ -21,7 +21,6 @@ class RecipesViewController: UIViewController {
         loadRecipes(onEmpty: {
             self.fetchMoreRecipes()
         })
-        //      self.view.makeToast("加入收藏", duration: 10, position: .Top)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -97,11 +96,19 @@ extension RecipesViewController: UITableViewDataSource {
     @IBAction func onAddToCollectionClick(sender: RecipeFavoriteButton) {
         if let token = LoginManager.token {
             let recipeId = sender.tag
+
+            // TODO: handle Error
+            self.showToastIndicator()
             RecipeManager.sharedInstance.addOrRemoveFavorite(recipeId, token: token,
                 onComplete: { favorite in
                     let uiRecipe = self.recipes[sender.row]
                     uiRecipe.favorite = favorite
                     self.tableRecipes.reloadData()
+
+                    let recipeName = uiRecipe.title
+                    let msg = favorite ? "\(recipeName) : 加入收藏" : "\(recipeName) : 取消收藏"
+                    self.view.makeToast(msg, duration: 1, position: .Top)
+                    self.hideToastIndicator()
                 }
             )
 

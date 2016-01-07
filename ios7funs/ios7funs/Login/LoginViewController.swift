@@ -15,8 +15,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var contentBottomConstraint: NSLayoutConstraint!
 
     @IBAction func onCancelButtonClick(sender: UIButton) {
-        dLog("cancel")
-
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

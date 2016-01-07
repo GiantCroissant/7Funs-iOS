@@ -239,6 +239,8 @@ class RecipeManager: NSObject {
             .subscribeOn(scheduler)
             .subscribe(
                 onNext: { res in
+
+                    // TODO: need some refactor
                     if let mark = res.mark where mark == "favorite", let recipeId = res.markableId {
                         self.updateFavoriteRecordToDB(recipeId, favorite: true)
                         dispatch_async(dispatch_get_main_queue()) {
@@ -277,7 +279,6 @@ class RecipeManager: NSObject {
             try! realm.write {
                 recipe.favorite = favorite
             }
-            dLog("recipe.favorite = \(recipe.favorite)")
         }
     }
 
