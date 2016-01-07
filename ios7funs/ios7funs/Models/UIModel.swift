@@ -69,6 +69,18 @@ class QuestionUIModel {
 
 // TODO:
 class AnswerUIModel {
+    var id: Int
+    var userId: Int
+    var title: String
+    var comment: String
+    var updatedAt: String
 
+    init(json: MessageWithCommentJsonObject) {
+        self.id = json.id
+        self.userId = json.userId
+        self.title = json.title
+        self.comment = json.comment
+        self.updatedAt = json.updatedAt
+    }
 }
 

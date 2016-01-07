@@ -32,7 +32,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rWs-Ij-oq9" id="OsE-Fa-aRN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iyd-ig-EcJ" userLabel="Profile">
@@ -196,7 +196,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="61" height="61"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="ISq-TK-dLU" secondAttribute="trailing" id="3bR-bw-NTR"/>
                                                 <constraint firstItem="ISq-TK-dLU" firstAttribute="leading" secondItem="NAT-Ck-Sni" secondAttribute="leading" id="Kp0-Yo-2d7"/>
@@ -207,19 +207,19 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mark Wu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5o-dr-mPE">
-                                            <rect key="frame" x="153" y="79" width="69" height="20"/>
+                                            <rect key="frame" x="153" y="79" width="69" height="19.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <color key="textColor" red="1" green="0.50196078431372548" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我想詢問紅豆湯的問題" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBJ-kh-PrP">
-                                            <rect key="frame" x="97" y="105" width="180" height="22"/>
+                                            <rect key="frame" x="97" y="104.5" width="180" height="21.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="紅豆湯要怎麼煮才好吃呢？每次做都失敗～好苦惱啊～" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tug-Zy-K6j">
-                                            <rect key="frame" x="24" y="133" width="327" height="41"/>
+                                            <rect key="frame" x="24" y="132" width="327" height="41"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -243,7 +243,7 @@
                                         <rect key="frame" x="0.0" y="228" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pQx-ZZ-KGz" id="grd-MY-JeH">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -326,6 +326,7 @@
                     </view>
                     <connections>
                         <outlet property="btnSend" destination="IpM-N3-nBg" id="z29-Wu-10j"/>
+                        <outlet property="imgUser" destination="ISq-TK-dLU" id="v4X-5T-W1C"/>
                         <outlet property="inputBG" destination="haD-HO-dmn" id="FON-bp-fp4"/>
                         <outlet property="inputBarHeight" destination="Qnh-tD-75x" id="V3i-tG-3vz"/>
                         <outlet property="inputPlaceholder" destination="a7F-SN-Woc" id="Lum-ha-UFJ"/>

@@ -47,6 +47,10 @@ class QandAViewController: UIViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         navigationItem.title = ""
+
+        let detailVC = segue.destinationViewController as! QandADetailViewController
+        let row = (sender?.tag)!
+        detailVC.question = questions[row]
     }
 }
 
@@ -63,6 +67,7 @@ extension QandAViewController: UITableViewDataSource {
 
         let question = questions[indexPath.row]
         cell.setupViews(question)
+        cell.tag = indexPath.row
 
         return cell
     }

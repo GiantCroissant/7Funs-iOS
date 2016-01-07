@@ -10,6 +10,7 @@ import UIKit
 
 class QandADetailViewController: UIViewController {
 
+    @IBOutlet weak var imgUser: UIImageView!
     @IBOutlet weak var inputPlaceholder: UILabel!
     @IBOutlet weak var tableAnswers: UITableView!
     @IBOutlet weak var btnSend: UIButton!
@@ -20,6 +21,8 @@ class QandADetailViewController: UIViewController {
     @IBOutlet weak var inputBarHeight: NSLayoutConstraint!
     @IBOutlet var bottomConstraints: [NSLayoutConstraint]!
     @IBOutlet var inputBarHeightConstraints: [NSLayoutConstraint]!
+
+    var question: QuestionUIModel!
 
     // MARK: - For Dynamic Input Bar
     let inputMaxLineCount: CGFloat = 5
@@ -34,24 +37,28 @@ class QandADetailViewController: UIViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
         self.title = "回覆問題"
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupKeyboardObservers()
 
+        imgUser.configureToCircularView()
         configureInputBar()
         configureSendButton()
         configureInputTextView()
         configureTableView()
+
+        QandAManager.sharedInstance.fetchAnswers(question.id,
+            onComplete: { answers in
+                dLog("answers = \(answers)")
+            }
+        )
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 

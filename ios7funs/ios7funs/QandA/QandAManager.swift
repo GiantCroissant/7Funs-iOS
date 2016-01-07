@@ -31,16 +31,12 @@ class QandAManager {
             .subscribeOn(scheduler)
             .subscribe(
                 onNext: { response in
-
-
                     for questionJson in response.collections {
-
                         dLog("Json = \(questionJson)")
 
                         let question = QuestionUIModel(json: questionJson)
                         questions.append(question)
                     }
-
                 },
                 onError: { error in
                     dispatch_async(dispatch_get_main_queue()) {
@@ -50,6 +46,44 @@ class QandAManager {
                 onCompleted: {
                     dispatch_async(dispatch_get_main_queue()) {
                         onComplete(questions)
+                    }
+                },
+                onDisposed: {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onFinished()
+                    }
+                }
+            )
+            .addDisposableTo(disposeBag)
+    }
+
+    func fetchAnswers(questionId: Int,
+        onComplete: ([AnswerUIModel] -> Void) = { _ in },
+        onError: (ErrorType -> Void) = { _ in },
+        onFinished: (() -> Void) = {}) {
+
+        var answers = [AnswerUIModel]()
+        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+        let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
+        self.restApiProvider
+            .request(.CommentsOfSpecificMessage(questionId))
+            .mapSuccessfulHTTPToObject(MessageSpecificJsonObject)
+            .subscribeOn(scheduler)
+            .subscribe(
+                onNext: { response in
+                    for comment in response.comments {
+                        let answer = AnswerUIModel(json: comment)
+                        answers.append(answer)
+                    }
+                },
+                onError: { error in
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onError(error)
+                    }
+                },
+                onCompleted: {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onComplete(answers)
                     }
                 },
                 onDisposed: {
