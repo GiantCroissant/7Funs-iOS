@@ -17,16 +17,28 @@ class QandANewQuestionViewController: UIViewController {
     @IBOutlet weak var contentBottomConstraint: NSLayoutConstraint!
 
     @IBAction func onAddQuestionClick(sender: UIButton) {
-        let subject = self.subject.text!
-        let content = self.content.text!
+        if let token = LoginManager.token {
+            let subject = self.subject.text!
+            let content = self.content.text!
+            if subject.isEmpty || content.isEmpty {
+                self.showPostQuestionFailedAlertView()
+                return
+            }
 
-        dLog("send http post question subject [\(subject)] content [\(content)] ")
+            // TODO: handle Error
+            self.showToastIndicator()
+            QandAManager.sharedInstance.postQuestion(token, title: subject, description: content,
+                onComplete: {
+                    self.hideToastIndicator()
+                    self.showPostQuestionSuccessAlertView(onClickOK: {
+                        self.navigationController?.popViewControllerAnimated(true)
+                    })
+                }
+            )
 
-        // TODO: send http post question
-        // TODO: when finished close this page
-
-        // FIXME: Test
-        self.navigationController?.popViewControllerAnimated(true)
+        } else {
+            LoginManager.sharedInstance.showLoginViewController(self)
+        }
     }
 
     override func viewDidLoad() {

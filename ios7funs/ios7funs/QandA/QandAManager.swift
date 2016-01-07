@@ -32,8 +32,6 @@ class QandAManager {
                 .subscribe(
                     onNext: { response in
                         for questionJson in response.collections {
-                            dLog("Json = \(questionJson)")
-
                             let question = QuestionUIModel(json: questionJson)
                             questions.append(question)
                         }
@@ -111,6 +109,41 @@ class QandAManager {
 
                         dLog("res = \(response)")
 
+                    },
+                    onError: { error in
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onError(error)
+                        }
+                    },
+                    onCompleted: {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onComplete()
+                        }
+                    },
+                    onDisposed: {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onFinished()
+                        }
+                    }
+                )
+                .addDisposableTo(disposeBag)
+    }
+
+
+    func postQuestion(token: String, title: String, description: String,
+        onComplete: (() -> Void) = { _ in },
+        onError: (ErrorType -> Void) = { _ in },
+        onFinished: (() -> Void) = {}) {
+
+            let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+            let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
+            self.restApiProvider
+                .request(RestApi.CreateMessage(token: token, title: title, description: description))
+                .mapSuccessfulHTTPToObject(MessageCreateResultJsonObject)
+                .subscribeOn(scheduler)
+                .subscribe(
+                    onNext: { response in
+                        dLog("res = \(response)")
                     },
                     onError: { error in
                         dispatch_async(dispatch_get_main_queue()) {

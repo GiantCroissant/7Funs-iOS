@@ -15,7 +15,13 @@ class QandAViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.title = "美食問與答"
+        self.showToastIndicator()
         QandAManager.sharedInstance.fetchQuestions(
             onComplete: { questions -> Void in
                 dLog("questions.count = \(questions.count)")
@@ -28,21 +34,17 @@ class QandAViewController: UIViewController {
 
             },
             onFinished: {
-
+                self.hideToastIndicator()
             }
         )
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
-        self.title = "美食問與答"
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
         self.showNavigationBar()
+
+
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
