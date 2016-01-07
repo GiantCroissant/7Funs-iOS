@@ -28,9 +28,9 @@ extension Observable {
         switch decoded {
         case .Success(let result):
             return result as? T
+
         case .Failure(let error):
-            //log.error("\(error)")
-            print("\(error)")
+            dLog("\(error)")
             return nil
         }
     }
@@ -56,8 +56,11 @@ extension Observable {
                 }
 
                 print("before parsing json = \(json)")
+                if let result = self.resultFromJSON(json, classType:type) {
+                    return result
+                }
 
-                return self.resultFromJSON(json, classType:type)!
+                throw ORMError.ORMCouldNotMakeObjectError
 
             } catch {
                 throw ORMError.ORMCouldNotMakeObjectError

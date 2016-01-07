@@ -40,6 +40,41 @@ class QandADetailViewController: UIViewController {
 
     var answers = [AnswerUIModel]()
 
+    @IBAction func onSendClick(sender: UIButton) {
+        // TODO: send answer to server
+        let questionId = question.id
+        let answer = textInput.text
+        if let token = LoginManager.token {
+
+            // TODO: handle Error
+            self.showToastIndicator()
+            QandAManager.sharedInstance.postAnswer(questionId, answer: answer, token: token,
+                onComplete: {
+                    self.hideToastIndicator()
+                }
+            )
+
+
+//            RecipeManager.sharedInstance.addOrRemoveFavorite(recipeId, token: token,
+//                onComplete: { favorite in
+//                    let uiRecipe = self.recipes[sender.row]
+//                    uiRecipe.favorite = favorite
+//                    self.tableRecipes.reloadData()
+//
+//                    let recipeName = uiRecipe.title
+//                    let msg = favorite ? "\(recipeName) : 加入收藏" : "\(recipeName) : 取消收藏"
+//                    self.view.makeToast(msg, duration: 1, position: .Top)
+//                    self.hideToastIndicator()
+//                }
+//            )
+
+        } else {
+            LoginManager.sharedInstance.showLoginViewController(self)
+        }
+
+
+    }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.title = "回覆問題"

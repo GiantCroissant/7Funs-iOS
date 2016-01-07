@@ -266,6 +266,9 @@
                                         <state key="normal" title="送出">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onSendClick:" destination="VZG-8z-zgy" eventType="touchUpInside" id="qQh-Do-f4M"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="haD-HO-dmn" userLabel="Input BG">
                                         <rect key="frame" x="11" y="9" width="282" height="38"/>
