@@ -10,9 +10,6 @@ import UIKit
 
 class RecipeTableViewCell: UITableViewCell {
 
-    //    // FIXME: should load from db
-    //    var added = false
-
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var imgFood: UIImageView!
     @IBOutlet weak var btnAddCollection: UIButton!
@@ -30,20 +27,16 @@ class RecipeTableViewCell: UITableViewCell {
         if (imgFood.tag != recipeId) {
             imgFood.image = nil
         }
-
-
         imgFood.tag = recipeId
+
         labelTitle.text = title
 
         RecipeManager.sharedInstance.loadFoodImage(recipeId, imageName: imageName) { image, recipeId, fadeIn in
-
             if (recipeId != self.imgFood.tag) {
                 return
             }
-
             self.imgFood.image = image
             self.imgFood.alpha = 1
-
             if fadeIn {
                 self.imgFood.alpha = 0
                 UIView.animateWithDuration(0.3) {
