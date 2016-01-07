@@ -153,19 +153,6 @@ class RecipeManager: NSObject {
         }
     }
 
-//    func fetchMoreRecipes() {
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-//            autoreleasepool {
-//                let realm = try! Realm()
-//                let recipesOverviews = realm.objects(RecipesOverview)
-//                if recipesOverviews.count > 0 {
-//                    let ids = recipesOverviews.map { x in x.id }
-//                    self.fetchRecipesInChunks(ids)
-//                }
-//            }
-//        }
-//    }
-
     func fetchMoreRecipes(onComplete onComplete: (() -> Void) = {},
         onError: (ErrorType -> Void) = { _ in },
         onFinished: (() -> Void) = {}) {
