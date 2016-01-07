@@ -25,15 +25,14 @@ class QandADetailViewController: UIViewController {
     var question: QuestionUIModel!
 
     // MARK: - For Dynamic Input Bar
+    // ---------------------------------------
     let inputMaxLineCount: CGFloat = 5
     let inputTextSize: CGFloat = 17
     var inputBarMaxHeight: CGFloat = 0
     var inputBarFrameHeight: CGFloat = 0
+    // ---------------------------------------
 
-    // TODO: - Remove fake data
-    let data = [
-        "a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a",
-    ]
+    var answers = [AnswerUIModel]()
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -52,7 +51,7 @@ class QandADetailViewController: UIViewController {
 
         QandAManager.sharedInstance.fetchAnswers(question.id,
             onComplete: { answers in
-                dLog("answers = \(answers)")
+                self.answers = answers
             }
         )
     }
@@ -201,12 +200,11 @@ extension QandADetailViewController: UITextViewDelegate {
 extension QandADetailViewController: UITableViewDataSource {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return answers.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("id_cell_answer", forIndexPath: indexPath)
-//        cell.textLabel!.text = data[indexPath.row]
         return cell
     }
 
