@@ -225,7 +225,11 @@ class RecipeManager: NSObject {
         }
     }
 
-    func addOrRemoveFavorite(recipeId: Int, token: String) {
+    func addOrRemoveFavorite(recipeId: Int, token: String,
+        onComplete: (() -> Void) = {},
+        onError: (ErrorType -> Void) = { _ in },
+        onFinished: (() -> Void) = {}) {
+
         let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
         let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
         let restApi = RestApi.AddRemoveFavorite(id: recipeId, token: token)
@@ -235,28 +239,35 @@ class RecipeManager: NSObject {
             .subscribeOn(scheduler)
             .subscribe(
                 onNext: { res in
-                    if let mark = res.mark where mark == "favorite" {
+                    if let mark = res.mark where mark == "favorite", let recipeId = res.markableId {
+                        self.updateFavoriteRecordToDB(recipeId, favorite: true)
 
-                        dLog("resID = \(res)")
-
-                        self.writeFavoriteRecordToDB()
+                    } else {
+                        self.updateFavoriteRecordToDB(recipeId, favorite: false)
                     }
                 },
                 onError: { err in
                     dLog("err = \(err)")
+                    onError(err)
                 },
                 onCompleted: {
-
+                    onComplete()
                 },
                 onDisposed: {
-
+                    onFinished()
                 }
             )
             .addDisposableTo(disposeBag)
     }
 
-    private func writeFavoriteRecordToDB() {
-
+    private func updateFavoriteRecordToDB(recipeId: Int, favorite: Bool) {
+        let realm = try! Realm()
+        if let recipe = realm.objects(Recipe).filter("id = \(recipeId)").first {
+            try! realm.write {
+                recipe.favorite = favorite
+            }
+            dLog("recipe.favorite = \(recipe.favorite)")
+        }
     }
 
     private func convertToModel(jsonObj: RecipesJsonObject) -> Recipe {

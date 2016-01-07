@@ -28,6 +28,7 @@ class RecipeTableViewCell: UITableViewCell {
         let recipeId = recipe.id
         let imageName = recipe.imageName
         let title = recipe.title
+        let favorite = recipe.favorite
 
         imgFood.image = nil
         imgFood.tag = recipeId
@@ -50,20 +51,13 @@ class RecipeTableViewCell: UITableViewCell {
             }
         }
 
+        configureFavoriteButton(favorite)
     }
 
-    // TODO: change icon when add to favorite success
-    
-    //    // FIXME: should write data or delete this function here
-    //    @IBAction func onAddButtonClick(sender: UIButton) {
-    //        added = !added
-    //        if added {
-    //            let image = UIImage(named: "icon_love_m_pink")
-    //            sender.setImage(image, forState: .Normal)
-    //
-    //        } else {
-    //            let image = UIImage(named: "icon_love_m")
-    //            sender.setImage(image, forState: .Normal)
-    //        }
-    //    }
+    private func configureFavoriteButton(favorite: Bool) {
+        let imageName = favorite ? "icon_love_m_pink" : "icon_love_m"
+        let image = UIImage(named: imageName)
+        btnAddCollection.setImage(image, forState: .Normal)
+    }
+
 }
