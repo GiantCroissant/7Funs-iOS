@@ -35,6 +35,9 @@ class RecipeManager: NSObject {
         )
 
         switch target {
+        case .AddRemoveFavorite(_, let token):
+            return endpoint.endpointByAddingHTTPHeaderFields(["Authorization": "Bearer \(token)"])
+
         case .LogOut(let token):
             return endpoint.endpointByAddingHTTPHeaderFields(["Authorization": "Bearer: \(token)"])
 
@@ -233,6 +236,33 @@ class RecipeManager: NSObject {
             }
             try! realm.commitWrite()
         }
+    }
+
+    func addOrRemoveFavorite(recipeId: Int) {
+        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+        let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
+
+        let token = LoginManager.token
+        let restApi = RestApi.AddRemoveFavorite(id: recipeId, token: token!)
+        self.restApiProvider
+            .request(restApi)
+            .mapSuccessfulHTTPToObject(RecipesAddRemoveFavoriteJsonObject)
+            .subscribeOn(scheduler)
+            .subscribe(
+                onNext: { res in
+                    dLog("res = \(res)")
+                },
+                onError: { err in
+                    dLog("err = \(err)")
+                },
+                onCompleted: {
+
+                },
+                onDisposed: {
+
+                }
+            )
+            .addDisposableTo(disposeBag)
     }
 
     private func convertToModel(jsonObj: RecipesJsonObject) -> Recipe {
