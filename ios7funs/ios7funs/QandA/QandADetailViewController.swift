@@ -11,11 +11,17 @@ import UIKit
 class QandADetailViewController: UIViewController {
 
     @IBOutlet weak var imgUser: UIImageView!
+    @IBOutlet weak var lblUserName: UILabel!
+    @IBOutlet weak var lblQuestionTitle: UILabel!
+    @IBOutlet weak var lblDescription: UILabel!
+
+    // ---------------------------------------
     @IBOutlet weak var inputPlaceholder: UILabel!
     @IBOutlet weak var tableAnswers: UITableView!
     @IBOutlet weak var btnSend: UIButton!
     @IBOutlet weak var textInput: UITextView!
     @IBOutlet weak var inputBG: UIView!
+    // ---------------------------------------
 
     // MARK: - Layout Constraints
     @IBOutlet weak var inputBarHeight: NSLayoutConstraint!
@@ -42,6 +48,11 @@ class QandADetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKeyboardObservers()
+
+        lblUserName.text = question.username
+        lblQuestionTitle.text = question.title
+        lblDescription.text = question.description
+
 
         imgUser.configureToCircularView()
         configureInputBar()

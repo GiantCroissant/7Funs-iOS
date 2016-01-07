@@ -330,6 +330,9 @@
                         <outlet property="inputBG" destination="haD-HO-dmn" id="FON-bp-fp4"/>
                         <outlet property="inputBarHeight" destination="Qnh-tD-75x" id="V3i-tG-3vz"/>
                         <outlet property="inputPlaceholder" destination="a7F-SN-Woc" id="Lum-ha-UFJ"/>
+                        <outlet property="lblDescription" destination="tug-Zy-K6j" id="H0d-v3-lH9"/>
+                        <outlet property="lblQuestionTitle" destination="XBJ-kh-PrP" id="ETH-41-Za3"/>
+                        <outlet property="lblUserName" destination="n5o-dr-mPE" id="4Ty-Id-Njz"/>
                         <outlet property="tableAnswers" destination="hiH-EI-UI8" id="Ia1-UJ-h7g"/>
                         <outlet property="textInput" destination="JSL-bC-hlj" id="8An-Eh-ZqA"/>
                         <outletCollection property="bottomConstraints" destination="l3j-dY-z0d" collectionClass="NSMutableArray" id="JfO-J6-gFG"/>

@@ -48,9 +48,13 @@ class QandAViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         navigationItem.title = ""
 
-        let detailVC = segue.destinationViewController as! QandADetailViewController
-        let row = (sender?.tag)!
-        detailVC.question = questions[row]
+        // FIXME: check add question or reply answer
+        let vc = segue.destinationViewController
+        if vc.title == "Reply Question" {
+            let detailVC = vc as! QandADetailViewController
+            let row = (sender?.tag)!
+            detailVC.question = questions[row]
+        }
     }
 }
 
