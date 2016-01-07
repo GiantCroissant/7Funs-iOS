@@ -14,14 +14,14 @@ class RecipeUIModel {
     var imageName: String = ""
     var title: String = ""
     var hits: Int = 0
-
-    var added: Bool = false
+    var favorite: Bool = false
 
     init(dbData: Recipe) {
         self.id = dbData.id
         self.imageName = dbData.image
         self.title = dbData.title
         self.hits = dbData.hits
+        
     }
 
 }

@@ -235,7 +235,12 @@ class RecipeManager: NSObject {
             .subscribeOn(scheduler)
             .subscribe(
                 onNext: { res in
-                    dLog("res = \(res)")
+                    if let mark = res.mark where mark == "favorite" {
+
+                        dLog("resID = \(res)")
+
+                        self.writeFavoriteRecordToDB()
+                    }
                 },
                 onError: { err in
                     dLog("err = \(err)")
@@ -248,6 +253,10 @@ class RecipeManager: NSObject {
                 }
             )
             .addDisposableTo(disposeBag)
+    }
+
+    private func writeFavoriteRecordToDB() {
+
     }
 
     private func convertToModel(jsonObj: RecipesJsonObject) -> Recipe {

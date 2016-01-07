@@ -97,8 +97,6 @@ extension RecipesViewController: UITableViewDataSource {
     @IBAction func onAddToCollectionClick(sender: UIButton) {
         if let token = LoginManager.token {
             let recipeId = sender.tag
-            dLog("recipeId = \(recipeId)")
-
             RecipeManager.sharedInstance.addOrRemoveFavorite(recipeId, token: token)
 
         } else {

@@ -54,7 +54,11 @@ extension Observable {
                 guard let json = try NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [String: AnyObject] else {
                     throw ORMError.ORMCouldNotMakeObjectError
                 }
+
+                print("before parsing json = \(json)")
+
                 return self.resultFromJSON(json, classType:type)!
+
             } catch {
                 throw ORMError.ORMCouldNotMakeObjectError
             }

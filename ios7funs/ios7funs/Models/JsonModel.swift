@@ -50,7 +50,7 @@ public struct RecipesOverviewJsonObject {
 public struct RecipesAddRemoveFavoriteJsonObject {
     public let mark: String?
     public let markableId: Int?
-    public let markableType: Int?
+    public let markableType: String?
     public let markerId: Int?
     public let markerType: String?
     public let createdAt: String?
@@ -285,18 +285,27 @@ extension RecipesOverviewJsonObject : Decodable {
     }
 }
 
+/*
+public let mark: String?
+public let markableId: Int?
+public let markableType: Int?
+public let markerId: Int?
+public let markerType: String?
+public let createdAt: String?
+public let id: Int?
+*/
 
 extension RecipesAddRemoveFavoriteJsonObject : Decodable {
     public static func decode(j: JSON) -> Decoded<RecipesAddRemoveFavoriteJsonObject> {
         let f = curry(RecipesAddRemoveFavoriteJsonObject.init)
             <^> j <|? "mark"
-            <*> j <|? "markableId"
-            <*> j <|? "markableType"
+            <*> j <|? "markable_id"
+            <*> j <|? "marker_type"
         
         return f
-            <*> j <|? "markerId"
-            <*> j <|? "markerType"
-            <*> j <|? "createdAt"
+            <*> j <|? "marker_id"
+            <*> j <|? "marker_type"
+            <*> j <|? "created_at"
             <*> j <|? "id"
     }
 }

@@ -24,6 +24,9 @@ public class Recipe : Object {
     dynamic var hits = 0
     dynamic var createdAt = ""
     dynamic var updatedAt = ""
+
+    // Add favorite property : 2016.1.7
+    dynamic var favorite = false
     
     public override static func primaryKey() -> String? {
         return "id"
