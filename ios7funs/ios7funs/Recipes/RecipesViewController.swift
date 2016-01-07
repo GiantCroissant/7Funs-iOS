@@ -94,10 +94,16 @@ extension RecipesViewController: UITableViewDataSource {
 
     // FIXME: this func here just because I need to presnet login VC
     // maybe there's better way to refactor this func to tableCell class
-    @IBAction func onAddToCollectionClick(sender: UIButton) {
+    @IBAction func onAddToCollectionClick(sender: RecipeFavoriteButton) {
         if let token = LoginManager.token {
             let recipeId = sender.tag
-            RecipeManager.sharedInstance.addOrRemoveFavorite(recipeId, token: token)
+            RecipeManager.sharedInstance.addOrRemoveFavorite(recipeId, token: token,
+                onComplete: { favorite in
+                    let uiRecipe = self.recipes[sender.row]
+                    uiRecipe.favorite = favorite
+                    self.tableRecipes.reloadData()
+                }
+            )
 
         } else {
             LoginManager.sharedInstance.showLoginViewController(self)
@@ -111,14 +117,22 @@ extension RecipesViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("idRecipeCell", forIndexPath: indexPath) as! RecipeTableViewCell
 
-
         let recipe = recipes[indexPath.row]
         cell.recipe = recipe
-        cell.btnAddCollection.tag = recipe.id
+        cell.updateCell()
+
+        let favoriteButton = cell.btnAddCollection as! RecipeFavoriteButton
+        favoriteButton.tag = recipe.id
+        favoriteButton.row = indexPath.row
+
         cell.btnFood.tag = indexPath.row
 
         return cell
     }
+}
+
+class RecipeFavoriteButton: UIButton {
+    var row: Int = 0
 }
 
 // MARK: - UITableViewDelegate

@@ -226,7 +226,7 @@ class RecipeManager: NSObject {
     }
 
     func addOrRemoveFavorite(recipeId: Int, token: String,
-        onComplete: (() -> Void) = {},
+        onComplete: ((Bool) -> Void) = { _ in },
         onError: (ErrorType -> Void) = { _ in },
         onFinished: (() -> Void) = {}) {
 
@@ -241,20 +241,31 @@ class RecipeManager: NSObject {
                 onNext: { res in
                     if let mark = res.mark where mark == "favorite", let recipeId = res.markableId {
                         self.updateFavoriteRecordToDB(recipeId, favorite: true)
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onComplete(true)
+                        }
 
                     } else {
                         self.updateFavoriteRecordToDB(recipeId, favorite: false)
+
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onComplete(false)
+                        }
                     }
                 },
                 onError: { err in
                     dLog("err = \(err)")
-                    onError(err)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onError(err)
+                    }
                 },
                 onCompleted: {
-                    onComplete()
+
                 },
                 onDisposed: {
-                    onFinished()
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onFinished()
+                    }
                 }
             )
             .addDisposableTo(disposeBag)

@@ -18,13 +18,9 @@ class RecipeTableViewCell: UITableViewCell {
     @IBOutlet weak var btnAddCollection: UIButton!
     @IBOutlet weak var btnFood: UIButton!
 
-    var recipe: RecipeUIModel! {
-        didSet {
-            configureRecipeCell()
-        }
-    }
-
-    private func configureRecipeCell() {
+    var recipe: RecipeUIModel!
+    
+    func updateCell() {
         let recipeId = recipe.id
         let imageName = recipe.imageName
         let title = recipe.title
@@ -55,6 +51,8 @@ class RecipeTableViewCell: UITableViewCell {
     }
 
     private func configureFavoriteButton(favorite: Bool) {
+        dLog("recipeId = \(recipe.id) : favorite: \(favorite)")
+
         let imageName = favorite ? "icon_love_m_pink" : "icon_love_m"
         let image = UIImage(named: imageName)
         btnAddCollection.setImage(image, forState: .Normal)
