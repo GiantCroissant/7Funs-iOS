@@ -33,9 +33,9 @@ class CollectionVideoTutorialViewController: UIViewController {
     }
 
     func setupFoodImage() {
-        let imageId = recipe.imageId
+        let recipeId = recipe.id
         let imageName = recipe.imageName
-        RecipeManager.sharedInstance.loadFoodImage(imageId, imageName: imageName) { image, imageId, fadeIn in
+        RecipeManager.sharedInstance.loadFoodImage(recipeId, imageName: imageName) { image, recipeId, fadeIn in
             self.imageFood.image = image
         }
     }

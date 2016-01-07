@@ -92,9 +92,14 @@ extension RecipesViewController {
 // MARK: - UITableViewDataSource
 extension RecipesViewController: UITableViewDataSource {
 
+    // FIXME: this func here just because I need to presnet login VC
+    // maybe there's better way to refactor this func to tableCell class
     @IBAction func onAddToCollectionClick(sender: UIButton) {
         if let token = LoginManager.token {
-            dLog("token = \(token)")
+            let recipeId = sender.tag
+            dLog("recipeId = \(recipeId)")
+
+            RecipeManager.sharedInstance.addOrRemoveFavorite(recipeId, token: token)
 
         } else {
             LoginManager.sharedInstance.showLoginViewController(self)
@@ -107,15 +112,20 @@ extension RecipesViewController: UITableViewDataSource {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("idRecipeCell", forIndexPath: indexPath) as! RecipeTableViewCell
+
+
+        let recipe = recipes[indexPath.row]
+        cell.recipe = recipe
+        cell.btnAddCollection.tag = recipe.id
         cell.btnFood.tag = indexPath.row
-        cell.recipe = recipes[indexPath.row]
+
         return cell
     }
 }
 
 // MARK: - UITableViewDelegate
 extension RecipesViewController: UITableViewDelegate {
-    
+
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         let distFromBottom = scrollView.contentSize.height - scrollView.contentOffset.y
         if (distFromBottom <= scrollView.frame.height) {

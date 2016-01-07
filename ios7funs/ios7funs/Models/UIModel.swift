@@ -10,7 +10,7 @@ import Foundation
 
 class RecipeUIModel {
 
-    var imageId: Int = 0
+    var id: Int = 0
     var imageName: String = ""
     var title: String = ""
     var hits: Int = 0
@@ -18,7 +18,7 @@ class RecipeUIModel {
     var added: Bool = false
 
     init(dbData: Recipe) {
-        self.imageId = dbData.id
+        self.id = dbData.id
         self.imageName = dbData.image
         self.title = dbData.title
         self.hits = dbData.hits
@@ -29,9 +29,9 @@ class RecipeUIModel {
 extension RecipeUIModel {
 
     func loadFoodImage(completionHandler: (UIImage?) -> Void) {
-        let imageId = self.imageId
+        let recipeId = self.id
         let imageName = self.imageName
-        RecipeManager.sharedInstance.loadFoodImage(imageId, imageName: imageName) { image, imageId, fadeIn in
+        RecipeManager.sharedInstance.loadFoodImage(recipeId, imageName: imageName) { image, recipeId, fadeIn in
             if let image = image {
                 completionHandler(image)
             }

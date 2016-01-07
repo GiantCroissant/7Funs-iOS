@@ -39,7 +39,9 @@ class ImageLoader {
         onLoaded(image: image)
     }
 
-    func loadImage(imageName: String, url: String, completionHandler:(image: UIImage?, imageName: String, fadeIn: Bool) -> ()) {
+    func loadImage(imageName: String, url: String,
+        completionHandler:(image: UIImage?, imageName: String, fadeIn: Bool) -> ()) {
+            
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
 
             if let image = ImageCache.sharedCache.objectForKey(imageName) as? UIImage {

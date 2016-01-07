@@ -25,17 +25,17 @@ class RecipeTableViewCell: UITableViewCell {
     }
 
     private func configureRecipeCell() {
-        let imageId = recipe.imageId
+        let recipeId = recipe.id
         let imageName = recipe.imageName
         let title = recipe.title
 
         imgFood.image = nil
-        imgFood.tag = imageId
+        imgFood.tag = recipeId
         labelTitle.text = title
 
-        RecipeManager.sharedInstance.loadFoodImage(imageId, imageName: imageName) { image, imageId, fadeIn in
+        RecipeManager.sharedInstance.loadFoodImage(recipeId, imageName: imageName) { image, recipeId, fadeIn in
 
-            if (imageId != self.imgFood.tag) {
+            if (recipeId != self.imgFood.tag) {
                 return
             }
 
@@ -52,6 +52,8 @@ class RecipeTableViewCell: UITableViewCell {
 
     }
 
+    // TODO: change icon when add to favorite success
+    
     //    // FIXME: should write data or delete this function here
     //    @IBAction func onAddButtonClick(sender: UIButton) {
     //        added = !added

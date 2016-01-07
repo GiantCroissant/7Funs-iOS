@@ -67,10 +67,10 @@ class RecipeManager: NSObject {
         }
     }
 
-    func loadFoodImage(imageId: Int, imageName: String, completionHandler:(image: UIImage?, imageId: Int, fadeIn: Bool) -> ()) {
-        let imageUrl = recipeImageBaseUrl + String(imageId) + "/" + imageName
+    func loadFoodImage(recipeId: Int, imageName: String, completionHandler:(image: UIImage?, recipeId: Int, fadeIn: Bool) -> ()) {
+        let imageUrl = recipeImageBaseUrl + String(recipeId) + "/" + imageName
         ImageLoader.sharedInstance.loadImage(imageName, url: imageUrl) { image, imageName, fadeIn in
-            completionHandler(image: image, imageId: imageId, fadeIn: fadeIn)
+            completionHandler(image: image, recipeId: recipeId, fadeIn: fadeIn)
         }
     }
 
@@ -225,12 +225,10 @@ class RecipeManager: NSObject {
         }
     }
 
-    func addOrRemoveFavorite(recipeId: Int) {
+    func addOrRemoveFavorite(recipeId: Int, token: String) {
         let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
         let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
-
-        let token = LoginManager.token
-        let restApi = RestApi.AddRemoveFavorite(id: recipeId, token: token!)
+        let restApi = RestApi.AddRemoveFavorite(id: recipeId, token: token)
         self.restApiProvider
             .request(restApi)
             .mapSuccessfulHTTPToObject(RecipesAddRemoveFavoriteJsonObject)
