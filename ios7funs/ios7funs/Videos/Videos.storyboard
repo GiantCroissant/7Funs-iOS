@@ -42,7 +42,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="353" height="108"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eMk-rB-rFh" id="v21-AG-L6g">
-                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="107"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="107.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kxr-M2-idC" userLabel="Food BG">

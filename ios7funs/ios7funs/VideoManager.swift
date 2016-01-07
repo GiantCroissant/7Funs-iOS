@@ -31,19 +31,19 @@ class VideoManager {
                 let videoObjs = realm.objects(Video)
                 for videoObj in videoObjs {
 
-                    // FIXME: workaround
-                    if (videos.count >= 100) {
-                        break
-                    }
-
-                    // FIXME: workaround , data has too many empty youtubeVideoID
-                    if videoObj.youtubeVideoCode.isEmpty {
-                        continue
-                    }
+//                    // FIXME: workaround
+//                    if (videos.count >= 100) {
+//                        break
+//                    }
+//
+//                    // FIXME: workaround , data has too many empty youtubeVideoID
+//                    if videoObj.youtubeVideoCode.isEmpty {
+//                        continue
+//                    }
 
                     let video = VideoUIModel(dbData: videoObj)
 
-                    dLog("video.youtubeId = \(video.youtubeVideoId)")
+//                    dLog("video.youtubeId = \(video.youtubeVideoId)")
 
                     videos.append(video)
                 }
@@ -180,6 +180,9 @@ class VideoManager {
     }
 
     func convertFromVideoJsonObject(videoJsonObject: VideoJsonObject) -> Video {
+
+        dLog("json = \(videoJsonObject)")
+
         let video = Video()
         video.updatedAt = videoJsonObject.updatedAt
         video.createdAt = videoJsonObject.createdAt

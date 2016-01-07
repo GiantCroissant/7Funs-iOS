@@ -25,7 +25,7 @@ class VideosViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        customizeTableDummy()
+        configureTableDummy()
 
         
 
@@ -56,7 +56,7 @@ class VideosViewController: UIViewController, UITableViewDataSource {
         self.showNavigationBar()
     }
 
-    func customizeTableDummy() {
+    func configureTableDummy() {
         let shadowPath = UIBezierPath(roundedRect: tableDummy.bounds, cornerRadius: 3)
 
         tableDummy.layer.cornerRadius = 3
