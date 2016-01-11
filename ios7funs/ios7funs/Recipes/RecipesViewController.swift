@@ -97,8 +97,7 @@ extension RecipesViewController: UITableViewDataSource {
         if let token = LoginManager.token {
             let recipeId = sender.tag
 
-            // TODO: handle Error
-            self.showToastIndicator()
+            UIUtils.showStatusBarNetworking()
             RecipeManager.sharedInstance.addOrRemoveFavorite(recipeId, token: token,
                 onComplete: { favorite in
                     let uiRecipe = self.recipes[sender.row]
@@ -108,7 +107,7 @@ extension RecipesViewController: UITableViewDataSource {
                     let recipeName = uiRecipe.title
                     let msg = favorite ? "\(recipeName) : 加入收藏" : "\(recipeName) : 取消收藏"
                     self.view.makeToast(msg, duration: 1, position: .Top)
-                    self.hideToastIndicator()
+                    UIUtils.hideStatusBarNetworking()
                 }
             )
 

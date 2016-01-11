@@ -64,6 +64,7 @@ class LoginViewController: UIViewController {
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+
         NSNotificationCenter.defaultCenter().removeObserver(self)
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
     }
@@ -113,7 +114,7 @@ extension LoginViewController {
         )
     }
 
-    private func keyboardWillHide(notification: NSNotification) {
+    func keyboardWillHide(notification: NSNotification) {
         let info = notification.userInfo!
         let animationDuration = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 
@@ -125,7 +126,7 @@ extension LoginViewController {
         }
     }
 
-    private func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(notification: NSNotification) {
         let info = notification.userInfo!
         let animationDuration = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
         let keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()

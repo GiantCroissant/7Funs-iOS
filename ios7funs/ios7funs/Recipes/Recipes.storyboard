@@ -542,9 +542,12 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uig-Y0-s2u" userLabel="Add View">
                                                                         <rect key="frame" x="297" y="0.0" width="56" height="48"/>
                                                                         <subviews>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I3V-2V-5Hn">
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I3V-2V-5Hn" userLabel="Add Fovarite">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="56" height="48"/>
                                                                                 <state key="normal" image="icon_love_m_pink"/>
+                                                                                <connections>
+                                                                                    <action selector="onAddFavoriteClick:" destination="5cF-RS-soK" eventType="touchUpInside" id="f5G-xz-EmW"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -713,6 +716,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnAddFavorite" destination="I3V-2V-5Hn" id="lxe-Ar-uU7"/>
                         <outlet property="foodTitle" destination="qgF-pY-7sV" id="lL7-GX-xox"/>
                         <outlet property="imgFood" destination="YJK-a9-vOa" id="E2b-oJ-bMU"/>
                         <outlet property="labelFoodTitle" destination="7Gm-gd-ZaD" id="tZG-1K-aRx"/>

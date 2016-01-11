@@ -11,13 +11,35 @@ import UIKit
 class RecipeTutorialViewController: UIViewController {
 
     let headerImageHeight: CGFloat = 211
+    var blurView: UIVisualEffectView!
+    var recipe: RecipeUIModel!
 
+    @IBOutlet weak var btnAddFavorite: UIButton!
     @IBOutlet weak var imgFood: UIImageView!
     @IBOutlet weak var labelFoodTitle: UILabel!
     @IBOutlet weak var foodTitle: UILabel!
+    
+    @IBAction func onAddFavoriteClick(sender: UIButton) {
+        if let token = LoginManager.token {
+            let recipeId = recipe.id
 
-    var blurView: UIVisualEffectView!
-    var recipe: RecipeUIModel!
+            UIUtils.showStatusBarNetworking()
+            RecipeManager.sharedInstance.addOrRemoveFavorite(recipeId, token: token,
+                onComplete: { favorite in
+
+                    let recipeName = self.recipe.title
+                    let msg = favorite ? "\(recipeName) : 加入收藏" : "\(recipeName) : 取消收藏"
+                    self.view.makeToast(msg, duration: 1, position: .Top)
+
+                    UIUtils.hideStatusBarNetworking()
+                }
+            )
+
+        } else {
+            LoginManager.sharedInstance.showLoginViewController(self)
+        }
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +57,14 @@ class RecipeTutorialViewController: UIViewController {
         imgFood.addSubview(blurView)
 
         foodTitle.text = recipe.title
+
+        configureFavoriteButton(recipe.favorite)
+    }
+
+    private func configureFavoriteButton(favorite: Bool) {
+        let imageName = favorite ? "icon_love_m_pink" : "icon_love_m"
+        let image = UIImage(named: imageName)
+        btnAddFavorite.setImage(image, forState: .Normal)
     }
 
 }
