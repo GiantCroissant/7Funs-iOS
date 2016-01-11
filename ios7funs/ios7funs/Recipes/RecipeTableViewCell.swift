@@ -11,9 +11,11 @@ import UIKit
 class RecipeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var lblInformation: UILabel!
     @IBOutlet weak var imgFood: UIImageView!
     @IBOutlet weak var btnAddCollection: UIButton!
     @IBOutlet weak var btnFood: UIButton!
+
 
     var recipe: RecipeUIModel!
     
@@ -46,6 +48,13 @@ class RecipeTableViewCell: UITableViewCell {
         }
 
         configureFavoriteButton(favorite)
+        configureInformation()
+    }
+
+    func configureInformation() {
+        let collectedCount = recipe.collectedCount
+        let hits = recipe.hits
+        lblInformation.text = "\(collectedCount)人收藏，\(hits)人看過"
     }
 
     private func configureFavoriteButton(favorite: Bool) {
