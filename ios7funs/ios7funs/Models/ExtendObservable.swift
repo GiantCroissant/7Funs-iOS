@@ -36,7 +36,7 @@ extension Observable {
     }
     
     func mapSuccessfulHTTPToObject<T: Decodable>(type: T.Type,
-        onHTTPFail: ((T?) -> Void) = { _ in }) -> Observable<T> {
+        onHTTPFail: ((ErrorResultJsonObject?) -> Void) = { _ in }) -> Observable<T> {
         return map { representor in
             guard let response = representor as? RxMoya.Response else {
                 throw ORMError.ORMNoRepresentor
@@ -44,11 +44,13 @@ extension Observable {
 
             // TODO: need this guard ?
             guard ((200...209) ~= response.statusCode) else {
-                if let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [String: AnyObject] {
-                    print(json)
+                dLog("[ HTTP failed ] statusCode = \(response.statusCode)")
 
-                    onHTTPFail(self.resultFromJSON(json!, classType: type))
+                if let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [String: AnyObject] {
+                    dLog("can be parse to json = \(json)")
+                    onHTTPFail(self.resultFromJSON(json!, classType: ErrorResultJsonObject.self))
                 }
+
                 throw ORMError.ORMNotSuccessfulHTTP
             }
 

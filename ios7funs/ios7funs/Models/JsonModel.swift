@@ -225,7 +225,12 @@ public struct ErrorResultDataJsonObject {
 public struct ErrorResultJsonObject {
     public let success: Bool
     public let info: String
-    public let data: ErrorResultDataJsonObject
+    public let data: ErrorDataJsonObject
+}
+
+public struct ErrorDataJsonObject {
+    public let email: [String]?
+    public let password: [String]?
 }
 
 // MARK: Used in several json object
@@ -306,30 +311,21 @@ extension RecipesOverviewJsonObject : Decodable {
     public static func decode(j: JSON) -> Decoded<RecipesOverviewJsonObject> {
         let f = curry(RecipesOverviewJsonObject.init)
             <^> j <| "id"
-        
+            <*> j <| "comments_count"
+
         return f
-            <*> j <| "updated_at"
     }
 }
 
-/*
-public let mark: String?
-public let markableId: Int?
-public let markableType: Int?
-public let markerId: Int?
-public let markerType: String?
-public let createdAt: String?
-public let id: Int?
-*/
 
 extension RecipesAddRemoveFavoriteJsonObject : Decodable {
     public static func decode(j: JSON) -> Decoded<RecipesAddRemoveFavoriteJsonObject> {
         let f = curry(RecipesAddRemoveFavoriteJsonObject.init)
             <^> j <|? "mark"
+
+        return f
             <*> j <|? "markable_id"
             <*> j <|? "marker_type"
-        
-        return f
             <*> j <|? "marker_id"
             <*> j <|? "marker_type"
             <*> j <|? "created_at"
@@ -341,12 +337,12 @@ extension SubCategoryJsonObject: Decodable {
     public static func decode(j: JSON) -> Decoded<SubCategoryJsonObject> {
         let f = curry(SubCategoryJsonObject.init)
             <^> j <| "id"
+
+        return f
             <*> j <| "title"
             <*> j <|? "parent_id"
             <*> j <| "created_at"
             <*> j <| "updated_at"
-        
-        return f
     }
 }
 
@@ -354,11 +350,11 @@ extension VideoDataJsonObject: Decodable {
     public static func decode(j: JSON) -> Decoded<VideoDataJsonObject> {
         let f = curry(VideoDataJsonObject.init)
             <^> j <| "title"
+
+        return f
             <*> j <| "duration"
             <*> j <| "like_count"
             <*> j <| "view_count"
-        
-        return f
             <*> j <| "description"
             <*> j <| "published_at"
             <*> j <| "thumbnail_url"
@@ -369,11 +365,11 @@ extension VideoJsonObject: Decodable {
     public static func decode(j: JSON) -> Decoded<VideoJsonObject> {
         let f = curry(VideoJsonObject.init)
             <^> j <| "id"
+
+        return f
             <*> j <| "recipe_id"
             <*> j <| "youtube_video_code"
             <*> j <| "number"
-        
-        return f
             <*> j <| "created_at"
             <*> j <| "updated_at"
             <*> j <|? "video_data"
@@ -384,9 +380,9 @@ extension VideoOverviewJsonObject : Decodable {
     public static func decode(j: JSON) -> Decoded<VideoOverviewJsonObject> {
         let f = curry(VideoOverviewJsonObject.init)
             <^> j <| "id"
-        
-        return f
             <*> j <| "updated_at"
+
+        return f
     }
 }
 
@@ -410,9 +406,9 @@ extension MessageWithCommentJsonObject: Decodable {
             <*> j <| "comment"
             <*> j <| "commentable_id"
             <*> j <| "commentable_type"
-        
-        return f
             <*> j <| "user_id"
+
+        return f
             <*> j <| "role"
             <*> j <| "created_at"
             <*> j <| "updated_at"
@@ -427,9 +423,9 @@ extension MessageSpecificJsonObject: Decodable {
             <*> j <| "title"
             <*> j <| "description"
             <*> j <| "created_at"
-        
-        return f
             <*> j <| "updated_at"
+
+        return f
             <*> j <| "comments_count"
             <*> j <|| "comments"
     }
@@ -596,6 +592,18 @@ extension ErrorResultJsonObject : Decodable {
         
         return f
     }
+}
+
+extension ErrorDataJsonObject: Decodable {
+
+    public static func decode(json: JSON) -> Decoded<ErrorDataJsonObject> {
+        let f = curry(ErrorDataJsonObject.init)
+            <^> json <||? "email"
+            <*> json <||? "password"
+
+        return f
+    }
+
 }
 
 extension PaginationDetailJsonObject: Decodable {

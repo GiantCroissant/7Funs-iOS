@@ -28,12 +28,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
         LoginManager.sharedInstance.login(data,
             onComplete: {
-                self.showLoginSuccessAlertView(onClickOK: {
+                self.showHTTPSuccessAlertView(title: "登入成功", message: "", onClickOK: {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 })
             },
             onError: { _ in
-                self.showLoginFailedAlertView()
+                self.showHTTPErrorAlertView(title: "登入失敗", message: "請檢查資料是否正確")
             }
         )
     }

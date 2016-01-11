@@ -83,52 +83,16 @@ extension UIViewController {
 
     // TODO: refactor these functions
     // ----------------------------------------------------------------------------------------------------
-    func showPostQuestionFailedAlertView() {
-        let alert = UIAlertController(title: "發問失敗", message: "請檢查欄位是否填寫正確", preferredStyle: .Alert)
+    func showHTTPErrorAlertView(title title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let done = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
         alert.addAction(done)
 
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
-    func showRegisterFailedAlertView() {
-        let alert = UIAlertController(title: "註冊失敗", message: "請檢查資料是否正確", preferredStyle: .Alert)
-        let done = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
-        alert.addAction(done)
-
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-
-    func showLoginFailedAlertView() {
-        let alert = UIAlertController(title: "登入失敗", message: "請檢查資料是否正確", preferredStyle: .Alert)
-        let done = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
-        alert.addAction(done)
-
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-
-    func showRegisterSuccessAlertView(onClickOK onClickOK: (() -> Void)) {
-        let alert = UIAlertController(title: "註冊成功", message: "請登入帳號", preferredStyle: .Alert)
-        let done = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { alert in
-            onClickOK()
-        })
-        alert.addAction(done)
-
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-
-    func showLoginSuccessAlertView(onClickOK onClickOK: (() -> Void)) {
-        let alert = UIAlertController(title: "登入成功", message: "", preferredStyle: .Alert)
-        let done = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { alert in
-            onClickOK()
-        })
-        alert.addAction(done)
-
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-
-    func showPostQuestionSuccessAlertView(onClickOK onClickOK: (() -> Void)) {
-        let alert = UIAlertController(title: "發問成功", message: "", preferredStyle: .Alert)
+    func showHTTPSuccessAlertView(title title: String, message: String, onClickOK: (() -> Void)) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let done = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { alert in
             onClickOK()
         })

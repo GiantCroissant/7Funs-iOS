@@ -38,13 +38,26 @@ class RegisterViewController: UIViewController {
 
         let data = RegistrationData(email: email, password: password, userName: name)
         LoginManager.sharedInstance.register(data,
-            onComplete: {
-                self.showRegisterSuccessAlertView() {
-                    self.navigationController?.popViewControllerAnimated(true)
+            onHTTPError: { err in
+
+                let title = err?.info
+                var message = ""
+                if let emailError = err?.data.email {
+                    message.appendContentsOf(emailError[0])
                 }
+                if let passwordError = err?.data.password {
+                    message.appendContentsOf(passwordError[0])
+                }
+
+                self.showHTTPErrorAlertView(title: title!, message: message)
+            },
+            onComplete: {
+                self.showHTTPSuccessAlertView(title: "註冊成功", message: "請登入帳號", onClickOK: {
+                    self.navigationController?.popViewControllerAnimated(true)
+                })
             },
             onError: { err in
-                self.showRegisterFailedAlertView()
+                self.showHTTPErrorAlertView(title: "註冊失敗", message: "請檢查資料是否正確")
             }
         )
     }

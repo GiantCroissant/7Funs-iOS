@@ -21,7 +21,7 @@ class QandANewQuestionViewController: UIViewController {
             let subject = self.subject.text!
             let content = self.content.text!
             if subject.isEmpty || content.isEmpty {
-                self.showPostQuestionFailedAlertView()
+                self.showHTTPErrorAlertView(title: "發問失敗", message: "請檢查欄位是否填寫正確")
                 return
             }
 
@@ -30,7 +30,7 @@ class QandANewQuestionViewController: UIViewController {
             QandAManager.sharedInstance.postQuestion(token, title: subject, description: content,
                 onComplete: {
                     self.hideToastIndicator()
-                    self.showPostQuestionSuccessAlertView(onClickOK: {
+                    self.showHTTPSuccessAlertView(title: "發問成功", message: "", onClickOK: {
                         self.navigationController?.popViewControllerAnimated(true)
                     })
                 }
