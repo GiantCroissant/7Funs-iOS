@@ -76,6 +76,16 @@ public struct CategoryJsonObject {
 }
 
 // MARK: Video related
+public struct VideoDataJsonObject {
+    public let title: String
+    public let duration: Int
+    public let likeCount: Int
+    public let viewCount: Int
+    public let descritpion: String
+    public let publishedAt: String
+    public let thumbnailUrl: String
+}
+
 public struct VideoJsonObject {
     public let id: Int
     public let recipeId: Int
@@ -83,6 +93,7 @@ public struct VideoJsonObject {
     public let number: Int
     public let createdAt: String
     public let updatedAt: String
+    public let videoData: VideoDataJsonObject?
 }
 
 public struct VideoOverviewJsonObject {
@@ -199,6 +210,22 @@ public struct LoginResultJsonObject {
     public let accessToken: String
     public let tokenType: String
     public let createdAt: Int
+}
+
+// MARK: My favoriate json object
+public struct MyFavoriteRecipesResultJsonObject {
+    public let id: Int
+}
+
+// MARK: Error result json object
+public struct ErrorResultDataJsonObject {
+    public let user: RegisterResultDataUserJsonObject?
+}
+
+public struct ErrorResultJsonObject {
+    public let success: Bool
+    public let info: String
+    public let data: ErrorResultDataJsonObject
 }
 
 // MARK: Used in several json object
@@ -323,6 +350,21 @@ extension SubCategoryJsonObject: Decodable {
     }
 }
 
+extension VideoDataJsonObject: Decodable {
+    public static func decode(j: JSON) -> Decoded<VideoDataJsonObject> {
+        let f = curry(VideoDataJsonObject.init)
+            <^> j <| "title"
+            <*> j <| "duration"
+            <*> j <| "like_count"
+            <*> j <| "view_count"
+        
+        return f
+            <*> j <| "description"
+            <*> j <| "published_at"
+            <*> j <| "thumbnail_url"
+    }
+}
+
 extension VideoJsonObject: Decodable {
     public static func decode(j: JSON) -> Decoded<VideoJsonObject> {
         let f = curry(VideoJsonObject.init)
@@ -334,6 +376,7 @@ extension VideoJsonObject: Decodable {
         return f
             <*> j <| "created_at"
             <*> j <| "updated_at"
+            <*> j <|? "video_data"
     }
 }
 
@@ -521,6 +564,35 @@ extension LoginResultJsonObject : Decodable {
             <^> j <| "access_token"
             <*> j <| "token_type"
             <*> j <| "created_at"
+        
+        return f
+    }
+}
+
+extension MyFavoriteRecipesResultJsonObject : Decodable {
+    public static func decode(j: JSON) -> Decoded<MyFavoriteRecipesResultJsonObject> {
+        let f = curry(MyFavoriteRecipesResultJsonObject.init)
+            <^> j <| "id"
+        
+        return f
+    }
+}
+
+extension ErrorResultDataJsonObject : Decodable {
+    public static func decode(j: JSON) -> Decoded<ErrorResultDataJsonObject> {
+        let f = curry(ErrorResultDataJsonObject.init)
+            <^> j <|? "user"
+        
+        return f
+    }
+}
+
+extension ErrorResultJsonObject : Decodable {
+    public static func decode(j: JSON) -> Decoded<ErrorResultJsonObject> {
+        let f = curry(ErrorResultJsonObject.init)
+            <^> j <| "success"
+            <*> j <| "info"
+            <*> j <| "data"
         
         return f
     }

@@ -3,7 +3,7 @@
 //  RxCocoa
 //
 //  Created by Krunoslav Zaher on 5/17/15.
-//  Copyright (c) 2015 Krunoslav Zaher. All rights reserved.
+//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
 import Foundation
@@ -18,6 +18,6 @@ extension NSButton {
     Reactive wrapper for control event.
     */
     public var rx_tap: ControlEvent<Void> {
-        return rx_controlEvents
+        return rx_controlEvent
     }
 }

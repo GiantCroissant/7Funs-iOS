@@ -1,33 +1,12 @@
 import Foundation
-import Alamofire
+import Result
 
 /// Closure to be executed when a request has completed.
-public typealias Completion = (result: Moya.Result<Moya.Response, Moya.Error>) -> ()
+public typealias Completion = (result: Result<Moya.Response, Moya.Error>) -> ()
 
 /// Represents an HTTP method.
 public enum Method: String {
     case GET, POST, PUT, DELETE, OPTIONS, HEAD, PATCH, TRACE, CONNECT
-}
-
-/// Choice of parameter encoding.
-public enum ParameterEncoding {
-    case URL
-    case JSON
-    case PropertyList(NSPropertyListFormat, NSPropertyListWriteOptions)
-    case Custom((URLRequestConvertible, [String: AnyObject]?) -> (NSMutableURLRequest, NSError?))
-    
-    internal var toAlamofire: Alamofire.ParameterEncoding {
-        switch self {
-        case .URL:
-            return .URL
-        case .JSON:
-            return .JSON
-        case .PropertyList(let format, let options):
-            return .PropertyList(format, options)
-        case .Custom(let closure):
-            return .Custom(closure)
-        }
-    }
 }
 
 public enum StubBehavior {
@@ -75,7 +54,7 @@ public class MoyaProvider<Target: TargetType> {
     public init(endpointClosure: EndpointClosure = MoyaProvider.DefaultEndpointMapping,
         requestClosure: RequestClosure = MoyaProvider.DefaultRequestMapping,
         stubClosure: StubClosure = MoyaProvider.NeverStub,
-        manager: Manager = Alamofire.Manager.sharedInstance,
+        manager: Manager = MoyaProvider<Target>.DefaultAlamofireManager(),
         plugins: [PluginType] = []) {
             
             self.endpointClosure = endpointClosure
@@ -140,7 +119,7 @@ public class MoyaProvider<Target: TargetType> {
 
 public extension MoyaProvider {
     
-    // These functions are default mappings to endpoings and requests.
+    // These functions are default mappings to MoyaProvider's properties: endpoints, requests, manager, etc.
     
     public final class func DefaultEndpointMapping(target: Target) -> Endpoint<Target> {
         let url = target.baseURL.URLByAppendingPathComponent(target.path).absoluteString
@@ -149,6 +128,15 @@ public extension MoyaProvider {
     
     public final class func DefaultRequestMapping(endpoint: Endpoint<Target>, closure: NSURLRequest -> Void) {
         return closure(endpoint.urlRequest)
+    }
+
+    public final class func DefaultAlamofireManager() -> Manager {
+        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        configuration.HTTPAdditionalHeaders = Manager.defaultHTTPHeaders
+
+        let manager = Manager(configuration: configuration)
+        manager.startRequestsImmediately = false
+        return manager
     }
 }
 
@@ -175,20 +163,22 @@ public extension MoyaProvider {
 internal extension MoyaProvider {
     
     func sendRequest(target: Target, request: NSURLRequest, completion: Moya.Completion) -> CancellableToken {
-        let request = manager.request(request)
+        let alamoRequest = manager.request(request)
         let plugins = self.plugins
         
         // Give plugins the chance to alter the outgoing request
-        plugins.forEach { $0.willSendRequest(request, target: target) }
+        plugins.forEach { $0.willSendRequest(alamoRequest, target: target) }
         
         // Perform the actual request
-        let alamoRequest = request.response { (_, response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> () in
+        alamoRequest.response { (_, response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> () in
             let result = convertResponseToResult(response, data: data, error: error)
             // Inform all plugins about the response
             plugins.forEach { $0.didReceiveResponse(result, target: target) }
             completion(result: result)
         }
-        
+
+        alamoRequest.resume()
+
         return CancellableToken(request: alamoRequest)
     }
     
@@ -197,80 +187,44 @@ internal extension MoyaProvider {
         return {
             if (token.canceled) {
                 let error = Moya.Error.Underlying(NSError(domain: NSURLErrorDomain, code: NSURLErrorCancelled, userInfo: nil))
-                plugins.forEach { $0.didReceiveResponse(Moya.Result(failure: error), target: target) }
-                completion(result: Result(failure: error))
+                plugins.forEach { $0.didReceiveResponse(.Failure(error), target: target) }
+                completion(result: .Failure(error))
                 return
             }
             
             switch endpoint.sampleResponseClosure() {
             case .NetworkResponse(let statusCode, let data):
                 let response = Moya.Response(statusCode: statusCode, data: data, response: nil)
-                plugins.forEach { $0.didReceiveResponse(Moya.Result(success: response), target: target) }
-                completion(result: Moya.Result(success: response))
+                plugins.forEach { $0.didReceiveResponse(.Success(response), target: target) }
+                completion(result: .Success(response))
             case .NetworkError(let error):
                 let error = Moya.Error.Underlying(error)
-                plugins.forEach { $0.didReceiveResponse(Moya.Result(failure: error), target: target) }
-                completion(result: Moya.Result(failure: error))
+                plugins.forEach { $0.didReceiveResponse(.Failure(error), target: target) }
+                completion(result: .Failure(error))
             }
         }
     }
     
     /// Notify all plugins that a stub is about to be performed. You must call this if overriding `stubRequest`.
     internal final func notifyPluginsOfImpendingStub(request: NSURLRequest, target: Target) {
-        let request = manager.request(request)
-        plugins.forEach { $0.willSendRequest(request, target: target) }
+        let alamoRequest = manager.request(request)
+        plugins.forEach { $0.willSendRequest(alamoRequest, target: target) }
     }
 }
 
-internal func convertResponseToResult(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Moya.Result<Moya.Response, Moya.Error> {
+internal func convertResponseToResult(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) ->
+    Result<Moya.Response, Moya.Error> {
     switch (response, data, error) {
     case let (.Some(response), .Some(data), .None):
         let response = Moya.Response(statusCode: response.statusCode, data: data, response: response)
-        return Moya.Result(success: response)
+        return .Success(response)
     case let (_, _, .Some(error)):
         let error = Moya.Error.Underlying(error)
-        return Moya.Result(failure: error)
+        return .Failure(error)
     default:
         let error = Moya.Error.Underlying(NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil))
-        return Moya.Result(failure: error)
+        return .Failure(error)
     }
-}
-
-/// Internal token that can be used to cancel requests
-internal final class CancellableToken: Cancellable , CustomDebugStringConvertible{
-    let cancelAction: () -> Void
-    let request : Request?
-    private(set) var canceled: Bool = false
-    
-    private var lock: OSSpinLock = OS_SPINLOCK_INIT
-    
-    func cancel() {
-        OSSpinLockLock(&lock)
-        defer { OSSpinLockUnlock(&lock) }
-        guard !canceled else { return }
-        canceled = true
-        cancelAction()
-    }
-    
-    init(action: () -> Void){
-        self.cancelAction = action
-        self.request = nil
-    }
-    
-    init(request : Request){
-        self.request = request
-        self.cancelAction = {
-            request.cancel()
-        }
-    }
-    
-    var debugDescription: String {
-        guard let request = self.request else {
-            return "Empty Request"
-        }
-        return request.debugDescription
-    }
-    
 }
 
 private struct CancellableWrapper: Cancellable {
@@ -282,6 +236,3 @@ private struct CancellableWrapper: Cancellable {
         innerCancellable?.cancel()
     }
 }
-
-/// Make the Alamofire Request type conform to our type, to prevent leaking Alamofire to plugins.
-extension Request: RequestType { }

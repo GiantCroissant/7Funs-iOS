@@ -45,13 +45,14 @@ class CollectionManager: NSObject {
             let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
             self.restApiProvider
                 .request(RestApi.GetMyFavoriteRecipesIds(token: token))
-//                .mapSuccessfulHTTPToObjectArray(RecipesOverviewJsonObject)
+                .mapSuccessfulHTTPToObjectArray(MyFavoriteRecipesResultJsonObject)
                 .subscribeOn(scheduler)
                 .subscribe(
                     onNext: { res in
 
                         dLog("res = \(res)")
                         // MARK: Assume there is response(none at this stage), since the result is not mapped, no json response
+                        // MARK: Updated, there should be an array of json object return which takes only one property of "id"
 
                         // TODO: Do something with these recipes id from server
                     },
