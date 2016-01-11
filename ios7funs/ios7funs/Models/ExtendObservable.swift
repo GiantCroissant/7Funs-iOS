@@ -47,7 +47,6 @@ extension Observable {
                 dLog("[ HTTP failed ] statusCode = \(response.statusCode)")
 
                 if let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [String: AnyObject] {
-                    dLog("can be parse to json = \(json)")
                     onHTTPFail(self.resultFromJSON(json!, classType: ErrorResultJsonObject.self))
                 }
 
@@ -59,7 +58,6 @@ extension Observable {
                     throw ORMError.ORMCouldNotMakeObjectError
                 }
 
-                print("before parsing json = \(json)")
                 if let result = self.resultFromJSON(json, classType:type) {
                     return result
                 }
@@ -81,10 +79,7 @@ extension Observable {
             // Allow successful HTTP codes
             guard ((200...209) ~= response.statusCode) else {
                 if let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [String: AnyObject] {
-                    //log.error("Got error message: \(json)")
                     print("Got error message: \(json!["info"])")
-
-
                 }
                 throw ORMError.ORMNotSuccessfulHTTP
             }
