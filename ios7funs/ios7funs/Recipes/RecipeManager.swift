@@ -206,7 +206,7 @@ class RecipeManager: NSObject {
             var finishedOverviews = [RecipesOverview]()
 
             for recipeJson in recipeJsons {
-                let recipe = self.convertToModel(recipeJson)
+                let recipe = self.convertToDBModel(recipeJson)
 
                 let finishedRecipe = overviews.filter("id == %@", recipeJson.id)
                 downloadedRecipes.append(recipe)
@@ -282,7 +282,10 @@ class RecipeManager: NSObject {
         }
     }
 
-    private func convertToModel(jsonObj: RecipesJsonObject) -> Recipe {
+    private func convertToDBModel(jsonObj: RecipesJsonObject) -> Recipe {
+        dLog("json = \(jsonObj)")
+
+
         let recipe = Recipe()
         recipe.updatedAt = jsonObj.updatedAt
         recipe.createdAt = jsonObj.createdAt
@@ -296,6 +299,8 @@ class RecipeManager: NSObject {
         recipe.method = jsonObj.method
         recipe.reminder = jsonObj.reminder
         recipe.hits = jsonObj.hits
+        recipe.collectedCount = jsonObj.collected
+
         return recipe
     }
 

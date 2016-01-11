@@ -31,21 +31,25 @@ class RecipeTutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        recipe.printDebugString()
+
         recipe.loadFoodImage { image in
             self.imgFood.image = image
         }
 
         labelFoodTitle.text = recipe.title
+        foodTitle.text = recipe.title
 
+        configureFoodImageBlurEffect()
+        configureFavoriteButton(recipe.favorite)
+    }
+
+    func configureFoodImageBlurEffect() {
         let darkBlur = UIBlurEffect(style: .Dark)
         blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame = imgFood.bounds
         blurView.alpha = 0
         imgFood.addSubview(blurView)
-
-        foodTitle.text = recipe.title
-
-        configureFavoriteButton(recipe.favorite)
     }
 
     private func configureFavoriteButton(favorite: Bool) {

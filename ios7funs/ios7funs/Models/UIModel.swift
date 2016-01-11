@@ -15,11 +15,23 @@ class RecipeUIModel {
     var title: String = ""
     var chefName = ""
     var desc = ""
+
+    // Display on tutorial
+    // --------------------
     var ingredient = ""
+    var seasoning = ""
     var method = ""
+    // --------------------
+
     var createdAt = ""
     var updatedAt = ""
+
+    // Display on food list
+    // -------------------------
     var hits: Int = 0
+    var collectedCount: Int = 0
+    // -------------------------
+
     var favorite: Bool = false
 
     init(dbData: Recipe) {
@@ -29,11 +41,13 @@ class RecipeUIModel {
         self.chefName = dbData.chefName
         self.desc = dbData.desc
         self.ingredient = dbData.ingredient
-        self.method = dbData.ingredient
+        self.method = dbData.method
         self.createdAt = dbData.createdAt
         self.updatedAt = dbData.updatedAt
         self.hits = dbData.hits
         self.favorite = dbData.favorite
+        self.seasoning = dbData.seasoning
+        self.collectedCount = dbData.collectedCount
     }
 
 }
@@ -50,6 +64,16 @@ extension RecipeUIModel {
         }
     }
 
+    func printDebugString() {
+        print("self.title = \(self.title)")
+        print("self.chefName = \(self.chefName)")
+        print("self.desc = \(self.desc)")
+        print("self.ingredient = \(self.ingredient)")
+        print("self.seasoning = \(self.seasoning)")
+        print("self.method = \(self.method)")
+        print("self.hits = \(self.hits)")
+        print("self.collectedCount = \(self.collectedCount)")
+    }
 }
 
 class VideoUIModel {

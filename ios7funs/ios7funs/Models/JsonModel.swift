@@ -287,13 +287,13 @@ extension RecipesJsonObject : Decodable {
     public static func decode(j: JSON) -> Decoded<RecipesJsonObject> {
         let f = curry(RecipesJsonObject.init)
             <^> j <| "id"
+
+        return f
             <*> j <|? "image"
             <*> j <| "chef_name"
             <*> j <| "title"
             <*> j <| "description"
             <*> j <| "ingredient"
-        
-        return f
             <*> j <| "seasoning"
             <*> j <| "method"
             <*> j <| "reminder"

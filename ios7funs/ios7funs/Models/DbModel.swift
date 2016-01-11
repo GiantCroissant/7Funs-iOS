@@ -19,6 +19,7 @@ public class Recipe : Object {
     dynamic var desc = ""
     dynamic var ingredient = ""
     dynamic var seasoning = ""
+    dynamic var collectedCount = 0
     dynamic var method = ""
     dynamic var reminder = ""
     dynamic var hits = 0
