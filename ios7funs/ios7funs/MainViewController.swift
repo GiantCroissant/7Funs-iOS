@@ -41,7 +41,7 @@ class MainViewController: UIViewController {
 
         fetchOverviews()
 
-        // for disabling swipe back to previous view controller
+        // for disabling swipe back to previous view controller - part I
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 
@@ -88,7 +88,6 @@ class MainViewController: UIViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
         self.hideNabigationBar()
     }
 
@@ -147,9 +146,10 @@ extension MainViewController {
 // MARK: - UIGestureRecognizerDelegate
 extension MainViewController: UIGestureRecognizerDelegate {
 
+    // for disabling swipe back to previous view controller - part II
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
     }
-
+    
 }
 
