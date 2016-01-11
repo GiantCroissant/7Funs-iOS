@@ -13,6 +13,7 @@ class ForgotPasswordViewController: UIViewController {
     @IBOutlet weak var inputEmail: UITextField!
 
     @IBAction func onSendRestEmailButtonClick(sender: UIButton) {
+        self.showToastIndicator()
         let email = inputEmail.text!
         LoginManager.sharedInstance.askServerToSendResetPasswordEmail(email,
             onHTTPError: { err in
@@ -20,11 +21,30 @@ class ForgotPasswordViewController: UIViewController {
             },
             onComplete: { res in
                 self.onResetEmailHTTPSuccess(res)
+            },
+            onFinished: {
+                self.hideToastIndicator()
             }
         );
     }
 
-    func onResetEmailHTTPFail(err: ErrorResultJsonObject?) {
+    // MARK: override functions
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.title = "忘記密碼"
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.showNavigationBar()
+    }
+
+}
+
+// MARK: - for http result handling
+extension ForgotPasswordViewController {
+
+    private func onResetEmailHTTPFail(err: ErrorResultJsonObject?) {
         var message = ""
         if let emailError = err?.data.email {
             message.appendContentsOf(emailError[0])
@@ -36,7 +56,7 @@ class ForgotPasswordViewController: UIViewController {
         self.showHTTPErrorAlertView(title: title, message: message)
     }
 
-    func onResetEmailHTTPSuccess(res: ErrorResultJsonObject?) {
+    private func onResetEmailHTTPSuccess(res: ErrorResultJsonObject?) {
         guard let info = res?.info else {
             dLog("no info: res = \(res)")
             return
@@ -46,15 +66,5 @@ class ForgotPasswordViewController: UIViewController {
             self.navigationController?.popViewControllerAnimated(true)
         })
     }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.title = "忘記密碼"
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        self.showNavigationBar()
-    }
-
+    
 }
