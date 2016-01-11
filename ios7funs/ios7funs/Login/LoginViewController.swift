@@ -169,18 +169,10 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
                 return
             }
 
-            dLog("result = \(result)")
-
-            // Can get token info here
-            // result.token
-
-            // Can retrieve basic info by requesting my profile
-
-            //            let strFirstName: String = (result.objectForKey("first_name") as? String)!
-            //            let strLastName: String = (result.objectForKey("last_name") as? String)!
-            //            let strPictureURL: String = (result.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)!
-            //            self.nameLabel.text = "Welcome, \(strFirstName) \(strLastName)"
-            //            self.profileImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strPictureURL)!)!)
+            if let token = FBSDKAccessToken.currentAccessToken() {
+                dLog("token.tokenString = \(token.tokenString)")
+                LoginManager.sharedInstance.loginWithFBToken(token.tokenString)
+            }
         }
     }
     

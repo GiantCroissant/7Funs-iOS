@@ -172,6 +172,41 @@ class LoginManager {
 
     }
 
+    func loginWithFBToken(token: String, onHTTPError: ((ErrorResultJsonObject?) -> Void) = { _ in },onComplete: ((ErrorResultJsonObject?) -> Void) = { _ in }, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
+        
+        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+        let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
+        self.restApiProvider
+            .request(RestApi.LogInViaFb(assertion: token))
+            .mapSuccessfulHTTPToObject(ErrorResultJsonObject.self,
+                onHTTPFail: { res in
+                    onHTTPError(res)
+                }
+            )
+            .subscribeOn(scheduler)
+            .subscribe(
+                onNext: { res in
+                    dLog("res = \(res)")
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onComplete(res)
+                    }
+                },
+                onError: { err in
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onError(err)
+                    }
+                },
+                onCompleted: {
+                },
+                onDisposed: {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onFinished()
+                    }
+                }
+            )
+            .addDisposableTo(disposeBag)
+    }
+
 }
 
 struct RegistrationData {
