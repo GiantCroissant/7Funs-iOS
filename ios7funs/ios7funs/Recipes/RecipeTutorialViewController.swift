@@ -18,6 +18,7 @@ class RecipeTutorialViewController: UIViewController {
     @IBOutlet weak var imgFood: UIImageView!
     @IBOutlet weak var labelFoodTitle: UILabel!
     @IBOutlet weak var foodTitle: UILabel!
+    @IBOutlet weak var lblInformation: UILabel!
 
     @IBAction func onAddFavoriteClick(sender: UIButton) {
         if let token = LoginManager.token {
@@ -42,6 +43,13 @@ class RecipeTutorialViewController: UIViewController {
 
         configureFoodImageBlurEffect()
         configureFavoriteButton(recipe.favorite)
+        configureInformation()
+    }
+
+    func configureInformation() {
+        let collectedCount = recipe.collectedCount
+        let hits = recipe.hits
+        lblInformation.text = "\(collectedCount)人收藏，\(hits)人看過"
     }
 
     func configureFoodImageBlurEffect() {
