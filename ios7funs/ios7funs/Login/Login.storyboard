@@ -485,6 +485,7 @@
                         <outlet property="btnSend" destination="jS1-oa-scw" id="HdM-KT-nPh"/>
                         <outlet property="inputEmail" destination="cIx-pt-mza" id="rSR-xc-r7Q"/>
                         <outlet property="inputPassword" destination="5l0-vu-Jg4" id="ixr-u4-Bz8"/>
+                        <outlet property="inputPasswordConfirm" destination="SNg-zL-Jal" id="l1u-a2-gDf"/>
                         <outlet property="inputUserName" destination="OTG-VH-lHR" id="Sc9-mq-2rN"/>
                         <outlet property="switchAgreement" destination="SfF-dy-pG2" id="f5q-8F-g4q"/>
                     </connections>

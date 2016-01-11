@@ -231,6 +231,7 @@ public struct ErrorResultJsonObject {
 public struct ErrorDataJsonObject {
     public let email: [String]?
     public let password: [String]?
+    public let passwordConfirmation: [String]?
 }
 
 // MARK: Used in several json object
@@ -600,6 +601,7 @@ extension ErrorDataJsonObject: Decodable {
         let f = curry(ErrorDataJsonObject.init)
             <^> json <||? "email"
             <*> json <||? "password"
+            <*> json <||? "password_confirmation"
 
         return f
     }

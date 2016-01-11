@@ -62,7 +62,7 @@ class LoginManager {
                 email: data.email,
                 name: data.userName,
                 password: data.password,
-                passwordConfirmation: data.password
+                passwordConfirmation: data.passwordConfirm
             )
 
             let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
@@ -176,8 +176,9 @@ class LoginManager {
 
 struct RegistrationData {
     var email = ""
-    var password = ""
     var userName = ""
+    var password = ""
+    var passwordConfirm = ""
 }
 
 struct LoginData {

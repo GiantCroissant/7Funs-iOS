@@ -81,8 +81,14 @@ extension UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
-    // TODO: refactor these functions
-    // ----------------------------------------------------------------------------------------------------
+    func showNetworkIsBusyAlertView() {
+        let alert = UIAlertController(title: "網路忙碌中", message: "請檢查網路狀態，並嘗試重新連線", preferredStyle: .Alert)
+        let done = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+        alert.addAction(done)
+
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
     func showHTTPErrorAlertView(title title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let done = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
@@ -100,7 +106,6 @@ extension UIViewController {
 
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    // ----------------------------------------------------------------------------------------------------
 
 }
 
