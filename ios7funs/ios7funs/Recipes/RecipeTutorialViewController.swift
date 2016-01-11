@@ -18,28 +18,15 @@ class RecipeTutorialViewController: UIViewController {
     @IBOutlet weak var imgFood: UIImageView!
     @IBOutlet weak var labelFoodTitle: UILabel!
     @IBOutlet weak var foodTitle: UILabel!
-    
+
     @IBAction func onAddFavoriteClick(sender: UIButton) {
         if let token = LoginManager.token {
-            let recipeId = recipe.id
-
-            UIUtils.showStatusBarNetworking()
-            RecipeManager.sharedInstance.addOrRemoveFavorite(recipeId, token: token,
-                onComplete: { favorite in
-
-                    let recipeName = self.recipe.title
-                    let msg = favorite ? "\(recipeName) : 加入收藏" : "\(recipeName) : 取消收藏"
-                    self.view.makeToast(msg, duration: 1, position: .Top)
-
-                    UIUtils.hideStatusBarNetworking()
-                }
-            )
+            requestSwitchFavoriteState(token)
 
         } else {
             LoginManager.sharedInstance.showLoginViewController(self)
         }
     }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,8 +54,39 @@ class RecipeTutorialViewController: UIViewController {
         btnAddFavorite.setImage(image, forState: .Normal)
     }
 
+    func requestSwitchFavoriteState(token: String) {
+        let recipeId = recipe.id
+
+        UIUtils.showStatusBarNetworking()
+        RecipeManager.sharedInstance.addOrRemoveFavorite(recipeId, token: token,
+            onComplete: { favorite in
+                self.handleFavoriteUpdateSuccess(favorite)
+            },
+            onError: { _ in
+                self.showNetworkIsBusyAlertView()
+            },
+            onFinished: {
+                UIUtils.hideStatusBarNetworking()
+            }
+        )
+    }
+
+    func handleFavoriteUpdateSuccess(favorite: Bool) {
+        let recipeName = self.recipe.title
+        let msg = favorite ? "\(recipeName) : 加入收藏" : "\(recipeName) : 取消收藏"
+        self.view.makeToast(msg, duration: 1, position: .Top)
+
+        // update cache recipe UI model
+        self.recipe.favorite = favorite
+
+        // update Add Favorite Button UI
+        self.configureFavoriteButton(favorite)
+    }
+
 }
 
+
+// MARK: - Dynamic parallax UI effect
 extension RecipeTutorialViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -103,5 +121,5 @@ extension RecipeTutorialViewController: UIScrollViewDelegate {
     func updateBlurView(offsetY: CGFloat) {
         blurView.alpha = 1 - ((headerImageHeight - offsetY) / headerImageHeight)
     }
-
+    
 }

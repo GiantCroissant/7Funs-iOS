@@ -13,6 +13,12 @@ class RecipeUIModel {
     var id: Int = 0
     var imageName: String = ""
     var title: String = ""
+    var chefName = ""
+    var desc = ""
+    var ingredient = ""
+    var method = ""
+    var createdAt = ""
+    var updatedAt = ""
     var hits: Int = 0
     var favorite: Bool = false
 
@@ -20,6 +26,12 @@ class RecipeUIModel {
         self.id = dbData.id
         self.imageName = dbData.image
         self.title = dbData.title
+        self.chefName = dbData.chefName
+        self.desc = dbData.desc
+        self.ingredient = dbData.ingredient
+        self.method = dbData.ingredient
+        self.createdAt = dbData.createdAt
+        self.updatedAt = dbData.updatedAt
         self.hits = dbData.hits
         self.favorite = dbData.favorite
     }

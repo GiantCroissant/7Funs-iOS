@@ -18,14 +18,15 @@ class RecipesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadRecipes(onEmpty: {
-            self.fetchMoreRecipes()
-        })
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.title = "食譜列表"
+
+        loadRecipes(onEmpty: {
+            self.fetchMoreRecipes()
+        })
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -36,6 +37,11 @@ class RecipesViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillAppear(animated)
         self.hideToastIndicator()
+    }
+
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.recipes.removeAll()
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
