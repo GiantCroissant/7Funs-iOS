@@ -22,7 +22,13 @@ class RecipeTutorialViewController: UIViewController {
     @IBOutlet weak var lblIngredients: UILabel!
     @IBOutlet weak var lblSeasonings: UILabel!
     @IBOutlet weak var lblMethods: UILabel!
+    @IBOutlet weak var bgTutorial: CardView!
+    @IBOutlet weak var bgContent: UIView!
+    @IBOutlet weak var bgBottom: UIView!
+    @IBOutlet weak var layoutContentHeight: NSLayoutConstraint!
+    @IBOutlet var layoutDynamicHeights: [NSLayoutConstraint]!
 
+    @IBOutlet weak var contentScrollView: UIScrollView!
     @IBAction func onAddFavoriteClick(sender: UIButton) {
         if let token = LoginManager.token {
             requestSwitchFavoriteState(token)
@@ -48,6 +54,30 @@ class RecipeTutorialViewController: UIViewController {
         configureFavoriteButton(recipe.favorite)
         configureInformation()
         configureTutorial()
+
+//        let width = bgContent.frame.width
+//        bgContent.frame.size = CGSize(width: width, height: 10000)
+
+//        layoutContentHeight.constant = 1000
+
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        let bounds = self.bgBottom.bounds
+        let size = self.bgBottom.sizeThatFits(CGSize(width: bounds.width, height: 10000))
+        print("size = \(size)")
+
+        var newHeight: CGFloat = 0.0
+        for height in layoutDynamicHeights {
+            newHeight += height.constant
+        }
+
+
+        layoutContentHeight.constant = newHeight + size.height
+
+        contentScrollView.contentSize.height = layoutContentHeight.constant
     }
 
     func configureTutorial() {
@@ -77,8 +107,10 @@ class RecipeTutorialViewController: UIViewController {
             seasoningText.appendContentsOf(sea)
             seasoningText.appendContentsOf("\n")
         }
-        let range = seasoningText.endIndex.advancedBy(-2)..<seasoningText.endIndex
-        seasoningText.removeRange(range)
+        if seasoningText.characters.count > 2 {
+            let range = seasoningText.endIndex.advancedBy(-2)..<seasoningText.endIndex
+            seasoningText.removeRange(range)
+        }
         return seasoningText
     }
 

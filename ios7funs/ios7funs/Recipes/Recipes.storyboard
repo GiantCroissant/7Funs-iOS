@@ -468,10 +468,10 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="535"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L8V-d6-OEV" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1070"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="535"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHg-g2-FwB" userLabel="Bottom Content">
-                                                <rect key="frame" x="0.0" y="147" width="375" height="923"/>
+                                                <rect key="frame" x="0.0" y="147" width="375" height="691.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIR-gx-Iux" userLabel="Title View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
@@ -491,7 +491,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uax-Na-uPJ" userLabel="Card View" customClass="CardView" customModule="ios7funs" customModuleProvider="target">
-                                                        <rect key="frame" x="11" y="51" width="353" height="860"/>
+                                                        <rect key="frame" x="11" y="51" width="353" height="628.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cc5-C9-RHE" userLabel="Top">
                                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="48"/>
@@ -647,6 +647,7 @@
                                                             <constraint firstItem="W9I-ib-NPL" firstAttribute="leading" secondItem="uax-Na-uPJ" secondAttribute="leading" constant="12" id="8Qx-gy-vgT"/>
                                                             <constraint firstItem="HOe-Dw-hKv" firstAttribute="top" secondItem="W9I-ib-NPL" secondAttribute="bottom" constant="12" id="ACB-tw-Iks"/>
                                                             <constraint firstItem="cc5-C9-RHE" firstAttribute="top" secondItem="uax-Na-uPJ" secondAttribute="top" id="Dzz-Sj-Ys9"/>
+                                                            <constraint firstAttribute="bottom" secondItem="GZk-fw-dtf" secondAttribute="bottom" constant="12" id="IUY-Ke-G6F"/>
                                                             <constraint firstItem="Wbz-bz-dwQ" firstAttribute="leading" secondItem="uax-Na-uPJ" secondAttribute="leading" constant="12" id="Jg5-MS-uHr"/>
                                                             <constraint firstItem="W9I-ib-NPL" firstAttribute="top" secondItem="pfM-7j-4Sj" secondAttribute="bottom" constant="12" id="NCB-YH-8oo"/>
                                                             <constraint firstAttribute="trailing" secondItem="GZk-fw-dtf" secondAttribute="trailing" constant="12" id="OsT-Yr-Sme"/>
@@ -674,8 +675,14 @@
                                                     <constraint firstItem="uax-Na-uPJ" firstAttribute="leading" secondItem="eHg-g2-FwB" secondAttribute="leading" constant="11" id="UmN-tX-YRP"/>
                                                     <constraint firstAttribute="trailing" secondItem="xIR-gx-Iux" secondAttribute="trailing" id="Z53-52-dWX"/>
                                                     <constraint firstAttribute="bottom" secondItem="uax-Na-uPJ" secondAttribute="bottom" constant="12" id="Z6Q-mI-L0d"/>
+                                                    <constraint firstAttribute="bottom" secondItem="uax-Na-uPJ" secondAttribute="bottom" constant="12" id="nGc-Qw-lPx"/>
                                                     <constraint firstAttribute="trailing" secondItem="uax-Na-uPJ" secondAttribute="trailing" constant="11" id="rly-NL-8ab"/>
                                                 </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="Z6Q-mI-L0d"/>
+                                                    </mask>
+                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -685,12 +692,17 @@
                                             <constraint firstAttribute="bottom" secondItem="eHg-g2-FwB" secondAttribute="bottom" id="vNG-fB-z0r"/>
                                             <constraint firstItem="eHg-g2-FwB" firstAttribute="top" secondItem="L8V-d6-OEV" secondAttribute="top" constant="147" id="wCR-k0-Veh"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="vNG-fB-z0r"/>
+                                            </mask>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="L8V-d6-OEV" firstAttribute="leading" secondItem="BRH-2I-fS7" secondAttribute="leading" id="Et5-Zm-TM8"/>
-                                    <constraint firstItem="L8V-d6-OEV" firstAttribute="height" secondItem="BRH-2I-fS7" secondAttribute="height" multiplier="2" id="FSW-jO-9Dg"/>
+                                    <constraint firstItem="L8V-d6-OEV" firstAttribute="height" secondItem="BRH-2I-fS7" secondAttribute="height" id="FSW-jO-9Dg"/>
                                     <constraint firstItem="L8V-d6-OEV" firstAttribute="width" secondItem="BRH-2I-fS7" secondAttribute="width" id="grs-6N-mTy"/>
                                     <constraint firstAttribute="bottom" secondItem="L8V-d6-OEV" secondAttribute="bottom" id="oaB-4t-cj0"/>
                                     <constraint firstAttribute="trailing" secondItem="L8V-d6-OEV" secondAttribute="trailing" id="qjx-1R-iBw"/>
@@ -716,14 +728,20 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bgBottom" destination="eHg-g2-FwB" id="A7a-PF-s1j"/>
+                        <outlet property="bgContent" destination="L8V-d6-OEV" id="jKa-Ct-OTX"/>
+                        <outlet property="bgTutorial" destination="uax-Na-uPJ" id="Kbg-Qe-nQB"/>
                         <outlet property="btnAddFavorite" destination="I3V-2V-5Hn" id="lxe-Ar-uU7"/>
+                        <outlet property="contentScrollView" destination="BRH-2I-fS7" id="tbb-LD-fIV"/>
                         <outlet property="foodTitle" destination="qgF-pY-7sV" id="lL7-GX-xox"/>
                         <outlet property="imgFood" destination="YJK-a9-vOa" id="E2b-oJ-bMU"/>
                         <outlet property="labelFoodTitle" destination="7Gm-gd-ZaD" id="tZG-1K-aRx"/>
+                        <outlet property="layoutContentHeight" destination="FSW-jO-9Dg" id="5Z2-Wi-sVp"/>
                         <outlet property="lblInformation" destination="5KJ-M8-EAS" id="hdS-qV-wQA"/>
                         <outlet property="lblIngredients" destination="HOe-Dw-hKv" id="Svn-cB-MxA"/>
                         <outlet property="lblMethods" destination="GZk-fw-dtf" id="P4W-GC-JFA"/>
                         <outlet property="lblSeasonings" destination="Wbz-bz-dwQ" id="dEo-g8-9Xc"/>
+                        <outletCollection property="layoutDynamicHeights" destination="wCR-k0-Veh" collectionClass="NSMutableArray" id="1Qo-JV-6OS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aPB-9i-TJm" userLabel="First Responder" sceneMemberID="firstResponder"/>
