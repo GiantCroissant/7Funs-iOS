@@ -76,6 +76,16 @@ public struct CategoryJsonObject {
 }
 
 // MARK: Video related
+public struct VideoDataJsonObject {
+    public let title: String
+    public let duration: Int
+    public let likeCount: Int
+    public let viewCount: Int
+    public let descritpion: String
+    public let publishedAt: String
+    public let thumbnailUrl: String
+}
+
 public struct VideoJsonObject {
     public let id: Int
     public let recipeId: Int
@@ -83,6 +93,7 @@ public struct VideoJsonObject {
     public let number: Int
     public let createdAt: String
     public let updatedAt: String
+    public let videoData: VideoDataJsonObject?
 }
 
 public struct VideoOverviewJsonObject {
@@ -339,6 +350,21 @@ extension SubCategoryJsonObject: Decodable {
     }
 }
 
+extension VideoDataJsonObject: Decodable {
+    public static func decode(j: JSON) -> Decoded<VideoDataJsonObject> {
+        let f = curry(VideoDataJsonObject.init)
+            <^> j <| "title"
+            <*> j <| "duration"
+            <*> j <| "like_count"
+            <*> j <| "view_count"
+        
+        return f
+            <*> j <| "description"
+            <*> j <| "published_at"
+            <*> j <| "thumbnail_url"
+    }
+}
+
 extension VideoJsonObject: Decodable {
     public static func decode(j: JSON) -> Decoded<VideoJsonObject> {
         let f = curry(VideoJsonObject.init)
@@ -350,6 +376,7 @@ extension VideoJsonObject: Decodable {
         return f
             <*> j <| "created_at"
             <*> j <| "updated_at"
+            <*> j <|? "video_data"
     }
 }
 
