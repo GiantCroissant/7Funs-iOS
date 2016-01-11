@@ -19,6 +19,9 @@ class RecipeTutorialViewController: UIViewController {
     @IBOutlet weak var labelFoodTitle: UILabel!
     @IBOutlet weak var foodTitle: UILabel!
     @IBOutlet weak var lblInformation: UILabel!
+    @IBOutlet weak var lblIngredients: UILabel!
+    @IBOutlet weak var lblSeasonings: UILabel!
+    @IBOutlet weak var lblMethods: UILabel!
 
     @IBAction func onAddFavoriteClick(sender: UIButton) {
         if let token = LoginManager.token {
@@ -44,6 +47,39 @@ class RecipeTutorialViewController: UIViewController {
         configureFoodImageBlurEffect()
         configureFavoriteButton(recipe.favorite)
         configureInformation()
+        configureTutorial()
+    }
+
+    func configureTutorial() {
+        let ingredient = recipe.ingredient
+        let seasoning = recipe.seasoning
+        lblIngredients.text = reformatIngredientString(ingredient)
+        lblSeasonings.text = reformatSeasoningString(seasoning)
+        lblMethods.text = recipe.method
+    }
+
+    func reformatIngredientString(ingredient: String) -> String {
+        let ingredients = ingredient.componentsSeparatedByString("、")
+        var ingredientText: String = ""
+        for ingre in ingredients {
+            ingredientText.appendContentsOf(ingre)
+            ingredientText.appendContentsOf("\n")
+        }
+        let range = ingredientText.endIndex.advancedBy(-2)..<ingredientText.endIndex
+        ingredientText.removeRange(range)
+        return ingredientText
+    }
+
+    func reformatSeasoningString(seasoning: String) -> String {
+        let seasonings = seasoning.componentsSeparatedByString("、")
+        var seasoningText: String = ""
+        for sea in seasonings {
+            seasoningText.appendContentsOf(sea)
+            seasoningText.appendContentsOf("\n")
+        }
+        let range = seasoningText.endIndex.advancedBy(-2)..<seasoningText.endIndex
+        seasoningText.removeRange(range)
+        return seasoningText
     }
 
     func configureInformation() {
