@@ -35,7 +35,8 @@ extension Observable {
         }
     }
     
-    func mapSuccessfulHTTPToObject<T: Decodable>(type: T.Type) -> Observable<T> {
+    func mapSuccessfulHTTPToObject<T: Decodable>(type: T.Type,
+        onHTTPFail: ((T?) -> Void)) -> Observable<T> {
         return map { representor in
             guard let response = representor as? RxMoya.Response else {
                 throw ORMError.ORMNoRepresentor
