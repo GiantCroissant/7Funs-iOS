@@ -12,38 +12,17 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var inputEmail: UITextField!
     @IBOutlet weak var inputPassword: UITextField!
-    @IBOutlet weak var contentBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var fbButton: FBSDKLoginButton!
-    @IBOutlet var profileImage: UIImageView!
-    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet weak var contentBottomConstraint: NSLayoutConstraint!
+
 
     @IBAction func onCancelButtonClick(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func onLoginButtonClick(sender: UIButton) {
-        inputEmail.resignFirstResponder()
-        inputPassword.resignFirstResponder()
-
-        let email = inputEmail.text!
-        let password = inputPassword.text!
-        let data = LoginData(email: email, password: password)
-
-        LoginManager.sharedInstance.login(data,
-            onComplete: {
-                self.showHTTPSuccessAlertView(title: "登入成功", message: "", onClickOK: {
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                })
-            },
-            onError: { _ in
-                self.showHTTPErrorAlertView(title: "登入失敗", message: "請檢查資料是否正確")
-            }
-        )
-    }
-
-    func configureFacebook() {
-        self.fbButton.readPermissions = ["public_profile", "email", "user_friends"];
-        self.fbButton.delegate = self
+        hideKeyboard()
+        login(email: inputEmail.text!, password: inputPassword.text!)
     }
 
     override func viewDidLoad() {
@@ -69,6 +48,39 @@ class LoginViewController: UIViewController {
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        navigationItem.title = ""
+    }
+
+    func login(email email: String, password: String) {
+        let data = LoginData(email: email, password: password)
+
+        self.showToastIndicator()
+        LoginManager.sharedInstance.login(data,
+            onComplete: {
+                self.showHTTPSuccessAlertView(title: "登入成功", message: "", onClickOK: {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                })
+            },
+            onError: { _ in
+                self.showHTTPErrorAlertView(title: "登入失敗", message: "請檢查資料是否正確")
+            },
+            onFinished: {
+                self.hideToastIndicator()
+            }
+        )
+    }
+
+    func hideKeyboard() {
+        inputEmail.resignFirstResponder()
+        inputPassword.resignFirstResponder()
+    }
+
+    func configureFacebook() {
+        self.fbButton.readPermissions = ["public_profile", "email", "user_friends"];
+        self.fbButton.delegate = self
+    }
+
     func configureInputs() {
         if let storedEmail = LoginManager.userDefaults.stringForKey("email") {
             self.inputEmail.text = storedEmail
@@ -87,10 +99,6 @@ class LoginViewController: UIViewController {
             string: "登入密碼",
             attributes: [ NSForegroundColorAttributeName: color ]
         )
-    }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        navigationItem.title = ""
     }
 
 }
