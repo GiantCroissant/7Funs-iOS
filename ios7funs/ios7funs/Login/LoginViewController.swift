@@ -8,16 +8,19 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
+class LoginViewController: UIViewController {
 
     @IBOutlet weak var inputEmail: UITextField!
     @IBOutlet weak var inputPassword: UITextField!
     @IBOutlet weak var contentBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var fbButton: FBSDKLoginButton!
+    @IBOutlet var profileImage: UIImageView!
+    @IBOutlet var nameLabel: UILabel!
 
     @IBAction func onCancelButtonClick(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
+
     @IBAction func onLoginButtonClick(sender: UIButton) {
         inputEmail.resignFirstResponder()
         inputPassword.resignFirstResponder()
@@ -38,46 +41,15 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         )
     }
 
-    @IBOutlet weak var fbButton: FBSDKLoginButton!
-    @IBOutlet var profileImage: UIImageView!
-    @IBOutlet var nameLabel: UILabel!
-//    @IBAction func onLoginViaFBButtonClick(sender: UIButton) {
-//        
-//    }
-
-
     func configureFacebook() {
         self.fbButton.readPermissions = ["public_profile", "email", "user_friends"];
         self.fbButton.delegate = self
-    }
-    
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        FBSDKGraphRequest.init(graphPath: "me", parameters: ["fields":"first_name, last_name, picture.type(large)"]).startWithCompletionHandler { (connection, result, error) -> Void in
-
-            // Can get token info here
-            // result.token
-            
-            // Can retrieve basic info by requesting my profile
-            
-//            let strFirstName: String = (result.objectForKey("first_name") as? String)!
-//            let strLastName: String = (result.objectForKey("last_name") as? String)!
-//            let strPictureURL: String = (result.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)!
-//            self.nameLabel.text = "Welcome, \(strFirstName) \(strLastName)"
-//            self.profileImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strPictureURL)!)!)
-        }
-    }
-    
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        let loginManager: FBSDKLoginManager = FBSDKLoginManager()
-        loginManager.logOut()
-
-//        profileImage.image = nil
-//        nameLabel.text = ""
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCustomPlaceholders()
+        configureFacebook()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -125,7 +97,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 // MARK: - Keyboard observer
 extension LoginViewController {
 
-    func setupKeyboardObservers() {
+    private func setupKeyboardObservers() {
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "keyboardWillShow:",
@@ -141,19 +113,19 @@ extension LoginViewController {
         )
     }
 
-    func keyboardWillHide(notification: NSNotification) {
+    private func keyboardWillHide(notification: NSNotification) {
         let info = notification.userInfo!
         let animationDuration = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 
         contentBottomConstraint.constant = 0
-        
+
         self.view.setNeedsUpdateConstraints()
         UIView.animateWithDuration(animationDuration) {
             self.view.layoutIfNeeded()
         }
     }
 
-    func keyboardWillShow(notification: NSNotification) {
+    private func keyboardWillShow(notification: NSNotification) {
         let info = notification.userInfo!
         let animationDuration = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
         let keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
@@ -168,6 +140,8 @@ extension LoginViewController {
 
 }
 
+
+// MARK: - UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -175,4 +149,43 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 
+}
+
+
+// MARK: - FBSDKLoginButtonDelegate
+extension LoginViewController: FBSDKLoginButtonDelegate {
+
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+
+        let fbRequest = FBSDKGraphRequest.init(
+            graphPath: "me",
+            parameters: ["fields":"first_name, last_name, picture.type(large)"]
+        )
+
+        fbRequest.startWithCompletionHandler { (connection, result, error) -> Void in
+
+            if let err = error {
+                dLog("err = \(err)")
+                return
+            }
+
+            dLog("result = \(result)")
+
+            // Can get token info here
+            // result.token
+
+            // Can retrieve basic info by requesting my profile
+
+            //            let strFirstName: String = (result.objectForKey("first_name") as? String)!
+            //            let strLastName: String = (result.objectForKey("last_name") as? String)!
+            //            let strPictureURL: String = (result.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)!
+            //            self.nameLabel.text = "Welcome, \(strFirstName) \(strLastName)"
+            //            self.profileImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strPictureURL)!)!)
+        }
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        FBSDKLoginManager().logOut()
+    }
+    
 }
