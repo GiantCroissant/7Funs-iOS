@@ -143,7 +143,7 @@ class VideoManager {
     }
 
     func fetchVideosInChunks(ids: [Int]) {
-        let scheduler = ConcurrentDispatchQueueScheduler(globalConcurrentQueuePriority: .Default)
+        let scheduler = ConcurrentDispatchQueueScheduler(globalConcurrentQueueQOS: .Default)
 
         let l : [Int] =  Array(ids.prefix(100))
         self.restApiProvider

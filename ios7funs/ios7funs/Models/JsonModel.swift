@@ -201,6 +201,22 @@ public struct LoginResultJsonObject {
     public let createdAt: Int
 }
 
+// MARK: My favoriate json object
+public struct MyFavoriteRecipesResultJsonObject {
+    public let id: Int
+}
+
+// MARK: Error result json object
+public struct ErrorResultDataJsonObject {
+    public let user: RegisterResultDataUserJsonObject?
+}
+
+public struct ErrorResultJsonObject {
+    public let success: Bool
+    public let info: String
+    public let data: ErrorResultDataJsonObject
+}
+
 // MARK: Used in several json object
 public struct PaginationDetailJsonObject {
     public let currentPage: Int
@@ -521,6 +537,35 @@ extension LoginResultJsonObject : Decodable {
             <^> j <| "access_token"
             <*> j <| "token_type"
             <*> j <| "created_at"
+        
+        return f
+    }
+}
+
+extension MyFavoriteRecipesResultJsonObject : Decodable {
+    public static func decode(j: JSON) -> Decoded<MyFavoriteRecipesResultJsonObject> {
+        let f = curry(MyFavoriteRecipesResultJsonObject.init)
+            <^> j <| "id"
+        
+        return f
+    }
+}
+
+extension ErrorResultDataJsonObject : Decodable {
+    public static func decode(j: JSON) -> Decoded<ErrorResultDataJsonObject> {
+        let f = curry(ErrorResultDataJsonObject.init)
+            <^> j <|? "user"
+        
+        return f
+    }
+}
+
+extension ErrorResultJsonObject : Decodable {
+    public static func decode(j: JSON) -> Decoded<ErrorResultJsonObject> {
+        let f = curry(ErrorResultJsonObject.init)
+            <^> j <| "success"
+            <*> j <| "info"
+            <*> j <| "data"
         
         return f
     }

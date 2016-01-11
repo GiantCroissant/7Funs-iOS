@@ -42,8 +42,10 @@ public enum RestApi {
     
     //
     case LogIn(username: String, password: String)
+    case LogInViaFb(assertion: String)
     case Register(email: String, name: String, password: String, passwordConfirmation: String)
     case LogOut(token: String)
+    case PasswordReset(email: String)
     
     //
     case GetMyFavoriteRecipesIds(token: String)
@@ -96,10 +98,14 @@ extension RestApi : TargetType {
 //            return "/users/\(name.URLEscapedString)/repos"
         case .LogIn:
             return "/oauth/token"
+        case .LogInViaFb:
+            return "/oauth/token"
         case .Register:
             return "/rorapi/v1/registrations"
         case .LogOut(_):
             return "/oauth/revoke"
+        case .PasswordReset:
+            return "/rorapi/v1/passwords"
             
         //
         case .GetMyFavoriteRecipesIds:
@@ -117,6 +123,9 @@ extension RestApi : TargetType {
         case .CreateMessageComment:
             return .POST
             
+        case .LogInViaFb:
+            return .POST
+            
         case .LogIn:
             return .POST
 
@@ -124,6 +133,9 @@ extension RestApi : TargetType {
             return .POST
 
         case .LogOut(_):
+            return .POST
+            
+        case .PasswordReset(_):
             return .POST
             
         default:
@@ -226,6 +238,7 @@ extension RestApi : TargetType {
             return [
                 "client_id": clientId
             ]
+            
         case .LogIn(let username, let password):
             return [
                 "client_id": clientId,
@@ -233,6 +246,11 @@ extension RestApi : TargetType {
                 "grant_type": "password",
                 "username": username,
                 "password": password
+            ]
+        case .LogInViaFb(let assertion):
+            return [
+                "assertion": assertion,
+                "grant_type": "assertion"
             ]
         case .Register(let email, let name, let password, let passwordConfirmation):
             return [
@@ -249,6 +267,10 @@ extension RestApi : TargetType {
             return [
                 "client_id": clientId,
                 "token": token
+            ]
+        case .PasswordReset(let email):
+            return [
+                "email": email
             ]
             
         case .GetMyFavoriteRecipesIds(let token):
@@ -309,9 +331,13 @@ extension RestApi : TargetType {
             
         case .LogIn:
             return "".dataUsingEncoding(NSUTF8StringEncoding)!
+        case .LogInViaFb(_):
+            return "".dataUsingEncoding(NSUTF8StringEncoding)!
         case .Register:
             return "".dataUsingEncoding(NSUTF8StringEncoding)!
         case .LogOut:
+            return "".dataUsingEncoding(NSUTF8StringEncoding)!
+        case .PasswordReset(_):
             return "".dataUsingEncoding(NSUTF8StringEncoding)!
             
         case .GetMyFavoriteRecipesIds:
