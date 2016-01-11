@@ -136,37 +136,31 @@ class LoginManager {
             .addDisposableTo(disposeBag)
     }
 
-    func askServerToSendResetPasswordEmail(email: String, onComplete: (() -> Void) = {}, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
+    func askServerToSendResetPasswordEmail(email: String, onHTTPError: ((ErrorResultJsonObject?) -> Void) = { _ in },onComplete: ((ErrorResultJsonObject?) -> Void) = { _ in }, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
 
         let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
         let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
         self.restApiProvider
             .request(RestApi.PasswordReset(email: email))
-            .mapSuccessfulHTTPToObject(ErrorResultDataJsonObject.self,
+            .mapSuccessfulHTTPToObject(ErrorResultJsonObject.self,
                 onHTTPFail: { res in
-
-                    dLog("onHTTPFail = \(res)")
+                    onHTTPError(res)
                 }
             )
             .subscribeOn(scheduler)
             .subscribe(
                 onNext: { res in
                     dLog("res = \(res)")
-
-//                    let token = res.accessToken
-//                    LoginManager.token = token
-
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onComplete(res)
+                    }
                 },
                 onError: { err in
-                    // TODO: fix register failed message
                     dispatch_async(dispatch_get_main_queue()) {
                         onError(err)
                     }
                 },
                 onCompleted: {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        onComplete()
-                    }
                 },
                 onDisposed: {
                     dispatch_async(dispatch_get_main_queue()) {

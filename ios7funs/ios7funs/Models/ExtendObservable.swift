@@ -42,9 +42,8 @@ extension Observable {
                 throw ORMError.ORMNoRepresentor
             }
 
-            // TODO: need this guard ?
             guard ((200...209) ~= response.statusCode) else {
-                dLog("[ HTTP failed ] statusCode = \(response.statusCode)")
+                dLog("statusCode = \(response.statusCode)")
 
                 if let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [String: AnyObject] {
                     onHTTPFail(self.resultFromJSON(json!, classType: ErrorResultJsonObject.self))
@@ -58,6 +57,7 @@ extension Observable {
                     throw ORMError.ORMCouldNotMakeObjectError
                 }
 
+                print("json = \(json)")
                 if let result = self.resultFromJSON(json, classType:type) {
                     return result
                 }

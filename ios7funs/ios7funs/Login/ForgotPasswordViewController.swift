@@ -14,7 +14,37 @@ class ForgotPasswordViewController: UIViewController {
 
     @IBAction func onSendRestEmailButtonClick(sender: UIButton) {
         let email = inputEmail.text!
-        LoginManager.sharedInstance.askServerToSendResetPasswordEmail(email);
+        LoginManager.sharedInstance.askServerToSendResetPasswordEmail(email,
+            onHTTPError: { err in
+                self.onResetEmailHTTPFail(err)
+            },
+            onComplete: { res in
+                self.onResetEmailHTTPSuccess(res)
+            }
+        );
+    }
+
+    func onResetEmailHTTPFail(err: ErrorResultJsonObject?) {
+        var message = ""
+        if let emailError = err?.data.email {
+            message.appendContentsOf(emailError[0])
+        }
+
+        guard let title = err?.info else {
+            return
+        }
+        self.showHTTPErrorAlertView(title: title, message: message)
+    }
+
+    func onResetEmailHTTPSuccess(res: ErrorResultJsonObject?) {
+        guard let info = res?.info else {
+            dLog("no info: res = \(res)")
+            return
+        }
+
+        self.showHTTPSuccessAlertView(title: "", message: info, onClickOK: {
+            self.navigationController?.popViewControllerAnimated(true)
+        })
     }
 
     override func viewWillAppear(animated: Bool) {
