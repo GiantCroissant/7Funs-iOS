@@ -7,10 +7,8 @@
 //
 
 import Foundation
-
 import RealmSwift
 
-//
 public class Recipe : Object {
     dynamic var id = 0
     dynamic var image = ""
@@ -25,8 +23,6 @@ public class Recipe : Object {
     dynamic var hits = 0
     dynamic var createdAt = ""
     dynamic var updatedAt = ""
-
-    // Add favorite property : 2016.1.7
     dynamic var favorite = false
     
     public override static func primaryKey() -> String? {
@@ -51,23 +47,28 @@ public class RecipesFavorite : Object {
     }
 }
 
-////
-//public class SubCategory : Object {
-//    dynamic var id = 0
-//    dynamic var title = ""
-//    dynamic var parentId = 0
-//    dynamic var createdAt = ""
-//    dynamic var updatedAt = ""
-//}
-//
-//public class Category : Object {
-//    dynamic var id = 0
-//    dynamic var title = ""
-//    dynamic var parentId = 0
-//    dynamic var createdAt = ""
-//    dynamic var updatedAt = ""
-//    let subCategories = List<SubCategory>()
-//}
+/*
+// MARK: Video related
+public struct VideoDataJsonObject {
+public let title: String
+public let duration: Int
+public let likeCount: Int
+public let viewCount: Int
+public let descritpion: String
+public let publishedAt: String
+public let thumbnailUrl: String
+}
+
+public struct VideoJsonObject {
+public let id: Int
+public let recipeId: Int
+public let youtubeVideoCode: String
+public let number: Int
+public let createdAt: String
+public let updatedAt: String
+public let videoData: VideoDataJsonObject?
+}
+*/
 
 public class Video : Object {
     dynamic var id = 0
@@ -76,10 +77,21 @@ public class Video : Object {
     dynamic var number = 0
     dynamic var createdAt = ""
     dynamic var updatedAt = ""
+    dynamic var title = ""
+    dynamic var duration = 0
+    dynamic var likeCount = 0
+    dynamic var viewCount = 0
+    dynamic var desc = ""
+    dynamic var publishedAt = ""
+    dynamic var thumbnailUrl = ""
     
     public override static func primaryKey() -> String? {
         return "id"
     }
+}
+
+public class VideoData: Object {
+
 }
 
 public class VideoOverview : Object {
@@ -91,19 +103,3 @@ public class VideoOverview : Object {
     }
 }
 
-////
-//public class MessageUser : Object {
-//    dynamic var id = 0
-//    dynamic var name = ""
-//}
-//
-//public class Message : Object {
-//    dynamic var id = 0
-//    dynamic var userId = 0
-//    dynamic var title = ""
-//    dynamic var desc = ""
-//    dynamic var commentCount = 0
-//    dynamic var createdAt = ""
-//    dynamic var updatedAt = ""
-//    let users = List<MessageUser>()
-//}

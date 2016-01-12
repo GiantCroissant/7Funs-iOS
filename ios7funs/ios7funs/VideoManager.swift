@@ -182,7 +182,7 @@ class VideoManager {
             var toRemoveVideoOverviews = [VideoOverview]()
 
             for videoJson in videoJsons {
-                let video = self.convertFromVideoJsonObject(videoJson)
+                let video = self.convertToVideoDBModel(videoJson)
                 let finishedVideos = overviews.filter("id == %@", videoJson.id)
                 toAddVideos.append(video)
                 toRemoveVideoOverviews.append(finishedVideos[0])
@@ -206,7 +206,7 @@ class VideoManager {
         }
     }
 
-    func convertFromVideoJsonObject(videoJsonObject: VideoJsonObject) -> Video {
+    func convertToVideoDBModel(videoJsonObject: VideoJsonObject) -> Video {
         let video = Video()
         video.updatedAt = videoJsonObject.updatedAt
         video.createdAt = videoJsonObject.createdAt
@@ -214,6 +214,17 @@ class VideoManager {
         video.recipeId = videoJsonObject.recipeId
         video.number = videoJsonObject.number
         video.youtubeVideoCode = videoJsonObject.youtubeVideoCode
+
+        if let data = videoJsonObject.videoData {
+            video.title = data.title
+            video.duration = data.duration
+            video.likeCount = data.likeCount
+            video.viewCount = data.viewCount
+            video.desc = data.descritpion
+            video.publishedAt = data.publishedAt
+            video.thumbnailUrl = data.thumbnailUrl
+        }
+
         return video
     }
 
