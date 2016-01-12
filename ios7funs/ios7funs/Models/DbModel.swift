@@ -90,10 +90,6 @@ public class Video : Object {
     }
 }
 
-public class VideoData: Object {
-
-}
-
 public class VideoOverview : Object {
     dynamic var id = 0
     dynamic var updatedAt = ""

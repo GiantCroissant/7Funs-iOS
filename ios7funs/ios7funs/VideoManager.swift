@@ -197,13 +197,19 @@ class VideoManager {
         }
     }
 
-    func loadVideo(recipeId: Int) {
+    func loadVideo(recipeId: Int, onLoaded: ([VideoUIModel]) -> Void) {
         dLog("loadVideo : recipeId = \(recipeId)")
 
+        var videos = [VideoUIModel]()
+
         let realm = try! Realm()
-        if let video = realm.objects(Video).filter("recipeId = \(recipeId)").first {
-            print("video = \(video)")
+        let videoDBs = realm.objects(Video).filter("recipeId = \(recipeId)")
+        for videoDB in videoDBs {
+            let video = VideoUIModel(dbData: videoDB)
+            videos.append(video)
         }
+
+        onLoaded(videos)
     }
 
     func convertToVideoDBModel(videoJsonObject: VideoJsonObject) -> Video {

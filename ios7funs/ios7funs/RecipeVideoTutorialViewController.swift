@@ -11,6 +11,7 @@ import UIKit
 class RecipeVideoTutorialViewController: UIViewController {
 
     var recipe: RecipeUIModel!
+    var video: VideoUIModel!
 
     @IBOutlet var test: [UIButton]!
     @IBOutlet weak var foodImage: UIImageView!
@@ -30,7 +31,9 @@ class RecipeVideoTutorialViewController: UIViewController {
             self.foodImage.image = image
         }
 
-        VideoManager.sharedInstance.loadVideo(recipe.id)
+        VideoManager.sharedInstance.loadVideo(recipe.id) { videos in
+            dLog("videos = \(videos)")
+        }
     }
 
 }
