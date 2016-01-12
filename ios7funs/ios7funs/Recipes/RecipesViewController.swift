@@ -70,7 +70,7 @@ extension RecipesViewController {
                 self.loadRecipes()
             },
             onError: { error in
-                // TODO: show alert ?
+                self.showNetworkIsBusyAlertView()
             },
             onFinished: {
                 self.isFetching = false

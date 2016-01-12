@@ -20,17 +20,6 @@ class VideosViewController: UIViewController {
         super.viewDidLoad()
 
         configureTableDummy()
-
-//
-//        self.showToastIndicator()
-//        VideoManager.sharedInstance.loadVideos() { videos in
-//
-//            self.videos = videos
-//            self.tableVideos.reloadData()
-//            self.hideToastIndicator()
-//        }
-//
-//        VideoManager.sharedInstance.fetchVideos()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -90,12 +79,9 @@ extension VideosViewController: UITableViewDataSource {
 extension VideosViewController {
 
     func loadVideos(onEmpty onEmpty: (() -> Void) = {}) {
-//        self.showToastIndicator()
         VideoManager.sharedInstance.loadVideos { videos in
             self.videos = videos
             self.tableVideos.reloadData()
-//            self.hideToastIndicator()
-
             if videos.isEmpty {
                 onEmpty()
             }

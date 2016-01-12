@@ -162,6 +162,7 @@ class RecipeManager: NSObject {
             let realm = try! Realm()
             let recipesOverviews = realm.objects(RecipesOverview)
             if recipesOverviews.count <= 0 {
+                onFinished()
                 return
             }
 

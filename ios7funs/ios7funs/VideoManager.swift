@@ -183,6 +183,7 @@ class VideoManager {
             let realm = try! Realm()
             let videosOverviews = realm.objects(VideoOverview)
             if videosOverviews.count <= 0 {
+                onFinished()
                 return
             }
 
