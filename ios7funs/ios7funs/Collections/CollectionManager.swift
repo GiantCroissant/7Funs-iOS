@@ -37,43 +37,59 @@ class CollectionManager: NSObject {
         }
     })
 
-    func fetchCollections(token: String, onComplete: (() -> Void) = {}
-        , onError: (ErrorType -> Void) = { _ in }
-        , onFinished: (() -> Void) = {}) {
+    func fetchCollections(token: String, onComplete: (() -> Void) = {}, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
 
-            let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-            let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
-            self.restApiProvider
-                .request(RestApi.GetMyFavoriteRecipesIds(token: token))
-                .mapSuccessfulHTTPToObjectArray(MyFavoriteRecipesResultJsonObject)
-                .subscribeOn(scheduler)
-                .subscribe(
-                    onNext: { res in
-
-                        dLog("res = \(res)")
-                        // MARK: Assume there is response(none at this stage), since the result is not mapped, no json response
-                        // MARK: Updated, there should be an array of json object return which takes only one property of "id"
-
-                        // TODO: Do something with these recipes id from server
-                    },
-                    onError: { error in
-                        dLog("error = \(error)")
-
-                        dispatch_async(dispatch_get_main_queue()) {
-                            onError(error)
-                        }
-                    },
-                    onCompleted: {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            onComplete()
-                        }
-                    },
-                    onDisposed: {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            onFinished()
-                        }
+        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+        let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
+        self.restApiProvider
+            .request(RestApi.GetMyFavoriteRecipesIds(token: token))
+            .mapSuccessfulHTTPToObjectArray(MyFavoriteRecipesResultJsonObject)
+            .subscribeOn(scheduler)
+            .subscribe(
+                onNext: { res in
+                    self.handleGetFavoriteRecipeIds(res)
+                },
+                onError: { error in
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onError(error)
                     }
-                )
-                .addDisposableTo(self.disposeBag)
+                },
+                onCompleted: {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onComplete()
+                    }
+                },
+                onDisposed: {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        onFinished()
+                    }
+                }
+            )
+            .addDisposableTo(self.disposeBag)
     }
+
+    func handleGetFavoriteRecipeIds(res: [MyFavoriteRecipesResultJsonObject]) {
+        // update local db 
+    }
+
+    func loadCollections(onLoaded: ([RecipeUIModel] -> Void)) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+            autoreleasepool {
+                var recipes = [RecipeUIModel]()
+                let realm = try! Realm()
+
+                let recipeObjs = realm.objects(Recipe).filter("favorite == true")
+                for recipeObj in recipeObjs {
+
+                    let recipe = RecipeUIModel(dbData: recipeObj)
+                    recipes.append(recipe)
+                }
+
+                dispatch_async(dispatch_get_main_queue()) {
+                    onLoaded(recipes)
+                }
+            }
+        }
+    }
+
 }

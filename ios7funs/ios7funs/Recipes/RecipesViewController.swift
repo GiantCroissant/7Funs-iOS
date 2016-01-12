@@ -35,27 +35,44 @@ class RecipesViewController: UIViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.title = "食譜列表"
-
-        dLog("type = \(type)")
         if type == .Recipe {
+            self.title = "食譜列表"
             indicatorLoadMore.hidden = false
             indicatorLoadMore.startAnimating()
-            
+
             loadRecipes(onEmpty: {
                 self.fetchMoreRecipes()
             })
         }
 
         if type == .Collection {
+            self.title = "我的收藏"
             indicatorLoadMore.hidesWhenStopped = true
             indicatorLoadMore.stopAnimating()
 
+            self.showToastIndicator()
             if let token = LoginManager.token {
-                CollectionManager.sharedInstance.fetchCollections(token)
+                CollectionManager.sharedInstance.fetchCollections(token,
+                    onComplete: {
+                        self.handleFetchCollectionComplete()
+                    },
+                    onError: { err in
+                        self.showNetworkIsBusyAlertView()
+                    },
+                    onFinished: {
+                        self.hideToastIndicator()
+                    }
+                )
             }
         }
 
+    }
+
+    func handleFetchCollectionComplete() {
+        CollectionManager.sharedInstance.loadCollections { recipes in
+            self.recipes = recipes
+            self.tableRecipes.reloadData()
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
