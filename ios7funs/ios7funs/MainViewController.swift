@@ -94,20 +94,18 @@ class MainViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         navigationItem.title = ""
 
-        if let segueId = segue.identifier {
-            if (segueId == "id_segue_recipe") {
-                dLog("id_segue_recipe")
+        guard let segueId = segue.identifier else {
+            return
+        }
 
-                let detailVC = segue.destinationViewController as! RecipesViewController
-                detailVC.type = .Recipe
-            }
+        if (segueId == "id_segue_recipe") {
+            let detailVC = segue.destinationViewController as! RecipesViewController
+            detailVC.type = .Recipe
+        }
 
-            if (segueId == "id_segue_collection") {
-                dLog("id_segue_collection")
-
-                let detailVC = segue.destinationViewController as! RecipesViewController
-                detailVC.type = .Collection
-            }
+        if (segueId == "id_segue_collection") {
+            let detailVC = segue.destinationViewController as! RecipesViewController
+            detailVC.type = .Collection
         }
     }
 
