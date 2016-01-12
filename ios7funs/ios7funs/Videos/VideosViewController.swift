@@ -8,18 +8,12 @@
 
 import UIKit
 
-class VideosViewController: UIViewController, UITableViewDataSource {
-
+class VideosViewController: UIViewController {
 
     @IBOutlet weak var tableDummy: UIView!
     @IBOutlet weak var tableVideos: UITableView!
 
-    var data = ["Apple", "Apricot", "Banana", "Blueberry", "Cantaloupe", "Cherry",
-        "Clementine", "Coconut", "Cranberry", "Fig", "Grape", "Grapefruit",
-        "Kiwi fruit", "Lemon", "Lime", "Lychee", "Mandarine", "Mango",
-        "Melon", "Nectarine", "Olive", "Orange", "Papaya", "Peach",
-        "Pear", "Pineapple", "Raspberry", "Strawberry"]
-
+    var isFetching = false
     var videos = [VideoUIModel]()
 
     override func viewDidLoad() {
@@ -27,27 +21,27 @@ class VideosViewController: UIViewController, UITableViewDataSource {
 
         configureTableDummy()
 
-        
-
-        UIUtils.showStatusBarNetworking()
-        self.showToastIndicator()
-
-        VideoManager.sharedInstance.loadVideos() { videos in
-
-            self.videos = videos
-            self.tableVideos.reloadData()
-
-            UIUtils.hideStatusBarNetworking()
-            self.hideToastIndicator()
-        }
-
-        VideoManager.sharedInstance.fetchVideos()
+//
+//        self.showToastIndicator()
+//        VideoManager.sharedInstance.loadVideos() { videos in
+//
+//            self.videos = videos
+//            self.tableVideos.reloadData()
+//            self.hideToastIndicator()
+//        }
+//
+//        VideoManager.sharedInstance.fetchVideos()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
         self.title = "節目列表"
+
+        loadVideos(onEmpty: {
+            self.fetchMoreVideos()
+        })
+
+        self.fetchMoreVideos()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -67,7 +61,18 @@ class VideosViewController: UIViewController, UITableViewDataSource {
         tableDummy.layer.shadowPath = shadowPath.CGPath
     }
 
-    // MARK: - UITableViewDataSource
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        navigationItem.title = ""
+
+        let dstVC = segue.destinationViewController as! VideoPlayerViewController
+        let row = (sender?.tag)!
+        dstVC.video = videos[row]
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension VideosViewController: UITableViewDataSource {
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return videos.count
     }
@@ -77,12 +82,44 @@ class VideosViewController: UIViewController, UITableViewDataSource {
         cell.video = videos[indexPath.row]
         return cell
     }
+    
+}
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        navigationItem.title = ""
 
-        let dstVC = segue.destinationViewController as! VideoPlayerViewController
-        let row = (sender?.tag)!
-        dstVC.video = videos[row]
+// MARK: - Video datas
+extension VideosViewController {
+
+    func loadVideos(onEmpty onEmpty: (() -> Void) = {}) {
+//        self.showToastIndicator()
+        VideoManager.sharedInstance.loadVideos { videos in
+            self.videos = videos
+            self.tableVideos.reloadData()
+//            self.hideToastIndicator()
+
+            if videos.isEmpty {
+                onEmpty()
+            }
+        }
     }
+
+    func fetchMoreVideos() {
+        if isFetching {
+            return
+        }
+        isFetching = true
+
+        self.showToastIndicator()
+        VideoManager.sharedInstance.fetchMoreVideos(
+            onComplete: {
+                self.loadVideos()
+            },
+            onError: { err in
+                self.showNetworkIsBusyAlertView()
+            },
+            onFinished: {
+                self.hideToastIndicator()
+            }
+        )
+    }
+
 }

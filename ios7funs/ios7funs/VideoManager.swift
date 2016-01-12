@@ -18,6 +18,7 @@ class VideoManager {
 
     static let sharedInstance = VideoManager()
 
+    let kFetchAmount = 100
     let disposeBag = DisposeBag()
     let restApiProvider = RxMoyaProvider<RestApi>()
 
@@ -31,15 +32,13 @@ class VideoManager {
                 let videoObjs = realm.objects(Video)
                 for videoObj in videoObjs {
 
-//                    // FIXME: workaround
-//                    if (videos.count >= 100) {
-//                        break
-//                    }
-//
-//                    // FIXME: workaround , data has too many empty youtubeVideoID
-//                    if videoObj.youtubeVideoCode.isEmpty {
-//                        continue
-//                    }
+                    // FIXME: workaround , data has too many empty youtubeVideoID
+                    if videoObj.youtubeVideoCode.isEmpty {
+                        continue
+
+                    } else {
+                        print("\(videoObj.youtubeVideoCode)")
+                    }
 
                     let video = VideoUIModel(dbData: videoObj)
                     videos.append(video)
@@ -129,57 +128,153 @@ class VideoManager {
         }
     }
 
-    func fetchVideos() {
-        do {
-            let realm = try Realm()
-            let videoOverviews = realm.objects(VideoOverview)
-            let ids = videoOverviews.map { x in
-                x.id
-            }
-            fetchVideosInChunks(ids)
-        } catch {
+//    func fetchVideos() {
+//        do {
+//            let realm = try Realm()
+//            let videoOverviews = realm.objects(VideoOverview)
+//            let ids = videoOverviews.map { x in
+//                x.id
+//            }
+//            fetchVideosInChunks(ids)
+//        } catch {
+//
+//        }
+//    }
+//
+//    func fetchVideosInChunks(ids: [Int]) {
+//        let scheduler = ConcurrentDispatchQueueScheduler(globalConcurrentQueuePriority: .Default)
+//
+//        let l : [Int] =  Array(ids.prefix(100))
+//        self.restApiProvider
+//            .request(.VideoByIdList(l))
+//            .mapSuccessfulHTTPToObjectArray(VideoJsonObject)
+//            .subscribeOn(scheduler)
+//            .subscribe(onNext: { responeVideos in
+//                autoreleasepool {
+//                    let realm1 = try! Realm()
+//                    let videoOverviews1 = realm1.objects(VideoOverview)
+//
+//                    var toAddVideos = [Video]()
+//                    var toRemoveVideoOverviews = [VideoOverview]()
+//
+//                    for rv in responeVideos {
+//                        let r = self.convertFromVideoJsonObject(rv)
+//                        let ro = videoOverviews1.filter("id == %@", rv.id)
+//                        toAddVideos.append(r)
+//                        toRemoveVideoOverviews.append(ro[0])
+//                    }
+//
+//                    realm1.beginWrite()
+//                    for i in 1..<toAddVideos.count {
+//                        realm1.add(toAddVideos[i], update: true)
+//                        realm1.delete(toRemoveVideoOverviews[i])
+//                    }
+//                    try! realm1.commitWrite()
+//                }
+//            }
+//        ).addDisposableTo(disposeBag)
+//    }
 
+
+    func fetchMoreVideos(onComplete onComplete: (() -> Void) = {}, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
+
+        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+        dispatch_async(backgroundQueue) {
+            let realm = try! Realm()
+            let videosOverviews = realm.objects(VideoOverview)
+            if videosOverviews.count <= 0 {
+                return
+            }
+
+            let ids = videosOverviews.map { x in x.id }
+            print("ids = \(ids)")
+
+            let videoIds = Array(ids.prefix(self.kFetchAmount))
+            let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
+
+            self.restApiProvider
+                .request(.VideoByIdList(videoIds))
+                .mapSuccessfulHTTPToObjectArray(VideoJsonObject)
+                .subscribeOn(scheduler)
+                .subscribe(
+                    onNext: { videoJsons in
+                        self.saveVideoToLocalDatabase(videoJsons)
+                    },
+                    onError: { error in
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onError(error)
+                        }
+                    },
+                    onCompleted: {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onComplete()
+                        }
+                    },
+                    onDisposed: {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onFinished()
+                        }
+                    }
+                )
+                .addDisposableTo(self.disposeBag)
+        }
+
+    }
+
+    func saveVideoToLocalDatabase(videoJsons: [VideoJsonObject]) {
+        autoreleasepool {
+            let realm = try! Realm()
+            let overviews = realm.objects(VideoOverview)
+
+            var toAddVideos = [Video]()
+            var toRemoveVideoOverviews = [VideoOverview]()
+
+            for videoJson in videoJsons {
+                let video = self.convertFromVideoJsonObject(videoJson)
+                let finishedVideos = overviews.filter("id == %@", videoJson.id)
+                toAddVideos.append(video)
+                toRemoveVideoOverviews.append(finishedVideos[0])
+            }
+
+            realm.beginWrite()
+            for i in 0..<toAddVideos.count {
+                realm.add(toAddVideos[i], update: true)
+                realm.delete(toRemoveVideoOverviews[i])
+            }
+            try! realm.commitWrite()
         }
     }
 
-    func fetchVideosInChunks(ids: [Int]) {
-        let scheduler = ConcurrentDispatchQueueScheduler(globalConcurrentQueuePriority: .Default)
+    /*
+    autoreleasepool {
+    let realm = try! Realm()
+    let overviews = realm.objects(RecipesOverview)
 
-        let l : [Int] =  Array(ids.prefix(100))
-        self.restApiProvider
-            .request(.VideoByIdList(l))
-            .mapSuccessfulHTTPToObjectArray(VideoJsonObject)
-            .subscribeOn(scheduler)
-            .subscribe(onNext: { responeVideos in
-                autoreleasepool {
-                    let realm1 = try! Realm()
-                    let videoOverviews1 = realm1.objects(VideoOverview)
+    var downloadedRecipes = [Recipe]()
+    var finishedOverviews = [RecipesOverview]()
 
-                    var toAddVideos = [Video]()
-                    var toRemoveVideoOverviews = [VideoOverview]()
+    for recipeJson in recipeJsons {
+    let recipe = self.convertToDBModel(recipeJson)
 
-                    for rv in responeVideos {
-                        let r = self.convertFromVideoJsonObject(rv)
-                        let ro = videoOverviews1.filter("id == %@", rv.id)
-                        toAddVideos.append(r)
-                        toRemoveVideoOverviews.append(ro[0])
-                    }
-
-                    realm1.beginWrite()
-                    for i in 1..<toAddVideos.count {
-                        realm1.add(toAddVideos[i], update: true)
-                        realm1.delete(toRemoveVideoOverviews[i])
-                    }
-                    try! realm1.commitWrite()
-                }
-            }
-        ).addDisposableTo(disposeBag)
+    let finishedRecipe = overviews.filter("id == %@", recipeJson.id)
+    downloadedRecipes.append(recipe)
+    finishedOverviews.append(finishedRecipe[0])
     }
 
+    realm.beginWrite()
+    for i in 0..<downloadedRecipes.count {
+    realm.add(downloadedRecipes[i], update: true)
+    }
+
+    for i in 0..<finishedOverviews.count {
+    realm.delete(finishedOverviews[i])
+    }
+    try! realm.commitWrite()
+    }
+    */
+
     func convertFromVideoJsonObject(videoJsonObject: VideoJsonObject) -> Video {
-
-        dLog("json = \(videoJsonObject)")
-
+//        dLog("json = \(videoJsonObject)")
         let video = Video()
         video.updatedAt = videoJsonObject.updatedAt
         video.createdAt = videoJsonObject.createdAt
