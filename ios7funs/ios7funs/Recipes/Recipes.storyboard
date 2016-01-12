@@ -902,6 +902,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnEngSub" destination="tls-fZ-Lsf" id="YCE-fD-eqM"/>
+                        <outlet property="btnMainCam" destination="iaP-wj-VFJ" id="RpR-Af-Tsw"/>
+                        <outlet property="btnTopCam" destination="qTb-Tm-ann" id="HXO-DB-oCN"/>
                         <outlet property="foodImage" destination="KoV-oK-pc7" id="WdC-hb-M0o"/>
                         <outletCollection property="test" destination="iaP-wj-VFJ" collectionClass="NSMutableArray" id="TmE-Wv-Wxm"/>
                         <outletCollection property="test" destination="qTb-Tm-ann" collectionClass="NSMutableArray" id="RRG-BL-T5j"/>

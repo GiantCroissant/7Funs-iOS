@@ -67,27 +67,30 @@ extension RecipeUIModel {
     func printDebugString() {
         print("self.id = \(self.id)")
         print("self.title = \(self.title)")
-        print("self.chefName = \(self.chefName)")
-        print("self.desc = \(self.desc)")
-        print("self.ingredient = \(self.ingredient)")
-        print("self.seasoning = \(self.seasoning)")
-        print("self.method = \(self.method)")
-        print("self.hits = \(self.hits)")
-        print("self.collectedCount = \(self.collectedCount)")
+//        print("self.chefName = \(self.chefName)")
+//        print("self.desc = \(self.desc)")
+//        print("self.ingredient = \(self.ingredient)")
+//        print("self.seasoning = \(self.seasoning)")
+//        print("self.method = \(self.method)")
+//        print("self.hits = \(self.hits)")
+//        print("self.collectedCount = \(self.collectedCount)")
     }
 }
 
 class VideoUIModel {
+
     var id: Int = 0
     var recipeId: Int = 0
     var youtubeVideoId: String = ""
-    var type = 0 // type : [ main, top, english ]
+    var type: Int = 0 // type : [ main, top, english ] ( 1, 2, 3 )
+    var thumbUrl = ""
 
     init(dbData: Video) {
         self.id = dbData.id
         self.recipeId = dbData.recipeId
         self.youtubeVideoId = dbData.youtubeVideoCode
         self.type = dbData.number
+        self.thumbUrl = dbData.thumbnailUrl
     }
 
 }
