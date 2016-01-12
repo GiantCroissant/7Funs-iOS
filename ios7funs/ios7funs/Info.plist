@@ -28,11 +28,15 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.7.16.2205</string>
+	<string>1.12.2016.0830</string>
 	<key>FacebookAppID</key>
 	<string>665096563622904</string>
 	<key>FacebookDisplayName</key>
 	<string>7funs</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbauth2</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -89,9 +93,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbauth2</string>
-	</array>
 </dict>
 </plist>
