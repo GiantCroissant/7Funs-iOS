@@ -118,6 +118,7 @@
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                                 <connections>
+                                                    <outlet property="Imagethumbnail" destination="a6S-zS-xqF" id="nIG-bC-Pki"/>
                                                     <outlet property="lblDescription" destination="rWh-Q5-h24" id="ajf-0y-irC"/>
                                                     <outlet property="lblLength" destination="vn6-b9-eBh" id="WBE-Lw-gPI"/>
                                                     <outlet property="lblName" destination="S2A-s2-ldV" id="rjG-Az-MpP"/>

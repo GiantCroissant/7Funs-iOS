@@ -13,11 +13,46 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var lblLength: UILabel!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var Imagethumbnail: UIImageView!
 
     var video: VideoUIModel! {
         didSet {
             self.lblName.text = video.youtubeVideoId
+            let imageUrl = video.thumbUrl
+            ImageLoader.sharedInstance.loadImage(video.youtubeVideoId, url: imageUrl, completionHandler: { (image, imageName, fadeIn) -> () in
+
+                self.Imagethumbnail.image = image
+            })
+
+            self.lblName.text = video.title
+            self.lblLength.text = getVideoLengthString(video.duration)
+            self.lblDescription.text = video.desc
+
+            video.printDebugString()
+
         }
+    }
+
+    func secondsToHoursMinutesSeconds(seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+
+    func getVideoLengthString(seconds: Int) -> String {
+        let (h, m, s) = secondsToHoursMinutesSeconds(seconds)
+        if (h > 0) {
+            return "\(h):\(m):\(s)"
+
+        } else if (m > 0) {
+            return "\(m):\(s)"
+
+        } else {
+            return "\(s)"
+        }
+    }
+
+    func printSecondsToHoursMinutesSeconds(seconds:Int) -> () {
+        let (h, m, s) = secondsToHoursMinutesSeconds (seconds)
+        print("\(h) Hours, \(m) Minutes, \(s) Seconds")
     }
 
     override func awakeFromNib() {

@@ -61,15 +61,6 @@ class RecipeVideoTutorialViewController: UIViewController {
 
     func handleMainCameraVideoLoaded(video: VideoUIModel) {
         self.btnMainCam.hidden = false
-
-        let imageUrl = video.thumbUrl
-        ImageLoader.sharedInstance.loadImage(video.youtubeVideoId, url: imageUrl, completionHandler: { (image, imageName, fadeIn) -> () in
-
-            self.foodImage.image = image
-
-        })
-
-
         self.youtubePlayer.loadWithVideoId(video.youtubeVideoId)
     }
 
