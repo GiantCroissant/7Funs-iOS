@@ -18,7 +18,7 @@ class VideoManager {
 
     static let sharedInstance = VideoManager()
 
-    let kFetchAmount = 500
+    let kFetchAmount = 100
     let disposeBag = DisposeBag()
     let restApiProvider = RxMoyaProvider<RestApi>()
 

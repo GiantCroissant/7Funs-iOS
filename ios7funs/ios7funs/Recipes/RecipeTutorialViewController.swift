@@ -54,29 +54,21 @@ class RecipeTutorialViewController: UIViewController {
         configureFavoriteButton(recipe.favorite)
         configureInformation()
         configureTutorial()
-
-//        let width = bgContent.frame.width
-//        bgContent.frame.size = CGSize(width: width, height: 10000)
-
-//        layoutContentHeight.constant = 1000
-
     }
 
+    // TODO: need refactor
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
         let bounds = self.bgBottom.bounds
-        let size = self.bgBottom.sizeThatFits(CGSize(width: bounds.width, height: 10000))
-        print("size = \(size)")
+        let size = self.bgBottom.sizeThatFits(CGSize(width: bounds.width, height: 100000))
 
         var newHeight: CGFloat = 0.0
         for height in layoutDynamicHeights {
             newHeight += height.constant
         }
 
-
         layoutContentHeight.constant = newHeight + size.height
-
         contentScrollView.contentSize.height = layoutContentHeight.constant
     }
 
@@ -90,7 +82,7 @@ class RecipeTutorialViewController: UIViewController {
 
     func reformatIngredientString(ingredient: String) -> String {
         let ingredients = ingredient.componentsSeparatedByString("、")
-        var ingredientText: String = ""
+        var ingredientText: String = "無"
         for ingre in ingredients {
             ingredientText.appendContentsOf(ingre)
             ingredientText.appendContentsOf("\n")
@@ -102,7 +94,7 @@ class RecipeTutorialViewController: UIViewController {
 
     func reformatSeasoningString(seasoning: String) -> String {
         let seasonings = seasoning.componentsSeparatedByString("、")
-        var seasoningText: String = ""
+        var seasoningText: String = "無"
         for sea in seasonings {
             seasoningText.appendContentsOf(sea)
             seasoningText.appendContentsOf("\n")

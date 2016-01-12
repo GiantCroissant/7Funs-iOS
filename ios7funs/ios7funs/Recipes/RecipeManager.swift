@@ -20,7 +20,7 @@ class RecipeManager: NSObject {
 
     static let sharedInstance = RecipeManager()
 
-    let kFetchAmount = 500
+    let kFetchAmount = 100
     let recipeImageBaseUrl = "https://commondatastorage.googleapis.com/funs7-1/uploads/recipe/image/"
     let disposeBag = DisposeBag()
 
@@ -284,9 +284,6 @@ class RecipeManager: NSObject {
     }
 
     private func convertToDBModel(jsonObj: RecipesJsonObject) -> Recipe {
-        dLog("json = \(jsonObj)")
-
-
         let recipe = Recipe()
         recipe.updatedAt = jsonObj.updatedAt
         recipe.createdAt = jsonObj.createdAt
