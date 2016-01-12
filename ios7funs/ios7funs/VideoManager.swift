@@ -18,11 +18,10 @@ class VideoManager {
 
     static let sharedInstance = VideoManager()
 
-    let kFetchAmount = 1000
+    let kFetchAmount = 500
     let disposeBag = DisposeBag()
     let restApiProvider = RxMoyaProvider<RestApi>()
 
-    // TODO: findout how to query with amount
     func loadVideos(completionHandler: (videos: [VideoUIModel]) -> ()) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
             autoreleasepool {
@@ -140,9 +139,11 @@ class VideoManager {
             }
 
             let ids = videosOverviews.map { x in x.id }
-            let videoIds = Array(ids.prefix(self.kFetchAmount))
-            let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
+            let maxLength = self.kFetchAmount > ids.count ? ids.count : self.kFetchAmount
+            let videoIds = Array(ids.prefix(maxLength))
+            dLog("fetch video count = \(videoIds.count)")
 
+            let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
             self.restApiProvider
                 .request(.VideoByIdList(videoIds))
                 .mapSuccessfulHTTPToObjectArray(VideoJsonObject)
