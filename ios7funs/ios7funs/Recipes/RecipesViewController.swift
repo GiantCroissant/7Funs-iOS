@@ -12,21 +12,50 @@ import RealmSwift
 class RecipesViewController: UIViewController {
 
     @IBOutlet weak var tableRecipes: UITableView!
+    @IBOutlet weak var indicatorLoadMore: UIActivityIndicatorView!
 
+    enum StoryboardType {
+        case Recipe
+        case Collection
+    }
+
+    var type = StoryboardType.Recipe
     var isFetching = false
     var recipes = [RecipeUIModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if type == .Collection {
+            if (LoginManager.token == nil)  {
+                LoginManager.sharedInstance.showLoginViewController(self)
+            }
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.title = "食譜列表"
 
-        loadRecipes(onEmpty: {
-            self.fetchMoreRecipes()
-        })
+        dLog("type = \(type)")
+        if type == .Recipe {
+            indicatorLoadMore.hidden = false
+            indicatorLoadMore.startAnimating()
+            
+            loadRecipes(onEmpty: {
+                self.fetchMoreRecipes()
+            })
+        }
+
+        if type == .Collection {
+            indicatorLoadMore.hidesWhenStopped = true
+            indicatorLoadMore.stopAnimating()
+
+            if let token = LoginManager.token {
+                CollectionManager.sharedInstance.fetchCollections(token)
+            }
+        }
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -153,7 +182,9 @@ extension RecipesViewController: UITableViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         let distFromBottom = scrollView.contentSize.height - scrollView.contentOffset.y
         if (distFromBottom <= scrollView.frame.height) {
-            fetchMoreRecipes()
+            if type == .Recipe {
+                fetchMoreRecipes()
+            }
         }
     }
     

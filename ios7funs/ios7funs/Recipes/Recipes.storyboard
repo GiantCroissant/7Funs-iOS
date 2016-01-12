@@ -229,6 +229,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="indicatorLoadMore" destination="Cgu-Ac-xdg" id="efs-Un-dCA"/>
                         <outlet property="tableRecipes" destination="NwZ-h3-aJb" id="XhT-rs-cLv"/>
                     </connections>
                 </viewController>
