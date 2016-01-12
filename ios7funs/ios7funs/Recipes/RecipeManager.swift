@@ -283,7 +283,7 @@ class RecipeManager: NSObject {
             .addDisposableTo(disposeBag)
     }
 
-    private func updateFavoriteRecordToDB(recipeId: Int, favorite: Bool) {
+    func updateFavoriteRecordToDB(recipeId: Int, favorite: Bool) {
         let realm = try! Realm()
         if let recipe = realm.objects(Recipe).filter("id = \(recipeId)").first {
             try! realm.write {

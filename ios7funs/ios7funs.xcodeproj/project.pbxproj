@@ -46,7 +46,6 @@
 		3B5565891C17F2DA00CFF1B4 /* UIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5565881C17F2DA00CFF1B4 /* UIModel.swift */; };
 		3B62E8C01C16A473008AA784 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B62E8BF1C16A473008AA784 /* CardView.swift */; };
 		3B854B631C2401D900F286AD /* QandADetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B854B621C2401D900F286AD /* QandADetailViewController.swift */; };
-		3B9DD55F1C214506000FE1DF /* Collections.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9DD55E1C214506000FE1DF /* Collections.storyboard */; };
 		3B9DD5611C214534000FE1DF /* QandA.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9DD5601C214534000FE1DF /* QandA.storyboard */; };
 		3B9DD5631C214554000FE1DF /* Links.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9DD5621C214554000FE1DF /* Links.storyboard */; };
 		3B9DD5661C21456F000FE1DF /* Bonus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9DD5641C21456F000FE1DF /* Bonus.storyboard */; };
@@ -61,7 +60,6 @@
 		3BCE506E1C15C6E20088794A /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 3BCE506D1C15C6E20088794A /* Cartfile */; };
 		3BCE50701C168AB60088794A /* VideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE506F1C168AB60088794A /* VideosViewController.swift */; };
 		3BCE50781C168BDD0088794A /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE50771C168BDD0088794A /* RecipesViewController.swift */; };
-		3BCE507A1C168BF10088794A /* CollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE50791C168BF10088794A /* CollectionsViewController.swift */; };
 		3BCE507C1C168C040088794A /* QandAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE507B1C168C040088794A /* QandAViewController.swift */; };
 		3BCE507E1C168C100088794A /* LinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE507D1C168C100088794A /* LinksViewController.swift */; };
 		3BCE50801C168C1D0088794A /* BonusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE507F1C168C1D0088794A /* BonusViewController.swift */; };
@@ -72,11 +70,7 @@
 		3BD721191C117870006716D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD721171C117870006716D4 /* Main.storyboard */; };
 		3BD7211B1C117870006716D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7211A1C117870006716D4 /* Assets.xcassets */; };
 		3BD7211E1C117870006716D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7211C1C117870006716D4 /* LaunchScreen.storyboard */; };
-		3BDF65B11C28EDCD0040F5DB /* CollectionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65B01C28EDCD0040F5DB /* CollectionDetailViewController.swift */; };
-		3BDF65B31C28EDE20040F5DB /* CollectionTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65B21C28EDE20040F5DB /* CollectionTutorialViewController.swift */; };
-		3BDF65B71C28EE0F0040F5DB /* CollectionVideoTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65B61C28EE0F0040F5DB /* CollectionVideoTutorialViewController.swift */; };
 		3BDF65B91C28EE2A0040F5DB /* CollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65B81C28EE2A0040F5DB /* CollectionManager.swift */; };
-		3BDF65BB1C28EE570040F5DB /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65BA1C28EE570040F5DB /* CollectionTableViewCell.swift */; };
 		3BDF65C11C28FF370040F5DB /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65BF1C28FF370040F5DB /* YTPlayerView.m */; };
 		3BFBD5451C27063D00313896 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFBD5441C27063D00313896 /* ColorUtils.swift */; };
 		3BFBD5691C27847500313896 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BFBD5681C27847500313896 /* Login.storyboard */; };
@@ -124,7 +118,6 @@
 		3B5565881C17F2DA00CFF1B4 /* UIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIModel.swift; path = Models/UIModel.swift; sourceTree = "<group>"; };
 		3B62E8BF1C16A473008AA784 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = Utils/CardView.swift; sourceTree = "<group>"; };
 		3B854B621C2401D900F286AD /* QandADetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QandADetailViewController.swift; path = QandA/QandADetailViewController.swift; sourceTree = "<group>"; };
-		3B9DD55E1C214506000FE1DF /* Collections.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Collections.storyboard; path = Collections/Collections.storyboard; sourceTree = "<group>"; };
 		3B9DD5601C214534000FE1DF /* QandA.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = QandA.storyboard; path = QandA/QandA.storyboard; sourceTree = "<group>"; };
 		3B9DD5621C214554000FE1DF /* Links.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Links.storyboard; path = Links/Links.storyboard; sourceTree = "<group>"; };
 		3B9DD5651C21456F000FE1DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Bonus.storyboard; sourceTree = "<group>"; };
@@ -140,7 +133,6 @@
 		3BCE506D1C15C6E20088794A /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		3BCE506F1C168AB60088794A /* VideosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideosViewController.swift; path = Videos/VideosViewController.swift; sourceTree = "<group>"; };
 		3BCE50771C168BDD0088794A /* RecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipesViewController.swift; path = Recipes/RecipesViewController.swift; sourceTree = "<group>"; };
-		3BCE50791C168BF10088794A /* CollectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionsViewController.swift; path = Collections/CollectionsViewController.swift; sourceTree = "<group>"; };
 		3BCE507B1C168C040088794A /* QandAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QandAViewController.swift; path = QandA/QandAViewController.swift; sourceTree = "<group>"; };
 		3BCE507D1C168C100088794A /* LinksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinksViewController.swift; path = Links/LinksViewController.swift; sourceTree = "<group>"; };
 		3BCE507F1C168C1D0088794A /* BonusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BonusViewController.swift; path = Bonus/BonusViewController.swift; sourceTree = "<group>"; };
@@ -153,11 +145,7 @@
 		3BD7211A1C117870006716D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BD7211D1C117870006716D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3BD7211F1C117870006716D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3BDF65B01C28EDCD0040F5DB /* CollectionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionDetailViewController.swift; path = Collections/CollectionDetailViewController.swift; sourceTree = "<group>"; };
-		3BDF65B21C28EDE20040F5DB /* CollectionTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionTutorialViewController.swift; path = Collections/CollectionTutorialViewController.swift; sourceTree = "<group>"; };
-		3BDF65B61C28EE0F0040F5DB /* CollectionVideoTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionVideoTutorialViewController.swift; path = Collections/CollectionVideoTutorialViewController.swift; sourceTree = "<group>"; };
 		3BDF65B81C28EE2A0040F5DB /* CollectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionManager.swift; path = Collections/CollectionManager.swift; sourceTree = "<group>"; };
-		3BDF65BA1C28EE570040F5DB /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionTableViewCell.swift; path = Collections/CollectionTableViewCell.swift; sourceTree = "<group>"; };
 		3BDF65BE1C28FF370040F5DB /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YTPlayerView.h; path = Utils/YTPlayerView.h; sourceTree = "<group>"; };
 		3BDF65BF1C28FF370040F5DB /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YTPlayerView.m; path = Utils/YTPlayerView.m; sourceTree = "<group>"; };
 		3BFBD5441C27063D00313896 /* ColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
@@ -285,12 +273,6 @@
 		3BCE50731C168B960088794A /* Collections */ = {
 			isa = PBXGroup;
 			children = (
-				3B9DD55E1C214506000FE1DF /* Collections.storyboard */,
-				3BCE50791C168BF10088794A /* CollectionsViewController.swift */,
-				3BDF65BA1C28EE570040F5DB /* CollectionTableViewCell.swift */,
-				3BDF65B01C28EDCD0040F5DB /* CollectionDetailViewController.swift */,
-				3BDF65B21C28EDE20040F5DB /* CollectionTutorialViewController.swift */,
-				3BDF65B61C28EE0F0040F5DB /* CollectionVideoTutorialViewController.swift */,
 				3BDF65B81C28EE2A0040F5DB /* CollectionManager.swift */,
 			);
 			name = Collections;
@@ -449,7 +431,6 @@
 				3B9DD5611C214534000FE1DF /* QandA.storyboard in Resources */,
 				3BCE50821C168E1E0088794A /* ShowInfos.storyboard in Resources */,
 				3BD721191C117870006716D4 /* Main.storyboard in Resources */,
-				3B9DD55F1C214506000FE1DF /* Collections.storyboard in Resources */,
 				3BFBD5691C27847500313896 /* Login.storyboard in Resources */,
 				3BCE50841C1698AF0088794A /* Recipes.storyboard in Resources */,
 				3BCE506E1C15C6E20088794A /* Cartfile in Resources */,
@@ -494,16 +475,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BDF65B31C28EDE20040F5DB /* CollectionTutorialViewController.swift in Sources */,
 				3B4178661C20B270006CB7ED /* Marco.swift in Sources */,
 				3B36CBAF1C27D673003666D7 /* ForgotPasswordViewController.swift in Sources */,
-				3BDF65BB1C28EE570040F5DB /* CollectionTableViewCell.swift in Sources */,
-				3BDF65B11C28EDCD0040F5DB /* CollectionDetailViewController.swift in Sources */,
 				3BDF65C11C28FF370040F5DB /* YTPlayerView.m in Sources */,
 				3B5565891C17F2DA00CFF1B4 /* UIModel.swift in Sources */,
 				3BC240EE1C291C1600A79E4D /* VideoManager.swift in Sources */,
-				3BCE507A1C168BF10088794A /* CollectionsViewController.swift in Sources */,
-				3BDF65B71C28EE0F0040F5DB /* CollectionVideoTutorialViewController.swift in Sources */,
 				3BCE507C1C168C040088794A /* QandAViewController.swift in Sources */,
 				3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */,
 				3BA2580F1C28998800FA5A7C /* VideoPlayerViewController.swift in Sources */,

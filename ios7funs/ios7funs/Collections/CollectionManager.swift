@@ -68,8 +68,11 @@ class CollectionManager: NSObject {
             .addDisposableTo(self.disposeBag)
     }
 
-    func handleGetFavoriteRecipeIds(res: [MyFavoriteRecipesResultJsonObject]) {
-        // update local db 
+    func handleGetFavoriteRecipeIds(favorites: [MyFavoriteRecipesResultJsonObject]) {
+        for favorite in favorites {
+            let favRecipeId = favorite.id
+            RecipeManager.sharedInstance.updateFavoriteRecordToDB(favRecipeId, favorite: true)
+        }
     }
 
     func loadCollections(onLoaded: ([RecipeUIModel] -> Void)) {
