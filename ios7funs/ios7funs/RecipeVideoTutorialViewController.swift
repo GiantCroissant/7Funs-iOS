@@ -30,6 +30,7 @@ class RecipeVideoTutorialViewController: UIViewController {
             self.foodImage.image = image
         }
 
+        VideoManager.sharedInstance.loadVideo(recipe.id)
     }
 
 }

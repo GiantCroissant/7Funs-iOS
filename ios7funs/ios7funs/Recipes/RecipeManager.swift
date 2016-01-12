@@ -168,10 +168,13 @@ class RecipeManager: NSObject {
 
             let ids = recipesOverviews.map { x in x.id }
             let recipeIds = Array(ids.prefix(self.kFetchAmount))
+            let sortedRecipeIds = recipeIds.sort(<)
+            print("sortedRecipeIds = \(sortedRecipeIds)")
+
             let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
 
             self.restApiProvider
-                .request(.RecipesByIdList(recipeIds))
+                .request(.RecipesByIdList(sortedRecipeIds))
                 .mapSuccessfulHTTPToObjectArray(RecipesJsonObject)
                 .subscribeOn(scheduler)
                 .subscribe(
@@ -206,13 +209,19 @@ class RecipeManager: NSObject {
             var downloadedRecipes = [Recipe]()
             var finishedOverviews = [RecipesOverview]()
 
-            for recipeJson in recipeJsons {
+            let sorted = recipeJsons.sort({ (before, after) -> Bool in
+                return before.id < after.id
+            })
+
+            for recipeJson in sorted {
                 let recipe = self.convertToDBModel(recipeJson)
 
                 let finishedRecipe = overviews.filter("id == %@", recipeJson.id)
                 downloadedRecipes.append(recipe)
                 finishedOverviews.append(finishedRecipe[0])
             }
+
+            print("finish recipeId = \(finishedOverviews)")
 
             realm.beginWrite()
             for i in 0..<downloadedRecipes.count {

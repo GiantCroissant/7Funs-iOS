@@ -197,6 +197,15 @@ class VideoManager {
         }
     }
 
+    func loadVideo(recipeId: Int) {
+        dLog("loadVideo : recipeId = \(recipeId)")
+
+        let realm = try! Realm()
+        if let video = realm.objects(Video).filter("recipeId = \(recipeId)").first {
+            print("video = \(video)")
+        }
+    }
+
     func convertFromVideoJsonObject(videoJsonObject: VideoJsonObject) -> Video {
         let video = Video()
         video.updatedAt = videoJsonObject.updatedAt

@@ -65,6 +65,7 @@ extension RecipeUIModel {
     }
 
     func printDebugString() {
+        print("self.id = \(self.id)")
         print("self.title = \(self.title)")
         print("self.chefName = \(self.chefName)")
         print("self.desc = \(self.desc)")
