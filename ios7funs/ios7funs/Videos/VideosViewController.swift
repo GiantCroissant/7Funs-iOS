@@ -100,8 +100,6 @@ extension VideosViewController {
                 self.loadVideos()
             },
             onError: { err in
-                dLog("err = \(err)")
-
                 self.showNetworkIsBusyAlertView()
             },
             onFinished: {

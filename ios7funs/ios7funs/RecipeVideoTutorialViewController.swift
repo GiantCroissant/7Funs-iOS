@@ -10,8 +10,8 @@ import UIKit
 
 class RecipeVideoTutorialViewController: UIViewController {
 
+    @IBOutlet weak var youtubePlayer: YTPlayerView!
     var recipe: RecipeUIModel!
-    var video: VideoUIModel!
 
     @IBOutlet var test: [UIButton]!
     @IBOutlet weak var foodImage: UIImageView!
@@ -41,19 +41,7 @@ class RecipeVideoTutorialViewController: UIViewController {
             for video in videos {
                 switch (video.type) {
                 case 1:
-                    self.btnMainCam.hidden = false
-
-                    let imageUrl = video.thumbUrl
-                    ImageLoader.sharedInstance.loadImage(video.youtubeVideoId, url: imageUrl, completionHandler: { (image, imageName, fadeIn) -> () in
-
-                        self.foodImage.image = image
-
-                    })
-
-//                    ImageLoader.sharedInstance.loadImage("", url: imageUrl) { image, imageName, fadeIn in
-//                        completionHandler(image: image, recipeId: recipeId, fadeIn: fadeIn)
-//                    }
-
+                    self.handleMainCameraVideoLoaded(video)
                     break
 
                 case 2:
@@ -69,6 +57,20 @@ class RecipeVideoTutorialViewController: UIViewController {
                 }
             }
         }
+    }
+
+    func handleMainCameraVideoLoaded(video: VideoUIModel) {
+        self.btnMainCam.hidden = false
+
+        let imageUrl = video.thumbUrl
+        ImageLoader.sharedInstance.loadImage(video.youtubeVideoId, url: imageUrl, completionHandler: { (image, imageName, fadeIn) -> () in
+
+            self.foodImage.image = image
+
+        })
+
+
+        self.youtubePlayer.loadWithVideoId(video.youtubeVideoId)
     }
 
 }

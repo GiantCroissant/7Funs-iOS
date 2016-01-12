@@ -773,6 +773,10 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_default_L" translatesAutoresizingMaskIntoConstraints="NO" id="KoV-oK-pc7">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FxT-uR-ihs" userLabel="Youtube Player" customClass="YTPlayerView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_video_L" translatesAutoresizingMaskIntoConstraints="NO" id="rkJ-6d-18s">
                                         <rect key="frame" x="156" y="74" width="64" height="64"/>
                                         <constraints>
@@ -806,10 +810,14 @@
                                     <constraint firstAttribute="trailing" secondItem="eRJ-2d-Lac" secondAttribute="trailing" constant="11" id="GeE-Jg-FZh"/>
                                     <constraint firstItem="KoV-oK-pc7" firstAttribute="top" secondItem="wJO-rh-di7" secondAttribute="top" id="ICP-8M-6Mr"/>
                                     <constraint firstItem="KoV-oK-pc7" firstAttribute="leading" secondItem="wJO-rh-di7" secondAttribute="leading" id="J3L-SA-TUe"/>
+                                    <constraint firstItem="FxT-uR-ihs" firstAttribute="leading" secondItem="wJO-rh-di7" secondAttribute="leading" id="Jao-SR-eXp"/>
+                                    <constraint firstItem="FxT-uR-ihs" firstAttribute="top" secondItem="wJO-rh-di7" secondAttribute="top" id="VoV-ak-2ci"/>
+                                    <constraint firstAttribute="bottom" secondItem="FxT-uR-ihs" secondAttribute="bottom" id="YnL-3s-Xha"/>
                                     <constraint firstItem="rkJ-6d-18s" firstAttribute="centerX" secondItem="wJO-rh-di7" secondAttribute="centerX" id="cNG-Hp-i81"/>
                                     <constraint firstAttribute="trailing" secondItem="KoV-oK-pc7" secondAttribute="trailing" id="m7a-Vl-kC1"/>
                                     <constraint firstAttribute="height" constant="211" id="rNn-Hr-r0w"/>
                                     <constraint firstAttribute="bottom" secondItem="eRJ-2d-Lac" secondAttribute="bottom" constant="11" id="thU-RJ-nEa"/>
+                                    <constraint firstAttribute="trailing" secondItem="FxT-uR-ihs" secondAttribute="trailing" id="w1m-k2-wmF"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qvW-Td-l3f">
@@ -906,6 +914,7 @@
                         <outlet property="btnMainCam" destination="iaP-wj-VFJ" id="RpR-Af-Tsw"/>
                         <outlet property="btnTopCam" destination="qTb-Tm-ann" id="HXO-DB-oCN"/>
                         <outlet property="foodImage" destination="KoV-oK-pc7" id="WdC-hb-M0o"/>
+                        <outlet property="youtubePlayer" destination="FxT-uR-ihs" id="uel-nu-Wgr"/>
                         <outletCollection property="test" destination="iaP-wj-VFJ" collectionClass="NSMutableArray" id="TmE-Wv-Wxm"/>
                         <outletCollection property="test" destination="qTb-Tm-ann" collectionClass="NSMutableArray" id="RRG-BL-T5j"/>
                         <outletCollection property="test" destination="tls-fZ-Lsf" collectionClass="NSMutableArray" id="m6J-Ca-CnY"/>
