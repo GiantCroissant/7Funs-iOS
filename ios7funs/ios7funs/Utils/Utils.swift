@@ -19,6 +19,23 @@ class UIUtils {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
 
+    static func secondsToHoursMinutesSeconds(seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+
+    static func getVideoLengthString(seconds: Int) -> String {
+        let (h, m, s) = secondsToHoursMinutesSeconds(seconds)
+        if (h > 0) {
+            return "\(h):\(m):\(s)"
+
+        } else if (m > 0) {
+            return "\(m):\(s)"
+
+        } else {
+            return "\(s)"
+        }
+    }
+
 }
 
 class FileUtils {

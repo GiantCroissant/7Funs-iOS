@@ -25,34 +25,11 @@ class VideoTableViewCell: UITableViewCell {
             })
 
             self.lblName.text = video.title
-            self.lblLength.text = getVideoLengthString(video.duration)
+            self.lblLength.text = UIUtils.getVideoLengthString(video.duration)
             self.lblDescription.text = video.desc
 
             video.printDebugString()
-
         }
-    }
-
-    func secondsToHoursMinutesSeconds(seconds : Int) -> (Int, Int, Int) {
-        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
-    }
-
-    func getVideoLengthString(seconds: Int) -> String {
-        let (h, m, s) = secondsToHoursMinutesSeconds(seconds)
-        if (h > 0) {
-            return "\(h):\(m):\(s)"
-
-        } else if (m > 0) {
-            return "\(m):\(s)"
-
-        } else {
-            return "\(s)"
-        }
-    }
-
-    func printSecondsToHoursMinutesSeconds(seconds:Int) -> () {
-        let (h, m, s) = secondsToHoursMinutesSeconds (seconds)
-        print("\(h) Hours, \(m) Minutes, \(s) Seconds")
     }
 
     override func awakeFromNib() {
