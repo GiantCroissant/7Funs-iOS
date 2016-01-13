@@ -75,29 +75,33 @@ extension Observable {
     
     func mapSuccessfulHTTPToObjectArray<T: Decodable>(type: T.Type) -> Observable<[T]> {
         return map { response in
+
             guard let response = response as? RxMoya.Response else {
                 throw ORMError.ORMNoRepresentor
             }
-            
-            // Allow successful HTTP codes
+
             guard ((200...209) ~= response.statusCode) else {
-                if let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [String: AnyObject] {
-                    print("Got error message: \(json!["info"])")
+                if let jsonArray = try? NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [String: AnyObject] {
+                    print("Got error message: \(jsonArray!["info"])")
                 }
                 throw ORMError.ORMNotSuccessfulHTTP
             }
             
             do {
-                guard let json = try NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [[String : AnyObject]] else {
+                guard let jsonArray = try NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [[String : AnyObject]] else {
                     throw ORMError.ORMCouldNotMakeObjectError
                 }
 
+                dLog("start parsing... \(jsonArray.count)")
+
                 var objects = [T]()
-                for dict in json {
+                for dict in jsonArray {
                     if let obj = self.resultFromJSON(dict, classType:type) {
                         objects.append(obj)
                     }
                 }
+
+                dLog("end parsing...")
                 return objects
 
 

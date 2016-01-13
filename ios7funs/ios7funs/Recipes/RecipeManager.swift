@@ -13,7 +13,7 @@ import UIKit
 import RxMoya
 import RxSwift
 import RealmSwift
-
+import Curry
 import Alamofire
 
 class RecipeManager: NSObject {
@@ -25,6 +25,8 @@ class RecipeManager: NSObject {
     let disposeBag = DisposeBag()
 
     let restApiProvider = RxMoyaProvider<RestApi>(endpointClosure: { (target: RestApi) -> Endpoint<RestApi> in
+
+        print("restApiProvider: \(NSThread.currentThread())")
 
         let url = target.baseURL.URLByAppendingPathComponent(target.path).absoluteString
         let endpoint = Endpoint<RestApi>(
@@ -69,131 +71,79 @@ class RecipeManager: NSObject {
 
     func loadFoodImage(recipeId: Int, imageName: String, completionHandler:(image: UIImage?, recipeId: Int, fadeIn: Bool) -> ()) {
         let imageUrl = recipeImageBaseUrl + String(recipeId) + "/" + imageName
+
         ImageLoader.sharedInstance.loadImage(imageName, url: imageUrl) { image, imageName, fadeIn in
             completionHandler(image: image, recipeId: recipeId, fadeIn: fadeIn)
         }
     }
 
-    func fetchRecipeOverview(onComplete onComplete: (() -> Void) = {}
-        , onError: (ErrorType -> Void) = { _ in }
-        , onFinished: (() -> Void) = {}) {
-
-            let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-            let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
-            self.restApiProvider
-                .request(.RecipesOverview)
-                .mapSuccessfulHTTPToObjectArray(RecipesOverviewJsonObject)
-                .subscribeOn(scheduler)
-                .subscribe(
-                    onNext: { recipesOverviewJsonObjects in
-                        dispatch_async(backgroundQueue) {
-                            self.updateLocalRecipesOverview(recipesOverviewJsonObjects)
-                        }
-                    },
-                    onError: { error in
-                        onError(error)
-                    },
-                    onCompleted: {
-                        onComplete()
-                    },
-                    onDisposed: {
-                        onFinished()
-                    }
-                )
-                .addDisposableTo(self.disposeBag)
+    func fetchRecipeOverview(onComplete onComplete: (() -> Void) = {}, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
+        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+        let backgroundScheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
+        self.restApiProvider
+            .request(.RecipesOverview)
+            .observeOn(backgroundScheduler)
+            .mapSuccessfulHTTPToObjectArray(RecipesOverviewJsonObject)
+            .updateLocalRecipesOverview()
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onError: { err in
+                    onError(err)
+                },
+                onCompleted: {
+                    onComplete()
+                }
+            )
+            .addDisposableTo(disposeBag)
     }
 
-    func updateLocalRecipesOverview(recipesOverviewJsonObjects: [RecipesOverviewJsonObject]) {
-        autoreleasepool {
-            let realm = try! Realm()
-            let recipes = realm.objects(Recipe)
-            var needToFetchDatas = [RecipesOverview]()
-            for recipesOverviewJsonObject in recipesOverviewJsonObjects {
-                let results = recipes.filter("id == %@", recipesOverviewJsonObject.id)
-                if results.count == 0 {
-                    let ro = RecipesOverview()
-                    ro.id = recipesOverviewJsonObject.id
-                    ro.updatedAt = recipesOverviewJsonObject.updatedAt
-                    needToFetchDatas.append(ro)
-
-                } else {
-                    if let latestUpdatedDate = NSDate.dateFromRFC3339FormattedString(recipesOverviewJsonObject.updatedAt),
-                        let storedRecipesUdpatedDate = NSDate.dateFromRFC3339FormattedString(results[0].updatedAt) {
-                            let compareResult = latestUpdatedDate.compare(storedRecipesUdpatedDate)
-                            switch compareResult
-                            {
-                            case .OrderedDescending:
-                                let ro = RecipesOverview()
-                                ro.id = recipesOverviewJsonObject.id
-                                ro.updatedAt = recipesOverviewJsonObject.updatedAt
-                                needToFetchDatas.append(ro)
-
-                            default:
-                                break
-                            }
-                    }
-                }
-            }
-
-            if needToFetchDatas.count > 0 {
-                realm.beginWrite()
-                for data in needToFetchDatas {
-                    realm.add(data, update: true)
-                }
-                try! realm.commitWrite()
-            }
-
-            // FIXME: remove below test codes
-            let recipesOverviews = realm.objects(RecipesOverview)
-            dLog("recipesOverviews.count = \(recipesOverviews.count)")
-        }
+    func fetchMoreRecipes(onComplete onComplete: (() -> Void) = {}, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
+        //        guard let fetchRecipeIds = getFetchRecipeIds() else {
+        //            return onFinished()
+        //        }
+        //
+        //        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+        //        let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
+        //        self.restApiProvider
+        //            .request(.RecipesByIdList(fetchRecipeIds)
+        //                .mapSuccessfulHTTPToObjectArray(RecipesJsonObject)
+        //                .subscribeOn(scheduler)
+        //                .subscribe(
+        //                    onNext: { recipeJsons in
+        //                        dispatch_async(backgroundQueue) {
+        //                            self.saveRecipeToLocalDatabase(recipeJsons)
+        //                        }
+        //                    },
+        //                    onError: { error in
+        //                        onError(error)
+        //                    },
+        //                    onCompleted: {
+        //                        onComplete()
+        //                    },
+        //                    onDisposed: {
+        //                        onFinished()
+        //                    }
+        //                )
+        //                .addDisposableTo(self.disposeBag)
     }
 
-    func fetchMoreRecipes(onComplete onComplete: (() -> Void) = {},
-        onError: (ErrorType -> Void) = { _ in },
-        onFinished: (() -> Void) = {}) {
-
-            let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-            dispatch_async(backgroundQueue) {
-                let realm = try! Realm()
-                let recipesOverviews = realm.objects(RecipesOverview)
-                if recipesOverviews.count <= 0 {
-                    onFinished()
-                    return
-                }
-
-                let ids = recipesOverviews.map { x in x.id }
-                let recipeIds = Array(ids.prefix(self.kFetchAmount))
-                let sortedRecipeIds = recipeIds.sort(<)
-                let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
-
-                self.restApiProvider
-                    .request(.RecipesByIdList(sortedRecipeIds))
-                    .mapSuccessfulHTTPToObjectArray(RecipesJsonObject)
-                    .subscribeOn(scheduler)
-                    .subscribe(
-                        onNext: { recipeJsons in
-                            self.saveRecipeToLocalDatabase(recipeJsons)
-                        },
-                        onError: { error in
-                            dispatch_async(dispatch_get_main_queue()) {
-                                onError(error)
-                            }
-                        },
-                        onCompleted: {
-                            dispatch_async(dispatch_get_main_queue()) {
-                                onComplete()
-                            }
-                        },
-                        onDisposed: {
-                            dispatch_async(dispatch_get_main_queue()) {
-                                onFinished()
-                            }
-                        }
-                    )
-                    .addDisposableTo(self.disposeBag)
-            }
+    func getFetchRecipeIds() {
+        //        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+        //        dispatch_async(backgroundQueue) {
+        //
+        //            let realm = try! Realm()
+        //            let recipesOverviews = realm.objects(RecipesOverview)
+        //            if recipesOverviews.count <= 0 {
+        //                return
+        //            }
+        //
+        //            let ids = recipesOverviews.map { x in x.id }
+        //            let recipeIds = Array(ids.prefix(self.kFetchAmount))
+        //            let sortedRecipeIds = recipeIds.sort(<)
+        //            return sortedRecipeIds
+        //        }
     }
+
 
     private func saveRecipeToLocalDatabase(recipeJsons: [RecipesJsonObject]) {
         autoreleasepool {
@@ -284,7 +234,7 @@ class RecipeManager: NSObject {
             }
         }
     }
-    
+
     private func convertToDBModel(jsonObj: RecipesJsonObject) -> Recipe {
         let recipe = Recipe()
         recipe.updatedAt = jsonObj.updatedAt
@@ -300,8 +250,72 @@ class RecipeManager: NSObject {
         recipe.reminder = jsonObj.reminder
         recipe.hits = jsonObj.hits
         recipe.collectedCount = jsonObj.collected
-        
+
         return recipe
     }
-    
+
 }
+
+
+extension Observable {
+
+    func updateLocalRecipesOverview() -> Observable<Any> {
+        return map { response in
+
+            guard let recipesOverviewJsonObjects = response as? [RecipesOverviewJsonObject] else {
+                throw ORMError.ORMNoRepresentor
+            }
+
+            autoreleasepool {
+                let realm = try! Realm()
+                let recipes = realm.objects(Recipe)
+                var needToFetchDatas = [RecipesOverview]()
+                for recipesOverviewJsonObject in recipesOverviewJsonObjects {
+                    let results = recipes.filter("id == %@", recipesOverviewJsonObject.id)
+                    if results.count == 0 {
+                        let ro = RecipesOverview()
+                        ro.id = recipesOverviewJsonObject.id
+                        ro.updatedAt = recipesOverviewJsonObject.updatedAt
+                        needToFetchDatas.append(ro)
+
+                    } else {
+                        if let latestUpdatedDate = NSDate.dateFromRFC3339FormattedString(recipesOverviewJsonObject.updatedAt),
+                            let storedRecipesUdpatedDate = NSDate.dateFromRFC3339FormattedString(results[0].updatedAt) {
+                                let compareResult = latestUpdatedDate.compare(storedRecipesUdpatedDate)
+                                switch compareResult
+                                {
+                                case .OrderedDescending:
+                                    let ro = RecipesOverview()
+                                    ro.id = recipesOverviewJsonObject.id
+                                    ro.updatedAt = recipesOverviewJsonObject.updatedAt
+                                    needToFetchDatas.append(ro)
+
+                                default:
+                                    break
+                                }
+                        }
+                    }
+                }
+
+
+
+                if needToFetchDatas.count > 0 {
+                    dLog("beginWrite()")
+                    realm.beginWrite()
+                    for data in needToFetchDatas {
+                        realm.add(data, update: true)
+                    }
+                    try! realm.commitWrite()
+                    dLog("commitWrite()")
+                }
+                
+                // FIXME: remove below test codes
+                let recipesOverviews = realm.objects(RecipesOverview)
+                dLog("recipesOverviews.count = \(recipesOverviews.count)")
+            }
+
+            return Observable<Any>.empty()
+        }
+    }
+}
+

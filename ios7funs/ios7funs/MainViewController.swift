@@ -68,6 +68,8 @@ class MainViewController: UIViewController {
                 )
             }
         )
+
+        dLog("XD")
     }
 
     func fetchVideoOverview() {
