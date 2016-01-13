@@ -20,7 +20,7 @@ class RecipeUIModel {
     // --------------------
     var ingredient = ""
     var seasoning = ""
-    var method = ""
+    var method = [String]()
     // --------------------
 
     var createdAt = ""
@@ -41,7 +41,11 @@ class RecipeUIModel {
         self.chefName = dbData.chefName
         self.desc = dbData.desc
         self.ingredient = dbData.ingredient
+
+
+        // FIXME
         self.method = dbData.method
+
         self.createdAt = dbData.createdAt
         self.updatedAt = dbData.updatedAt
         self.hits = dbData.hits

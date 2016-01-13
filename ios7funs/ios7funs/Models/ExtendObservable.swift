@@ -46,9 +46,7 @@ extension Observable {
                 dLog("statusCode = \(response.statusCode)")
 
                 if let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [String: AnyObject] {
-
-                    dLog("json = \(json)")
-
+                    dLog("onHTTPFail = \(json)")
                     onHTTPFail(self.resultFromJSON(json!, classType: ErrorResultJsonObject.self))
                 }
 
@@ -60,7 +58,7 @@ extension Observable {
                     throw ORMError.ORMCouldNotMakeObjectError
                 }
 
-                print("json = \(json)")
+//                print("json = \(json)")
                 if let result = self.resultFromJSON(json, classType:type) {
                     return result
                 }

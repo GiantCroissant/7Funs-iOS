@@ -78,7 +78,11 @@ class RecipeTutorialViewController: UIViewController {
         let seasoning = recipe.seasoning
         lblIngredients.text = reformatIngredientString(ingredient)
         lblSeasonings.text = reformatSeasoningString(seasoning)
-        lblMethods.text = recipe.method
+
+        print("recipe.method = \(recipe.method)")
+
+        // TODO: - FIX recipe method to better display
+    //        lblMethods.text = recipe.method
     }
 
     func reformatIngredientString(ingredient: String) -> String {

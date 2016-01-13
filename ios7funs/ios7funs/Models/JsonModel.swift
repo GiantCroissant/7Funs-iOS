@@ -30,7 +30,7 @@ public struct RecipesJsonObject {
     public let description: String
     public let ingredient: String
     public let seasoning: String
-    public let method: String
+    public let method: [String]
     public let reminder: String
     public let hits: Int
     public let createdAt: String
@@ -40,6 +40,24 @@ public struct RecipesJsonObject {
     public let imageMeta: RecipesImageMeta
     public let marks: [RecipesMarkJsonObject]
     public let collected: Int
+
+    public func toRecipeDBModel() -> Recipe {
+        let recipe = Recipe()
+        recipe.id = self.id
+        recipe.updatedAt = self.updatedAt
+        recipe.createdAt = self.createdAt
+        recipe.image = self.image ?? ""
+        recipe.title = self.title
+        recipe.chefName = self.chefName
+        recipe.desc = self.description
+        recipe.ingredient = self.ingredient
+        recipe.seasoning = self.seasoning
+        recipe.method = self.method
+        recipe.reminder = self.reminder
+        recipe.hits = self.hits
+        recipe.collectedCount = self.collected
+        return recipe
+    }
 }
 
 public struct RecipesOverviewJsonObject {
@@ -284,6 +302,7 @@ extension RecipesMarkJsonObject : Decodable {
 }
 
 extension RecipesJsonObject : Decodable {
+
     public static func decode(j: JSON) -> Decoded<RecipesJsonObject> {
         let f = curry(RecipesJsonObject.init)
             <^> j <| "id"
@@ -295,7 +314,7 @@ extension RecipesJsonObject : Decodable {
             <*> j <| "description"
             <*> j <| "ingredient"
             <*> j <| "seasoning"
-            <*> j <| "method"
+            <*> j <|| "method"
             <*> j <| "reminder"
             <*> j <| "hits"
             <*> j <| "created_at"
@@ -306,6 +325,7 @@ extension RecipesJsonObject : Decodable {
             <*> j <|| "marks"
             <*> j <| "collected"
     }
+
 }
 
 extension RecipesOverviewJsonObject : Decodable {

@@ -8,6 +8,15 @@
 
 import Foundation
 import UIKit
+import RxSwift
+
+class BackgroundScheduler {
+
+    static func instance() -> ConcurrentDispatchQueueScheduler {
+        return ConcurrentDispatchQueueScheduler(queue: dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0))
+    }
+
+}
 
 class UIUtils {
 

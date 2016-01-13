@@ -70,6 +70,7 @@
 		3BD721191C117870006716D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD721171C117870006716D4 /* Main.storyboard */; };
 		3BD7211B1C117870006716D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7211A1C117870006716D4 /* Assets.xcassets */; };
 		3BD7211E1C117870006716D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7211C1C117870006716D4 /* LaunchScreen.storyboard */; };
+		3BD9FB351C468F8400B8FAB3 /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD9FB341C468F8400B8FAB3 /* Async.swift */; };
 		3BDF65B91C28EE2A0040F5DB /* CollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65B81C28EE2A0040F5DB /* CollectionManager.swift */; };
 		3BDF65C11C28FF370040F5DB /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF65BF1C28FF370040F5DB /* YTPlayerView.m */; };
 		3BFBD5451C27063D00313896 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFBD5441C27063D00313896 /* ColorUtils.swift */; };
@@ -145,6 +146,7 @@
 		3BD7211A1C117870006716D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BD7211D1C117870006716D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3BD7211F1C117870006716D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BD9FB341C468F8400B8FAB3 /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
 		3BDF65B81C28EE2A0040F5DB /* CollectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionManager.swift; path = Collections/CollectionManager.swift; sourceTree = "<group>"; };
 		3BDF65BE1C28FF370040F5DB /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YTPlayerView.h; path = Utils/YTPlayerView.h; sourceTree = "<group>"; };
 		3BDF65BF1C28FF370040F5DB /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YTPlayerView.m; path = Utils/YTPlayerView.m; sourceTree = "<group>"; };
@@ -185,9 +187,9 @@
 			children = (
 				3B5565881C17F2DA00CFF1B4 /* UIModel.swift */,
 				3B41D1271C16C9230054FC10 /* DbModel.swift */,
+				3B41D12A1C16C9230054FC10 /* JsonModel.swift */,
 				3B41D1281C16C9230054FC10 /* ExtendDate.swift */,
 				3B41D1291C16C9230054FC10 /* ExtendObservable.swift */,
-				3B41D12A1C16C9230054FC10 /* JsonModel.swift */,
 				3B41D12B1C16C9230054FC10 /* RestApiModel.swift */,
 			);
 			name = Models;
@@ -229,6 +231,7 @@
 				3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */,
 				3B62E8BF1C16A473008AA784 /* CardView.swift */,
 				3BA258111C28D77100FA5A7C /* ios7funs-Bridging-Header.h */,
+				3BD9FB341C468F8400B8FAB3 /* Async.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				3BDF65C11C28FF370040F5DB /* YTPlayerView.m in Sources */,
 				3B5565891C17F2DA00CFF1B4 /* UIModel.swift in Sources */,
 				3BC240EE1C291C1600A79E4D /* VideoManager.swift in Sources */,
+				3BD9FB351C468F8400B8FAB3 /* Async.swift in Sources */,
 				3BCE507C1C168C040088794A /* QandAViewController.swift in Sources */,
 				3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */,
 				3BA2580F1C28998800FA5A7C /* VideoPlayerViewController.swift in Sources */,

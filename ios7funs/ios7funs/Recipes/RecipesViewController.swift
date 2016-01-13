@@ -41,6 +41,9 @@ class RecipesViewController: UIViewController {
             indicatorLoadMore.startAnimating()
 
             loadRecipes(onEmpty: {
+
+                dLog("on Empty")
+
                 self.fetchMoreRecipes()
             })
         }
