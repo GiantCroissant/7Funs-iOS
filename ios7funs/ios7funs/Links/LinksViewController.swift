@@ -43,7 +43,8 @@ class LinksViewController: UIViewController {
 
         } else if segue.identifier == "id_segue_link_friend_02" {
             let dstVC = segue.destinationViewController as! LinkFriendViewController
-            dstVC.url = "http://mall.pchome.com.tw/store/QFAE7U"
+//            dstVC.url = "http://mall.pchome.com.tw/store/QFAE7U"
+            dstVC.url = "http://www.rakenhouse.com/"
             dstVC.title = "Ucom"
         }
     }

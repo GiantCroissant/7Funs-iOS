@@ -44,6 +44,9 @@ class CollectionManager: NSObject {
         self.restApiProvider
             .request(RestApi.GetMyFavoriteRecipesIds(token: token))
             .mapSuccessfulHTTPToObjectArray(MyFavoriteRecipesResultJsonObject)
+
+            // .handleGetFavoriteRecipeIds()
+
             .subscribeOn(scheduler)
             .subscribe(
                 onNext: { res in

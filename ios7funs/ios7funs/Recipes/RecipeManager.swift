@@ -20,7 +20,7 @@ class RecipeManager: NSObject {
 
     static let sharedInstance = RecipeManager()
 
-    let kFetchAmount = 100
+    let kFetchAmount = 30
     let recipeImageBaseUrl = "https://commondatastorage.googleapis.com/funs7-1/uploads/recipe/image/"
     let disposeBag = DisposeBag()
 
@@ -55,7 +55,7 @@ class RecipeManager: NSObject {
 
                 let recipeObjs = realm.objects(Recipe)
                 for recipeObj in recipeObjs {
-                    
+
                     let recipe = RecipeUIModel(dbData: recipeObj)
                     recipes.append(recipe)
                 }
@@ -78,33 +78,29 @@ class RecipeManager: NSObject {
         , onError: (ErrorType -> Void) = { _ in }
         , onFinished: (() -> Void) = {}) {
 
-        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-        let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
-        self.restApiProvider
-            .request(.RecipesOverview)
-            .mapSuccessfulHTTPToObjectArray(RecipesOverviewJsonObject)
-            .subscribeOn(scheduler)
-            .subscribe(
-                onNext: { recipesOverviewJsonObjects in
-                    self.updateLocalRecipesOverview(recipesOverviewJsonObjects)
-                },
-                onError: { error in
-                    dispatch_async(dispatch_get_main_queue()) {
+            let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+            let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
+            self.restApiProvider
+                .request(.RecipesOverview)
+                .mapSuccessfulHTTPToObjectArray(RecipesOverviewJsonObject)
+                .subscribeOn(scheduler)
+                .subscribe(
+                    onNext: { recipesOverviewJsonObjects in
+                        dispatch_async(backgroundQueue) {
+                            self.updateLocalRecipesOverview(recipesOverviewJsonObjects)
+                        }
+                    },
+                    onError: { error in
                         onError(error)
-                    }
-                },
-                onCompleted: {
-                    dispatch_async(dispatch_get_main_queue()) {
+                    },
+                    onCompleted: {
                         onComplete()
-                    }
-                },
-                onDisposed: {
-                    dispatch_async(dispatch_get_main_queue()) {
+                    },
+                    onDisposed: {
                         onFinished()
                     }
-                }
-            )
-            .addDisposableTo(self.disposeBag)
+                )
+                .addDisposableTo(self.disposeBag)
     }
 
     func updateLocalRecipesOverview(recipesOverviewJsonObjects: [RecipesOverviewJsonObject]) {
@@ -157,48 +153,46 @@ class RecipeManager: NSObject {
         onError: (ErrorType -> Void) = { _ in },
         onFinished: (() -> Void) = {}) {
 
-        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-        dispatch_async(backgroundQueue) {
-            let realm = try! Realm()
-            let recipesOverviews = realm.objects(RecipesOverview)
-            if recipesOverviews.count <= 0 {
-                onFinished()
-                return
+            let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+            dispatch_async(backgroundQueue) {
+                let realm = try! Realm()
+                let recipesOverviews = realm.objects(RecipesOverview)
+                if recipesOverviews.count <= 0 {
+                    onFinished()
+                    return
+                }
+
+                let ids = recipesOverviews.map { x in x.id }
+                let recipeIds = Array(ids.prefix(self.kFetchAmount))
+                let sortedRecipeIds = recipeIds.sort(<)
+                let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
+
+                self.restApiProvider
+                    .request(.RecipesByIdList(sortedRecipeIds))
+                    .mapSuccessfulHTTPToObjectArray(RecipesJsonObject)
+                    .subscribeOn(scheduler)
+                    .subscribe(
+                        onNext: { recipeJsons in
+                            self.saveRecipeToLocalDatabase(recipeJsons)
+                        },
+                        onError: { error in
+                            dispatch_async(dispatch_get_main_queue()) {
+                                onError(error)
+                            }
+                        },
+                        onCompleted: {
+                            dispatch_async(dispatch_get_main_queue()) {
+                                onComplete()
+                            }
+                        },
+                        onDisposed: {
+                            dispatch_async(dispatch_get_main_queue()) {
+                                onFinished()
+                            }
+                        }
+                    )
+                    .addDisposableTo(self.disposeBag)
             }
-
-            let ids = recipesOverviews.map { x in x.id }
-            let recipeIds = Array(ids.prefix(self.kFetchAmount))
-            let sortedRecipeIds = recipeIds.sort(<)
-            print("sortedRecipeIds = \(sortedRecipeIds)")
-
-            let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
-
-            self.restApiProvider
-                .request(.RecipesByIdList(sortedRecipeIds))
-                .mapSuccessfulHTTPToObjectArray(RecipesJsonObject)
-                .subscribeOn(scheduler)
-                .subscribe(
-                    onNext: { recipeJsons in
-                        self.saveRecipeToLocalDatabase(recipeJsons)
-                    },
-                    onError: { error in
-                        dispatch_async(dispatch_get_main_queue()) {
-                            onError(error)
-                        }
-                    },
-                    onCompleted: {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            onComplete()
-                        }
-                    },
-                    onDisposed: {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            onFinished()
-                        }
-                    }
-                )
-                .addDisposableTo(self.disposeBag)
-        }
     }
 
     private func saveRecipeToLocalDatabase(recipeJsons: [RecipesJsonObject]) {
@@ -221,8 +215,7 @@ class RecipeManager: NSObject {
                 finishedOverviews.append(finishedRecipe[0])
             }
 
-            print("finish recipeId = \(finishedOverviews)")
-
+            print("finish recipe count = \(finishedOverviews.count)")
             realm.beginWrite()
             for i in 0..<downloadedRecipes.count {
                 realm.add(downloadedRecipes[i], update: true)
@@ -240,47 +233,47 @@ class RecipeManager: NSObject {
         onError: (ErrorType -> Void) = { _ in },
         onFinished: (() -> Void) = {}) {
 
-        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-        let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
-        let restApi = RestApi.AddRemoveFavorite(id: recipeId, token: token)
-        self.restApiProvider
-            .request(restApi)
-            .mapSuccessfulHTTPToObject(RecipesAddRemoveFavoriteJsonObject)
-            .subscribeOn(scheduler)
-            .subscribe(
-                onNext: { res in
+            let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+            let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
+            let restApi = RestApi.AddRemoveFavorite(id: recipeId, token: token)
+            self.restApiProvider
+                .request(restApi)
+                .mapSuccessfulHTTPToObject(RecipesAddRemoveFavoriteJsonObject)
+                .subscribeOn(scheduler)
+                .subscribe(
+                    onNext: { res in
 
-                    // TODO: need some refactor
-                    if let mark = res.mark where mark == "favorite", let recipeId = res.markableId {
-                        self.updateFavoriteRecordToDB(recipeId, favorite: true)
-                        dispatch_async(dispatch_get_main_queue()) {
-                            onComplete(true)
+                        // TODO: need some refactor
+                        if let mark = res.mark where mark == "favorite", let recipeId = res.markableId {
+                            self.updateFavoriteRecordToDB(recipeId, favorite: true)
+                            dispatch_async(dispatch_get_main_queue()) {
+                                onComplete(true)
+                            }
+
+                        } else {
+                            self.updateFavoriteRecordToDB(recipeId, favorite: false)
+
+                            dispatch_async(dispatch_get_main_queue()) {
+                                onComplete(false)
+                            }
                         }
-
-                    } else {
-                        self.updateFavoriteRecordToDB(recipeId, favorite: false)
-
+                    },
+                    onError: { err in
+                        dLog("err = \(err)")
                         dispatch_async(dispatch_get_main_queue()) {
-                            onComplete(false)
+                            onError(err)
+                        }
+                    },
+                    onCompleted: {
+
+                    },
+                    onDisposed: {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            onFinished()
                         }
                     }
-                },
-                onError: { err in
-                    dLog("err = \(err)")
-                    dispatch_async(dispatch_get_main_queue()) {
-                        onError(err)
-                    }
-                },
-                onCompleted: {
-
-                },
-                onDisposed: {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        onFinished()
-                    }
-                }
-            )
-            .addDisposableTo(disposeBag)
+                )
+                .addDisposableTo(disposeBag)
     }
 
     func updateFavoriteRecordToDB(recipeId: Int, favorite: Bool) {
@@ -291,7 +284,7 @@ class RecipeManager: NSObject {
             }
         }
     }
-
+    
     private func convertToDBModel(jsonObj: RecipesJsonObject) -> Recipe {
         let recipe = Recipe()
         recipe.updatedAt = jsonObj.updatedAt
@@ -307,8 +300,8 @@ class RecipeManager: NSObject {
         recipe.reminder = jsonObj.reminder
         recipe.hits = jsonObj.hits
         recipe.collectedCount = jsonObj.collected
-
+        
         return recipe
     }
-
+    
 }

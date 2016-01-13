@@ -18,6 +18,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var btnLinks: UIButton!
     @IBOutlet weak var tempImage: UIImageView!
 
+    let loadRecipesInBackgroundTimeInterval: NSTimeInterval = 3
+    let loadVideoInBackgroundTimeInterval: NSTimeInterval = 3
     let kChangeLinkImageTimeInterval: NSTimeInterval = 5
     let kFadeInOutTimeInterval: NSTimeInterval = 1
     let linkImageNames = [
@@ -71,6 +73,8 @@ class MainViewController: UIViewController {
     func fetchVideoOverview() {
         VideoManager.sharedInstance.fetchVideoOverview(
             onComplete: {
+//                self.startBackgroundLoadData()
+
                 self.hideToastIndicator()
             },
             onError: { error in
@@ -84,6 +88,32 @@ class MainViewController: UIViewController {
                 )
             }
         )
+    }
+
+    func startBackgroundLoadData() {
+        RecipeManager.sharedInstance.fetchMoreRecipes()
+        NSTimer.scheduledTimerWithTimeInterval(loadRecipesInBackgroundTimeInterval,
+            target: self,
+            selector: "loadRecipesInBackground",
+            userInfo: nil,
+            repeats: true
+        )
+
+        VideoManager.sharedInstance.fetchMoreVideos()
+        NSTimer.scheduledTimerWithTimeInterval(loadVideoInBackgroundTimeInterval,
+            target: self,
+            selector: "loadVideosInBackground",
+            userInfo: nil,
+            repeats: true
+        )
+    }
+
+    func loadRecipesInBackground() {
+        RecipeManager.sharedInstance.fetchMoreRecipes()
+    }
+
+    func loadVideosInBackground() {
+        VideoManager.sharedInstance.fetchMoreVideos()
     }
 
     override func viewWillAppear(animated: Bool) {

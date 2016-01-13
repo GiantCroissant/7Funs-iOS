@@ -141,8 +141,6 @@ class VideoManager {
             let ids = videosOverviews.map { x in x.id }
             let maxLength = self.kFetchAmount > ids.count ? ids.count : self.kFetchAmount
             let videoIds = Array(ids.prefix(maxLength))
-            dLog("fetch video count = \(videoIds.count)")
-
             let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
             self.restApiProvider
                 .request(.VideoByIdList(videoIds))
@@ -188,6 +186,8 @@ class VideoManager {
                 toRemoveVideoOverviews.append(finishedVideos[0])
             }
 
+            print("finish video count = \(toRemoveVideoOverviews.count)")
+
             realm.beginWrite()
             for i in 0..<toAddVideos.count {
                 realm.add(toAddVideos[i], update: true)
@@ -198,8 +198,6 @@ class VideoManager {
     }
 
     func loadVideo(recipeId: Int, onLoaded: ([VideoUIModel]) -> Void) {
-        dLog("loadVideo : recipeId = \(recipeId)")
-
         var videos = [VideoUIModel]()
 
         let realm = try! Realm()
