@@ -45,13 +45,12 @@ class RecipeManager: NSObject {
         }
     })
 
-    // Load recipes from Realm and transform to UI model
-    func loadRecipes(onCompleted: (recipes: [RecipeUIModel]) -> ()) {
+    func loadRecipes(onCompleted: (recipes: [RecipeUIModel]) -> Void) {
         Async.background {
             let realm = try! Realm()
-            let recipes = realm.objects(Recipe).map {
-                RecipeUIModel(dbData: $0)
-            }
+            let recipes = realm.objects(Recipe)
+                .map { RecipeUIModel(dbData: $0) }
+                .sort { $0.id < $1.id }
 
             Async.main {
                 onCompleted(recipes: recipes)
@@ -120,58 +119,46 @@ class RecipeManager: NSObject {
             return nil
         }
 
-        let ids = recipesOverviews.map { x in x.id }
+        let ids = recipesOverviews.map({ $0.id }).sort(<)
         let recipeIds = Array(ids.prefix(self.kFetchAmount))
-        let sortedRecipeIds = recipeIds.sort(<)
-        return sortedRecipeIds
+        aLog("fetch Ids = \(recipeIds) count = \(recipeIds.count)")
+        return recipeIds
     }
 
-    func addOrRemoveFavorite(recipeId: Int, token: String,
-        onComplete: ((Bool) -> Void) = { _ in },
-        onError: (ErrorType -> Void) = { _ in },
-        onFinished: (() -> Void) = {}) {
+    func addOrRemoveFavorite(recipeId: Int, token: String, onComplete: ((Bool) -> Void) = { _ in }, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
 
-            let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-            let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
-            let restApi = RestApi.AddRemoveFavorite(id: recipeId, token: token)
-            self.restApiProvider
-                .request(restApi)
-                .mapSuccessfulHTTPToObject(RecipesAddRemoveFavoriteJsonObject)
-                .subscribeOn(scheduler)
-                .subscribe(
-                    onNext: { res in
+        let restApi = RestApi.AddRemoveFavorite(id: recipeId, token: token)
+        self.restApiProvider
+            .request(restApi)
+            .observeOn(BackgroundScheduler.instance())
+            .mapSuccessfulHTTPToObject(RecipesAddRemoveFavoriteJsonObject)
+            .map { json in
+                var isFavorite = false
+                if let mark = json.mark where mark == "favorite" {
+                    isFavorite = true
+                }
 
-                        // TODO: need some refactor
-                        if let mark = res.mark where mark == "favorite", let recipeId = res.markableId {
-                            self.updateFavoriteRecordToDB(recipeId, favorite: true)
-                            dispatch_async(dispatch_get_main_queue()) {
-                                onComplete(true)
-                            }
-
-                        } else {
-                            self.updateFavoriteRecordToDB(recipeId, favorite: false)
-
-                            dispatch_async(dispatch_get_main_queue()) {
-                                onComplete(false)
-                            }
-                        }
-                    },
-                    onError: { err in
-                        dLog("err = \(err)")
-                        dispatch_async(dispatch_get_main_queue()) {
-                            onError(err)
-                        }
-                    },
-                    onCompleted: {
-
-                    },
-                    onDisposed: {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            onFinished()
-                        }
+                let realm = try! Realm()
+                if let recipe = realm.objects(Recipe).filter("id = \(recipeId)").first {
+                    try! realm.write {
+                        recipe.favorite = isFavorite
                     }
-                )
-                .addDisposableTo(disposeBag)
+                }
+                return isFavorite
+            }
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: { res in
+                    onComplete(res)
+                },
+                onError: { err in
+                    onError(err)
+                },
+                onDisposed: {
+                    onFinished()
+                }
+            )
+            .addDisposableTo(disposeBag)
     }
 
     func updateFavoriteRecordToDB(recipeId: Int, favorite: Bool) {
@@ -215,7 +202,7 @@ extension Observable {
 
     func updateRecipeDatabase() -> Observable<[Int]> {
         return map { response in
-            
+
             guard let recipeJsons = response as? [RecipesJsonObject] else {
                 throw ORMError.ORMNoRepresentor
             }
@@ -232,9 +219,7 @@ extension Observable {
             dLog("End add recipe")
 
             var recipeIds = [Int]()
-            recipes.forEach {
-                recipeIds.append($0.id)
-            }
+            recipes.forEach { recipeIds.append($0.id) }
             return recipeIds
         }
     }
@@ -242,58 +227,26 @@ extension Observable {
     func updateRecipeOverviews() -> Observable<Any> {
         return map { response in
 
-            guard let recipesOverviewJsonObjects = response as? [RecipesOverviewJsonObject] else {
+            guard let recipeOverviewJsons = response as? [RecipesOverviewJsonObject] else {
                 throw ORMError.ORMNoRepresentor
             }
 
             autoreleasepool {
                 let realm = try! Realm()
                 let recipes = realm.objects(Recipe)
-                var needToFetchDatas = [RecipesOverview]()
-                
-                for recipesOverviewJsonObject in recipesOverviewJsonObjects {
-                    let results = recipes.filter("id == %@", recipesOverviewJsonObject.id)
-                    if results.count == 0 {
-                        let ro = RecipesOverview()
-                        ro.id = recipesOverviewJsonObject.id
-                        ro.updatedAt = recipesOverviewJsonObject.updatedAt
-                        needToFetchDatas.append(ro)
 
-                    } else {
-                        if let latestUpdatedDate = NSDate.dateFromRFC3339FormattedString(recipesOverviewJsonObject.updatedAt),
-                            let storedRecipesUdpatedDate = NSDate.dateFromRFC3339FormattedString(results[0].updatedAt) {
-                                let compareResult = latestUpdatedDate.compare(storedRecipesUdpatedDate)
-                                switch compareResult
-                                {
-                                case .OrderedDescending:
-                                    let ro = RecipesOverview()
-                                    ro.id = recipesOverviewJsonObject.id
-                                    ro.updatedAt = recipesOverviewJsonObject.updatedAt
-                                    needToFetchDatas.append(ro)
-
-                                default:
-                                    break
-                                }
+                realm.beginWrite()
+                recipeOverviewJsons
+                    .sort { $0.id < $1.id }
+                    .forEach {
+                        if let recipe = recipes.filter("id == \($0.id)").first
+                            where recipe.updatedAt.toNSDate() == $0.updatedAt.toNSDate() {
+                                return
                         }
-                    }
+                        realm.add($0.toDBModel(), update: true)
                 }
-
-
-
-                if needToFetchDatas.count > 0 {
-                    dLog("beginWrite()")
-                    realm.beginWrite()
-                    for data in needToFetchDatas {
-                        realm.add(data, update: true)
-                    }
-                    try! realm.commitWrite()
-                    dLog("commitWrite()")
-                }
-                
-                // FIXME: remove below test codes
-                let recipesOverviews = realm.objects(RecipesOverview)
-                dLog("recipesOverviews.count = \(recipesOverviews.count)")            }
-            
+                try! realm.commitWrite()
+            }
             return Observable<Any>.empty()
         }
     }

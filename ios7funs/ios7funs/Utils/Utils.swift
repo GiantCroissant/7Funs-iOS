@@ -10,6 +10,27 @@ import Foundation
 import UIKit
 import RxSwift
 
+
+extension String {
+
+    func toNSDate() -> NSDate {
+        guard let date = NSDate.dateFromRFC3339FormattedString(self) else {
+            aLog("Error Parsing String to Date : \(self)")
+            return NSDate()
+        }
+        return date
+    }
+
+}
+
+public func ==(lhs: NSDate, rhs: NSDate) -> Bool {
+    return lhs === rhs || lhs.compare(rhs) == .OrderedSame
+}
+
+public func <(lhs: NSDate, rhs: NSDate) -> Bool {
+    return lhs.compare(rhs) == .OrderedAscending
+}
+
 class BackgroundScheduler {
 
     static func instance() -> ConcurrentDispatchQueueScheduler {

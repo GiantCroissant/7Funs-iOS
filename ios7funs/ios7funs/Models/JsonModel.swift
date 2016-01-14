@@ -63,6 +63,13 @@ public struct RecipesJsonObject {
 public struct RecipesOverviewJsonObject {
     public let id: Int
     public let updatedAt: String
+
+    public func toDBModel() -> RecipesOverview {
+        let overview = RecipesOverview()
+        overview.id = self.id
+        overview.updatedAt = self.updatedAt
+        return overview
+    }
 }
 
 public struct RecipesAddRemoveFavoriteJsonObject {

@@ -90,16 +90,12 @@ extension Observable {
                     throw ORMError.ORMCouldNotMakeObjectError
                 }
 
-                dLog("start parsing... \(jsonArray.count)")
-
                 var objects = [T]()
                 for dict in jsonArray {
                     if let obj = self.resultFromJSON(dict, classType:type) {
                         objects.append(obj)
                     }
                 }
-
-                dLog("end parsing...")
                 return objects
 
 
