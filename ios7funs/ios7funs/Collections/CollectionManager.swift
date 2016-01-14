@@ -39,33 +39,23 @@ class CollectionManager: NSObject {
 
     func fetchCollections(token: String, onComplete: (() -> Void) = {}, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
 
-        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-        let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
         self.restApiProvider
             .request(RestApi.GetMyFavoriteRecipesIds(token: token))
+            .observeOn(BackgroundScheduler.instance())
             .mapSuccessfulHTTPToObjectArray(MyFavoriteRecipesResultJsonObject)
-
-            // .handleGetFavoriteRecipeIds()
-
-            .subscribeOn(scheduler)
+            .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { res in
                     self.handleGetFavoriteRecipeIds(res)
                 },
                 onError: { error in
-                    dispatch_async(dispatch_get_main_queue()) {
-                        onError(error)
-                    }
+                    onError(error)
                 },
                 onCompleted: {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        onComplete()
-                    }
+                    onComplete()
                 },
                 onDisposed: {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        onFinished()
-                    }
+                    onFinished()
                 }
             )
             .addDisposableTo(self.disposeBag)

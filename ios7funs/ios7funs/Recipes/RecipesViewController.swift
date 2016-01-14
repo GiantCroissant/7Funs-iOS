@@ -36,39 +36,42 @@ class RecipesViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if type == .Recipe {
-            self.title = "食譜列表"
-            indicatorLoadMore.hidden = false
-            indicatorLoadMore.startAnimating()
-
-            loadRecipes(onEmpty: {
-
-                dLog("on Empty")
-
-                self.fetchMoreRecipes()
-            })
+            onRecipeVCWillAppear()
         }
 
         if type == .Collection {
-            self.title = "我的收藏"
-            indicatorLoadMore.hidesWhenStopped = true
-            indicatorLoadMore.stopAnimating()
+            onCollectionVCWillAppear()
+        }
+    }
 
-            self.showToastIndicator()
-            if let token = LoginManager.token {
-                CollectionManager.sharedInstance.fetchCollections(token,
-                    onComplete: {
-                        self.handleFetchCollectionComplete()
-                    },
-                    onError: { err in
-                        self.showNetworkIsBusyAlertView()
-                    },
-                    onFinished: {
-                        self.hideToastIndicator()
-                    }
-                )
-            }
+    func onRecipeVCWillAppear() {
+        self.title = "食譜列表"
+        indicatorLoadMore.startAnimating()
+        loadRecipes(onEmpty: {
+            self.fetchMoreRecipes()
+        })
+    }
+
+    func onCollectionVCWillAppear() {
+        self.title = "我的收藏"
+        UIUtils.showStatusBarNetworking()
+        guard let token = LoginManager.token else {
+            return
         }
 
+        indicatorLoadMore.startAnimating()
+        CollectionManager.sharedInstance.fetchCollections(token,
+            onComplete: {
+                self.handleFetchCollectionComplete()
+            },
+            onError: { err in
+                self.showNetworkIsBusyAlertView()
+            },
+            onFinished: {
+                UIUtils.hideStatusBarNetworking()
+                self.indicatorLoadMore.stopAnimating()
+            }
+        )
     }
 
     func handleFetchCollectionComplete() {
@@ -113,7 +116,6 @@ extension RecipesViewController {
 
         isFetching = true
         UIUtils.showStatusBarNetworking()
-
         RecipeManager.sharedInstance.fetchMoreRecipes(
             onComplete: {
                 self.loadRecipes()
@@ -146,31 +148,6 @@ extension RecipesViewController {
 // MARK: - UITableViewDataSource
 extension RecipesViewController: UITableViewDataSource {
 
-    // FIXME: this func here just because I need to presnet login VC
-    // maybe there's better way to refactor this func to tableCell class
-    @IBAction func onAddToCollectionClick(sender: RecipeFavoriteButton) {
-        if let token = LoginManager.token {
-            let recipeId = sender.tag
-
-            UIUtils.showStatusBarNetworking()
-            RecipeManager.sharedInstance.addOrRemoveFavorite(recipeId, token: token,
-                onComplete: { favorite in
-                    let uiRecipe = self.recipes[sender.row]
-                    uiRecipe.favorite = favorite
-                    self.tableRecipes.reloadData()
-
-                    let recipeName = uiRecipe.title
-                    let msg = favorite ? "\(recipeName) : 加入收藏" : "\(recipeName) : 取消收藏"
-                    self.view.makeToast(msg, duration: 1, position: .Top)
-                    UIUtils.hideStatusBarNetworking()
-                }
-            )
-
-        } else {
-            LoginManager.sharedInstance.showLoginViewController(self)
-        }
-    }
-
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count
     }
@@ -196,13 +173,48 @@ class RecipeFavoriteButton: UIButton {
     var row: Int = 0
 }
 
+// MARK: - Switch favorite state
+extension RecipesViewController {
+
+    @IBAction func onAddToCollectionClick(sender: RecipeFavoriteButton) {
+        guard let token = LoginManager.token else {
+            LoginManager.sharedInstance.showLoginViewController(self)
+            return
+        }
+
+        switchFavorite(sender, token: token)
+    }
+
+    func switchFavorite(favoriteButton: RecipeFavoriteButton, token: String) {
+        let recipeId = favoriteButton.tag
+        let index = favoriteButton.row
+
+        UIUtils.showStatusBarNetworking()
+        RecipeManager.sharedInstance.switchFavorite(recipeId, token: token,
+            onComplete: { isFavorite in
+                let recipe = self.recipes[index]
+                recipe.favorite = isFavorite
+                self.tableRecipes.reloadData()
+                self.showSwitchFavoriteToast(recipe)
+            },
+            onError: { _ in
+                self.showNetworkIsBusyAlertView()
+            },
+            onFinished: {
+                UIUtils.hideStatusBarNetworking()
+            }
+        )
+    }
+
+}
+
 // MARK: - UITableViewDelegate
 extension RecipesViewController: UITableViewDelegate {
 
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        let distFromBottom = scrollView.contentSize.height - scrollView.contentOffset.y
-        if (distFromBottom <= scrollView.frame.height) {
-            if type == .Recipe {
+        if type == .Recipe {
+            let distFromBottom = scrollView.contentSize.height - scrollView.contentOffset.y
+            if (distFromBottom <= scrollView.frame.height) {
                 fetchMoreRecipes()
             }
         }

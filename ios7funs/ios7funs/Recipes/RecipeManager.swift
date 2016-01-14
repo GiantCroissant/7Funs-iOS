@@ -125,7 +125,7 @@ class RecipeManager: NSObject {
         return recipeIds
     }
 
-    func addOrRemoveFavorite(recipeId: Int, token: String, onComplete: ((Bool) -> Void) = { _ in }, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
+    func switchFavorite(recipeId: Int, token: String, onComplete: ((Bool) -> Void) = { _ in }, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
 
         let restApi = RestApi.AddRemoveFavorite(id: recipeId, token: token)
         self.restApiProvider

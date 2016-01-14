@@ -135,7 +135,7 @@ class RecipeTutorialViewController: UIViewController {
         let recipeId = recipe.id
 
         UIUtils.showStatusBarNetworking()
-        RecipeManager.sharedInstance.addOrRemoveFavorite(recipeId, token: token,
+        RecipeManager.sharedInstance.switchFavorite(recipeId, token: token,
             onComplete: { favorite in
                 self.handleFavoriteUpdateSuccess(favorite)
             },
@@ -149,15 +149,9 @@ class RecipeTutorialViewController: UIViewController {
     }
 
     func handleFavoriteUpdateSuccess(favorite: Bool) {
-        let recipeName = self.recipe.title
-        let msg = favorite ? "\(recipeName) : 加入收藏" : "\(recipeName) : 取消收藏"
-        self.view.makeToast(msg, duration: 1, position: .Top)
-
-        // update cache recipe UI model
-        self.recipe.favorite = favorite
-
-        // update Add Favorite Button UI
-        self.configureFavoriteButton(favorite)
+        recipe.favorite = favorite
+        configureFavoriteButton(favorite)
+        showSwitchFavoriteToast(recipe)
     }
 
 }

@@ -30,8 +30,8 @@
                                     <rect key="frame" x="0.0" y="286" width="365" height="66"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Cgu-Ac-xdg">
-                                            <rect key="frame" x="173" y="23" width="20" height="20"/>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Cgu-Ac-xdg">
+                                            <rect key="frame" x="174" y="22" width="20" height="20"/>
                                         </activityIndicatorView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
