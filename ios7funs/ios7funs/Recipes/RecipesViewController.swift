@@ -131,7 +131,7 @@ extension RecipesViewController {
 
     func loadRecipes(onEmpty onEmpty: (() -> Void) = {}) {
         UIUtils.showStatusBarNetworking()
-        RecipeManager.sharedInstance.loadRecipes() { recipes in
+        RecipeManager.sharedInstance.loadRecipes(self.recipes) { recipes in
             self.recipes = recipes
             self.tableRecipes.reloadData()
             UIUtils.hideStatusBarNetworking()
@@ -214,7 +214,7 @@ extension RecipesViewController: UITableViewDelegate {
         if type == .Recipe {
             let distFromBottom = scrollView.contentSize.height - scrollView.contentOffset.y
             if (distFromBottom <= scrollView.frame.height) {
-                fetchMoreRecipes()
+                loadRecipes()
             }
         }
     }

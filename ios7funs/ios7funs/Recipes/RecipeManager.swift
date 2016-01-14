@@ -45,15 +45,23 @@ class RecipeManager: NSObject {
         }
     })
 
-    func loadRecipes(onCompleted: (recipes: [RecipeUIModel]) -> Void) {
+    func loadRecipes(curRecipes: [RecipeUIModel], onCompleted: (recipes: [RecipeUIModel]) -> Void) {
         Async.background {
+
+            let loadCount = curRecipes.count + 30
+
             let realm = try! Realm()
-            let recipes = realm.objects(Recipe)
-                .map { RecipeUIModel(dbData: $0) }
-                .sort { $0.id < $1.id }
+            let recipes = realm.objects(Recipe).sort { $0.id < $1.id }
+
+            var recipeUIModels = [RecipeUIModel]()
+            for i in 0..<loadCount {
+                let recipe = recipes[i]
+                let recipeUIModel = RecipeUIModel(dbData: recipe)
+                recipeUIModels.append(recipeUIModel)
+            }
 
             Async.main {
-                onCompleted(recipes: recipes)
+                onCompleted(recipes: recipeUIModels)
             }
         }
     }

@@ -11,8 +11,6 @@ import Foundation
 import RxSwift
 import RxMoya
 
-//import Moya
-//
 public enum RestApi {
     //
     case Recipes(Int)
@@ -52,7 +50,7 @@ public enum RestApi {
 }
 
 extension RestApi : TargetType {
-//    public var baseURL: NSURL { return NSURL(string: "http://104.155.232.182")! }
+
     public var baseURL: NSURL { return NSURL(string: "https://www.7funs.com")! }
 
     public var path: String {
@@ -96,6 +94,7 @@ extension RestApi : TargetType {
             
 //        case .UserRepositories(let name):
 //            return "/users/\(name.URLEscapedString)/repos"
+
         case .LogIn:
             return "/oauth/token"
         case .LogInViaFb:
@@ -106,8 +105,6 @@ extension RestApi : TargetType {
             return "/oauth/revoke"
         case .PasswordReset:
             return "/rorapi/v1/passwords"
-            
-        //
         case .GetMyFavoriteRecipesIds:
             return "/api/self/favorites/recipeIds"
         }
@@ -162,17 +159,8 @@ extension RestApi : TargetType {
                 "client_id": clientId
             ]
         case .RecipesByIdList(let idList):
-//            let stringIds = idList.map { x in
-//              return String(x)
-//            }
-//            let combinedString = stringIds.reduce("", combine: { $0 + "," + $1 })
-//            let truncated = String(combinedString.characters.dropFirst())
-//            print(truncated)
-//            print(idList)
             return [
                 "client_id": clientId,
-                //"ids[0]": String(idList[0]),
-                //"ids[1]": String(idList[1])
                 "ids": idList
             ]
         case AddRemoveFavorite(_, let token):
@@ -278,8 +266,6 @@ extension RestApi : TargetType {
                 "client_id": clientId,
                 "token": token
             ]
-            //        default:
-            //            return nil
         }
     }
     
@@ -353,18 +339,3 @@ extension RestApi : TargetType {
         }
     }
 }
-
-//public func url(route: MoyaTarget) -> String {
-//    return route.baseURL.URLByAppendingPathComponent(route.path).absoluteString
-//}
-
-//private let provider = RxMoyaProvider<RestApi>()
-//private var disposeBag = DisposeBag()
-//
-//extension RestApi {
-//    static func getRecipesOverview(completion: [RecipesOverviewJsonObject] -> Void) {
-//        disposeBag = DisposeBag()
-//        //provider.request(.RecipesOverview).subscribe(onNext: { recipesOverviews in completion(recipesOverviews) })
-//    }
-//}
-//
