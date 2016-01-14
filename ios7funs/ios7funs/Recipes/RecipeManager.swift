@@ -132,20 +132,7 @@ class RecipeManager: NSObject {
             .request(restApi)
             .observeOn(BackgroundScheduler.instance())
             .mapSuccessfulHTTPToObject(RecipesAddRemoveFavoriteJsonObject)
-            .map { json in
-                var isFavorite = false
-                if let mark = json.mark where mark == "favorite" {
-                    isFavorite = true
-                }
-
-                let realm = try! Realm()
-                if let recipe = realm.objects(Recipe).filter("id = \(recipeId)").first {
-                    try! realm.write {
-                        recipe.favorite = isFavorite
-                    }
-                }
-                return isFavorite
-            }
+            .updateRecipeFavoriteState(recipeId)
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { res in
@@ -161,19 +148,31 @@ class RecipeManager: NSObject {
             .addDisposableTo(disposeBag)
     }
 
-    func updateFavoriteRecordToDB(recipeId: Int, favorite: Bool) {
-        let realm = try! Realm()
-        if let recipe = realm.objects(Recipe).filter("id = \(recipeId)").first {
-            try! realm.write {
-                recipe.favorite = favorite
-            }
-        }
-    }
-
 }
 
 
 extension Observable {
+
+    func updateRecipeFavoriteState(recipeId: Int) -> Observable<Bool> {
+        return map { res in
+            guard let json = res as? RecipesAddRemoveFavoriteJsonObject else {
+                throw ORMError.ORMNoRepresentor
+            }
+
+            var isFavorite = false
+            if let mark = json.mark where mark == "favorite" {
+                isFavorite = true
+            }
+
+            let realm = try! Realm()
+            if let recipe = realm.objects(Recipe).filter("id = \(recipeId)").first {
+                try! realm.write {
+                    recipe.favorite = isFavorite
+                }
+            }
+            return isFavorite
+        }
+    }
 
     func deleteRecipeOverviews() -> Observable<Any> {
         return map { res in
@@ -184,7 +183,6 @@ extension Observable {
 
             let realm = try! Realm()
             let overviews = realm.objects(RecipesOverview)
-            dLog("before overviews count = \(realm.objects(RecipesOverview).count)")
             realm.beginWrite()
             recipeIds.forEach {
                 if let overview = overviews.filter("id == \($0)").first {
@@ -192,10 +190,7 @@ extension Observable {
                 }
             }
             try! realm.commitWrite()
-
-            let deletedOverviewsCount = realm.objects(RecipesOverview).count
-            dLog("overviews count = \(deletedOverviewsCount)")
-            return Observable<Any>.empty()
+            return Observable.empty()
         }
     }
 
@@ -244,7 +239,7 @@ extension Observable {
                                 return
                         }
                         realm.add($0.toDBModel(), update: true)
-                }
+                    }
                 try! realm.commitWrite()
             }
             return Observable<Any>.empty()

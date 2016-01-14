@@ -43,11 +43,9 @@ class CollectionManager: NSObject {
             .request(RestApi.GetMyFavoriteRecipesIds(token: token))
             .observeOn(BackgroundScheduler.instance())
             .mapSuccessfulHTTPToObjectArray(MyFavoriteRecipesResultJsonObject)
+            .updateFavoriteRecipes()
             .observeOn(MainScheduler.instance)
             .subscribe(
-                onNext: { res in
-                    self.handleGetFavoriteRecipeIds(res)
-                },
                 onError: { error in
                     onError(error)
                 },
@@ -61,31 +59,41 @@ class CollectionManager: NSObject {
             .addDisposableTo(self.disposeBag)
     }
 
-    func handleGetFavoriteRecipeIds(favorites: [MyFavoriteRecipesResultJsonObject]) {
-        for favorite in favorites {
-            let favRecipeId = favorite.id
-            RecipeManager.sharedInstance.updateFavoriteRecordToDB(favRecipeId, favorite: true)
-        }
-    }
-
     func loadCollections(onLoaded: ([RecipeUIModel] -> Void)) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-            autoreleasepool {
-                var recipes = [RecipeUIModel]()
-                let realm = try! Realm()
+        Async.background {
+            let realm = try! Realm()
+            let recipes = realm.objects(Recipe).filter("favorite == true")
+                .map { RecipeUIModel(dbData: $0) }
+                .sort { $0.id < $1.id }
 
-                let recipeObjs = realm.objects(Recipe).filter("favorite == true")
-                for recipeObj in recipeObjs {
-
-                    let recipe = RecipeUIModel(dbData: recipeObj)
-                    recipes.append(recipe)
-                }
-
-                dispatch_async(dispatch_get_main_queue()) {
-                    onLoaded(recipes)
-                }
+            Async.main {
+                onLoaded(recipes)
             }
         }
     }
+}
 
+
+extension Observable {
+
+    func updateFavoriteRecipes() -> Observable<Any> {
+        return map { res in
+            guard let favoriteRecipes = res as? [MyFavoriteRecipesResultJsonObject] else {
+                throw ORMError.ORMNoRepresentor
+            }
+
+            favoriteRecipes.forEach {
+                let realm = try! Realm()
+                if let recipe = realm.objects(Recipe).filter("id = \($0.id)").first {
+                    try! realm.write {
+                        recipe.favorite = true
+                    }
+                }
+            }
+
+            return Observable<Any>.empty()
+        }
+    }
+    
+    
 }
