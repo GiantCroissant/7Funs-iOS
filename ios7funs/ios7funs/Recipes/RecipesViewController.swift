@@ -93,7 +93,6 @@ class RecipesViewController: UIViewController {
 
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        self.recipes.removeAll()
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -20,7 +20,7 @@ class RecipeManager: NSObject {
 
     static let sharedInstance = RecipeManager()
 
-    let kFetchAmount = 30
+    let kFetchAmount = 100
     let recipeImageBaseUrl = "https://commondatastorage.googleapis.com/funs7-1/uploads/recipe/image/"
     let disposeBag = DisposeBag()
 

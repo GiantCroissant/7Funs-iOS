@@ -18,8 +18,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var btnLinks: UIButton!
     @IBOutlet weak var tempImage: UIImageView!
 
-    let loadRecipesInBackgroundTimeInterval: NSTimeInterval = 3
-    let loadVideoInBackgroundTimeInterval: NSTimeInterval = 3
+    let loadRecipesInBackgroundTimeInterval: NSTimeInterval = 5
+    let loadVideoInBackgroundTimeInterval: NSTimeInterval = 5
     let kChangeLinkImageTimeInterval: NSTimeInterval = 5
     let kFadeInOutTimeInterval: NSTimeInterval = 1
     let linkImageNames = [
@@ -48,28 +48,23 @@ class MainViewController: UIViewController {
     }
 
     func fetchOverviews() {
-        showToastIndicator()
         fetchRecipeOverview()
+        fetchVideoOverview()
     }
 
     func fetchRecipeOverview() {
+        UIUtils.showStatusBarNetworking()
         RecipeManager.sharedInstance.fetchRecipeOverview(
             onComplete: {
-                self.fetchVideoOverview()
+                self.startBackgroundLoadRecipes()
             },
             onError: { error in
-                self.showTimeoutAlertView(
-                    onReconnect: {
-                        self.fetchRecipeOverview()
-                    },
-                    onCancel: {
-                        self.hideToastIndicator()
-                    }
-                )
+                self.showNetworkIsBusyAlertView()
+            },
+            onFinished: {
+                UIUtils.hideStatusBarNetworking()
             }
         )
-
-        dLog("XD")
     }
 
     func fetchVideoOverview() {
@@ -92,6 +87,20 @@ class MainViewController: UIViewController {
         )
     }
 
+    func startBackgroundLoadRecipes() {
+        NSTimer.scheduledTimerWithTimeInterval(loadRecipesInBackgroundTimeInterval,
+            target: self,
+            selector: "loadRecipesInBackground",
+            userInfo: nil,
+            repeats: true
+        )
+    }
+
+    func loadRecipesInBackground() {
+        RecipeManager.sharedInstance.fetchMoreRecipes()
+    }
+
+
     func startBackgroundLoadData() {
         RecipeManager.sharedInstance.fetchMoreRecipes()
         NSTimer.scheduledTimerWithTimeInterval(loadRecipesInBackgroundTimeInterval,
@@ -110,9 +119,7 @@ class MainViewController: UIViewController {
         )
     }
 
-    func loadRecipesInBackground() {
-        RecipeManager.sharedInstance.fetchMoreRecipes()
-    }
+
 
     func loadVideosInBackground() {
         VideoManager.sharedInstance.fetchMoreVideos()
