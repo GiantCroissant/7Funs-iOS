@@ -94,6 +94,7 @@ public struct SubCategoryJsonObject {
     public let parentId: Int?
     public let createdAt: String
     public let updatedAt: String
+    public let tags: [TagJsonObject]?
 }
 
 public struct CategoryJsonObject {
@@ -103,6 +104,20 @@ public struct CategoryJsonObject {
     public let createdAt: String
     public let updatedAt: String
     public let subCategories: [SubCategoryJsonObject]
+}
+
+public struct TagJsonObject {
+    public let id: Int
+    public let name: String
+    public let taggingsCount: Int
+    public let categoryId: Int
+    public let taggings: [TaggingJsonObject]?
+}
+
+public struct TaggingJsonObject {
+    public let tagId: Int
+    public let taggableType: String
+    public let taggableId: Int
 }
 
 // MARK: Video related
@@ -221,20 +236,6 @@ public struct MessageCommentCreateResultJsonObject {
     public let id: Int
 }
 
-// MARK: Tag related
-public struct TaggingJsonObject {
-    public let tagId: Int
-    public let taggableType: String
-    public let taggableId: Int
-}
-
-public struct TagJsonObject {
-    public let id: Int
-    public let name: String
-    public let taggingsCount: Int
-    public let categoryId: Int
-    public let taggings: [TaggingJsonObject]
-}
 
 // MARK: Login related
 public struct RegisterUserJsonObject {
@@ -405,6 +406,7 @@ extension SubCategoryJsonObject: Decodable {
             <*> j <|? "parent_id"
             <*> j <| "created_at"
             <*> j <| "updated_at"
+            <*> j <||? "tags"
     }
 }
 
@@ -553,12 +555,12 @@ extension TagJsonObject: Decodable {
     public static func decode(j: JSON) -> Decoded<TagJsonObject> {
         let f = curry(TagJsonObject.init)
             <^> j <| "id"
+        
+        return f
             <*> j <| "name"
             <*> j <| "taggings_count"
             <*> j <| "category_id"
-        
-        return f
-            <*> j <|| "taggings"
+            <*> j <||? "taggings"
     }
 }
 

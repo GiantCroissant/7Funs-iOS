@@ -32,6 +32,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        RecipeManager.sharedInstance.fetchCategories()
+
         setupRepeatChangeLinkImageTimer()
 
         btnShowInfos.scaleButtonImage(.Center)

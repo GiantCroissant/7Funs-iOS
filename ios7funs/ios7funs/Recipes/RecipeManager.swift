@@ -156,10 +156,107 @@ class RecipeManager: NSObject {
             .addDisposableTo(disposeBag)
     }
 
+    // call every month
+    func fetchCategories() {
+        let fetchCategory = RestApi.Categories
+        self.restApiProvider
+            .request(fetchCategory)
+            .observeOn(BackgroundScheduler.instance())
+            .mapSuccessfulHTTPToObjectArray(CategoryJsonObject)
+            .subscribe(
+                onNext: { categories in
+                    // fetch sub-category Ids
+                    var subCategoryIds = [Int]()
+                    categories.forEach { category in
+                        category.subCategories.forEach { subCategory in
+                            subCategoryIds.append(subCategory.id)
+                        }
+                    }
+
+                    subCategoryIds.forEach { id in
+                        self.fetchSubCategory(id)
+                    }
+                },
+                onError: { err in
+                    dLog("\(err)")
+                },
+                onCompleted: {
+                    dLog("fetch category complete")
+                }
+            ).addDisposableTo(disposeBag)
+    }
+
+    func fetchSubCategory(subId: Int) {
+        self.restApiProvider
+            .request(RestApi.CategoryById(subId))
+            .observeOn(BackgroundScheduler.instance())
+            .mapSuccessfulHTTPToObject(SubCategoryJsonObject)
+            .subscribe(
+                onNext: { subCategory in
+                    subCategory.tags?.forEach {
+                        self.fetchTags($0.id)
+                    }
+                },
+                onError: { err in
+                    dLog("\(err)")
+                },
+                onCompleted: {
+                    dLog("fetch sub category complete")
+                }
+            ).addDisposableTo(disposeBag)
+    }
+
+    // call every day
+    func fetchTags(tagId: Int) {
+        self.restApiProvider
+            .request(RestApi.TagById(tagId))
+            .observeOn(BackgroundScheduler.instance())
+            .mapSuccessfulHTTPToObject(TagJsonObject)
+            .subscribe(
+                onNext: { tagJson in
+                    var recipeIds = [Int]()
+                    tagJson.taggings?.forEach {
+                        recipeIds.append($0.taggableId)
+                    }
+                    print("tagName[ \(tagJson.name) ] => 數量： \(recipeIds.count)")
+                },
+                onError: { err in
+                    dLog("\(err)")
+                },
+                onCompleted: {
+                    dLog("fetch tags complete")
+                },
+                onDisposed: {
+
+                }
+            ).addDisposableTo(disposeBag)
+    }
+
 }
 
 
 extension Observable {
+
+    func fetchSubCategory() -> Observable<Any> {
+        return map { res in
+
+            guard let jsonArray = res as? [CategoryJsonObject] else {
+                throw ORMError.ORMNoRepresentor
+            }
+
+            // get ALL sub category Ids
+            var subCategoryIds = [Int]()
+            jsonArray.forEach { json in
+                json.subCategories.forEach { subCat in
+                    subCategoryIds.append(subCat.id)
+                }
+            }
+
+
+
+            return Observable<Any>.empty()
+        }
+    }
 
     func updateRecipeFavoriteState(recipeId: Int) -> Observable<Bool> {
         return map { res in
