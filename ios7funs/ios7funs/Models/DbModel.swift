@@ -70,29 +70,6 @@ public class RecipesFavorite : Object {
     }
 }
 
-/*
-// MARK: Video related
-public struct VideoDataJsonObject {
-public let title: String
-public let duration: Int
-public let likeCount: Int
-public let viewCount: Int
-public let descritpion: String
-public let publishedAt: String
-public let thumbnailUrl: String
-}
-
-public struct VideoJsonObject {
-public let id: Int
-public let recipeId: Int
-public let youtubeVideoCode: String
-public let number: Int
-public let createdAt: String
-public let updatedAt: String
-public let videoData: VideoDataJsonObject?
-}
-*/
-
 public class Video : Object {
     dynamic var id = 0
     dynamic var recipeId = 0

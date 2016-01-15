@@ -22,110 +22,97 @@ class VideoManager {
     let disposeBag = DisposeBag()
     let restApiProvider = RxMoyaProvider<RestApi>()
 
-    func loadVideos(completionHandler: (videos: [VideoUIModel]) -> ()) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-            autoreleasepool {
-                var videos = [VideoUIModel]()
-                let realm = try! Realm()
+    func fetchVideoOverview(onComplete onComplete: (() -> Void) = {}, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
 
-                let videoObjs = realm.objects(Video)
-                for videoObj in videoObjs {
-
-                    // FIXME: workaround , data has too many empty youtubeVideoID
-                    if videoObj.youtubeVideoCode.isEmpty {
-                        continue
-
-                    } else {
-                        print("\(videoObj.youtubeVideoCode)")
-                    }
-
-                    let video = VideoUIModel(dbData: videoObj)
-                    videos.append(video)
-                }
-
-                dispatch_async(dispatch_get_main_queue()) {
-                    completionHandler(videos: videos)
-                }
-            }
-        }
-    }
-
-    func fetchVideoOverview(onComplete onComplete: (() -> Void) = {}
-        , onError: (ErrorType -> Void) = { _ in }
-        , onFinished: (() -> Void) = {}) {
-            
-        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-        let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
         self.restApiProvider
             .request(.VideoOverview)
+            .observeOn(BackgroundScheduler.instance())
             .mapSuccessfulHTTPToObjectArray(VideoOverviewJsonObject)
-            .subscribeOn(scheduler)
+            .updateVideoOverviews()
+            .observeOn(MainScheduler.instance)
             .subscribe(
-                onNext: { videoOverviewJsonObjects in
-                    self.updateLocalVideoOverview(videoOverviewJsonObjects)
-                },
                 onError: { error in
-                    dispatch_async(dispatch_get_main_queue()) {
-                        onError(error)
-                    }
+                    onError(error)
                 },
                 onCompleted: {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        onComplete()
-                    }
+                    onComplete()
                 },
                 onDisposed: {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        onFinished()
-                    }
+                    onFinished()
                 }
             )
             .addDisposableTo(self.disposeBag)
     }
 
-    func updateLocalVideoOverview(videoOverviewJsonObjects: [VideoOverviewJsonObject]) {
-        autoreleasepool {
+    func loadVideos(completionHandler: (videos: [VideoUIModel]) -> ()) {
+        Async.background {
+            var videos = [VideoUIModel]()
             let realm = try! Realm()
-            let videos = realm.objects(Video)
-            var needToFetchDatas = [VideoOverview]()
-            for videoOverviewJsonObject in videoOverviewJsonObjects {
-                let results = videos.filter("id == %@", videoOverviewJsonObject.id)
-                if results.count == 0 {
-                    let vo = VideoOverview()
-                    vo.id = videoOverviewJsonObject.id
-                    vo.updatedAt = videoOverviewJsonObject.updatedAt
-                    needToFetchDatas.append(vo)
+
+            let videoObjs = realm.objects(Video)
+            for videoObj in videoObjs {
+
+                // FIXME: workaround , data has too many empty youtubeVideoID
+                if videoObj.youtubeVideoCode.isEmpty {
+                    continue
 
                 } else {
-                    if let latestUpdatedDate = NSDate.dateFromRFC3339FormattedString(videoOverviewJsonObject.updatedAt),
-                        let storedRecipesUdpatedDate = NSDate.dateFromRFC3339FormattedString(results[0].updatedAt) {
-                            let compareResult = latestUpdatedDate.compare(storedRecipesUdpatedDate)
-                            switch compareResult {
-                            case .OrderedDescending:
-                                let vo = VideoOverview()
-                                vo.id = videoOverviewJsonObject.id
-                                vo.updatedAt = videoOverviewJsonObject.updatedAt
-                                needToFetchDatas.append(vo)
-                            default:
-                                break
-                            }
-                    }
+                    print("\(videoObj.youtubeVideoCode)")
                 }
+
+                let video = VideoUIModel(dbData: videoObj)
+                videos.append(video)
             }
 
-            if needToFetchDatas.count > 0 {
-                realm.beginWrite()
-                for fetchingData in needToFetchDatas {
-                    realm.add(fetchingData, update: true)
-                }
-                try! realm.commitWrite()
+            Async.main {
+                completionHandler(videos: videos)
             }
-
-            // FIXME: remove below test codes
-            let videoOverview = realm.objects(VideoOverview)
-            dLog("videoOverview = \(videoOverview.count)")
         }
     }
+
+    //    func updateLocalVideoOverview(videoOverviewJsonObjects: [VideoOverviewJsonObject]) {
+    //        autoreleasepool {
+    //            let realm = try! Realm()
+    //            let videos = realm.objects(Video)
+    //            var needToFetchDatas = [VideoOverview]()
+    //            for videoOverviewJsonObject in videoOverviewJsonObjects {
+    //                let results = videos.filter("id == %@", videoOverviewJsonObject.id)
+    //                if results.count == 0 {
+    //                    let vo = VideoOverview()
+    //                    vo.id = videoOverviewJsonObject.id
+    //                    vo.updatedAt = videoOverviewJsonObject.updatedAt
+    //                    needToFetchDatas.append(vo)
+    //
+    //                } else {
+    //                    if let latestUpdatedDate = NSDate.dateFromRFC3339FormattedString(videoOverviewJsonObject.updatedAt),
+    //                        let storedRecipesUdpatedDate = NSDate.dateFromRFC3339FormattedString(results[0].updatedAt) {
+    //                            let compareResult = latestUpdatedDate.compare(storedRecipesUdpatedDate)
+    //                            switch compareResult {
+    //                            case .OrderedDescending:
+    //                                let vo = VideoOverview()
+    //                                vo.id = videoOverviewJsonObject.id
+    //                                vo.updatedAt = videoOverviewJsonObject.updatedAt
+    //                                needToFetchDatas.append(vo)
+    //                            default:
+    //                                break
+    //                            }
+    //                    }
+    //                }
+    //            }
+    //
+    //            if needToFetchDatas.count > 0 {
+    //                realm.beginWrite()
+    //                for fetchingData in needToFetchDatas {
+    //                    realm.add(fetchingData, update: true)
+    //                }
+    //                try! realm.commitWrite()
+    //            }
+    //
+    //            // FIXME: remove below test codes
+    //            let videoOverview = realm.objects(VideoOverview)
+    //            dLog("videoOverview = \(videoOverview.count)")
+    //        }
+    //    }
 
     func fetchMoreVideos(onComplete onComplete: (() -> Void) = {}, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
 
@@ -232,4 +219,36 @@ class VideoManager {
         return video
     }
 
+}
+
+
+extension Observable {
+
+    func updateVideoOverviews() -> Observable<Any> {
+        return map { response in
+
+            guard let videoOverviewJsons = response as? [VideoOverviewJsonObject] else {
+                throw ORMError.ORMNoRepresentor
+            }
+
+            autoreleasepool {
+                let realm = try! Realm()
+                let videos = realm.objects(Video)
+
+                realm.beginWrite()
+                videoOverviewJsons
+                    .sort { $0.id < $1.id }
+                    .forEach {
+                        if let video = videos.filter("id == \($0.id)").first
+                            where video.updatedAt.toNSDate() == $0.updatedAt.toNSDate() {
+                                return
+                        }
+                        realm.add($0.toDBModel(), update: true)
+                }
+                try! realm.commitWrite()
+            }
+            return Observable<Any>.empty()
+        }
+    }
+    
 }

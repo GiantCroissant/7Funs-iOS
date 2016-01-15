@@ -60,6 +60,11 @@ public struct RecipesJsonObject {
     }
 }
 
+public class OverviewJson {
+    public let id: Int = 0
+    public let updatedAt: String = ""
+}
+
 public struct RecipesOverviewJsonObject {
     public let id: Int
     public let updatedAt: String
@@ -124,6 +129,13 @@ public struct VideoJsonObject {
 public struct VideoOverviewJsonObject {
     public let id: Int
     public let updatedAt: String
+
+    public func toDBModel() -> VideoOverview {
+        let overview = VideoOverview()
+        overview.id = self.id
+        overview.updatedAt = self.updatedAt
+        return overview
+    }
 }
 
 // MARK: Message realted
