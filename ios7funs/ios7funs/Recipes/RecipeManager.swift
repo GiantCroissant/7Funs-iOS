@@ -55,6 +55,10 @@ class RecipeManager: NSObject {
 
             var recipeUIModels = [RecipeUIModel]()
             for i in 0..<loadCount {
+                if i >= recipes.count {
+                    return
+                }
+
                 let recipe = recipes[i]
                 let recipeUIModel = RecipeUIModel(dbData: recipe)
                 recipeUIModels.append(recipeUIModel)
@@ -218,16 +222,13 @@ class RecipeManager: NSObject {
                     tagJson.taggings?.forEach {
                         recipeIds.append($0.taggableId)
                     }
-                    print("tagName[ \(tagJson.name) ] => 數量： \(recipeIds.count)")
+                    dLog("tagName[ \(tagJson.name) ] => 數量： \(recipeIds.count)")
                 },
                 onError: { err in
                     dLog("\(err)")
                 },
                 onCompleted: {
                     dLog("fetch tags complete")
-                },
-                onDisposed: {
-
                 }
             ).addDisposableTo(disposeBag)
     }
@@ -251,8 +252,6 @@ extension Observable {
                     subCategoryIds.append(subCat.id)
                 }
             }
-
-
 
             return Observable<Any>.empty()
         }

@@ -58,7 +58,6 @@ extension Observable {
                     throw ORMError.ORMCouldNotMakeObjectError
                 }
 
-//                print("json = \(json)")
                 if let result = self.resultFromJSON(json, classType:type) {
                     return result
                 }
@@ -80,7 +79,8 @@ extension Observable {
 
             guard ((200...209) ~= response.statusCode) else {
                 if let jsonArray = try? NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [String: AnyObject] {
-                    print("Got error message: \(jsonArray!["info"])")
+                    
+                    dLog("Got error message: \(jsonArray!["info"])")
                 }
                 throw ORMError.ORMNotSuccessfulHTTP
             }

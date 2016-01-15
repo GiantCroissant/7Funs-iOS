@@ -69,8 +69,8 @@ extension RecipeUIModel {
     }
 
     func printDebugString() {
-        print("self.id = \(self.id)")
-        print("self.title = \(self.title)")
+//        print("self.id = \(self.id)")
+//        print("self.title = \(self.title)")
 //        print("self.chefName = \(self.chefName)")
 //        print("self.desc = \(self.desc)")
 //        print("self.ingredient = \(self.ingredient)")
@@ -80,22 +80,6 @@ extension RecipeUIModel {
 //        print("self.collectedCount = \(self.collectedCount)")
     }
 }
-
-/*
-dynamic var id = 0
-dynamic var recipeId = 0
-dynamic var youtubeVideoCode = ""
-dynamic var number = 0
-dynamic var createdAt = ""
-dynamic var updatedAt = ""
-dynamic var title = ""
-dynamic var duration = 0
-dynamic var likeCount = 0
-dynamic var viewCount = 0
-dynamic var desc = ""
-dynamic var publishedAt = ""
-dynamic var thumbnailUrl = ""
-*/
 
 class VideoUIModel {
 
@@ -130,10 +114,10 @@ class VideoUIModel {
     }
 
     func printDebugString() {
-        print("self.title = \(self.title)")
-        print("duration = \(self.duration)")
-        print("desc = \(self.desc)")
-        print("viewCount = \(self.viewCount)")
+//        print("self.title = \(self.title)")
+//        print("duration = \(self.duration)")
+//        print("desc = \(self.desc)")
+//        print("viewCount = \(self.viewCount)")
     }
 
 }

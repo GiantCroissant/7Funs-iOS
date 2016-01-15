@@ -79,7 +79,7 @@ class RecipeTutorialViewController: UIViewController {
         lblIngredients.text = reformatIngredientString(ingredient)
         lblSeasonings.text = reformatSeasoningString(seasoning)
 
-        print("recipe.method = \(recipe.method)")
+        dLog("recipe.method = \(recipe.method)")
 
         // TODO: - FIX recipe method to better display
     //        lblMethods.text = recipe.method

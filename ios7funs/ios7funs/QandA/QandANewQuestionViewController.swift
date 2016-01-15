@@ -121,9 +121,6 @@ extension QandANewQuestionViewController {
         let keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
 
         contentBottomConstraint.constant = 15 + keyboardFrame.size.height
-
-        print("keyboardWillShow")
-
         self.view.setNeedsUpdateConstraints()
 
         UIView.animateWithDuration(animationDuration) {

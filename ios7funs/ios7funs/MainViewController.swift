@@ -32,7 +32,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        RecipeManager.sharedInstance.fetchCategories()
+
 
         setupRepeatChangeLinkImageTimer()
 
@@ -44,6 +44,7 @@ class MainViewController: UIViewController {
         btnLinks.scaleButtonImage(.Top)
 
         fetchOverviews()
+        RecipeManager.sharedInstance.fetchCategories()           
 
         // for disabling swipe back to previous view controller - part I
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
