@@ -25,8 +25,7 @@ class RecipeTutorialViewController: UIViewController {
     @IBOutlet weak var bgTutorial: CardView!
     @IBOutlet weak var bgContent: UIView!
     @IBOutlet weak var bgBottom: UIView!
-    @IBOutlet weak var layoutContentHeight: NSLayoutConstraint!
-    @IBOutlet var layoutDynamicHeights: [NSLayoutConstraint]!
+    @IBOutlet weak var bottomToTopHeight: NSLayoutConstraint!
 
     @IBOutlet weak var contentScrollView: UIScrollView!
     @IBAction func onAddFavoriteClick(sender: UIButton) {
@@ -57,20 +56,15 @@ class RecipeTutorialViewController: UIViewController {
         configureTutorial()
     }
 
-    // TODO: need refactor
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
         let bounds = self.bgBottom.bounds
-        let size = self.bgBottom.sizeThatFits(CGSize(width: bounds.width, height: 100000))
+        let bottom = self.bgBottom.sizeThatFits(CGSize(width: bounds.width, height: 100000))
 
-        var newHeight: CGFloat = 0.0
-        for height in layoutDynamicHeights {
-            newHeight += height.constant
-        }
-
-        layoutContentHeight.constant = newHeight + size.height
-        contentScrollView.contentSize.height = layoutContentHeight.constant
+        let newHeight = bottomToTopHeight.constant + bottom.height
+        contentScrollView.contentSize.height = newHeight
     }
 
     func configureTutorial() {
@@ -79,7 +73,7 @@ class RecipeTutorialViewController: UIViewController {
         lblIngredients.text = reformatIngredientString(ingredient)
         lblSeasonings.text = reformatSeasoningString(seasoning)
 
-        dLog("recipe.method = \(recipe.method)")
+//        dLog("recipe.method = \(recipe.method)")
 
         // TODO: - FIX recipe method to better display
     //        lblMethods.text = recipe.method
