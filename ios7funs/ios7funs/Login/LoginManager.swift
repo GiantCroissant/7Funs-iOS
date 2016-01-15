@@ -103,13 +103,11 @@ class LoginManager {
     }
 
     func login(data: LoginData, onComplete: (() -> Void) = {}, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
-
-        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-        let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
         self.restApiProvider
             .request(RestApi.LogIn(username: data.email, password: data.password))
+            .observeOn(BackgroundScheduler.instance())
             .mapSuccessfulHTTPToObject(LoginResultJsonObject)
-            .subscribeOn(scheduler)
+            .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { res in
                     dLog("res = \(res)")
@@ -117,20 +115,13 @@ class LoginManager {
                     LoginManager.token = token
                 },
                 onError: { err in
-                    // TODO: fix register failed message
-                    dispatch_async(dispatch_get_main_queue()) {
-                        onError(err)
-                    }
+                    onError(err)
                 },
                 onCompleted: {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        onComplete()
-                    }
+                    onComplete()
                 },
                 onDisposed: {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        onFinished()
-                    }
+                    onFinished()
                 }
             )
             .addDisposableTo(disposeBag)
@@ -154,6 +145,7 @@ class LoginManager {
                     dispatch_async(dispatch_get_main_queue()) {
                         onComplete(res)
                     }
+                    
                 },
                 onError: { err in
                     dispatch_async(dispatch_get_main_queue()) {
@@ -172,41 +164,36 @@ class LoginManager {
 
     }
 
-    func loginWithFBToken(token: String, onHTTPError: ((ErrorResultJsonObject?) -> Void) = { _ in },onComplete: ((ErrorResultJsonObject?) -> Void) = { _ in }, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
-        
-        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-        let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
+    func loginWithFBToken(token: String, onHTTPError: ((ErrorResultJsonObject?) -> Void) = { _ in },onComplete: (() -> Void) = { _ in }, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
+
         self.restApiProvider
             .request(RestApi.LogInViaFb(assertion: token))
-            .mapSuccessfulHTTPToObject(ErrorResultJsonObject.self,
+            .observeOn(BackgroundScheduler.instance())
+            .mapSuccessfulHTTPToObject(LoginResultJsonObject.self,
                 onHTTPFail: { res in
-                    onHTTPError(res)
+                    Async.main {
+                        onHTTPError(res)
+                    }
                 }
             )
-            .subscribeOn(scheduler)
+            .map({ loginResult in
+                LoginManager.token = loginResult.accessToken
+            })
+            .observeOn(MainScheduler.instance)
             .subscribe(
-                onNext: { res in
-                    dLog("res = \(res)")
-                    dispatch_async(dispatch_get_main_queue()) {
-                        onComplete(res)
-                    }
-                },
                 onError: { err in
-                    dispatch_async(dispatch_get_main_queue()) {
-                        onError(err)
-                    }
+                    onError(err)
                 },
                 onCompleted: {
+                    onComplete()
                 },
                 onDisposed: {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        onFinished()
-                    }
+                    onFinished()
                 }
             )
             .addDisposableTo(disposeBag)
     }
-
+    
 }
 
 struct RegistrationData {

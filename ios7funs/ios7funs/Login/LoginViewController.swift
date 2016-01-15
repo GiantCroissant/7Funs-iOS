@@ -178,9 +178,24 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
                 return
             }
 
+            UIUtils.showStatusBarNetworking()
             if let token = FBSDKAccessToken.currentAccessToken() {
-                dLog("token.tokenString = \(token.tokenString)")
-                LoginManager.sharedInstance.loginWithFBToken(token.tokenString)
+                LoginManager.sharedInstance.loginWithFBToken(token.tokenString,
+                    onHTTPError: { _ in
+                        self.showNetworkIsBusyAlertView()
+                    },
+                    onComplete: {
+                        self.showHTTPSuccessAlertView(title: "登入成功", message: "", onClickOK: {
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        })
+                    },
+                    onError: { _ in
+                        self.showNetworkIsBusyAlertView()
+                    },
+                    onFinished:  {
+                        UIUtils.hideStatusBarNetworking()
+                    }
+                )
             }
         }
     }
