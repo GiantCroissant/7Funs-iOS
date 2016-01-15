@@ -13,6 +13,10 @@ class RealmString : Object {
     dynamic var stringValue = ""
 }
 
+class RealmInt: Object {
+    dynamic var intValue = 0
+}
+
 public class Recipe : Object {
     var _method = List<RealmString>()
     var method: [String] {
@@ -67,6 +71,32 @@ public class RecipesFavorite : Object {
 
     public override static func primaryKey() -> String? {
         return "id"
+    }
+}
+
+class RecipeTag: Object {
+    dynamic var id = 0
+    dynamic var name = ""
+    var _recipeIds = List<RealmInt>()
+    var recipeIds: [Int] {
+        get {
+            return _recipeIds.map { $0.intValue }
+        }
+        set {
+            let realmInts = List<RealmInt>()
+            newValue.forEach {
+                realmInts.append(RealmInt(value: [$0]))
+            }
+            _recipeIds = realmInts
+        }
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+
+    override static func ignoredProperties() -> [String] {
+        return ["recipeIds"]
     }
 }
 
