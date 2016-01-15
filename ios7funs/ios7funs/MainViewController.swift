@@ -70,22 +70,26 @@ class MainViewController: UIViewController {
     func fetchVideoOverview() {
         VideoManager.sharedInstance.fetchVideoOverview(
             onComplete: {
-//                self.startBackgroundLoadData()
-
-                self.hideToastIndicator()
+                self.startBackgroundLoadVideos()
             },
             onError: { error in
-                self.showTimeoutAlertView(
-                    onReconnect: {
-                        self.fetchVideoOverview()
-                    },
-                    onCancel: {
-                        self.hideToastIndicator()
-                    }
-                )
+                self.showNetworkIsBusyAlertView()
+            },
+            onFinished:  {
+                UIUtils.hideStatusBarNetworking()
             }
         )
     }
+
+    func startBackgroundLoadVideos() {
+        NSTimer.scheduledTimerWithTimeInterval(loadVideoInBackgroundTimeInterval,
+            target: self,
+            selector: "loadVideosInBackground",
+            userInfo: nil,
+            repeats: true
+        )
+    }
+
 
     func startBackgroundLoadRecipes() {
         NSTimer.scheduledTimerWithTimeInterval(loadRecipesInBackgroundTimeInterval,
@@ -99,27 +103,6 @@ class MainViewController: UIViewController {
     func loadRecipesInBackground() {
         RecipeManager.sharedInstance.fetchMoreRecipes()
     }
-
-
-    func startBackgroundLoadData() {
-        RecipeManager.sharedInstance.fetchMoreRecipes()
-        NSTimer.scheduledTimerWithTimeInterval(loadRecipesInBackgroundTimeInterval,
-            target: self,
-            selector: "loadRecipesInBackground",
-            userInfo: nil,
-            repeats: true
-        )
-
-        VideoManager.sharedInstance.fetchMoreVideos()
-        NSTimer.scheduledTimerWithTimeInterval(loadVideoInBackgroundTimeInterval,
-            target: self,
-            selector: "loadVideosInBackground",
-            userInfo: nil,
-            repeats: true
-        )
-    }
-
-
 
     func loadVideosInBackground() {
         VideoManager.sharedInstance.fetchMoreVideos()

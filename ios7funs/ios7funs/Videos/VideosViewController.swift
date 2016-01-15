@@ -29,13 +29,10 @@ class VideosViewController: UIViewController {
         loadVideos(onEmpty: {
             self.fetchMoreVideos()
         })
-
-        self.fetchMoreVideos()
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
         self.showNavigationBar()
     }
 

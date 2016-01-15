@@ -124,6 +124,28 @@ public struct VideoJsonObject {
     public let createdAt: String
     public let updatedAt: String
     public let videoData: VideoDataJsonObject?
+
+    public func toDBModel() -> Video {
+        let video = Video()
+        video.updatedAt = self.updatedAt
+        video.createdAt = self.createdAt
+        video.id = self.id
+        video.recipeId = self.recipeId
+        video.number = self.number
+        video.youtubeVideoCode = self.youtubeVideoCode
+
+        if let data = self.videoData {
+            video.title = data.title
+            video.duration = data.duration
+            video.likeCount = data.likeCount
+            video.viewCount = data.viewCount
+            video.desc = data.descritpion
+            video.publishedAt = data.publishedAt
+            video.thumbnailUrl = data.thumbnailUrl
+        }
+        return video
+    }
+
 }
 
 public struct VideoOverviewJsonObject {

@@ -198,6 +198,7 @@ extension Observable {
                 }
             }
             try! realm.commitWrite()
+
             return Observable.empty()
         }
     }
@@ -213,13 +214,11 @@ extension Observable {
             let recipes = recipeJsons.map { $0.toRecipeDBModel() }
 
             let realm = try! Realm()
-            dLog("Begin add recipe")
             realm.beginWrite()
             recipes.forEach {
                 realm.add($0, update: true)
             }
             try! realm.commitWrite()
-            dLog("End add recipe")
 
             var recipeIds = [Int]()
             recipes.forEach { recipeIds.append($0.id) }
