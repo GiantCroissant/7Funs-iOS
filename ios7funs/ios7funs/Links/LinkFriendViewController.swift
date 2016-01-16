@@ -13,12 +13,14 @@ class LinkFriendViewController: UIViewController {
     @IBOutlet weak var webView: UIWebView!
 
     var url = ""
+    var isEnablingHorizontalScroll = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let request = NSURLRequest(URL: NSURL(string: url)!)
         webView.loadRequest(request)
+        webView.scrollView.delegate = self
     }
 
 }
@@ -40,3 +42,27 @@ extension LinkFriendViewController: UIWebViewDelegate {
     }
 
 }
+
+
+extension LinkFriendViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        lockHorizontalScrolling(scrollView)
+    }
+
+    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
+        isEnablingHorizontalScroll = scale - 1 > 0.01
+    }
+
+    func lockHorizontalScrolling(scrollView: UIScrollView) {
+        if isEnablingHorizontalScroll {
+            return
+        }
+
+        if (scrollView.contentOffset.x > 0 || scrollView.contentOffset.x < 0){
+            scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y)
+        }
+    }
+
+}
+

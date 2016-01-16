@@ -54,18 +54,18 @@
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0g-mk-wnY" userLabel="Food Background">
                                                             <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ku-tp-uXD">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
-                                                                    <connections>
-                                                                        <segue destination="9OQ-Cy-w8b" kind="show" id="pjZ-Cy-GSt"/>
-                                                                    </connections>
-                                                                </button>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_default" translatesAutoresizingMaskIntoConstraints="NO" id="Rim-vc-cYi">
                                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
                                                                 </imageView>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Wn-fX-Vxq">
                                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
                                                                 </imageView>
+                                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ku-tp-uXD">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
+                                                                    <connections>
+                                                                        <segue destination="9OQ-Cy-w8b" kind="show" id="pjZ-Cy-GSt"/>
+                                                                    </connections>
+                                                                </button>
                                                                 <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_list_gradients" translatesAutoresizingMaskIntoConstraints="NO" id="7Im-IM-htS" userLabel="Gradient">
                                                                     <rect key="frame" x="0.0" y="85" width="355" height="115"/>
                                                                     <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -79,6 +79,9 @@
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="pcw-wf-NcP">
+                                                                    <rect key="frame" x="160" y="80" width="37" height="37"/>
+                                                                </activityIndicatorView>
                                                             </subviews>
                                                             <color key="backgroundColor" red="0.86666666670000003" green="0.67843137249999996" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
@@ -187,6 +190,7 @@
                                             <outlet property="imgFood" destination="7Wn-fX-Vxq" id="AsX-nv-mD1"/>
                                             <outlet property="labelTitle" destination="0Zb-gV-cP9" id="e0T-nx-PFd"/>
                                             <outlet property="lblInformation" destination="Euu-Jm-t9V" id="I4d-Y9-9C8"/>
+                                            <outlet property="loadingFoodImage" destination="pcw-wf-NcP" id="X4A-2b-WQe"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

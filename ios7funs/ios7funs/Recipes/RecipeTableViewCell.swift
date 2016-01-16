@@ -15,6 +15,7 @@ class RecipeTableViewCell: UITableViewCell {
     @IBOutlet weak var imgFood: UIImageView!
     @IBOutlet weak var btnAddCollection: UIButton!
     @IBOutlet weak var btnFood: UIButton!
+    @IBOutlet weak var loadingFoodImage: UIActivityIndicatorView!
 
 
     var recipe: RecipeUIModel!
@@ -27,7 +28,10 @@ class RecipeTableViewCell: UITableViewCell {
 
         // This line check whether cell is being RE-USE
         if (imgFood.tag != recipeId) {
+
+            loadingFoodImage.startAnimating()
             imgFood.image = nil
+            self.btnFood.setImage(nil, forState: .Normal)
         }
         imgFood.tag = recipeId
 
@@ -37,12 +41,14 @@ class RecipeTableViewCell: UITableViewCell {
             if (recipeId != self.imgFood.tag) {
                 return
             }
-            self.imgFood.image = image
-            self.imgFood.alpha = 1
+
+            self.loadingFoodImage.stopAnimating()
+            self.btnFood.setImage(image, forState: .Normal)
+            self.btnFood.alpha = 1
             if fadeIn {
-                self.imgFood.alpha = 0
+                self.btnFood.alpha = 0
                 UIView.animateWithDuration(0.3) {
-                    self.imgFood.alpha = 1
+                    self.btnFood.alpha = 1
                 }
             }
         }
