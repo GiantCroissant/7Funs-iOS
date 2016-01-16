@@ -17,18 +17,40 @@ class VideoTableViewCell: UITableViewCell {
 
     var video: VideoUIModel! {
         didSet {
-            self.lblName.text = video.youtubeVideoId
-            let imageUrl = video.thumbUrl
-            ImageLoader.sharedInstance.loadImage(video.youtubeVideoId, url: imageUrl, completionHandler: { (image, imageName, fadeIn) -> () in
 
-                self.Imagethumbnail.image = image
-            })
+            // This line check whether cell is being RE-USE
+            if (Imagethumbnail.tag != video.id) {
+                Imagethumbnail.image = nil
+            }
+            Imagethumbnail.tag = video.id
+
+            let imageName = video.youtubeVideoId
+            let url = video.thumbUrl
+            ImageLoader.sharedInstance.loadImage(imageName, url: url) { image, imageName, fadeIn in
+                self.handleLoadVideoThumbnailCompelte(image, imageName: imageName, fadeIn: fadeIn)
+            }
 
             self.lblName.text = video.title
             self.lblLength.text = UIUtils.getVideoLengthString(video.duration)
             self.lblDescription.text = video.desc
 
             video.printDebugString()
+        }
+    }
+
+    func handleLoadVideoThumbnailCompelte(image: UIImage?, imageName: String, fadeIn: Bool) {
+        // check if cell has been reuse, not the same cell when load image
+        if imageName != self.video.youtubeVideoId {
+            return
+        }
+
+        self.Imagethumbnail.image = image
+        self.Imagethumbnail.alpha = 1
+        if fadeIn {
+            self.Imagethumbnail.alpha = 0
+            UIView.animateWithDuration(0.3) {
+                self.Imagethumbnail.alpha = 1
+            }
         }
     }
 

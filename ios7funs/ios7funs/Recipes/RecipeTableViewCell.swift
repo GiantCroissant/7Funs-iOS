@@ -12,7 +12,7 @@ class RecipeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var lblInformation: UILabel!
-    @IBOutlet weak var imgFood: UIImageView!
+//    @IBOutlet weak var imgFood: UIImageView!
     @IBOutlet weak var btnAddCollection: UIButton!
     @IBOutlet weak var btnFood: UIButton!
     @IBOutlet weak var loadingFoodImage: UIActivityIndicatorView!
@@ -27,22 +27,17 @@ class RecipeTableViewCell: UITableViewCell {
         let favorite = recipe.favorite
 
         // This line check whether cell is being RE-USE
-        if (imgFood.tag != recipeId) {
-
-            loadingFoodImage.startAnimating()
-            imgFood.image = nil
-            self.btnFood.setImage(nil, forState: .Normal)
+        if (btnFood.tag != recipeId) {
+            btnFood.setImage(nil, forState: .Normal)
         }
-        imgFood.tag = recipeId
+        btnFood.tag = recipeId
 
         labelTitle.text = title
 
         RecipeManager.sharedInstance.loadFoodImage(recipeId, imageName: imageName) { image, recipeId, fadeIn in
-            if (recipeId != self.imgFood.tag) {
+            if (recipeId != self.btnFood.tag) {
                 return
             }
-
-            self.loadingFoodImage.stopAnimating()
             self.btnFood.setImage(image, forState: .Normal)
             self.btnFood.alpha = 1
             if fadeIn {

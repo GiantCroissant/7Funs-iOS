@@ -54,13 +54,13 @@
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0g-mk-wnY" userLabel="Food Background">
                                                             <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_default" translatesAutoresizingMaskIntoConstraints="NO" id="Rim-vc-cYi">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_default" translatesAutoresizingMaskIntoConstraints="NO" id="Rim-vc-cYi" userLabel="Default Food Image">
                                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
                                                                 </imageView>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Wn-fX-Vxq">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
-                                                                </imageView>
-                                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ku-tp-uXD">
+                                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="pcw-wf-NcP">
+                                                                    <rect key="frame" x="160" y="80" width="37" height="37"/>
+                                                                </activityIndicatorView>
+                                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ku-tp-uXD" userLabel="Food Button">
                                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
                                                                     <connections>
                                                                         <segue destination="9OQ-Cy-w8b" kind="show" id="pjZ-Cy-GSt"/>
@@ -79,47 +79,30 @@
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="pcw-wf-NcP">
-                                                                    <rect key="frame" x="160" y="80" width="37" height="37"/>
-                                                                </activityIndicatorView>
                                                             </subviews>
                                                             <color key="backgroundColor" red="0.86666666670000003" green="0.67843137249999996" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstItem="Rim-vc-cYi" firstAttribute="top" secondItem="a0g-mk-wnY" secondAttribute="top" id="1UK-ac-IIp"/>
-                                                                <constraint firstAttribute="trailing" secondItem="7Wn-fX-Vxq" secondAttribute="trailing" id="2Mo-Zi-qtA"/>
                                                                 <constraint firstAttribute="bottom" secondItem="0Zb-gV-cP9" secondAttribute="bottom" constant="12" id="45P-RR-lyn"/>
                                                                 <constraint firstItem="2Ku-tp-uXD" firstAttribute="top" secondItem="a0g-mk-wnY" secondAttribute="top" id="AEa-w0-XJH"/>
                                                                 <constraint firstItem="0Zb-gV-cP9" firstAttribute="leading" secondItem="a0g-mk-wnY" secondAttribute="leading" constant="12" id="Dva-ms-j3x"/>
-                                                                <constraint firstItem="7Wn-fX-Vxq" firstAttribute="leading" secondItem="a0g-mk-wnY" secondAttribute="leading" id="Ksg-mF-L9l"/>
                                                                 <constraint firstAttribute="trailing" secondItem="7Im-IM-htS" secondAttribute="trailing" id="Md4-08-HoY"/>
-                                                                <constraint firstItem="7Wn-fX-Vxq" firstAttribute="top" secondItem="a0g-mk-wnY" secondAttribute="top" id="NyQ-sf-FfO"/>
-                                                                <constraint firstItem="0Zb-gV-cP9" firstAttribute="top" secondItem="2Ku-tp-uXD" secondAttribute="bottom" id="ORn-2b-Ghp"/>
                                                                 <constraint firstAttribute="bottom" secondItem="7Im-IM-htS" secondAttribute="bottom" id="PbJ-T2-hGF"/>
                                                                 <constraint firstAttribute="bottom" secondItem="2Ku-tp-uXD" secondAttribute="bottom" id="W4Y-ft-aQ3"/>
                                                                 <constraint firstItem="7Im-IM-htS" firstAttribute="leading" secondItem="a0g-mk-wnY" secondAttribute="leading" id="X5A-7K-fVR"/>
                                                                 <constraint firstItem="Rim-vc-cYi" firstAttribute="leading" secondItem="a0g-mk-wnY" secondAttribute="leading" id="XIx-cO-b6G"/>
-                                                                <constraint firstAttribute="bottom" secondItem="7Wn-fX-Vxq" secondAttribute="bottom" id="ZSz-cQ-cZl"/>
                                                                 <constraint firstAttribute="height" constant="200" id="aTm-qQ-FjZ"/>
                                                                 <constraint firstAttribute="trailing" secondItem="0Zb-gV-cP9" secondAttribute="trailing" constant="12" id="anu-Uz-uDq"/>
                                                                 <constraint firstItem="2Ku-tp-uXD" firstAttribute="leading" secondItem="a0g-mk-wnY" secondAttribute="leading" id="ayr-Pn-hiS"/>
-                                                                <constraint firstItem="0Zb-gV-cP9" firstAttribute="top" secondItem="7Wn-fX-Vxq" secondAttribute="bottom" id="jYU-qh-h3l"/>
-                                                                <constraint firstItem="7Im-IM-htS" firstAttribute="top" secondItem="a0g-mk-wnY" secondAttribute="top" id="kJh-RS-yBr"/>
                                                                 <constraint firstAttribute="bottom" secondItem="Rim-vc-cYi" secondAttribute="bottom" id="ppq-er-5y9"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Rim-vc-cYi" secondAttribute="trailing" id="s35-0y-GUx"/>
                                                                 <constraint firstAttribute="trailing" secondItem="2Ku-tp-uXD" secondAttribute="trailing" id="uHP-Lz-prz"/>
                                                             </constraints>
-                                                            <variation key="default">
-                                                                <mask key="constraints">
-                                                                    <exclude reference="kJh-RS-yBr"/>
-                                                                    <exclude reference="ORn-2b-Ghp"/>
-                                                                    <exclude reference="jYU-qh-h3l"/>
-                                                                </mask>
-                                                            </variation>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WwI-J7-F3h" userLabel="Add Collection Background">
                                                             <rect key="frame" x="299" y="200" width="56" height="48"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELg-qo-Dwt" customClass="RecipeFavoriteButton" customModule="ios7funs" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELg-qo-Dwt" userLabel="Favorite Button" customClass="RecipeFavoriteButton" customModule="ios7funs" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="56" height="48"/>
                                                                     <state key="normal" image="icon_love_m"/>
                                                                     <connections>
@@ -137,7 +120,7 @@
                                                                 <constraint firstAttribute="bottom" secondItem="ELg-qo-Dwt" secondAttribute="bottom" id="yd4-Ow-Crb"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lba-x1-arn" userLabel="Love Icon">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lba-x1-arn" userLabel="BG Love Icon">
                                                             <rect key="frame" x="0.0" y="200" width="40" height="48"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_love_s" translatesAutoresizingMaskIntoConstraints="NO" id="N9w-4K-abc">
@@ -154,7 +137,7 @@
                                                                 <constraint firstAttribute="trailing" secondItem="N9w-4K-abc" secondAttribute="trailing" id="vwz-wt-kRT"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5人收藏．991人看過 (Default)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Euu-Jm-t9V">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5人收藏．991人看過 (Default)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Euu-Jm-t9V" userLabel="Recipe Info">
                                                             <rect key="frame" x="40" y="214" width="259" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
@@ -187,7 +170,6 @@
                                         <connections>
                                             <outlet property="btnAddCollection" destination="ELg-qo-Dwt" id="f8z-Vy-r69"/>
                                             <outlet property="btnFood" destination="2Ku-tp-uXD" id="V1W-35-jCq"/>
-                                            <outlet property="imgFood" destination="7Wn-fX-Vxq" id="AsX-nv-mD1"/>
                                             <outlet property="labelTitle" destination="0Zb-gV-cP9" id="e0T-nx-PFd"/>
                                             <outlet property="lblInformation" destination="Euu-Jm-t9V" id="I4d-Y9-9C8"/>
                                             <outlet property="loadingFoodImage" destination="pcw-wf-NcP" id="X4A-2b-WQe"/>

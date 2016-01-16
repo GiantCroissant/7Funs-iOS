@@ -47,7 +47,13 @@
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kxr-M2-idC" userLabel="Food BG">
                                                             <rect key="frame" x="12" y="12" width="150" height="83"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_default" translatesAutoresizingMaskIntoConstraints="NO" id="a6S-zS-xqF">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_default" translatesAutoresizingMaskIntoConstraints="NO" id="9oS-4b-0z2">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="83"/>
+                                                                </imageView>
+                                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="jK8-wE-HYl">
+                                                                    <rect key="frame" x="65" y="31" width="20" height="20"/>
+                                                                </activityIndicatorView>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a6S-zS-xqF">
                                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="83"/>
                                                                 </imageView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spp-se-K2a" userLabel="Time BG">
@@ -67,14 +73,20 @@
                                                                     </constraints>
                                                                 </view>
                                                             </subviews>
-                                                            <color key="backgroundColor" red="0.48627450979999998" green="0.70196078429999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstItem="a6S-zS-xqF" firstAttribute="top" secondItem="Kxr-M2-idC" secondAttribute="top" id="0pE-2r-1kh"/>
                                                                 <constraint firstItem="a6S-zS-xqF" firstAttribute="leading" secondItem="Kxr-M2-idC" secondAttribute="leading" id="3Xl-vf-89l"/>
+                                                                <constraint firstAttribute="bottom" secondItem="9oS-4b-0z2" secondAttribute="bottom" id="4FE-96-AaH"/>
                                                                 <constraint firstAttribute="trailing" secondItem="a6S-zS-xqF" secondAttribute="trailing" id="C4h-vY-9EL"/>
+                                                                <constraint firstAttribute="trailing" secondItem="9oS-4b-0z2" secondAttribute="trailing" id="CsV-N9-KQL"/>
                                                                 <constraint firstAttribute="bottom" secondItem="a6S-zS-xqF" secondAttribute="bottom" id="G8o-f5-nbW"/>
+                                                                <constraint firstItem="jK8-wE-HYl" firstAttribute="centerX" secondItem="Kxr-M2-idC" secondAttribute="centerX" id="OXU-AT-ekZ"/>
                                                                 <constraint firstAttribute="bottom" secondItem="spp-se-K2a" secondAttribute="bottom" constant="10" id="Rso-PP-15T"/>
                                                                 <constraint firstAttribute="trailing" secondItem="spp-se-K2a" secondAttribute="trailing" constant="10" id="WB2-z3-BZt"/>
+                                                                <constraint firstItem="jK8-wE-HYl" firstAttribute="centerY" secondItem="Kxr-M2-idC" secondAttribute="centerY" id="fmn-fZ-MLG"/>
+                                                                <constraint firstItem="9oS-4b-0z2" firstAttribute="leading" secondItem="Kxr-M2-idC" secondAttribute="leading" id="opL-V8-Srx"/>
+                                                                <constraint firstItem="9oS-4b-0z2" firstAttribute="top" secondItem="Kxr-M2-idC" secondAttribute="top" id="wsx-z8-sgi"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="測試用文字，料理美食王_韓式拌飯自己動手做" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="S2A-s2-ldV" userLabel="Title">
