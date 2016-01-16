@@ -34,10 +34,19 @@ class VideoTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+//        video = VideoUIModel()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
+//        if selected {
+//            self.backgroundColor = UIColor.lightGrayColor()
+//
+//        } else {
+//            self.backgroundColor = UIColor.whiteColor()
+//        }
     }
 
 }

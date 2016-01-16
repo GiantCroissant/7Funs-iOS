@@ -97,6 +97,10 @@ class VideoUIModel {
     var publishedAt = ""
     var thumbUrl = ""
 
+    init() {
+        
+    }
+
     init(dbData: Video) {
         self.id = dbData.id
         self.recipeId = dbData.recipeId
