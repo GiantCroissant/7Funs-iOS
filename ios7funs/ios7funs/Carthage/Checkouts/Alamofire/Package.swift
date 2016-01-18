@@ -1,4 +1,4 @@
-// NSURLSessionConfiguration+AlamofireTests.swift
+// Package.swift
 //
 // Copyright (c) 2014–2016 Alamofire Software Foundation (http://alamofire.org/)
 //
@@ -20,12 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import Foundation
+import PackageDescription
 
-extension String {
-    init(count: Int, repeatedString: String) {
-        var value = ""
-        for _ in 0..<count { value += repeatedString }
-        self = value
-    }
-}
+let package = Package(
+  name: "Alamofire"
+)

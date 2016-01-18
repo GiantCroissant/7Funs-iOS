@@ -24,6 +24,8 @@ class RecipeManager: NSObject {
     let recipeImageBaseUrl = "https://commondatastorage.googleapis.com/funs7-1/uploads/recipe/image/"
     let disposeBag = DisposeBag()
 
+
+    
     let restApiProvider = RxMoyaProvider<RestApi>(endpointClosure: { (target: RestApi) -> Endpoint<RestApi> in
         let url = target.baseURL.URLByAppendingPathComponent(target.path).absoluteString
         let endpoint = Endpoint<RestApi>(
@@ -215,7 +217,7 @@ class RecipeManager: NSObject {
         self.restApiProvider
             .request(RestApi.TagById(tagId))
             .observeOn(BackgroundScheduler.instance())
-            .mapSuccessfulHTTPToObject(TagJsonObject)
+            .mapSuccessfulHTTPToObject(TagJsonObject)   
             .subscribe(
                 onNext: { tagJson in
                     var recipeIds = [Int]()
@@ -234,7 +236,6 @@ class RecipeManager: NSObject {
     }
 
 }
-
 
 extension Observable {
 

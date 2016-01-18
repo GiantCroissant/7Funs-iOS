@@ -57,8 +57,8 @@
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_default" translatesAutoresizingMaskIntoConstraints="NO" id="Rim-vc-cYi" userLabel="Default Food Image">
                                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
                                                                 </imageView>
-                                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="pcw-wf-NcP">
-                                                                    <rect key="frame" x="160" y="80" width="37" height="37"/>
+                                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="pcw-wf-NcP">
+                                                                    <rect key="frame" x="159" y="82" width="37" height="37"/>
                                                                 </activityIndicatorView>
                                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ku-tp-uXD" userLabel="Food Button">
                                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
@@ -94,6 +94,8 @@
                                                                 <constraint firstAttribute="height" constant="200" id="aTm-qQ-FjZ"/>
                                                                 <constraint firstAttribute="trailing" secondItem="0Zb-gV-cP9" secondAttribute="trailing" constant="12" id="anu-Uz-uDq"/>
                                                                 <constraint firstItem="2Ku-tp-uXD" firstAttribute="leading" secondItem="a0g-mk-wnY" secondAttribute="leading" id="ayr-Pn-hiS"/>
+                                                                <constraint firstItem="pcw-wf-NcP" firstAttribute="centerX" secondItem="a0g-mk-wnY" secondAttribute="centerX" id="haQ-Kv-New"/>
+                                                                <constraint firstItem="pcw-wf-NcP" firstAttribute="centerY" secondItem="a0g-mk-wnY" secondAttribute="centerY" id="j86-uJ-Fbp"/>
                                                                 <constraint firstAttribute="bottom" secondItem="Rim-vc-cYi" secondAttribute="bottom" id="ppq-er-5y9"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Rim-vc-cYi" secondAttribute="trailing" id="s35-0y-GUx"/>
                                                                 <constraint firstAttribute="trailing" secondItem="2Ku-tp-uXD" secondAttribute="trailing" id="uHP-Lz-prz"/>
@@ -170,9 +172,9 @@
                                         <connections>
                                             <outlet property="btnAddCollection" destination="ELg-qo-Dwt" id="f8z-Vy-r69"/>
                                             <outlet property="btnFood" destination="2Ku-tp-uXD" id="V1W-35-jCq"/>
+                                            <outlet property="indicatorFoodImage" destination="pcw-wf-NcP" id="bqO-TV-bGr"/>
                                             <outlet property="labelTitle" destination="0Zb-gV-cP9" id="e0T-nx-PFd"/>
                                             <outlet property="lblInformation" destination="Euu-Jm-t9V" id="I4d-Y9-9C8"/>
-                                            <outlet property="loadingFoodImage" destination="pcw-wf-NcP" id="X4A-2b-WQe"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

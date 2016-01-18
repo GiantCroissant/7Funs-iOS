@@ -12,30 +12,32 @@ class RecipeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var lblInformation: UILabel!
-//    @IBOutlet weak var imgFood: UIImageView!
     @IBOutlet weak var btnAddCollection: UIButton!
     @IBOutlet weak var btnFood: UIButton!
-    @IBOutlet weak var loadingFoodImage: UIActivityIndicatorView!
+    @IBOutlet weak var indicatorFoodImage: UIActivityIndicatorView!
 
-
+    var checkReuseId = 0
     var recipe: RecipeUIModel!
     
     func updateCell() {
-        let recipeId = recipe.id
-        let imageName = recipe.imageName
-        let title = recipe.title
-        let favorite = recipe.favorite
+        indicatorFoodImage.startAnimating()
+        configureRecipeImage(recipe.id, imageName: recipe.imageName)
+        configureFavoriteButton(recipe.favorite)
+        configureInformation()
+        labelTitle.text = recipe.title
+    }
 
+    func configureRecipeImage(recipeId: Int, imageName: String) {
         // This line check whether cell is being RE-USE
-        if (btnFood.tag != recipeId) {
+        // prevent when reload data, display white background flash
+        if (checkReuseId != recipeId) {
             btnFood.setImage(nil, forState: .Normal)
         }
-        btnFood.tag = recipeId
-
-        labelTitle.text = title
-
+        checkReuseId = recipeId
         RecipeManager.sharedInstance.loadFoodImage(recipeId, imageName: imageName) { image, recipeId, fadeIn in
-            if (recipeId != self.btnFood.tag) {
+            if (recipeId != self.recipe.id) {
+                print("recipeId = \(recipeId)")
+                print("self.recipe.id = \(self.recipe.id)")
                 return
             }
             self.btnFood.setImage(image, forState: .Normal)
@@ -47,9 +49,6 @@ class RecipeTableViewCell: UITableViewCell {
                 }
             }
         }
-
-        configureFavoriteButton(favorite)
-        configureInformation()
     }
 
     func configureInformation() {
