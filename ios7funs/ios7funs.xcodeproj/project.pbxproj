@@ -51,6 +51,9 @@
 		3B9DD5661C21456F000FE1DF /* Bonus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9DD5641C21456F000FE1DF /* Bonus.storyboard */; };
 		3BA2580D1C2824D800FA5A7C /* LinkFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA2580C1C2824D800FA5A7C /* LinkFriendViewController.swift */; };
 		3BA2580F1C28998800FA5A7C /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA2580E1C28998800FA5A7C /* VideoPlayerViewController.swift */; };
+		3BBCC62A1C4CC0CC00497FBC /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCC6291C4CC0CC00497FBC /* NibDesignable.swift */; };
+		3BBCC62C1C4CC28900497FBC /* RecipeMethod.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BBCC62B1C4CC28900497FBC /* RecipeMethod.xib */; };
+		3BBCC62E1C4CC29D00497FBC /* RecipeMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCC62D1C4CC29D00497FBC /* RecipeMethod.swift */; };
 		3BBDCAC91C213E5900A0E4E3 /* ShowTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBDCAC81C213E5900A0E4E3 /* ShowTeacherViewController.swift */; };
 		3BC240EC1C29171100A79E4D /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 3BC240EB1C29171100A79E4D /* Assets */; };
 		3BC240EE1C291C1600A79E4D /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC240ED1C291C1600A79E4D /* VideoManager.swift */; };
@@ -125,6 +128,9 @@
 		3BA2580C1C2824D800FA5A7C /* LinkFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinkFriendViewController.swift; path = Links/LinkFriendViewController.swift; sourceTree = "<group>"; };
 		3BA2580E1C28998800FA5A7C /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoPlayerViewController.swift; path = Videos/VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		3BA258111C28D77100FA5A7C /* ios7funs-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ios7funs-Bridging-Header.h"; sourceTree = "<group>"; };
+		3BBCC6291C4CC0CC00497FBC /* NibDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
+		3BBCC62B1C4CC28900497FBC /* RecipeMethod.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeMethod.xib; sourceTree = "<group>"; };
+		3BBCC62D1C4CC29D00497FBC /* RecipeMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeMethod.swift; sourceTree = "<group>"; };
 		3BBDCAC81C213E5900A0E4E3 /* ShowTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowTeacherViewController.swift; path = ShowInfos/ShowTeacherViewController.swift; sourceTree = "<group>"; };
 		3BC240EB1C29171100A79E4D /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = Utils/Assets; sourceTree = "<group>"; };
 		3BC240ED1C291C1600A79E4D /* VideoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
@@ -232,6 +238,7 @@
 				3B62E8BF1C16A473008AA784 /* CardView.swift */,
 				3BA258111C28D77100FA5A7C /* ios7funs-Bridging-Header.h */,
 				3BD9FB341C468F8400B8FAB3 /* Async.swift */,
+				3BBCC6291C4CC0CC00497FBC /* NibDesignable.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -269,6 +276,8 @@
 				3B41786A1C20DEBE006CB7ED /* RecipeTutorialViewController.swift */,
 				3B4178681C20C252006CB7ED /* RecipeVideoTutorialViewController.swift */,
 				3B41D11A1C16C6DA0054FC10 /* RecipeManager.swift */,
+				3BBCC62B1C4CC28900497FBC /* RecipeMethod.xib */,
+				3BBCC62D1C4CC29D00497FBC /* RecipeMethod.swift */,
 			);
 			name = Recipes;
 			sourceTree = "<group>";
@@ -434,6 +443,7 @@
 				3B9DD5611C214534000FE1DF /* QandA.storyboard in Resources */,
 				3BCE50821C168E1E0088794A /* ShowInfos.storyboard in Resources */,
 				3BD721191C117870006716D4 /* Main.storyboard in Resources */,
+				3BBCC62C1C4CC28900497FBC /* RecipeMethod.xib in Resources */,
 				3BFBD5691C27847500313896 /* Login.storyboard in Resources */,
 				3BCE50841C1698AF0088794A /* Recipes.storyboard in Resources */,
 				3BCE506E1C15C6E20088794A /* Cartfile in Resources */,
@@ -511,6 +521,7 @@
 				3B854B631C2401D900F286AD /* QandADetailViewController.swift in Sources */,
 				3B41786D1C2135DD006CB7ED /* ShowIntroViewController.swift in Sources */,
 				3BCE50781C168BDD0088794A /* RecipesViewController.swift in Sources */,
+				3BBCC62E1C4CC29D00497FBC /* RecipeMethod.swift in Sources */,
 				3B41D12D1C16C9230054FC10 /* ExtendDate.swift in Sources */,
 				3B41D11B1C16C6DA0054FC10 /* RecipeManager.swift in Sources */,
 				3BBDCAC91C213E5900A0E4E3 /* ShowTeacherViewController.swift in Sources */,
@@ -519,6 +530,7 @@
 				3B41786B1C20DEBE006CB7ED /* RecipeTutorialViewController.swift in Sources */,
 				3BDF65B91C28EE2A0040F5DB /* CollectionManager.swift in Sources */,
 				3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */,
+				3BBCC62A1C4CC0CC00497FBC /* NibDesignable.swift in Sources */,
 				3B41D1301C16C9230054FC10 /* RestApiModel.swift in Sources */,
 				3BC240F01C2922B300A79E4D /* VideoTableViewCell.swift in Sources */,
 			);
