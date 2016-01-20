@@ -135,7 +135,7 @@ class RecipeManager: NSObject {
 
         let ids = recipesOverviews.map({ $0.id }).sort(<)
         let recipeIds = Array(ids.prefix(self.kFetchAmount))
-        aLog("fetch Ids = \(recipeIds) count = \(recipeIds.count)")
+        aLog("fetch Ids = \(recipeIds.first)..\(recipeIds.last) count = \(recipeIds.count)")
         return recipeIds
     }
 

@@ -57,7 +57,7 @@ class VideoManager {
                     continue
 
                 } else {
-                    print("\(videoObj.recipeId) : \(videoObj.youtubeVideoCode) : \(videoObj.number)")
+                    print("VideoId = \(videoObj.id) : RecipeId = \(videoObj.recipeId) : \(videoObj.youtubeVideoCode) : Type[\(videoObj.number)] : \(videoObj.desc)")
                 }
 
                 let video = VideoUIModel(dbData: videoObj)
@@ -79,7 +79,7 @@ class VideoManager {
 
         let ids = videosOverviews.map({ $0.id }).sort(<)
         let videoIds = Array(ids.prefix(kFetchAmount))
-        aLog("fetch Ids = \(videoIds) count = \(videoIds.count)")
+        aLog("fetch Ids = \(videoIds.first)..\(videoIds.last) count = \(videoIds.count)")
         return videoIds
     }
 

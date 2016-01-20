@@ -102,6 +102,8 @@ class VideoUIModel {
     }
 
     init(dbData: Video) {
+        print(dbData)
+
         self.id = dbData.id
         self.recipeId = dbData.recipeId
         self.youtubeVideoId = dbData.youtubeVideoCode

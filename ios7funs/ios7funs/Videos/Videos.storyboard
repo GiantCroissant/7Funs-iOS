@@ -59,7 +59,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spp-se-K2a" userLabel="Time BG">
                                                                     <rect key="frame" x="101" y="52" width="39" height="21"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33:44" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vn6-b9-eBh" userLabel="Length">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33:44" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vn6-b9-eBh" userLabel="Length">
                                                                             <rect key="frame" x="2" y="3" width="35" height="15"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -68,6 +68,10 @@
                                                                     </subviews>
                                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="calibratedRGB"/>
                                                                     <constraints>
+                                                                        <constraint firstAttribute="trailing" secondItem="vn6-b9-eBh" secondAttribute="trailing" constant="2" id="0sc-Vk-YdT"/>
+                                                                        <constraint firstItem="vn6-b9-eBh" firstAttribute="leading" secondItem="spp-se-K2a" secondAttribute="leading" constant="2" id="5eH-uf-73k"/>
+                                                                        <constraint firstItem="vn6-b9-eBh" firstAttribute="top" secondItem="spp-se-K2a" secondAttribute="top" constant="3" id="AfI-Fu-WJY"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="vn6-b9-eBh" secondAttribute="bottom" constant="3" id="HSQ-a0-040"/>
                                                                         <constraint firstItem="vn6-b9-eBh" firstAttribute="centerX" secondItem="spp-se-K2a" secondAttribute="centerX" id="bex-If-bBz"/>
                                                                         <constraint firstItem="vn6-b9-eBh" firstAttribute="centerY" secondItem="spp-se-K2a" secondAttribute="centerY" id="dzP-ra-ozV"/>
                                                                     </constraints>
@@ -173,7 +177,11 @@
                             <constraint firstAttribute="trailing" secondItem="hXA-WE-jhr" secondAttribute="trailing" id="vy2-AZ-tuK"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="bAR-Ff-Aav">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="UmC-Ai-wCx"/>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="tableDummy" destination="HDS-O6-Hoh" id="gpd-xZ-6pK"/>
