@@ -4,7 +4,12 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TeacherInfoDataView" customModule="ios7funs" customModuleProvider="target">
+            <connections>
+                <outlet property="lblContent" destination="rIt-99-XbX" id="t8l-fv-r83"/>
+                <outlet property="lblSubTitle" destination="zzv-nX-5yr" id="Ws3-yH-rlt"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="323" height="66"/>

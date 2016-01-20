@@ -11,4 +11,8 @@ import UIKit
 @IBDesignable
 class TeacherInfoDataView: NibDesignable {
 
+    @IBOutlet weak var lblSubTitle: UILabel!
+    @IBOutlet weak var lblContent: UILabel!
+
+
 }

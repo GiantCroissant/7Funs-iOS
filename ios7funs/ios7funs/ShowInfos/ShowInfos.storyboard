@@ -732,7 +732,7 @@
                                 <rect key="frame" x="26" y="207" width="323" height="329"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JP8-1Z-Ri4" customClass="TeacherInfoDataView" customModule="ios7funs" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="323" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="323" height="66"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
