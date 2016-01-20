@@ -32,7 +32,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dLog("Hello world")
+//        dLog("Hello world")
+//        RecipeManager.sharedInstance.fetchTags()
 
         setupRepeatChangeLinkImageTimer()
 

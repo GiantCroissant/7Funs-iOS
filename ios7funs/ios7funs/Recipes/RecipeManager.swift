@@ -162,6 +162,36 @@ class RecipeManager: NSObject {
             .addDisposableTo(disposeBag)
     }
 
+    func fetchTags() {
+        self.restApiProvider.request(RestApi.Categories)
+            .observeOn(BackgroundScheduler.instance())
+            .mapSuccessfulHTTPToObjectArray(CategoryJsonObject)
+            .flatMap { $0.flatMap { $0.subCategories.map { $0.id } }.toObservable() }
+            .flatMap { self.restApiProvider.request(RestApi.CategoryById($0)) }
+            .subscribeOn(BackgroundScheduler.instance())
+            .mapSuccessfulHTTPToObject(SubCategoryJsonObject)
+            .flatMap { ($0.tags?.map { $0.id })!.toObservable() }
+            .flatMap { self.restApiProvider.request(RestApi.TagById($0)) }
+            .observeOn(BackgroundScheduler.instance())
+            .mapSuccessfulHTTPToObject(TagJsonObject)
+            .subscribe(
+                onNext: { tagJson in
+                    var recipeIds = [Int]()
+                    tagJson.taggings?.forEach {
+                        recipeIds.append($0.taggableId)
+                    }
+                    print(NSThread.currentThread())
+                    dLog("tagName[ \(tagJson.name) ] => 數量： \(recipeIds.count)")
+                },
+                onError: { err in
+                    dLog("\(err)")
+                },
+                onCompleted: {
+                    dLog("fetch tags complete")
+                }
+            ).addDisposableTo(disposeBag)
+    }
+
     // call every month
     func fetchCategories() {
         let fetchCategory = RestApi.Categories
@@ -295,7 +325,6 @@ extension Observable {
                 }
             }
             try! realm.commitWrite()
-
             return Observable.empty()
         }
     }

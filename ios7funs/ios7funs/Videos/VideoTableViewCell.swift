@@ -33,8 +33,6 @@ class VideoTableViewCell: UITableViewCell {
             self.lblName.text = video.title
             self.lblLength.text = UIUtils.getVideoLengthString(video.duration)
             self.lblDescription.text = video.desc
-
-            video.printDebugString()
         }
     }
 

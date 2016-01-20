@@ -57,7 +57,7 @@ class VideoManager {
                     continue
 
                 } else {
-//                    print("\(videoObj.youtubeVideoCode)")
+                    print("\(videoObj.recipeId) : \(videoObj.youtubeVideoCode) : \(videoObj.number)")
                 }
 
                 let video = VideoUIModel(dbData: videoObj)

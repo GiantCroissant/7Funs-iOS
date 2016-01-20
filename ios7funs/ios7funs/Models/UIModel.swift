@@ -118,7 +118,9 @@ class VideoUIModel {
     }
 
     func printDebugString() {
-//        print("self.title = \(self.title)")
+        print("recipeId = \(self.recipeId)")
+        print("title = \(self.title)")
+        print("type = \(self.type)")
 //        print("duration = \(self.duration)")
 //        print("desc = \(self.desc)")
 //        print("viewCount = \(self.viewCount)")
