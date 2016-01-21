@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0957F1DB1C33BE0D00357DF4 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0957F1D91C33BE0D00357DF4 /* FBSDKCoreKit.framework */; };
 		0957F1DC1C33BE0D00357DF4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0957F1DA1C33BE0D00357DF4 /* FBSDKLoginKit.framework */; };
+		09A6A8501C507ECF00CF279A /* JsonModelInstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6A84F1C507ECF00CF279A /* JsonModelInstructor.swift */; };
+		09A6A8521C507FF100CF279A /* Info.json in Resources */ = {isa = PBXBuildFile; fileRef = 09A6A8511C507FF100CF279A /* Info.json */; };
 		3B12806E1C3A64BF00AE2CC6 /* QandAManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */; };
 		3B1280701C3A6E4200AE2CC6 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12806F1C3A6E4200AE2CC6 /* QuestionTableViewCell.swift */; };
 		3B36CBAD1C27D535003666D7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */; };
@@ -89,6 +91,8 @@
 /* Begin PBXFileReference section */
 		0957F1D91C33BE0D00357DF4 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ios7funs/Lib3rdParty/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		0957F1DA1C33BE0D00357DF4 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ios7funs/Lib3rdParty/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		09A6A84F1C507ECF00CF279A /* JsonModelInstructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonModelInstructor.swift; sourceTree = "<group>"; };
+		09A6A8511C507FF100CF279A /* Info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Info.json; sourceTree = "<group>"; };
 		3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QandAManager.swift; path = QandA/QandAManager.swift; sourceTree = "<group>"; };
 		3B12806F1C3A6E4200AE2CC6 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionTableViewCell.swift; path = QandA/QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Login/RegisterViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 				3B41D1281C16C9230054FC10 /* ExtendDate.swift */,
 				3B41D1291C16C9230054FC10 /* ExtendObservable.swift */,
 				3B41D12B1C16C9230054FC10 /* RestApiModel.swift */,
+				09A6A84F1C507ECF00CF279A /* JsonModelInstructor.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -337,6 +342,7 @@
 		3BD721071C117870006716D4 = {
 			isa = PBXGroup;
 			children = (
+				09A6A8511C507FF100CF279A /* Info.json */,
 				3B41D1331C16D0EE0054FC10 /* Frameworks */,
 				3BD721121C117870006716D4 /* ios7funs */,
 				3BD721111C117870006716D4 /* Products */,
@@ -456,6 +462,7 @@
 				3B9DD5611C214534000FE1DF /* QandA.storyboard in Resources */,
 				3BCE50821C168E1E0088794A /* ShowInfos.storyboard in Resources */,
 				3BD721191C117870006716D4 /* Main.storyboard in Resources */,
+				09A6A8521C507FF100CF279A /* Info.json in Resources */,
 				3BBCC62C1C4CC28900497FBC /* RecipeMethod.xib in Resources */,
 				3BFBD5691C27847500313896 /* Login.storyboard in Resources */,
 				3BCE50841C1698AF0088794A /* Recipes.storyboard in Resources */,
@@ -503,6 +510,7 @@
 			files = (
 				3B4178661C20B270006CB7ED /* Marco.swift in Sources */,
 				3B5FA7C41C4F97F600149129 /* TeacherInfoDataView.swift in Sources */,
+				09A6A8501C507ECF00CF279A /* JsonModelInstructor.swift in Sources */,
 				3B36CBAF1C27D673003666D7 /* ForgotPasswordViewController.swift in Sources */,
 				3BDF65C11C28FF370040F5DB /* YTPlayerView.m in Sources */,
 				3B5565891C17F2DA00CFF1B4 /* UIModel.swift in Sources */,
