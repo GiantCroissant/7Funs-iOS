@@ -96,6 +96,7 @@ class ShowTeacherViewController: UIViewController {
 
 class TeacherCollectionCell: UICollectionViewCell {
 
+    @IBOutlet weak var bgContent: UIView!
     @IBOutlet weak var imgTeacherPhoto: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
@@ -111,12 +112,13 @@ extension ShowTeacherViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let teacher = teachers[indexPath.row]
 
-
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("id_collection_cell_teacher", forIndexPath: indexPath) as! TeacherCollectionCell
+
+        cell.bgContent.layer.cornerRadius = 5
         cell.imgTeacherPhoto.image = UIImage(named: teacher.image)
         cell.lblName.text = teacher.name
         cell.lblDescription.text = teacher.shortDescription
-        cell.lblDescription.numberOfLines = 1
+        cell.lblDescription.numberOfLines = teacher.shortDescription.characters.split("\n").count
         return cell
     }
 

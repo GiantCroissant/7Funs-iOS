@@ -430,57 +430,63 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teacher_Male" translatesAutoresizingMaskIntoConstraints="NO" id="7Z2-n2-tJd" userLabel="Photo">
-                                                    <rect key="frame" x="6" y="6" width="288" height="388"/>
-                                                </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teacher_gradients" translatesAutoresizingMaskIntoConstraints="NO" id="qgh-B0-v5m">
-                                                    <rect key="frame" x="6" y="252" width="288" height="142"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="預設老師的描述" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZUC-MG-DDL" userLabel="Description">
-                                                    <rect key="frame" x="16" y="369" width="268" height="17"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                    <color key="textColor" red="0.792156862745098" green="0.792156862745098" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=regular">
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                                    </variation>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="預設老師名字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mek-yK-Cv9" userLabel="Name">
-                                                    <rect key="frame" x="96" y="343" width="108" height="21"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=regular">
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                                                    </variation>
-                                                </label>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nr5-uz-7BC" userLabel="Content">
+                                                    <rect key="frame" x="4" y="4" width="292" height="392"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teacher_Male" translatesAutoresizingMaskIntoConstraints="NO" id="7Z2-n2-tJd" userLabel="Photo">
+                                                            <rect key="frame" x="0.0" y="0.0" width="292" height="392"/>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teacher_gradients" translatesAutoresizingMaskIntoConstraints="NO" id="qgh-B0-v5m">
+                                                            <rect key="frame" x="0.0" y="0.0" width="292" height="392"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="預設老師的描述" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZUC-MG-DDL" userLabel="Description">
+                                                            <rect key="frame" x="8" y="370" width="276" height="14"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                            <color key="textColor" red="0.792156862745098" green="0.792156862745098" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <variation key="heightClass=regular-widthClass=regular">
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                            </variation>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="預設老師名字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mek-yK-Cv9" userLabel="Name">
+                                                            <rect key="frame" x="92" y="343" width="108" height="22"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <variation key="heightClass=regular-widthClass=regular">
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                                            </variation>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="7Z2-n2-tJd" secondAttribute="trailing" id="7He-1c-Brr"/>
+                                                        <constraint firstAttribute="trailing" secondItem="qgh-B0-v5m" secondAttribute="trailing" id="AYU-Pz-DMn"/>
+                                                        <constraint firstAttribute="bottom" secondItem="qgh-B0-v5m" secondAttribute="bottom" id="ENS-IM-yue"/>
+                                                        <constraint firstItem="qgh-B0-v5m" firstAttribute="leading" secondItem="nr5-uz-7BC" secondAttribute="leading" id="Ivr-j4-Pol"/>
+                                                        <constraint firstAttribute="bottom" secondItem="7Z2-n2-tJd" secondAttribute="bottom" id="Mfq-Tw-K7K"/>
+                                                        <constraint firstItem="ZUC-MG-DDL" firstAttribute="leading" secondItem="nr5-uz-7BC" secondAttribute="leading" constant="8" id="cJo-kS-0TH"/>
+                                                        <constraint firstItem="7Z2-n2-tJd" firstAttribute="top" secondItem="nr5-uz-7BC" secondAttribute="top" id="e6T-5d-V7c"/>
+                                                        <constraint firstAttribute="bottom" secondItem="ZUC-MG-DDL" secondAttribute="bottom" constant="8" id="kN6-SC-9Yx"/>
+                                                        <constraint firstAttribute="trailing" secondItem="ZUC-MG-DDL" secondAttribute="trailing" constant="8" id="pks-qm-CWF"/>
+                                                        <constraint firstItem="Mek-yK-Cv9" firstAttribute="centerX" secondItem="nr5-uz-7BC" secondAttribute="centerX" id="rOY-CO-ISP"/>
+                                                        <constraint firstItem="ZUC-MG-DDL" firstAttribute="top" secondItem="Mek-yK-Cv9" secondAttribute="bottom" constant="5" id="sFE-Dm-eFZ"/>
+                                                        <constraint firstItem="7Z2-n2-tJd" firstAttribute="leading" secondItem="nr5-uz-7BC" secondAttribute="leading" id="tfx-Ob-zUd"/>
+                                                        <constraint firstItem="qgh-B0-v5m" firstAttribute="top" secondItem="nr5-uz-7BC" secondAttribute="top" id="y9H-L4-vMa"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="7Z2-n2-tJd" secondAttribute="bottom" constant="6" id="3Fx-Ot-5wT"/>
-                                            <constraint firstItem="ZUC-MG-DDL" firstAttribute="top" secondItem="Mek-yK-Cv9" secondAttribute="bottom" constant="5" id="7OM-JM-DVY"/>
-                                            <constraint firstItem="qgh-B0-v5m" firstAttribute="width" secondItem="7Z2-n2-tJd" secondAttribute="width" id="7Of-yf-RjK"/>
-                                            <constraint firstItem="qgh-B0-v5m" firstAttribute="leading" secondItem="7v8-nl-cAK" secondAttribute="leading" constant="6" id="8yL-qu-pOh"/>
-                                            <constraint firstItem="ZUC-MG-DDL" firstAttribute="centerX" secondItem="7v8-nl-cAK" secondAttribute="centerX" id="E6D-p0-kXA"/>
-                                            <constraint firstAttribute="trailing" secondItem="qgh-B0-v5m" secondAttribute="trailing" constant="6" id="EyH-kd-cOp"/>
-                                            <constraint firstAttribute="trailing" secondItem="7Z2-n2-tJd" secondAttribute="trailing" constant="6" id="G8Y-jr-nPM"/>
-                                            <constraint firstAttribute="trailing" secondItem="ZUC-MG-DDL" secondAttribute="trailing" constant="16" id="Nmy-1f-aSN"/>
-                                            <constraint firstItem="Mek-yK-Cv9" firstAttribute="centerX" secondItem="7v8-nl-cAK" secondAttribute="centerX" id="STz-n5-kC0"/>
-                                            <constraint firstItem="7Z2-n2-tJd" firstAttribute="leading" secondItem="7v8-nl-cAK" secondAttribute="leading" constant="6" id="TmE-Co-4OZ"/>
-                                            <constraint firstAttribute="bottom" secondItem="ZUC-MG-DDL" secondAttribute="bottom" constant="14" id="ULy-nf-EoQ"/>
-                                            <constraint firstItem="7Z2-n2-tJd" firstAttribute="top" secondItem="7v8-nl-cAK" secondAttribute="top" constant="6" id="bZg-bz-3nh"/>
-                                            <constraint firstItem="Mek-yK-Cv9" firstAttribute="centerY" secondItem="7v8-nl-cAK" secondAttribute="centerY" id="fSQ-qt-tUj"/>
-                                            <constraint firstItem="ZUC-MG-DDL" firstAttribute="leading" secondItem="7v8-nl-cAK" secondAttribute="leading" constant="16" id="pqE-Jy-2Lp"/>
-                                            <constraint firstAttribute="bottom" secondItem="qgh-B0-v5m" secondAttribute="bottom" constant="6" id="qoT-qz-Svv"/>
+                                            <constraint firstAttribute="bottom" secondItem="nr5-uz-7BC" secondAttribute="bottom" constant="4" id="9Le-fz-N61"/>
+                                            <constraint firstAttribute="trailing" secondItem="nr5-uz-7BC" secondAttribute="trailing" constant="4" id="Hrd-3y-9Pz"/>
+                                            <constraint firstItem="nr5-uz-7BC" firstAttribute="top" secondItem="7v8-nl-cAK" secondAttribute="top" constant="4" id="KOs-5x-dFQ"/>
+                                            <constraint firstItem="nr5-uz-7BC" firstAttribute="leading" secondItem="7v8-nl-cAK" secondAttribute="leading" constant="4" id="LdH-bj-Xa4"/>
                                         </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="fSQ-qt-tUj"/>
-                                            </mask>
-                                        </variation>
                                         <connections>
+                                            <outlet property="bgContent" destination="nr5-uz-7BC" id="lbn-IL-1lC"/>
                                             <outlet property="imgTeacherPhoto" destination="7Z2-n2-tJd" id="pnP-Cv-0KT"/>
                                             <outlet property="lblDescription" destination="ZUC-MG-DDL" id="Ic7-6X-m1l"/>
                                             <outlet property="lblName" destination="Mek-yK-Cv9" id="NK5-P5-ids"/>
