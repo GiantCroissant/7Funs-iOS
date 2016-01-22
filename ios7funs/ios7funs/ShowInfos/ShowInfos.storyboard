@@ -454,10 +454,14 @@
                                                         <constraint firstAttribute="trailing" secondItem="OI0-4q-ifR" secondAttribute="trailing" id="Fl1-L9-YoE"/>
                                                         <constraint firstItem="qgh-B0-v5m" firstAttribute="leading" secondItem="nr5-uz-7BC" secondAttribute="leading" id="Ivr-j4-Pol"/>
                                                         <constraint firstItem="ZUC-MG-DDL" firstAttribute="leading" secondItem="nr5-uz-7BC" secondAttribute="leading" constant="8" id="cJo-kS-0TH"/>
-                                                        <constraint firstAttribute="bottom" secondItem="ZUC-MG-DDL" secondAttribute="bottom" constant="8" id="kN6-SC-9Yx"/>
+                                                        <constraint firstAttribute="bottom" secondItem="ZUC-MG-DDL" secondAttribute="bottom" constant="8" id="kN6-SC-9Yx">
+                                                            <variation key="heightClass=regular-widthClass=regular" constant="16"/>
+                                                        </constraint>
                                                         <constraint firstAttribute="trailing" secondItem="ZUC-MG-DDL" secondAttribute="trailing" constant="8" id="pks-qm-CWF"/>
                                                         <constraint firstItem="Mek-yK-Cv9" firstAttribute="centerX" secondItem="nr5-uz-7BC" secondAttribute="centerX" id="rOY-CO-ISP"/>
-                                                        <constraint firstItem="ZUC-MG-DDL" firstAttribute="top" secondItem="Mek-yK-Cv9" secondAttribute="bottom" constant="5" id="sFE-Dm-eFZ"/>
+                                                        <constraint firstItem="ZUC-MG-DDL" firstAttribute="top" secondItem="Mek-yK-Cv9" secondAttribute="bottom" constant="5" id="sFE-Dm-eFZ">
+                                                            <variation key="heightClass=regular-widthClass=regular" constant="10"/>
+                                                        </constraint>
                                                         <constraint firstItem="OI0-4q-ifR" firstAttribute="top" secondItem="nr5-uz-7BC" secondAttribute="top" id="vxv-En-YQc"/>
                                                         <constraint firstItem="OI0-4q-ifR" firstAttribute="leading" secondItem="qgh-B0-v5m" secondAttribute="leading" id="xw8-M5-XwE"/>
                                                         <constraint firstItem="qgh-B0-v5m" firstAttribute="top" secondItem="nr5-uz-7BC" secondAttribute="top" id="y9H-L4-vMa"/>
