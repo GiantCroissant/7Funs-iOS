@@ -14,5 +14,6 @@ class TeacherInfoDataView: NibDesignable {
     @IBOutlet weak var lblSubTitle: UILabel!
     @IBOutlet weak var lblContent: UILabel!
 
+    @IBOutlet var spacings: [NSLayoutConstraint]!
 
 }

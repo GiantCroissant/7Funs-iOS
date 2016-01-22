@@ -116,15 +116,13 @@ class ShowTeacherViewController: UIViewController {
         }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+        navigationItem.title = ""
+
+        let detailVC = segue.destinationViewController as! TeacherDetailViewController
+        let row = (sender?.tag)!
+        detailVC.teacher = teachers[row]
     }
-    */
 
 }
 
@@ -145,23 +143,17 @@ extension ShowTeacherViewController: UICollectionViewDataSource {
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let teacher = teachers[indexPath.row]
-
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("id_collection_cell_teacher", forIndexPath: indexPath) as! TeacherCollectionCell
 
         cell.bgContent.layer.cornerRadius = 5
-
+        cell.btnTeacherDetail.tag = indexPath.row
         ImageLoader.sharedInstance.loadDefaultImage(teacher.image) { image in
-//            cell.btnTeacherDetail.setImage(image, forState: .Normal)
             cell.btnTeacherDetail.setBackgroundImage(image, forState: .Normal)
         }
-
-//        cell.btnTeacherDetail.setImage(UIImage(named: teacher.image), forState: UIControlState.Normal)
-        
         cell.lblName.text = teacher.name
         cell.lblDescription.text = teacher.shortDescription
         cell.lblDescription.numberOfLines = teacher.shortDescription.characters.split("\n").count
         cell.userInteractionEnabled = teacher.name.isEmpty ? false : true
-
         return cell
     }
 

@@ -96,7 +96,7 @@ class RecipesViewController: UIViewController {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        navigationItem.title = "" // TODO: this line should be move to destination VC ?
+        navigationItem.title = ""
 
         let detailVC = segue.destinationViewController as! RecipeDetailViewController
         let row = (sender?.tag)!

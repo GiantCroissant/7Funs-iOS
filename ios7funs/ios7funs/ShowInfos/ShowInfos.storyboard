@@ -580,37 +580,31 @@
                                     <constraint firstAttribute="height" constant="64" id="1qX-gK-p1i"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="br_teacher_s" translatesAutoresizingMaskIntoConstraints="NO" id="srf-nv-vbl">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="br_teacher_s" translatesAutoresizingMaskIntoConstraints="NO" id="srf-nv-vbl">
                                 <rect key="frame" x="0.0" y="64" width="375" height="536"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teacher_s01" translatesAutoresizingMaskIntoConstraints="NO" id="VBB-tV-Pdx">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teacher_s01" translatesAutoresizingMaskIntoConstraints="NO" id="VBB-tV-Pdx" userLabel="Profile">
                                 <rect key="frame" x="142" y="93" width="90" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="XMX-OS-N0h"/>
                                     <constraint firstAttribute="width" secondItem="VBB-tV-Pdx" secondAttribute="height" id="pe4-D8-gtv"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="料理老師名字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aa-HJ-zSR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="料理老師名字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aa-HJ-zSR" userLabel="Name">
                                 <rect key="frame" x="130" y="203" width="114" height="23"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ncQ-Rq-rRS">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ncQ-Rq-rRS" userLabel="Line">
                                 <rect key="frame" x="11" y="248" width="353" height="1"/>
                                 <color key="backgroundColor" red="0.78431372549019607" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="GN9-I5-v3g"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gUd-Rq-PRF">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gUd-Rq-PRF" userLabel="Content">
                                 <rect key="frame" x="26" y="271" width="323" height="329"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JP8-1Z-Ri4" customClass="TeacherInfoDataView" customModule="ios7funs" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="323" height="66"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -654,6 +648,11 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="bgContent" destination="gUd-Rq-PRF" id="pdw-F6-nE4"/>
+                        <outlet property="imgTeacherProfile" destination="VBB-tV-Pdx" id="Ifj-aO-9pO"/>
+                        <outlet property="lblName" destination="9aa-HJ-zSR" id="tfd-H9-UHV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HHD-nT-4QQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

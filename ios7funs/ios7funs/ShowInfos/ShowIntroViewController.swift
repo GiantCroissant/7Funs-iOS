@@ -37,4 +37,6 @@ class ShowIntroViewController: UIViewController {
         )
         lblDescription.attributedText = attrText
     }
+
+    
 }
