@@ -149,19 +149,35 @@ extension ShowTeacherViewController: UICollectionViewDataSource {
 
         cell.bgContent.layer.cornerRadius = 5
         cell.btnTeacherDetail.tag = indexPath.row
+
         ImageLoader.sharedInstance.loadDefaultImage(teacher.image) { image in
 
-            let width = cell.frame.size.width
-
-            let scaledImage = UIImage.scaleImageToWidth(image!, newWidth: width)
+            let scaledImage = self.scaleImage(image!, cell: cell)
             cell.btnTeacherDetail.imageView?.contentMode = .Top
             cell.btnTeacherDetail.setImage(scaledImage, forState: .Normal)
         }
+
         cell.lblName.text = teacher.name
         cell.lblDescription.text = teacher.shortDescription
         cell.lblDescription.numberOfLines = teacher.shortDescription.characters.split("\n").count
         cell.userInteractionEnabled = teacher.name.isEmpty ? false : true
         return cell
+    }
+
+    func scaleImage(image: UIImage, cell: TeacherCollectionCell) -> UIImage {
+        let imageRatio = image.size.height / image.size.width
+        let cellRatio = cell.frame.height / cell.frame.width
+
+        var scaledImage: UIImage!
+        if imageRatio > cellRatio {
+            let width = cell.frame.size.width
+            scaledImage = UIImage.scaleImageToWidth(image, newWidth: width)
+
+        } else {
+            let height = cell.frame.size.height
+            scaledImage = UIImage.scaleImageToHeight(image, newHeight: height)
+        }
+        return scaledImage
     }
 
 }

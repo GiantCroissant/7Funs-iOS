@@ -250,6 +250,24 @@ extension UIImageView {
 
 extension UIImage {
 
+    static func scaleImageToHeight(image: UIImage, newHeight: CGFloat) -> UIImage {
+        let imgWidth = image.size.width
+        let imgHeight = image.size.height
+        if (imgHeight != newHeight)
+        {
+            let newWidth = floorf(Float(imgWidth * (newHeight / imgHeight)))
+            let newSize = CGSizeMake(CGFloat(newWidth), CGFloat(newHeight))
+
+            UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
+            image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
+            let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+
+            return scaledImage
+        }
+        return image
+    }
+
     static func scaleImageToWidth(image: UIImage, newWidth: CGFloat) -> UIImage {
         let imgWidth = image.size.width
         let imgHeight = image.size.height

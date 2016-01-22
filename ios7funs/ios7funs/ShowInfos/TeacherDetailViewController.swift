@@ -28,25 +28,13 @@ class TeacherDetailViewController: UIViewController {
         lblName.text = teacher.name
     }
 
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//
-//        if isDataLoaded {
-//            return
-//        }
-//        addTeacherDatas()
-//    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
+        if isDataLoaded {
+            return
+        }
         addTeacherDatas()
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-//        addTeacherDatas()
     }
 
     func addTeacherDatas() {
