@@ -41,14 +41,11 @@ class ShowInfosViewController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
-        // Show navigation bar.
-        self.navigationController?.navigationBarHidden = false
+        self.showNavigationBar()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         showIntroPage()
     }
 

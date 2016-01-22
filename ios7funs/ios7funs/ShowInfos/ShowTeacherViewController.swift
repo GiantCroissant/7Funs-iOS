@@ -45,6 +45,8 @@ class ShowTeacherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.showToastIndicator()
+        pageControl.hidden = true
         loadTeachers()
     }
 
@@ -88,9 +90,12 @@ class ShowTeacherViewController: UIViewController {
         // configure page control
         let pageCount = Int(ceilf(Float(teachers.count) / 4))
         pageControl.numberOfPages = pageCount
+        pageControl.hidden = false
 
         // display collection view
         collectionTeachers.reloadData()
+
+        self.hideToastIndicator()
     }
 
     func addEmptyTeacherCells() {
@@ -144,7 +149,13 @@ extension ShowTeacherViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("id_collection_cell_teacher", forIndexPath: indexPath) as! TeacherCollectionCell
 
         cell.bgContent.layer.cornerRadius = 5
-        cell.btnTeacherDetail.setImage(UIImage(named: teacher.image), forState: UIControlState.Normal)
+
+        ImageLoader.sharedInstance.loadDefaultImage(teacher.image) { image in
+            cell.btnTeacherDetail.setImage(image, forState: .Normal)
+        }
+
+//        cell.btnTeacherDetail.setImage(UIImage(named: teacher.image), forState: UIControlState.Normal)
+        
         cell.lblName.text = teacher.name
         cell.lblDescription.text = teacher.shortDescription
         cell.lblDescription.numberOfLines = teacher.shortDescription.characters.split("\n").count

@@ -219,6 +219,18 @@ extension UIButton {
         self.setBackgroundImage(highlightedBG, forState: UIControlState.Highlighted)
     }
 
+    func loadImage(tag: Int, name: String) {
+        Async.background {
+            ImageLoader.sharedInstance.loadDefaultImage(name) { image in
+                Async.main {
+                    if (tag == self.tag) {
+                        self.setImage(image, forState: .Normal)
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 extension UIImageView {

@@ -10,31 +10,31 @@ import UIKit
 
 class ShowIntroViewController: UIViewController {
 
-
     @IBOutlet weak var bgTime: UIView!
+    @IBOutlet weak var lblDescription: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-
-        bgTime.layer.cornerRadius = 5
+        configureTimeBG()
+        configureDescription()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func configureTimeBG() {
+        bgTime.layer.cornerRadius = bgTime.frame.height / 2
     }
-    
 
-    /*
-    // MARK: - Navigation
+    func configureDescription() {
+        let text = lblDescription.text!
+        let attrText = NSMutableAttributedString(string: text)
+        let paraStyle = NSMutableParagraphStyle()
+        paraStyle.lineSpacing = 8
+        paraStyle.alignment = .Center
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        attrText.addAttribute(
+            NSParagraphStyleAttributeName,
+            value: paraStyle,
+            range: NSRange(location: 0, length: attrText.length)
+        )
+        lblDescription.attributedText = attrText
     }
-    */
-
 }
