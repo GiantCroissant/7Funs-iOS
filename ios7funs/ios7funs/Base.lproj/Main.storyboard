@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Avy-C5-PZE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Avy-C5-PZE">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -47,6 +47,9 @@
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
@@ -94,6 +97,9 @@
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" red="0.1647058824" green="0.1647058824" blue="0.15686274510000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <size key="shadowOffset" width="1" height="1"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
@@ -131,6 +137,9 @@
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" red="0.1647058824" green="0.1647058824" blue="0.15686274510000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <size key="shadowOffset" width="1" height="1"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
@@ -168,6 +177,9 @@
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" red="0.1647058824" green="0.1647058824" blue="0.15686274510000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <size key="shadowOffset" width="1" height="1"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
@@ -207,6 +219,9 @@
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" red="0.1647058824" green="0.1647058824" blue="0.15686274510000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <size key="shadowOffset" width="1" height="1"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
@@ -240,6 +255,9 @@
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" red="0.1647058824" green="0.1647058824" blue="0.15686274510000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <size key="shadowOffset" width="1" height="1"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
