@@ -15,6 +15,8 @@ class TeacherDetailViewController: UIViewController {
     @IBOutlet weak var bgContent: UIView!
 
     var teacher: InstructorDetailJsonObject!
+    var bgContentHeight: CGFloat = 0
+    var isDataLoaded = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,34 +35,47 @@ class TeacherDetailViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
+        if isDataLoaded {
+            return
+        }
+        addTeacherDatas()
+    }
+
+    func addTeacherDatas() {
+        isDataLoaded = true
+
         if teacher.experience != "" {
-            let contentView = TeacherInfoDataView()
-            contentView.lblSubTitle.text = "廚藝經驗"
-            contentView.lblContent.text = teacher.experience
-            contentView.lblSubTitle.sizeToFit()
-            contentView.lblContent.sizeToFit()
+            addTeacherData("廚藝經驗", content: teacher.experience)
+        }
 
-            var spacingHeight: CGFloat = 0
-            contentView.spacings.forEach {
-                spacingHeight += $0.constant
-            }
-
-            let titleHeight = contentView.lblSubTitle.frame.height
-            let contentHeight = contentView.lblContent.frame.height
-            let totalHeight = spacingHeight + titleHeight + contentHeight
-
-            let width = bgContent.frame.width
-            let size = CGSize(width: width, height: totalHeight)
-            contentView.frame = CGRect(origin: CGPoint.zero, size: size)
-            bgContent.addSubview(contentView)
+        if teacher.specialty != "" {
+            addTeacherData("擅長料理", content: teacher.specialty)
         }
     }
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    func addTeacherData(title: String, content: String) {
+        let contentView = TeacherInfoDataView()
+        contentView.lblSubTitle.text = title
+        contentView.lblContent.text = content
+        contentView.lblSubTitle.sizeToFit()
+        contentView.lblContent.sizeToFit()
 
+        var spacingHeight: CGFloat = 0
+        contentView.spacings.forEach {
+            spacingHeight += $0.constant
+        }
 
+        let titleHeight = contentView.lblSubTitle.frame.height
+        let contentHeight = contentView.lblContent.frame.height
+        let totalHeight = spacingHeight + titleHeight + contentHeight
 
+        let width = bgContent.frame.width
+        let size = CGSize(width: width, height: totalHeight)
+        let origin = CGPoint(x: 0, y: bgContentHeight)
+        contentView.frame = CGRect(origin: origin, size: size)
+        bgContent.addSubview(contentView)
+        bgContentHeight += totalHeight
+        bgContent.frame.size = CGSize(width: width, height: bgContentHeight)
     }
 
 }

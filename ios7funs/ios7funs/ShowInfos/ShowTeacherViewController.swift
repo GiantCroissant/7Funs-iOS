@@ -106,6 +106,7 @@ class ShowTeacherViewController: UIViewController {
             shortDescription: "更多名師主廚\n新增中...",
             profileImage: "",
             experience: "",
+            specialty: "",
             currentTitle: "",
             description: ""
         )
