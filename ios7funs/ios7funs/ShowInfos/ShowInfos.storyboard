@@ -433,14 +433,17 @@
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nr5-uz-7BC" userLabel="Content">
                                                     <rect key="frame" x="4" y="4" width="292" height="392"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teacher_Male" translatesAutoresizingMaskIntoConstraints="NO" id="7Z2-n2-tJd" userLabel="Photo">
+                                                        <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OI0-4q-ifR" userLabel="Teacher Detail">
                                                             <rect key="frame" x="0.0" y="0.0" width="292" height="392"/>
-                                                        </imageView>
+                                                            <connections>
+                                                                <segue destination="WIE-zT-UQ8" kind="show" id="jZ9-9x-54C"/>
+                                                            </connections>
+                                                        </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teacher_gradients" translatesAutoresizingMaskIntoConstraints="NO" id="qgh-B0-v5m">
                                                             <rect key="frame" x="0.0" y="0.0" width="292" height="392"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="預設老師的描述" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZUC-MG-DDL" userLabel="Description">
-                                                            <rect key="frame" x="8" y="370" width="276" height="14"/>
+                                                            <rect key="frame" x="8" y="369" width="276" height="15"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                             <color key="textColor" red="0.792156862745098" green="0.792156862745098" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -460,20 +463,30 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="7Z2-n2-tJd" secondAttribute="trailing" id="7He-1c-Brr"/>
                                                         <constraint firstAttribute="trailing" secondItem="qgh-B0-v5m" secondAttribute="trailing" id="AYU-Pz-DMn"/>
+                                                        <constraint firstItem="OI0-4q-ifR" firstAttribute="top" secondItem="qgh-B0-v5m" secondAttribute="top" id="E2b-j7-aZf"/>
+                                                        <constraint firstItem="OI0-4q-ifR" firstAttribute="leading" secondItem="nr5-uz-7BC" secondAttribute="leading" id="E4E-WB-0qh"/>
                                                         <constraint firstAttribute="bottom" secondItem="qgh-B0-v5m" secondAttribute="bottom" id="ENS-IM-yue"/>
+                                                        <constraint firstItem="OI0-4q-ifR" firstAttribute="trailing" secondItem="qgh-B0-v5m" secondAttribute="trailing" id="FkO-La-aTm"/>
+                                                        <constraint firstAttribute="trailing" secondItem="OI0-4q-ifR" secondAttribute="trailing" id="Fl1-L9-YoE"/>
                                                         <constraint firstItem="qgh-B0-v5m" firstAttribute="leading" secondItem="nr5-uz-7BC" secondAttribute="leading" id="Ivr-j4-Pol"/>
-                                                        <constraint firstAttribute="bottom" secondItem="7Z2-n2-tJd" secondAttribute="bottom" id="Mfq-Tw-K7K"/>
                                                         <constraint firstItem="ZUC-MG-DDL" firstAttribute="leading" secondItem="nr5-uz-7BC" secondAttribute="leading" constant="8" id="cJo-kS-0TH"/>
-                                                        <constraint firstItem="7Z2-n2-tJd" firstAttribute="top" secondItem="nr5-uz-7BC" secondAttribute="top" id="e6T-5d-V7c"/>
                                                         <constraint firstAttribute="bottom" secondItem="ZUC-MG-DDL" secondAttribute="bottom" constant="8" id="kN6-SC-9Yx"/>
                                                         <constraint firstAttribute="trailing" secondItem="ZUC-MG-DDL" secondAttribute="trailing" constant="8" id="pks-qm-CWF"/>
                                                         <constraint firstItem="Mek-yK-Cv9" firstAttribute="centerX" secondItem="nr5-uz-7BC" secondAttribute="centerX" id="rOY-CO-ISP"/>
                                                         <constraint firstItem="ZUC-MG-DDL" firstAttribute="top" secondItem="Mek-yK-Cv9" secondAttribute="bottom" constant="5" id="sFE-Dm-eFZ"/>
-                                                        <constraint firstItem="7Z2-n2-tJd" firstAttribute="leading" secondItem="nr5-uz-7BC" secondAttribute="leading" id="tfx-Ob-zUd"/>
+                                                        <constraint firstItem="OI0-4q-ifR" firstAttribute="top" secondItem="nr5-uz-7BC" secondAttribute="top" id="vxv-En-YQc"/>
+                                                        <constraint firstItem="OI0-4q-ifR" firstAttribute="leading" secondItem="qgh-B0-v5m" secondAttribute="leading" id="xw8-M5-XwE"/>
                                                         <constraint firstItem="qgh-B0-v5m" firstAttribute="top" secondItem="nr5-uz-7BC" secondAttribute="top" id="y9H-L4-vMa"/>
+                                                        <constraint firstAttribute="bottom" secondItem="OI0-4q-ifR" secondAttribute="bottom" id="ygJ-l0-mLO"/>
                                                     </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="E2b-j7-aZf"/>
+                                                            <exclude reference="FkO-La-aTm"/>
+                                                            <exclude reference="xw8-M5-XwE"/>
+                                                        </mask>
+                                                    </variation>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -487,10 +500,9 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="bgContent" destination="nr5-uz-7BC" id="lbn-IL-1lC"/>
-                                            <outlet property="imgTeacherPhoto" destination="7Z2-n2-tJd" id="pnP-Cv-0KT"/>
+                                            <outlet property="btnTeacherDetail" destination="OI0-4q-ifR" id="8P7-Iz-dHD"/>
                                             <outlet property="lblDescription" destination="ZUC-MG-DDL" id="Ic7-6X-m1l"/>
                                             <outlet property="lblName" destination="Mek-yK-Cv9" id="NK5-P5-ids"/>
-                                            <segue destination="WIE-zT-UQ8" kind="show" id="ZhF-hK-cEe"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -544,14 +556,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="536"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teacher_s01" translatesAutoresizingMaskIntoConstraints="NO" id="VBB-tV-Pdx">
-                                <rect key="frame" x="143" y="29" width="90" height="90"/>
+                                <rect key="frame" x="142" y="29" width="90" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="XMX-OS-N0h"/>
                                     <constraint firstAttribute="width" secondItem="VBB-tV-Pdx" secondAttribute="height" id="pe4-D8-gtv"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="料理老師名字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aa-HJ-zSR">
-                                <rect key="frame" x="131" y="139" width="114" height="23"/>
+                                <rect key="frame" x="130" y="139" width="114" height="23"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -616,7 +628,6 @@
         <image name="br_teacher_s" width="375" height="603"/>
         <image name="btn_TV" width="86" height="62"/>
         <image name="btn_teacher" width="86" height="62"/>
-        <image name="teacher_Male" width="171" height="217"/>
         <image name="teacher_gradients" width="171" height="142"/>
         <image name="teacher_s01" width="90" height="90"/>
     </resources>
