@@ -499,7 +499,7 @@
                                     <outlet property="delegate" destination="2K2-FA-59G" id="lwm-Gl-Tqy"/>
                                 </connections>
                             </collectionView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="ztL-vX-E5R">
+                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="ztL-vX-E5R">
                                 <rect key="frame" x="168" y="489" width="39" height="37"/>
                                 <color key="pageIndicatorTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="currentPageIndicatorTintColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
@@ -521,6 +521,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionTeachers" destination="1xd-uX-xvM" id="PG1-CH-ndL"/>
+                        <outlet property="pageControl" destination="ztL-vX-E5R" id="wFX-5z-e6v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tix-gP-UkU" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -15,6 +15,7 @@ import RxSwift
 class ShowTeacherViewController: UIViewController {
 
     @IBOutlet weak var collectionTeachers: UICollectionView!
+    @IBOutlet weak var pageControl: UIPageControl!
 
     let disposeBag = DisposeBag()
     var teachers = [InstructorDetailJsonObject]()
@@ -45,7 +46,6 @@ class ShowTeacherViewController: UIViewController {
         super.viewDidLoad()
 
         loadTeachers()
-
     }
 
     func loadTeachers() {
@@ -74,12 +74,19 @@ class ShowTeacherViewController: UIViewController {
             })
             .observeOn(MainScheduler.instance)
             .subscribeNext { instructorJsonObject in
-                instructorJsonObject?.instructors.forEach {
-                    self.teachers.append($0)
-                    self.collectionTeachers.reloadData()
-                }
+                self.configureLayout(instructorJsonObject)
             }
             .addDisposableTo(disposeBag)
+    }
+
+    func configureLayout(instructorJsonObject: InstructorJsonObject?) {
+        instructorJsonObject?.instructors.forEach {
+            teachers.append($0)
+        }
+
+        collectionTeachers.reloadData()
+        let pageCount = Int(ceilf(Float(teachers.count) / 4))
+        pageControl.numberOfPages = pageCount
     }
 
     /*
@@ -136,4 +143,15 @@ extension ShowTeacherViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: width, height: height)
     }
 
+}
+
+
+extension ShowTeacherViewController: UICollectionViewDelegate {
+
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        let pageWidth = scrollView.frame.size.width
+        let page = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1);
+        pageControl.currentPage = page
+    }
+    
 }
