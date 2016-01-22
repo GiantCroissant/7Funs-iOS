@@ -151,7 +151,8 @@ extension ShowTeacherViewController: UICollectionViewDataSource {
         cell.bgContent.layer.cornerRadius = 5
 
         ImageLoader.sharedInstance.loadDefaultImage(teacher.image) { image in
-            cell.btnTeacherDetail.setImage(image, forState: .Normal)
+//            cell.btnTeacherDetail.setImage(image, forState: .Normal)
+            cell.btnTeacherDetail.setBackgroundImage(image, forState: .Normal)
         }
 
 //        cell.btnTeacherDetail.setImage(UIImage(named: teacher.image), forState: UIControlState.Normal)
