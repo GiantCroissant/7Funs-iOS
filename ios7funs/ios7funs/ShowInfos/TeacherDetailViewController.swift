@@ -13,6 +13,11 @@ class TeacherDetailViewController: UIViewController {
     @IBOutlet weak var imgTeacherProfile: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var bgContent: UIView!
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var scrollContentHeight: NSLayoutConstraint!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollContent: UIView!
+
 
     var teacher: InstructorDetailJsonObject!
     var bgContentHeight: CGFloat = 0
@@ -26,15 +31,14 @@ class TeacherDetailViewController: UIViewController {
             self.imgTeacherProfile.image = image
         }
         lblName.text = teacher.name
+
+        addTeacherDatas()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        if isDataLoaded {
-            return
-        }
-        addTeacherDatas()
+        scrollView.contentSize.height = bgContentHeight + topView.frame.height
     }
 
     func addTeacherDatas() {
@@ -69,18 +73,30 @@ class TeacherDetailViewController: UIViewController {
 
         let contentView = TeacherInfoDataView()
         let titleLabel = contentView.lblSubTitle
-        titleLabel.frame.size.width = width
         titleLabel.text = title
         titleLabel.font = font
         titleLabel.numberOfLines = 1
         titleLabel.sizeToFit()
+        print("\(titleLabel.text) : \(titleLabel.frame.height)")
+
+
+        var font2: UIFont!
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            font2 = UIFont.boldSystemFontOfSize(32)
+
+        } else if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+            font2 = UIFont.boldSystemFontOfSize(16)
+        }
 
         let contentLabel = contentView.lblContent
         contentLabel.frame.size.width = width
+//        contentLabel.frame.size.height = CGFloat.max
         contentLabel.text = content
-        contentLabel.font = font
+        contentLabel.font = font2
         contentLabel.numberOfLines = 0
-        contentLabel.sizeToFit()
+        let conSize = contentLabel.sizeThatFits(CGSize(width: width, height: CGFloat.max))
+
+        print("\(contentLabel.text) : \(conSize.height)")
 
         var spacingHeight: CGFloat = 0
         contentView.spacings.forEach {
@@ -88,16 +104,23 @@ class TeacherDetailViewController: UIViewController {
         }
 
         let titleHeight = titleLabel.frame.height
-        let contentHeight = contentLabel.frame.height
+        let contentHeight = conSize.height
         let totalHeight = spacingHeight + titleHeight + contentHeight
 
-        let size = CGSize(width: width, height: totalHeight)
+//        contentView.bgV.sizeToFit()
+//        print("contentView height = \(contentView.bgV.frame.height)")
+
+//        let size = CGSize(width: width, height: totalHeight)
+
         let origin = CGPoint(x: 0, y: bgContentHeight)
-        contentView.frame = CGRect(origin: origin, size: size)
+        contentView.frame = CGRect(origin: origin, size: CGSize(width: width, height: totalHeight))
         
-        bgContentHeight += totalHeight
+
         bgContent.addSubview(contentView)
-        bgContent.frame.size = CGSize(width: width, height: bgContentHeight)
+        bgContentHeight += totalHeight
+        print("bgContentHeight = \(bgContentHeight)")
+
+//        bgContent.frame.size = CGSize(width: width, height: bgContentHeight)
     }
     
 }

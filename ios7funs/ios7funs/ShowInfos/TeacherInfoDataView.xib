@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TeacherInfoDataView" customModule="ios7funs" customModuleProvider="target">
             <connections>
+                <outlet property="bgV" destination="iN0-l3-epB" id="lLc-Qf-vJT"/>
                 <outlet property="lblContent" destination="rIt-99-XbX" id="t8l-fv-r83"/>
                 <outlet property="lblSubTitle" destination="zzv-nX-5yr" id="Ws3-yH-rlt"/>
                 <outletCollection property="spacings" destination="ElF-Qm-5wb" collectionClass="NSMutableArray" id="atp-j4-uAD"/>

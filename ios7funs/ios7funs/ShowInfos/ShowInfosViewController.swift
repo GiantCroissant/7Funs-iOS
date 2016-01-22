@@ -46,12 +46,12 @@ class ShowInfosViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.showNavigationBar()
-        showIntroPage()
+        showCurrentPage()
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.showNavigationBar()
         showCurrentPage()
     }
 
