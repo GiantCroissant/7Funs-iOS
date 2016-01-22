@@ -14,6 +14,7 @@ import Curry
 public struct InstructorDetailJsonObject {
     public let name: String
     public let image: String
+    public let shortDescription: String
     public let profileImage: String
     public let experience: String
     public let currentTitle: String
@@ -28,7 +29,8 @@ extension InstructorDetailJsonObject : Decodable {
     public static func decode(j: JSON) -> Decoded<InstructorDetailJsonObject> {
         let f = curry(InstructorDetailJsonObject.init)
             <^> j <| "name"
-            <*> j <| "name"
+            <*> j <| "image"
+            <*> j <| "shortDescription"
             <*> j <| "profileImage"
         
         return f

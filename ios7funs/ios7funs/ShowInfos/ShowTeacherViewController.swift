@@ -14,7 +14,11 @@ import RxSwift
 
 class ShowTeacherViewController: UIViewController {
 
-    @IBOutlet var photoBG: [UIView]!
+    @IBOutlet weak var collectionTeachers: UICollectionView!
+
+    let disposeBag = DisposeBag()
+    var teachers = [InstructorDetailJsonObject]()
+
     
     let infoDataSource: Observable<String> = Observable.create { (observer) in
         let fileName = "Info"
@@ -40,13 +44,16 @@ class ShowTeacherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
+        loadTeachers()
+
+    }
+
+    func loadTeachers() {
         infoDataSource
             .observeOn(BackgroundScheduler.instance())
             .map({ (s: String) -> InstructorJsonObject? in
                 let data = s.dataUsingEncoding(NSUTF8StringEncoding)
-                
+
                 if let d = data {
                     do {
                         let jsonObject = try NSJSONSerialization.JSONObjectWithData(d, options: .AllowFragments) as! [String : AnyObject]
@@ -54,7 +61,7 @@ class ShowTeacherViewController: UIViewController {
                         switch decoded {
                         case .Success(let result):
                             return result
-                            
+
                         case .Failure:
                             return nil
                         }
@@ -62,33 +69,18 @@ class ShowTeacherViewController: UIViewController {
                         return nil
                     }
                 }
-                
+
                 return nil
             })
             .observeOn(MainScheduler.instance)
-            .subscribeNext({ x in
-                // MARK: Should have all the data from info json
-                x?.instructors.forEach({ ijo in
-                    // Large image
-                    // ijo.image
-                    // Smaller image
-                    // ijo.profileImage
-                })
-                print(x)
-            })
-
-
-        for photo in photoBG {
-            photo.layer.cornerRadius = 5
-        }
+            .subscribeNext { instructorJsonObject in
+                instructorJsonObject?.instructors.forEach {
+                    self.teachers.append($0)
+                    self.collectionTeachers.reloadData()
+                }
+            }
+            .addDisposableTo(disposeBag)
     }
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     /*
     // MARK: - Navigation
@@ -99,5 +91,47 @@ class ShowTeacherViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+}
+
+class TeacherCollectionCell: UICollectionViewCell {
+
+    @IBOutlet weak var imgTeacherPhoto: UIImageView!
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblDescription: UILabel!
+    
+}
+
+extension ShowTeacherViewController: UICollectionViewDataSource {
+
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return teachers.count
+    }
+
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let teacher = teachers[indexPath.row]
+
+
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("id_collection_cell_teacher", forIndexPath: indexPath) as! TeacherCollectionCell
+        cell.imgTeacherPhoto.image = UIImage(named: teacher.image)
+        cell.lblName.text = teacher.name
+        cell.lblDescription.text = teacher.shortDescription
+        cell.lblDescription.numberOfLines = 1
+        return cell
+    }
+
+}
+
+
+extension ShowTeacherViewController: UICollectionViewDelegateFlowLayout {
+
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+
+        let width = collectionView.bounds.width / 2
+        let height = collectionView.bounds.height / 2
+
+        return CGSize(width: width, height: height)
+    }
 
 }
