@@ -19,7 +19,8 @@ public struct InstructorDetailJsonObject {
     public let experience: String
     public let specialty: String
     public let currentTitle: String
-    public let description: String
+    public let books: String
+    public let awards: String
 }
 
 public struct InstructorJsonObject {
@@ -38,7 +39,8 @@ extension InstructorDetailJsonObject : Decodable {
             <*> j <| "experience"
             <*> j <| "specialty"
             <*> j <| "currentTitle"
-            <*> j <| "description"
+            <*> j <| "books"
+            <*> j <| "awards"
     }
 }
 

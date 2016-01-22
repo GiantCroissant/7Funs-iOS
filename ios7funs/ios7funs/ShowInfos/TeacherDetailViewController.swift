@@ -22,23 +22,31 @@ class TeacherDetailViewController: UIViewController {
         super.viewDidLoad()
 
         self.title = teacher.name
-
         ImageLoader.sharedInstance.loadDefaultImage(teacher.profileImage) { image in
             self.imgTeacherProfile.image = image
         }
-
         lblName.text = teacher.name
-
-
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//
+//        if isDataLoaded {
+//            return
+//        }
+//        addTeacherDatas()
+//    }
 
-        if isDataLoaded {
-            return
-        }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
         addTeacherDatas()
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+//        addTeacherDatas()
     }
 
     func addTeacherDatas() {
@@ -51,13 +59,33 @@ class TeacherDetailViewController: UIViewController {
         if teacher.specialty != "" {
             addTeacherData("擅長料理", content: teacher.specialty)
         }
+
+        if teacher.currentTitle != "" {
+            addTeacherData("現任", content: teacher.currentTitle)
+        }
+
+        if teacher.books != "" {
+            addTeacherData("著作", content: teacher.books)
+        }
+
+        if teacher.awards != "" {
+            addTeacherData("曾獲", content: teacher.awards)
+        }
+        
     }
 
     func addTeacherData(title: String, content: String) {
+        let width = UIScreen.mainScreen().bounds.width * 0.861333
+
         let contentView = TeacherInfoDataView()
+        contentView.lblSubTitle.frame.size.width = width
         contentView.lblSubTitle.text = title
-        contentView.lblContent.text = content
+        contentView.lblSubTitle.numberOfLines = 1
         contentView.lblSubTitle.sizeToFit()
+
+        contentView.lblContent.frame.size.width = width
+        contentView.lblContent.text = content
+        contentView.lblContent.numberOfLines = 0
         contentView.lblContent.sizeToFit()
 
         var spacingHeight: CGFloat = 0
@@ -69,12 +97,12 @@ class TeacherDetailViewController: UIViewController {
         let contentHeight = contentView.lblContent.frame.height
         let totalHeight = spacingHeight + titleHeight + contentHeight
 
-        let width = bgContent.frame.width
         let size = CGSize(width: width, height: totalHeight)
         let origin = CGPoint(x: 0, y: bgContentHeight)
         contentView.frame = CGRect(origin: origin, size: size)
-        bgContent.addSubview(contentView)
+
         bgContentHeight += totalHeight
+        bgContent.addSubview(contentView)
         bgContent.frame.size = CGSize(width: width, height: bgContentHeight)
     }
 

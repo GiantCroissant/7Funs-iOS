@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="G18-l0-r61">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="G18-l0-r61">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -31,16 +31,16 @@
                                     <segue destination="2K2-FA-59G" kind="embed" id="ROG-Wb-FBb"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Y6-yE-goc" customClass="AYOSegmentedControl" customModule="ios7funs" customModuleProvider="target">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Y6-yE-goc" customClass="AYOSegmentedControl" customModule="ios7funs" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="600" width="375" height="67"/>
                                 <subviews>
-                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mle-0y-Uw6" userLabel="Tab 1">
+                                    <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mle-0y-Uw6" userLabel="Tab 1">
                                         <rect key="frame" x="0.0" y="0.0" width="188" height="62"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PCF-uS-aCd" userLabel="Camera">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PCF-uS-aCd" userLabel="Camera">
                                                 <rect key="frame" x="0.0" y="0.0" width="86" height="62"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_TV" translatesAutoresizingMaskIntoConstraints="NO" id="oCo-Jc-bwp">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_TV" translatesAutoresizingMaskIntoConstraints="NO" id="oCo-Jc-bwp">
                                                         <rect key="frame" x="0.0" y="0.0" width="86" height="62"/>
                                                     </imageView>
                                                 </subviews>
@@ -76,13 +76,13 @@
                                             </mask>
                                         </variation>
                                     </view>
-                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ANv-Hw-bKf" userLabel="Tab 2">
+                                    <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ANv-Hw-bKf" userLabel="Tab 2">
                                         <rect key="frame" x="187" y="0.0" width="188" height="62"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJC-Cc-W7L" userLabel="Teacher">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJC-Cc-W7L" userLabel="Teacher">
                                                 <rect key="frame" x="0.0" y="0.0" width="86" height="62"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_teacher" translatesAutoresizingMaskIntoConstraints="NO" id="RPg-Yh-sjn">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_teacher" translatesAutoresizingMaskIntoConstraints="NO" id="RPg-Yh-sjn">
                                                         <rect key="frame" x="0.0" y="0.0" width="86" height="62"/>
                                                     </imageView>
                                                 </subviews>
@@ -430,7 +430,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="id_collection_cell_teacher" id="7v8-nl-cAK" customClass="TeacherCollectionCell" customModule="ios7funs" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="38" width="300" height="400"/>
+                                        <rect key="frame" x="0.0" y="37.5" width="300" height="400"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
@@ -439,7 +439,7 @@
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nr5-uz-7BC" userLabel="Content">
                                                     <rect key="frame" x="4" y="4" width="292" height="392"/>
                                                     <subviews>
-                                                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OI0-4q-ifR" userLabel="Teacher Detail">
+                                                        <button contentMode="top" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OI0-4q-ifR" userLabel="Teacher Detail">
                                                             <rect key="frame" x="0.0" y="0.0" width="292" height="392"/>
                                                             <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <connections>
@@ -450,7 +450,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="292" height="392"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="預設老師的描述" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZUC-MG-DDL" userLabel="Description">
-                                                            <rect key="frame" x="8" y="369" width="276" height="15"/>
+                                                            <rect key="frame" x="8" y="369" width="276" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                             <color key="textColor" red="0.792156862745098" green="0.792156862745098" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -459,7 +459,7 @@
                                                             </variation>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="預設老師名字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mek-yK-Cv9" userLabel="Name">
-                                                            <rect key="frame" x="92" y="342" width="108" height="22"/>
+                                                            <rect key="frame" x="92" y="343" width="108" height="21.5"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>

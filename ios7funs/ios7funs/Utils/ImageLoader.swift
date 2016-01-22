@@ -30,18 +30,12 @@ class ImageLoader {
     // TODO: Fix to background
     func loadDefaultImage(name: String, onLoaded: (image: UIImage?) -> Void) {
         if let image = ImageCache.sharedCache.objectForKey(name) as? UIImage {
-
-            print("load \(name) from cache")
-
             onLoaded(image: image)
             return
         }
 
         let image = UIImage(named: name)!
         ImageCache.sharedCache.setObject(image, forKey: name)
-
-        print("load \(name) from data")
-
         onLoaded(image: image)
     }
 

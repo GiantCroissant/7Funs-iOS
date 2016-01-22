@@ -108,7 +108,8 @@ class ShowTeacherViewController: UIViewController {
             experience: "",
             specialty: "",
             currentTitle: "",
-            description: ""
+            books: "",
+            awards: ""
         )
 
         while emptyCellCount > 0 {
@@ -149,7 +150,12 @@ extension ShowTeacherViewController: UICollectionViewDataSource {
         cell.bgContent.layer.cornerRadius = 5
         cell.btnTeacherDetail.tag = indexPath.row
         ImageLoader.sharedInstance.loadDefaultImage(teacher.image) { image in
-            cell.btnTeacherDetail.setBackgroundImage(image, forState: .Normal)
+
+            let width = cell.frame.size.width
+
+            let scaledImage = UIImage.scaleImageToWidth(image!, newWidth: width)
+            cell.btnTeacherDetail.imageView?.contentMode = .Top
+            cell.btnTeacherDetail.setImage(scaledImage, forState: .Normal)
         }
         cell.lblName.text = teacher.name
         cell.lblDescription.text = teacher.shortDescription
