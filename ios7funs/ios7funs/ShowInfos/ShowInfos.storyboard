@@ -28,7 +28,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AJi-H8-9NV" userLabel="Page 2">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
                                 <connections>
-                                    <segue destination="2K2-FA-59G" kind="embed" id="ROG-Wb-FBb"/>
+                                    <segue destination="2K2-FA-59G" kind="embed" identifier="id_segue_to_teacher_collections" id="ROG-Wb-FBb"/>
                                 </connections>
                             </containerView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Y6-yE-goc" customClass="AYOSegmentedControl" customModule="ios7funs" customModuleProvider="target">

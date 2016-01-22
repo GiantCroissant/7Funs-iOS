@@ -19,7 +19,7 @@ class ShowTeacherViewController: UIViewController {
 
     let disposeBag = DisposeBag()
     var teachers = [InstructorDetailJsonObject]()
-
+    var showInfosVC: ShowInfosViewController!
 
     let infoDataSource: Observable<String> = Observable.create { (observer) in
         let fileName = "Info"
@@ -119,7 +119,7 @@ class ShowTeacherViewController: UIViewController {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        navigationItem.title = ""
+        showInfosVC.title = ""
 
         let detailVC = segue.destinationViewController as! TeacherDetailViewController
         let row = (sender?.tag)!
