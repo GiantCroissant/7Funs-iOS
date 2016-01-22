@@ -15,17 +15,18 @@ import RxSwift
 class ShowTeacherViewController: UIViewController {
 
     @IBOutlet weak var collectionTeachers: UICollectionView!
+    @IBOutlet weak var pageControl: UIPageControl!
 
     let disposeBag = DisposeBag()
     var teachers = [InstructorDetailJsonObject]()
 
-    
+
     let infoDataSource: Observable<String> = Observable.create { (observer) in
         let fileName = "Info"
         let fileType = "json"
-        
+
         let defaultContent = "{\"instructors\": []}"
-        
+
         let path = NSBundle.mainBundle().pathForResource(fileName, ofType: fileType)
         let content: String = path.map { x in
             do {
@@ -35,7 +36,7 @@ class ShowTeacherViewController: UIViewController {
                 return defaultContent
             }
             } ?? defaultContent
-        
+
         observer.on(.Next(content))
         observer.on(.Completed)
         return AnonymousDisposable {}
@@ -45,7 +46,6 @@ class ShowTeacherViewController: UIViewController {
         super.viewDidLoad()
 
         loadTeachers()
-
     }
 
     func loadTeachers() {
@@ -74,12 +74,41 @@ class ShowTeacherViewController: UIViewController {
             })
             .observeOn(MainScheduler.instance)
             .subscribeNext { instructorJsonObject in
-                instructorJsonObject?.instructors.forEach {
-                    self.teachers.append($0)
-                    self.collectionTeachers.reloadData()
-                }
+                self.configureLayout(instructorJsonObject)
             }
             .addDisposableTo(disposeBag)
+    }
+
+    func configureLayout(instructorJsonObject: InstructorJsonObject?) {
+        instructorJsonObject?.instructors.forEach {
+            teachers.append($0)
+        }
+        addEmptyTeacherCells()
+
+        // configure page control
+        let pageCount = Int(ceilf(Float(teachers.count) / 4))
+        pageControl.numberOfPages = pageCount
+
+        // display collection view
+        collectionTeachers.reloadData()
+    }
+
+    func addEmptyTeacherCells() {
+        var emptyCellCount: Int = 4 - (teachers.count % 4)
+        let emptyTeacher = InstructorDetailJsonObject(
+            name: "",
+            image: "teacher_Male",
+            shortDescription: "更多名師主廚\n新增中...",
+            profileImage: "",
+            experience: "",
+            currentTitle: "",
+            description: ""
+        )
+
+        while emptyCellCount > 0 {
+            teachers.append(emptyTeacher)
+            emptyCellCount--
+        }
     }
 
     /*
@@ -87,8 +116,8 @@ class ShowTeacherViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
 
@@ -96,10 +125,11 @@ class ShowTeacherViewController: UIViewController {
 
 class TeacherCollectionCell: UICollectionViewCell {
 
-    @IBOutlet weak var imgTeacherPhoto: UIImageView!
+    @IBOutlet weak var bgContent: UIView!
+    @IBOutlet weak var btnTeacherDetail: UIButton!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
-    
+
 }
 
 extension ShowTeacherViewController: UICollectionViewDataSource {
@@ -111,12 +141,15 @@ extension ShowTeacherViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let teacher = teachers[indexPath.row]
 
-
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("id_collection_cell_teacher", forIndexPath: indexPath) as! TeacherCollectionCell
-        cell.imgTeacherPhoto.image = UIImage(named: teacher.image)
+
+        cell.bgContent.layer.cornerRadius = 5
+        cell.btnTeacherDetail.setImage(UIImage(named: teacher.image), forState: UIControlState.Normal)
         cell.lblName.text = teacher.name
         cell.lblDescription.text = teacher.shortDescription
-        cell.lblDescription.numberOfLines = 1
+        cell.lblDescription.numberOfLines = teacher.shortDescription.characters.split("\n").count
+        cell.userInteractionEnabled = teacher.name.isEmpty ? false : true
+
         return cell
     }
 
@@ -125,13 +158,22 @@ extension ShowTeacherViewController: UICollectionViewDataSource {
 
 extension ShowTeacherViewController: UICollectionViewDelegateFlowLayout {
 
-
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-
         let width = collectionView.bounds.width / 2
         let height = collectionView.bounds.height / 2
-
         return CGSize(width: width, height: height)
     }
 
 }
+
+
+extension ShowTeacherViewController: UICollectionViewDelegate {
+
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        let pageWidth = scrollView.frame.size.width
+        let page = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1);
+        pageControl.currentPage = page
+    }
+    
+}
+
