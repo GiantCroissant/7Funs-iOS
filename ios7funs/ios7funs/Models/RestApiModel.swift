@@ -42,11 +42,12 @@ public enum RestApi {
     case LogIn(username: String, password: String)
     case LogInViaFb(assertion: String)
     case Register(email: String, name: String, password: String, passwordConfirmation: String)
-    case LogOut(token: String)
+//    case LogOut(token: String)
     case PasswordReset(email: String)
     
     //
     case GetMyFavoriteRecipesIds(token: String)
+    case GetMyInfo(token: String)
 }
 
 extension RestApi : TargetType {
@@ -96,17 +97,19 @@ extension RestApi : TargetType {
 //            return "/users/\(name.URLEscapedString)/repos"
 
         case .LogIn:
-            return "/oauth/token"
+            return "/api/login"
         case .LogInViaFb:
-            return "/oauth/token"
+            return "/api/auth/facebook/token"
         case .Register:
-            return "/rorapi/v1/registrations"
-        case .LogOut(_):
-            return "/oauth/revoke"
+            return "/api/signup"
+//        case .LogOut(_):
+//            return "/oauth/revoke"
         case .PasswordReset:
             return "/rorapi/v1/passwords"
         case .GetMyFavoriteRecipesIds:
             return "/api/self/favorites/recipeIds"
+        case .GetMyInfo:
+            return "/api/self"
         }
     }
     
@@ -129,9 +132,6 @@ extension RestApi : TargetType {
         case .Register:
             return .POST
 
-        case .LogOut(_):
-            return .POST
-            
         case .PasswordReset(_):
             return .POST
             
@@ -141,67 +141,49 @@ extension RestApi : TargetType {
     }
     
     public var parameters: [String: AnyObject]? {
-        let clientId = "88377a0cb2c19d81bbadc2ab9aae3f6398398a772df01673b86c1c2b55c14e02"
-        let clientSecret = "7bd509640fa20e5843389b04b36c1e323b5714ae212693864c79e64acb60185d"
+//        let clientId = "88377a0cb2c19d81bbadc2ab9aae3f6398398a772df01673b86c1c2b55c14e02"
+//        let clientSecret = "7bd509640fa20e5843389b04b36c1e323b5714ae212693864c79e64acb60185d"
         
         switch self {
         case .Recipes(let page):
             return [
-                "client_id": clientId,
                 "page": page
             ]
         case .RecipesById(_):
-            return [
-                "client_id": clientId
-            ]
+            return [:]
         case .RecipesOverview:
-            return [
-                "client_id": clientId
-            ]
+            return [:]
         case .RecipesByIdList(let idList):
             return [
-                "client_id": clientId,
                 "ids": idList
             ]
         case AddRemoveFavorite(_, let token):
             return [
-                "client_id": clientId,
                 "token": token
             ]
             
         case .Categories:
-            return [
-                "client_id": clientId
-            ]
+            return [:]
         case .CategoryById(_):
-            return [
-                "client_id": clientId
-            ]
+            return [:]
             
         case .Messages(let page):
             return [
-                "client_id": clientId,
                 "page": page
             ]
         case .MessageById(_):
-            return [
-                "client_id": clientId
-            ]
+            return [:]
         case .CommentsOfSpecificMessage(_):
-            return [
-                "client_id": clientId
-            ]
+            return [:]
             
         case .CreateMessage(let token, let title, let description):
             return [
-                "client_id": clientId,
                 "token": token,
                 "title": title,
                 "description": description
             ]
         case .CreateMessageComment(let id, let token, let comment):
             return [
-                "client_id": clientId,
                 "token": token,
                 "messageId": id,
                 "comment": comment
@@ -209,52 +191,33 @@ extension RestApi : TargetType {
             
         case .Videos(let page):
             return [
-                "client_id": clientId,
                 "page": page
             ]
         case .VideoOverview:
-            return [
-                "client_id": clientId
-            ]
+            return [:]
         case .VideoByIdList(let idList):
             return [
-                "client_id": clientId,
                 "ids": idList
             ]
             
         case .TagById(_):
-            return [
-                "client_id": clientId
-            ]
+            return [:]
             
         case .LogIn(let username, let password):
             return [
-                "client_id": clientId,
-                "client_secret": clientSecret,
-                "grant_type": "password",
-                "username": username,
+                "email": username,
                 "password": password
             ]
         case .LogInViaFb(let assertion):
             return [
-                "assertion": assertion,
-                "grant_type": "assertion"
+                "access_token": assertion
             ]
         case .Register(let email, let name, let password, let passwordConfirmation):
             return [
-                "client_id": clientId,
-                "client_secret": clientSecret,
-                "user": [
-                    "email": email,
-                    "name": name,
-                    "password": password,
-                    "password_confirmation": passwordConfirmation
-                ]
-            ]
-        case .LogOut(let token):
-            return [
-                "client_id": clientId,
-                "token": token
+                "email": email,
+                "name": name,
+                "password": password,
+                "password_confirmation": passwordConfirmation
             ]
         case .PasswordReset(let email):
             return [
@@ -263,7 +226,10 @@ extension RestApi : TargetType {
             
         case .GetMyFavoriteRecipesIds(let token):
             return [
-                "client_id": clientId,
+                "token": token
+            ]
+        case .GetMyInfo(let token):
+            return [
                 "token": token
             ]
         }
@@ -321,14 +287,13 @@ extension RestApi : TargetType {
             return "".dataUsingEncoding(NSUTF8StringEncoding)!
         case .Register:
             return "".dataUsingEncoding(NSUTF8StringEncoding)!
-        case .LogOut:
-            return "".dataUsingEncoding(NSUTF8StringEncoding)!
         case .PasswordReset(_):
             return "".dataUsingEncoding(NSUTF8StringEncoding)!
             
         case .GetMyFavoriteRecipesIds:
             return "".dataUsingEncoding(NSUTF8StringEncoding)!
-            
+        case .GetMyInfo:
+            return "".dataUsingEncoding(NSUTF8StringEncoding)!
             
             //        case .Zen:
             //            return "Half measures are as bad as nothing at all.".dataUsingEncoding(NSUTF8StringEncoding)!

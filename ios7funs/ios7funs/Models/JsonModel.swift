@@ -267,9 +267,7 @@ public struct RegisterResultJsonObject {
 }
 
 public struct LoginResultJsonObject {
-    public let accessToken: String
-    public let tokenType: String
-    public let createdAt: Int
+    public let token: String
 }
 
 // MARK: My favoriate json object
@@ -621,9 +619,7 @@ extension RegisterResultJsonObject : Decodable {
 extension LoginResultJsonObject : Decodable {
     public static func decode(j: JSON) -> Decoded<LoginResultJsonObject> {
         let f = curry(LoginResultJsonObject.init)
-            <^> j <| "access_token"
-            <*> j <| "token_type"
-            <*> j <| "created_at"
+            <^> j <| "token"
         
         return f
     }

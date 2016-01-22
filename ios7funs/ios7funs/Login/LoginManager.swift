@@ -38,8 +38,8 @@ class LoginManager {
         )
 
         switch target {
-        case .LogOut(let token):
-            return endpoint.endpointByAddingHTTPHeaderFields(["Authorization": "Bearer: \(token)"])
+//        case .LogOut(let token):
+//            return endpoint.endpointByAddingHTTPHeaderFields(["Authorization": "Bearer: \(token)"])
 
         default:
             return endpoint
@@ -111,7 +111,7 @@ class LoginManager {
             .subscribe(
                 onNext: { res in
                     dLog("res = \(res)")
-                    let token = res.accessToken
+                    let token = res.token
                     LoginManager.token = token
                 },
                 onError: { err in
@@ -177,7 +177,7 @@ class LoginManager {
                 }
             )
             .map({ loginResult in
-                LoginManager.token = loginResult.accessToken
+                LoginManager.token = loginResult.token
             })
             .observeOn(MainScheduler.instance)
             .subscribe(

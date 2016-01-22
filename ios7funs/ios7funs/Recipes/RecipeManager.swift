@@ -39,8 +39,8 @@ class RecipeManager: NSObject {
         case .AddRemoveFavorite(_, let token):
             return endpoint.endpointByAddingHTTPHeaderFields(["Authorization": "Bearer \(token)"])
 
-        case .LogOut(let token):
-            return endpoint.endpointByAddingHTTPHeaderFields(["Authorization": "Bearer: \(token)"])
+//        case .LogOut(let token):
+//            return endpoint.endpointByAddingHTTPHeaderFields(["Authorization": "Bearer: \(token)"])
 
         default:
             return endpoint
