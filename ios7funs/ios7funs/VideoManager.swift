@@ -46,23 +46,11 @@ class VideoManager {
 
     func loadVideos(completionHandler: (videos: [VideoUIModel]) -> ()) {
         Async.background {
-            var videos = [VideoUIModel]()
             let realm = try! Realm()
-
-            let videoObjs = realm.objects(Video)
-            for videoObj in videoObjs {
-
-                // FIXME: workaround , data has too many empty youtubeVideoID
-                if videoObj.youtubeVideoCode.isEmpty {
-                    continue
-
-                } else {
-                    print("VideoId = \(videoObj.id) : RecipeId = \(videoObj.recipeId) : \(videoObj.youtubeVideoCode) : Type[\(videoObj.number)] : \(videoObj.desc)")
-                }
-
-                let video = VideoUIModel(dbData: videoObj)
-                videos.append(video)
-            }
+            let videoObjs = realm.objects(Video).filter("youtubeVideoCode != ''")
+            let videos = videoObjs
+                .map { VideoUIModel(dbData: $0) }
+                .sort { $0.publishedAt.toNSDate() < $1.publishedAt.toNSDate() }
 
             Async.main {
                 completionHandler(videos: videos)
@@ -77,7 +65,7 @@ class VideoManager {
             return nil
         }
 
-        let ids = videosOverviews.map({ $0.id }).sort(<)
+        let ids = videosOverviews.map({ $0.id }).sort(>)
         let videoIds = Array(ids.prefix(kFetchAmount))
         aLog("fetch Ids = \(videoIds.first)..\(videoIds.last) count = \(videoIds.count)")
         return videoIds
@@ -87,7 +75,10 @@ class VideoManager {
 
         Async.background {
             guard let fetchVideoIds = self.getFetchVideoIds() else {
-                return onFinished()
+                Async.main {
+                    onFinished()
+                }
+                return
             }
 
             self.restApiProvider
@@ -103,6 +94,9 @@ class VideoManager {
 
                     },
                     onCompleted: {
+
+                        NSNotificationCenter.defaultCenter()
+                            .postNotificationName("RELOAD_VIDEO_NOTIFICATION", object: nil)
 
                         onComplete()
 

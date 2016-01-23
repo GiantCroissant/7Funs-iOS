@@ -13,11 +13,14 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var lblLength: UILabel!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var lblDateAndViewCount: UILabel!
     @IBOutlet weak var Imagethumbnail: UIImageView!
+    @IBOutlet weak var videoLengthContainer: UIView!
+
+    var checkReuseId = 0
 
     var video: VideoUIModel! {
         didSet {
-
             // This line check whether cell is being RE-USE
             if (Imagethumbnail.tag != video.id) {
                 Imagethumbnail.image = nil
@@ -33,6 +36,10 @@ class VideoTableViewCell: UITableViewCell {
             self.lblName.text = video.title
             self.lblLength.text = UIUtils.getVideoLengthString(video.duration)
             self.lblDescription.text = video.desc
+
+            let dateOffset = NSDate().getOffsetStringFrom(video.publishedAt.toNSDate())
+            let viewCount = video.viewCount
+            lblDateAndViewCount.text = "\(dateOffset) ‧ 觀看次數: \(viewCount)"
         }
     }
 
@@ -49,6 +56,24 @@ class VideoTableViewCell: UITableViewCell {
             UIView.animateWithDuration(0.3) {
                 self.Imagethumbnail.alpha = 1
             }
+        }
+    }
+
+    override func setSelected(selected: Bool, animated: Bool) {
+        let color = videoLengthContainer.backgroundColor
+        super.setSelected(selected, animated: animated)
+
+        if (selected) {
+            videoLengthContainer.backgroundColor = color
+        }
+    }
+
+    override func setHighlighted(highlighted: Bool, animated: Bool) {
+        let color = videoLengthContainer.backgroundColor
+        super.setHighlighted(highlighted, animated: animated)
+
+        if (highlighted) {
+            videoLengthContainer.backgroundColor = color
         }
     }
 

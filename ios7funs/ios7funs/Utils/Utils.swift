@@ -56,12 +56,24 @@ class UIUtils {
     static func getVideoLengthString(seconds: Int) -> String {
         let (h, m, s) = secondsToHoursMinutesSeconds(seconds)
         if (h > 0) {
+            if s < 10 {
+                return "\(h):\(m):0\(s)"
+            }
+
             return "\(h):\(m):\(s)"
 
         } else if (m > 0) {
+            if s < 10 {
+                return "\(m):0\(s)"
+            }
+
             return "\(m):\(s)"
 
         } else {
+            if s < 10 {
+                return "0\(s)"
+            }
+
             return "\(s)"
         }
     }

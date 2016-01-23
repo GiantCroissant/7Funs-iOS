@@ -68,17 +68,6 @@ extension RecipeUIModel {
         }
     }
 
-    func printDebugString() {
-//        print("self.id = \(self.id)")
-//        print("self.title = \(self.title)")
-//        print("self.chefName = \(self.chefName)")
-//        print("self.desc = \(self.desc)")
-//        print("self.ingredient = \(self.ingredient)")
-//        print("self.seasoning = \(self.seasoning)")
-//        print("self.method = \(self.method)")
-//        print("self.hits = \(self.hits)")
-//        print("self.collectedCount = \(self.collectedCount)")
-    }
 }
 
 class VideoUIModel {
@@ -117,15 +106,16 @@ class VideoUIModel {
         self.viewCount = dbData.viewCount
         self.desc = dbData.desc
         self.publishedAt = dbData.publishedAt
-    }
 
-    func printDebugString() {
-        print("recipeId = \(self.recipeId)")
-        print("title = \(self.title)")
-        print("type = \(self.type)")
-//        print("duration = \(self.duration)")
-//        print("desc = \(self.desc)")
-//        print("viewCount = \(self.viewCount)")
+        let offset = NSDate().getOffsetStringFrom(publishedAt.toNSDate())
+        print("offset = \(offset)")
+        print("viewCount = \(viewCount)")
+
+//        let currentDate = NSDate()
+//        let date = self.updatedAt.toNSDate()
+//        print("currentDate [\(currentDate)]  vs  created date [\(date)] ")
+//
+//        print(currentDate.getOffsetStringFrom(date))
     }
 
 }

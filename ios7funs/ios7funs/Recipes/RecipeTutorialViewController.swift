@@ -40,9 +40,6 @@ class RecipeTutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // FIXME: remove this debug line
-        recipe.printDebugString()
-
         recipe.loadFoodImage { image in
             self.imgFood.image = image
         }

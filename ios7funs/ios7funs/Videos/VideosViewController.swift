@@ -19,7 +19,27 @@ class VideosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: Selector("didReceiveReloadNotification:"),
+            name: "RELOAD_VIDEO_NOTIFICATION",
+            object: nil
+        )
+
+        tableVideos.estimatedRowHeight = 100
+        tableVideos.rowHeight = UITableViewAutomaticDimension
+
         configureTableDummy()
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+    func didReceiveReloadNotification(notification: NSNotification) {
+        if videos.isEmpty {
+            loadVideos()
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
