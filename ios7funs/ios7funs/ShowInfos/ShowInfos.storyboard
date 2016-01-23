@@ -628,17 +628,11 @@
                                             <constraint firstItem="AY1-6h-vCK" firstAttribute="leading" secondItem="6iM-hv-ms7" secondAttribute="leading" id="7xQ-0z-0zR"/>
                                             <constraint firstAttribute="bottom" secondItem="5oj-CG-bRO" secondAttribute="bottom" constant="21" id="BfY-f6-Ojv"/>
                                             <constraint firstItem="AY1-6h-vCK" firstAttribute="top" secondItem="6iM-hv-ms7" secondAttribute="top" id="CSZ-x9-tCk"/>
-                                            <constraint firstAttribute="bottom" secondItem="5oj-CG-bRO" secondAttribute="bottom" id="Qzt-dz-Och"/>
                                             <constraint firstAttribute="trailing" secondItem="5oj-CG-bRO" secondAttribute="trailing" constant="26" id="nH5-dn-URc"/>
                                             <constraint firstItem="5oj-CG-bRO" firstAttribute="leading" secondItem="6iM-hv-ms7" secondAttribute="leading" constant="26" id="njY-cG-Jt9"/>
                                             <constraint firstAttribute="trailing" secondItem="AY1-6h-vCK" secondAttribute="trailing" id="wvC-y5-jUa"/>
                                             <constraint firstItem="5oj-CG-bRO" firstAttribute="top" secondItem="AY1-6h-vCK" secondAttribute="bottom" id="zkY-cJ-aX6"/>
                                         </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="Qzt-dz-Och"/>
-                                            </mask>
-                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -673,14 +667,14 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="bgContent" destination="5oj-CG-bRO" id="Pj3-fQ-1MV"/>
-                        <outlet property="contentVBottomSpacing" destination="BfY-f6-Ojv" id="DAq-2u-gjX"/>
                         <outlet property="imgTeacherProfile" destination="H1H-ya-To3" id="M1r-KT-pHJ"/>
+                        <outlet property="infoContainer" destination="5oj-CG-bRO" id="8Eo-f3-qTX"/>
+                        <outlet property="infoContainerBottomSpacing" destination="BfY-f6-Ojv" id="QC9-KT-ADM"/>
                         <outlet property="lblName" destination="1tV-42-jBb" id="mEf-yP-EEf"/>
                         <outlet property="scrollView" destination="H95-SH-p3u" id="5OC-cl-utQ"/>
                         <outlet property="topView" destination="AY1-6h-vCK" id="dxc-lc-Xfi"/>
-                        <outletCollection property="contentHSpacing" destination="njY-cG-Jt9" collectionClass="NSMutableArray" id="lxF-3f-ONm"/>
-                        <outletCollection property="contentHSpacing" destination="nH5-dn-URc" collectionClass="NSMutableArray" id="x8Q-W2-olJ"/>
+                        <outletCollection property="infoContainerHorizontalSpacings" destination="njY-cG-Jt9" collectionClass="NSMutableArray" id="prw-t1-I0N"/>
+                        <outletCollection property="infoContainerHorizontalSpacings" destination="nH5-dn-URc" collectionClass="NSMutableArray" id="Awn-FO-eco"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HHD-nT-4QQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

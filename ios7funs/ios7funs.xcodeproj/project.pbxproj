@@ -46,7 +46,6 @@
 		3B5565851C16F65000CFF1B4 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5565841C16F65000CFF1B4 /* RecipeTableViewCell.swift */; };
 		3B5565871C16F67700CFF1B4 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5565861C16F67700CFF1B4 /* RecipeDetailViewController.swift */; };
 		3B5565891C17F2DA00CFF1B4 /* UIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5565881C17F2DA00CFF1B4 /* UIModel.swift */; };
-		3B5FA7C01C4F603300149129 /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5FA7BF1C4F603300149129 /* Teacher.swift */; };
 		3B5FA7C21C4F91DA00149129 /* TeacherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5FA7C11C4F91DA00149129 /* TeacherDetailViewController.swift */; };
 		3B5FA7C41C4F97F600149129 /* TeacherInfoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5FA7C31C4F97F600149129 /* TeacherInfoDataView.swift */; };
 		3B5FA7C61C4F982500149129 /* TeacherInfoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B5FA7C51C4F982500149129 /* TeacherInfoDataView.xib */; };
@@ -128,7 +127,6 @@
 		3B5565841C16F65000CFF1B4 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeTableViewCell.swift; path = Recipes/RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		3B5565861C16F67700CFF1B4 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailViewController.swift; path = Recipes/RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		3B5565881C17F2DA00CFF1B4 /* UIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIModel.swift; path = Models/UIModel.swift; sourceTree = "<group>"; };
-		3B5FA7BF1C4F603300149129 /* Teacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Teacher.swift; path = ShowInfos/Teacher.swift; sourceTree = "<group>"; };
 		3B5FA7C11C4F91DA00149129 /* TeacherDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeacherDetailViewController.swift; path = ShowInfos/TeacherDetailViewController.swift; sourceTree = "<group>"; };
 		3B5FA7C31C4F97F600149129 /* TeacherInfoDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeacherInfoDataView.swift; path = ShowInfos/TeacherInfoDataView.swift; sourceTree = "<group>"; };
 		3B5FA7C51C4F982500149129 /* TeacherInfoDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TeacherInfoDataView.xib; path = ShowInfos/TeacherInfoDataView.xib; sourceTree = "<group>"; };
@@ -271,7 +269,6 @@
 				3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */,
 				3B41786C1C2135DD006CB7ED /* ShowIntroViewController.swift */,
 				3BBDCAC81C213E5900A0E4E3 /* ShowTeacherViewController.swift */,
-				3B5FA7BF1C4F603300149129 /* Teacher.swift */,
 				3B5FA7C11C4F91DA00149129 /* TeacherDetailViewController.swift */,
 				3B5FA7C31C4F97F600149129 /* TeacherInfoDataView.swift */,
 				3B5FA7C51C4F982500149129 /* TeacherInfoDataView.xib */,
@@ -594,7 +591,6 @@
 				3B62E8C01C16A473008AA784 /* CardView.swift in Sources */,
 				3BFBD56D1C278CF100313896 /* LoginManager.swift in Sources */,
 				3B41786B1C20DEBE006CB7ED /* RecipeTutorialViewController.swift in Sources */,
-				3B5FA7C01C4F603300149129 /* Teacher.swift in Sources */,
 				3BDF65B91C28EE2A0040F5DB /* CollectionManager.swift in Sources */,
 				3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */,
 				3BBCC62A1C4CC0CC00497FBC /* NibDesignable.swift in Sources */,

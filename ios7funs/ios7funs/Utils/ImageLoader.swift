@@ -33,38 +33,29 @@ class ImageLoader {
             return
         }
 
-        let image = UIImage(named: name)!        
-        let scaledImage = onNotInCache(image: image)
-        ImageCache.sharedCache.setObject(scaledImage, forKey: name)
-        onLoaded(image: scaledImage)
-
+        if let image = UIImage(named: name) {
+            let scaledImage = onNotInCache(image: image)
+            ImageCache.sharedCache.setObject(scaledImage, forKey: name)
+            onLoaded(image: scaledImage)
+        }
     }
 
-//    ImageLoader.sharedInstance.loadTeacherImage(teacher.image, onNotInCache: {
-//
-//    }, onLoaded: {
-//
-//    })
-
-    // TODO: Fix to background
     func loadDefaultImage(name: String, onLoaded: (image: UIImage?) -> Void) {
         if let image = ImageCache.sharedCache.objectForKey(name) as? UIImage {
             onLoaded(image: image)
             return
         }
 
-        let image = UIImage(named: name)!
-        ImageCache.sharedCache.setObject(image, forKey: name)
-        onLoaded(image: image)
+        if let image = UIImage(named: name) {
+            ImageCache.sharedCache.setObject(image, forKey: name)
+            onLoaded(image: image)
+        }
     }
 
-    func loadImage(imageName: String, url: String,
-        completionHandler:(image: UIImage?, imageName: String, fadeIn: Bool) -> ()) {
-            
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-
+    func loadImage(imageName: String, url: String, completionHandler:(image: UIImage?, imageName: String, fadeIn: Bool) -> ()) {
+        Async.background {
             if let image = ImageCache.sharedCache.objectForKey(imageName) as? UIImage {
-                dispatch_async(dispatch_get_main_queue()) {
+                Async.main {
                     completionHandler(image: image, imageName: imageName, fadeIn: false)
                 }
                 return
@@ -73,7 +64,7 @@ class ImageLoader {
             if let image = self.loadImageFromFile(imageName) {
                 ImageCache.sharedCache.setObject(image, forKey: imageName)
 
-                dispatch_async(dispatch_get_main_queue()) {
+                Async.main {
                     completionHandler(image: image, imageName: imageName, fadeIn: true)
                 }
                 return
@@ -84,7 +75,7 @@ class ImageLoader {
                     ImageCache.sharedCache.setObject(image, forKey: imageName)
                 }
 
-                dispatch_async(dispatch_get_main_queue()) {
+                Async.main {
                     completionHandler(image: image, imageName: imageName, fadeIn: true)
                 }
             }
@@ -112,7 +103,7 @@ class ImageLoader {
                 self.saveImageToFile(nsurl.lastPathComponent!, image: image)
             }
 
-        }.resume()
+            }.resume()
     }
 
     private func saveImageToFile(filename: String, image: UIImage) {
