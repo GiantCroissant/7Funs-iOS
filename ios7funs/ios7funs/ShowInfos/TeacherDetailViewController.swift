@@ -10,18 +10,17 @@ import UIKit
 
 class TeacherDetailViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var imgTeacherProfile: UIImageView!
     @IBOutlet weak var lblName: UILabel!
+
     @IBOutlet weak var bgContent: UIView!
-    @IBOutlet weak var topView: UIView!
-    @IBOutlet weak var scrollContentHeight: NSLayoutConstraint!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var scrollContent: UIView!
-
-
+    @IBOutlet var contentHSpacing: [NSLayoutConstraint]!
+    @IBOutlet weak var contentVBottomSpacing: NSLayoutConstraint!
+    
     var teacher: InstructorDetailJsonObject!
     var bgContentHeight: CGFloat = 0
-    var isDataLoaded = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +37,12 @@ class TeacherDetailViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        scrollView.contentSize.height = bgContentHeight + topView.frame.height
+        let contentHeight = bgContentHeight + topView.frame.height + contentVBottomSpacing.constant
+        scrollView.contentSize.height = contentHeight
+        print("viewDidLayoutSubviews scroll view height = \(scrollView.contentSize.height)")
     }
 
     func addTeacherDatas() {
-        isDataLoaded = true
         if teacher.experience != "" {
             addTeacherData("廚藝經驗", content: teacher.experience)
         }
@@ -61,6 +61,12 @@ class TeacherDetailViewController: UIViewController {
     }
 
     func addTeacherData(title: String, content: String) {
+        var hSpacing: CGFloat = 0
+        contentHSpacing.forEach {
+            hSpacing += $0.constant
+        }
+        let contentWidth = UIScreen.mainScreen().bounds.width - hSpacing
+
         var font: UIFont!
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
             font = UIFont.systemFontOfSize(32)
@@ -69,16 +75,13 @@ class TeacherDetailViewController: UIViewController {
             font = UIFont.systemFontOfSize(16)
         }
 
-        let width = UIScreen.mainScreen().bounds.width * 0.861333
-
         let contentView = TeacherInfoDataView()
+
         let titleLabel = contentView.lblSubTitle
         titleLabel.text = title
         titleLabel.font = font
         titleLabel.numberOfLines = 1
         titleLabel.sizeToFit()
-        print("\(titleLabel.text) : \(titleLabel.frame.height)")
-
 
         var font2: UIFont!
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
@@ -88,15 +91,17 @@ class TeacherDetailViewController: UIViewController {
             font2 = UIFont.boldSystemFontOfSize(16)
         }
 
+        var horizontalSpacing: CGFloat = 0
+        contentView.horizontalSpacing.forEach {
+            horizontalSpacing += $0.constant
+        }
+
         let contentLabel = contentView.lblContent
-        contentLabel.frame.size.width = width
-//        contentLabel.frame.size.height = CGFloat.max
+        contentLabel.frame.size.width = contentWidth - horizontalSpacing
         contentLabel.text = content
         contentLabel.font = font2
-        contentLabel.numberOfLines = 0
-        let conSize = contentLabel.sizeThatFits(CGSize(width: width, height: CGFloat.max))
-
-        print("\(contentLabel.text) : \(conSize.height)")
+        titleLabel.numberOfLines = 0
+        contentLabel.sizeToFit()
 
         var spacingHeight: CGFloat = 0
         contentView.spacings.forEach {
@@ -104,23 +109,15 @@ class TeacherDetailViewController: UIViewController {
         }
 
         let titleHeight = titleLabel.frame.height
-        let contentHeight = conSize.height
+        let contentHeight = contentLabel.frame.height
         let totalHeight = spacingHeight + titleHeight + contentHeight
 
-//        contentView.bgV.sizeToFit()
-//        print("contentView height = \(contentView.bgV.frame.height)")
-
-//        let size = CGSize(width: width, height: totalHeight)
-
         let origin = CGPoint(x: 0, y: bgContentHeight)
-        contentView.frame = CGRect(origin: origin, size: CGSize(width: width, height: totalHeight))
-        
+        let size = CGSize(width: contentWidth, height: totalHeight)
+        contentView.frame = CGRect(origin: origin, size: size)
 
         bgContent.addSubview(contentView)
         bgContentHeight += totalHeight
-        print("bgContentHeight = \(bgContentHeight)")
-
-//        bgContent.frame.size = CGSize(width: width, height: bgContentHeight)
     }
     
 }

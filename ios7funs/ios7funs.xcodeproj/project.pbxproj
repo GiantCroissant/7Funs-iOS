@@ -140,6 +140,7 @@
 		3BA2580C1C2824D800FA5A7C /* LinkFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinkFriendViewController.swift; path = Links/LinkFriendViewController.swift; sourceTree = "<group>"; };
 		3BA2580E1C28998800FA5A7C /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoPlayerViewController.swift; path = Videos/VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		3BA258111C28D77100FA5A7C /* ios7funs-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ios7funs-Bridging-Header.h"; sourceTree = "<group>"; };
+		3BABFFD51C533DE7007DD81A /* testUIview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testUIview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BBCC6291C4CC0CC00497FBC /* NibDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
 		3BBCC62B1C4CC28900497FBC /* RecipeMethod.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeMethod.xib; sourceTree = "<group>"; };
 		3BBCC62D1C4CC29D00497FBC /* RecipeMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeMethod.swift; sourceTree = "<group>"; };
@@ -175,6 +176,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3BABFFD21C533DE7007DD81A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3BD7210D1C117870006716D4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -353,6 +361,7 @@
 			isa = PBXGroup;
 			children = (
 				3BD721101C117870006716D4 /* ios7funs.app */,
+				3BABFFD51C533DE7007DD81A /* testUIview.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -396,6 +405,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3BABFFD41C533DE7007DD81A /* testUIview */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3BABFFE61C533DE7007DD81A /* Build configuration list for PBXNativeTarget "testUIview" */;
+			buildPhases = (
+				3BABFFD11C533DE7007DD81A /* Sources */,
+				3BABFFD21C533DE7007DD81A /* Frameworks */,
+				3BABFFD31C533DE7007DD81A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = testUIview;
+			productName = testUIview;
+			productReference = 3BABFFD51C533DE7007DD81A /* testUIview.app */;
+			productType = "com.apple.product-type.application";
+		};
 		3BD7210F1C117870006716D4 /* ios7funs */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3BD721221C117870006716D4 /* Build configuration list for PBXNativeTarget "ios7funs" */;
@@ -424,6 +450,9 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Giant Croissant";
 				TargetAttributes = {
+					3BABFFD41C533DE7007DD81A = {
+						CreatedOnToolsVersion = 7.2;
+					};
 					3BD7210F1C117870006716D4 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = F8PCUC479B;
@@ -444,11 +473,19 @@
 			projectRoot = "";
 			targets = (
 				3BD7210F1C117870006716D4 /* ios7funs */,
+				3BABFFD41C533DE7007DD81A /* testUIview */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3BABFFD31C533DE7007DD81A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3BD7210E1C117870006716D4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -504,6 +541,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3BABFFD11C533DE7007DD81A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3BD7210C1C117870006716D4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -590,6 +634,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3BABFFE41C533DE7007DD81A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = testUIview/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.giantcroissant.testUIview;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3BABFFE51C533DE7007DD81A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = testUIview/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.giantcroissant.testUIview;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		3BD721201C117870006716D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -720,6 +788,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3BABFFE61C533DE7007DD81A /* Build configuration list for PBXNativeTarget "testUIview" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BABFFE41C533DE7007DD81A /* Debug */,
+				3BABFFE51C533DE7007DD81A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		3BD7210B1C117870006716D4 /* Build configuration list for PBXProject "ios7funs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

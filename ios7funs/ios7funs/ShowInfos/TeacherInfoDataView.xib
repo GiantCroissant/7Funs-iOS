@@ -12,6 +12,8 @@
                 <outletCollection property="spacings" destination="ElF-Qm-5wb" collectionClass="NSMutableArray" id="atp-j4-uAD"/>
                 <outletCollection property="spacings" destination="1vR-wu-u2X" collectionClass="NSMutableArray" id="3hO-Yq-Z34"/>
                 <outletCollection property="spacings" destination="dQH-tl-p22" collectionClass="NSMutableArray" id="XY4-7N-qTB"/>
+                <outletCollection property="horizontalSpacing" destination="dKj-hA-Rer" collectionClass="NSMutableArray" id="SPC-JU-cZl"/>
+                <outletCollection property="horizontalSpacing" destination="2Ik-ac-K6i" collectionClass="NSMutableArray" id="Hsj-Cm-Ho5"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -20,13 +22,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小標題" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzv-nX-5yr" userLabel="Sub Title">
-                    <rect key="frame" x="12" y="12" width="48" height="19.5"/>
+                    <rect key="frame" x="12" y="12" width="48" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="內容" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIt-99-XbX" userLabel="Content">
-                    <rect key="frame" x="12" y="36.5" width="299" height="19.5"/>
+                    <rect key="frame" x="12" y="37" width="299" height="19"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
