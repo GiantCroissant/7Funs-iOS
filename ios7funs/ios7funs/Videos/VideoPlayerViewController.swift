@@ -21,10 +21,21 @@ class VideoPlayerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        title = video.title
+
         youtubePlayer.loadWithVideoId(video.youtubeVideoId)
         lblVideoLength.text = UIUtils.getVideoLengthString(video.duration)
 
         configureCamButtons()
+
+        VideoManager.sharedInstance.loadVideosWithRecipeId(video.recipeId) { videos in
+
+            print(videos)
+            print(videos.count)
+
+        }
+
     }
 
     func configureCamButtons() {

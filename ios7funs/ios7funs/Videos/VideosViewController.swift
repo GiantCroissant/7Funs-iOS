@@ -8,6 +8,7 @@
 
 import UIKit
 
+// TODO: scroll down to refresh, and auto scroll back to bottom if nothing loaded
 class VideosViewController: UIViewController {
 
     @IBOutlet weak var tableDummy: UIView!
