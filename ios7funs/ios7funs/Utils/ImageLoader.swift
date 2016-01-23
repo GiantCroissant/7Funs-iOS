@@ -27,6 +27,25 @@ class ImageLoader {
 
     let imageSaveQuality: CGFloat = 0.25
 
+    func loadTeacherImage(name: String, onNotInCache: (image: UIImage) -> UIImage, onLoaded: (image: UIImage?) -> Void) {
+        if let image = ImageCache.sharedCache.objectForKey(name) as? UIImage {
+            onLoaded(image: image)
+            return
+        }
+
+        let image = UIImage(named: name)!        
+        let scaledImage = onNotInCache(image: image)
+        ImageCache.sharedCache.setObject(scaledImage, forKey: name)
+        onLoaded(image: scaledImage)
+
+    }
+
+//    ImageLoader.sharedInstance.loadTeacherImage(teacher.image, onNotInCache: {
+//
+//    }, onLoaded: {
+//
+//    })
+
     // TODO: Fix to background
     func loadDefaultImage(name: String, onLoaded: (image: UIImage?) -> Void) {
         if let image = ImageCache.sharedCache.objectForKey(name) as? UIImage {

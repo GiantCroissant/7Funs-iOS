@@ -150,12 +150,16 @@ extension ShowTeacherViewController: UICollectionViewDataSource {
         cell.bgContent.layer.cornerRadius = 5
         cell.btnTeacherDetail.tag = indexPath.row
 
-        ImageLoader.sharedInstance.loadDefaultImage(teacher.image) { image in
-
-            let scaledImage = self.scaleImage(image!, cell: cell)
-            cell.btnTeacherDetail.imageView?.contentMode = .Top
-            cell.btnTeacherDetail.setImage(scaledImage, forState: .Normal)
-        }
+        ImageLoader.sharedInstance.loadTeacherImage(teacher.image,
+            onNotInCache: { image in
+                let scaledImage = self.scaleImage(image, cell: cell)
+                return scaledImage
+            },
+            onLoaded: { image in
+                cell.btnTeacherDetail.imageView?.contentMode = .Top
+                cell.btnTeacherDetail.setImage(image, forState: .Normal)
+            }
+        )
 
         cell.lblName.text = teacher.name
         cell.lblDescription.text = teacher.shortDescription
