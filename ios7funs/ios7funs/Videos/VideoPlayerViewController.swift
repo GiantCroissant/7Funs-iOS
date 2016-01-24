@@ -12,9 +12,6 @@ class VideoPlayerViewController: UIViewController {
 
     @IBOutlet weak var youtubePlayer: YTPlayerView!
     @IBOutlet weak var lblVideoLength: UILabel!
-    @IBOutlet weak var btnMainCam: UIButton!
-    @IBOutlet weak var btnTopCam: UIButton!
-    @IBOutlet weak var btnEngSub: UIButton!
     @IBOutlet var camButtons: [UIButton]!
 
     var videoTypeYoutubeIds = [Int : String]()
@@ -44,11 +41,13 @@ class VideoPlayerViewController: UIViewController {
 
     func configureCamButtons() {
         for button in camButtons {
+            button.enabled = videoTypeYoutubeIds[button.tag] != nil ? true : false
             button.layer.cornerRadius = 2
             button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor(hexString: "#d4cdc8").CGColor
-            button.enabled = videoTypeYoutubeIds[button.tag] != nil ? true : false
-            button.configureHexColorBGForState(normal: "#FFFFFF", highlight: "#DDDDDD")
+            button.layer.borderColor = button.enabled ? UIColor(hexString: "#d4cdc8").CGColor
+                : UIColor.darkGrayColor().CGColor
+
+            button.configureHexColorBGForState("#888888", normal: "#FFFFFF", highlight: "#CCCCCC")
             button.setTitleColor(UIColor.lightTextColor(), forState: .Disabled)
         }
     }

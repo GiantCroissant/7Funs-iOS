@@ -97,6 +97,18 @@ class VideoManager {
         }
     }
 
+    func loadMainVideoWithRecipeId(recipeId: Int, onComplete: (video: VideoUIModel?) -> Void) {
+        Async.background {
+            let realm = try! Realm()
+            let video = realm.objects(Video).filter("recipeId = \(recipeId) AND number = 1")
+                .map { VideoUIModel(dbData: $0) }.first
+
+            Async.main {
+                onComplete(video: video)
+            }
+        }
+    }
+
     func getFetchVideoIds() -> [Int]? {
         let realm = try! Realm()
         let videosOverviews = realm.objects(VideoOverview)

@@ -53,7 +53,12 @@ class RecipeDetailViewController: UIViewController {
         let vc = segue.destinationViewController
         if vc.title == "Video Tutorial" {
             let videoTutorialVC = vc as! RecipeVideoTutorialViewController
-            videoTutorialVC.recipe = self.recipe
+
+            VideoManager.sharedInstance.loadMainVideoWithRecipeId(recipe.id) { video in
+                if video != nil {
+                    videoTutorialVC.video = video
+                }
+            }
         }
 
         if vc.title == "Tutorial" {

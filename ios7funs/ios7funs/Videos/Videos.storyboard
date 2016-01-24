@@ -411,9 +411,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnEngSub" destination="WP3-Ok-Jqp" id="hcA-dx-psq"/>
-                        <outlet property="btnMainCam" destination="KMX-Tt-c9z" id="s2u-4Z-pEA"/>
-                        <outlet property="btnTopCam" destination="QQ2-Bz-Nd0" id="eTk-fh-lfb"/>
                         <outlet property="lblVideoLength" destination="Ghn-fH-cTl" id="vvl-9q-mMl"/>
                         <outlet property="youtubePlayer" destination="Y7t-aN-qi5" id="kB6-r6-YZV"/>
                         <outletCollection property="camButtons" destination="KMX-Tt-c9z" collectionClass="NSMutableArray" id="wfq-WQ-Ezh"/>
