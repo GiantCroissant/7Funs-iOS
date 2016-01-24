@@ -28,12 +28,10 @@ extension RecipeMethod {
     }
 
     func setupMethod(content: String, font: UIFont, containerWidth: CGFloat) {
-
-
         let horizontalSpacing = horizontalSpacings.reduce(0) { $0 + $1.constant }
         lblMethod.frame.size.width = containerWidth - horizontalSpacing
         lblMethod.frame.size.height = CGFloat.max
-        lblMethod.text = content
+        lblMethod.attributedText = content.addLineSpacing(4)
         lblMethod.font = font
         lblMethod.numberOfLines = 0
         lblMethod.sizeToFit()

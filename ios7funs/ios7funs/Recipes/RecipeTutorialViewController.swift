@@ -61,6 +61,7 @@ class RecipeTutorialViewController: UIViewController {
         configureInformation()
         configureTutorial()
 
+        showToastIndicator()
     }
 
     func setupContainerWidth() {
@@ -83,11 +84,6 @@ class RecipeTutorialViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-
-
-
-//        let bounds = self.bgBottom.bounds
-//        let bottom = self.bgBottom.sizeThatFits(CGSize(width: bounds.width, height: 100000))
         let newHeight = bottomToTopHeight.constant
             + containerHeight
             + containerVertiaclSpacings.reduce(0) { $0 + $1.constant }
@@ -107,13 +103,14 @@ class RecipeTutorialViewController: UIViewController {
 //        let newHeight = bottomToTopHeight.constant + containerHeight
 //        contentScrollView.contentSize.height = newHeight
 
+        hideToastIndicator()
     }
 
     func configureTutorial() {
         let ingredient = recipe.ingredient
         let seasoning = recipe.seasoning
-        lblIngredients.text = reformatIngredientString(ingredient)
-        lblSeasonings.text = reformatSeasoningString(seasoning)
+        lblIngredients.attributedText = reformatIngredientString(ingredient).addLineSpacing(4)
+        lblSeasonings.attributedText = reformatSeasoningString(seasoning).addLineSpacing(4)
     }
 
     func addRecipeMethods() {

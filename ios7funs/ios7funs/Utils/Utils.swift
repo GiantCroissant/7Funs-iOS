@@ -245,6 +245,22 @@ extension UIButton {
 
 }
 
+extension String {
+
+    func addLineSpacing(spacing: CGFloat) -> NSAttributedString {
+        let attrText = NSMutableAttributedString(string: self)
+        let paraStyle = NSMutableParagraphStyle()
+        paraStyle.lineSpacing = spacing
+        attrText.addAttribute(
+            NSParagraphStyleAttributeName,
+            value: paraStyle,
+            range: NSRange(location: 0, length: attrText.length)
+        )
+        return attrText
+    }
+
+}
+
 extension UIImageView {
 
     func scaleImageViewImage(mode: UIViewContentMode, radius: CGFloat = 2) {
