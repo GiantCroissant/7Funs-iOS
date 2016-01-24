@@ -87,9 +87,16 @@ class VideoManager {
     func loadVideosWithRecipeId(recipeId: Int, onComplete: (videos: [VideoUIModel]) -> Void) {
         Async.background {
             let realm = try! Realm()
-            let videos = realm.objects(Video).filter("recipeId = \(recipeId)")
+            var videos = realm.objects(Video).filter("recipeId = \(recipeId)")
                 .map { VideoUIModel(dbData: $0) }
                 .sort { $0.type < $1.type }
+
+            // FIXME: fake data
+            let videoType2 = VideoUIModel()
+            videoType2.type = 2
+            videoType2.youtubeVideoId = "1Gw9fJGKvcc"
+            videos.append(videoType2)
+            //
 
             Async.main {
                 onComplete(videos: videos)
@@ -149,18 +156,6 @@ class VideoManager {
         }
     }
 
-    func loadVideo(recipeId: Int, onLoaded: ([VideoUIModel]) -> Void) {
-        var videos = [VideoUIModel]()
-
-        let realm = try! Realm()
-        let videoDBs = realm.objects(Video).filter("recipeId = \(recipeId)")
-        for videoDB in videoDBs {
-            let video = VideoUIModel(dbData: videoDB)
-            videos.append(video)
-        }
-
-        onLoaded(videos)
-    }
 
 }
 

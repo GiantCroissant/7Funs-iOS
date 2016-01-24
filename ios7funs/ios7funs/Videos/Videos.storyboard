@@ -40,7 +40,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="353" height="108"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="eMk-rB-rFh" id="v21-AG-L6g">
-                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="108"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="107.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kxr-M2-idC" userLabel="Video Thumb Containter">
@@ -266,9 +266,9 @@
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y7t-aN-qi5" customClass="YTPlayerView">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_video_L" translatesAutoresizingMaskIntoConstraints="NO" id="rHC-fK-tyE">
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_video_L" translatesAutoresizingMaskIntoConstraints="NO" id="rHC-fK-tyE">
                                         <rect key="frame" x="156" y="74" width="64" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="6mT-MF-MxE"/>
@@ -314,7 +314,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2v-UW-mw0">
                                 <rect key="frame" x="0.0" y="275" width="375" height="392"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KMX-Tt-c9z">
+                                    <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KMX-Tt-c9z">
                                         <rect key="frame" x="11" y="13" width="171" height="51"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -330,8 +330,11 @@
                                                 <exclude reference="9S5-gs-enc"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="onCamButtonClick:" destination="eB4-rO-3vh" eventType="touchUpInside" id="b5w-BU-aPE"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQ2-Bz-Nd0">
+                                    <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQ2-Bz-Nd0">
                                         <rect key="frame" x="193" y="13" width="171" height="51"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -347,8 +350,11 @@
                                                 <exclude reference="key-gd-jew"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="onCamButtonClick:" destination="eB4-rO-3vh" eventType="touchUpInside" id="MGe-53-Aw2"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WP3-Ok-Jqp">
+                                    <button opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WP3-Ok-Jqp">
                                         <rect key="frame" x="11" y="75" width="171" height="51"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -364,6 +370,9 @@
                                                 <exclude reference="zeX-sG-RC5"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="onCamButtonClick:" destination="eB4-rO-3vh" eventType="touchUpInside" id="x7m-3a-SBi"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.95686274510000002" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>

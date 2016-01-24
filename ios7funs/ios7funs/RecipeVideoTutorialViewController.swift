@@ -37,7 +37,7 @@ class RecipeVideoTutorialViewController: UIViewController {
 
 
 
-        VideoManager.sharedInstance.loadVideo(recipe.id) { videos in
+        VideoManager.sharedInstance.loadVideosWithRecipeId(recipe.id) { videos in
             for video in videos {
                 switch (video.type) {
                 case 1:

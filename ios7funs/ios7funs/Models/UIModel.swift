@@ -91,8 +91,6 @@ class VideoUIModel {
     }
 
     init(dbData: Video) {
-        print(dbData)
-
         self.id = dbData.id
         self.recipeId = dbData.recipeId
         self.youtubeVideoId = dbData.youtubeVideoCode
@@ -106,16 +104,6 @@ class VideoUIModel {
         self.viewCount = dbData.viewCount
         self.desc = dbData.desc
         self.publishedAt = dbData.publishedAt
-
-        let offset = NSDate().getOffsetStringFrom(publishedAt.toNSDate())
-        print("offset = \(offset)")
-        print("viewCount = \(viewCount)")
-
-//        let currentDate = NSDate()
-//        let date = self.updatedAt.toNSDate()
-//        print("currentDate [\(currentDate)]  vs  created date [\(date)] ")
-//
-//        print(currentDate.getOffsetStringFrom(date))
     }
 
 }

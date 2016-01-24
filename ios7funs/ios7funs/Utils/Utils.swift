@@ -71,10 +71,10 @@ class UIUtils {
 
         } else {
             if s < 10 {
-                return "0\(s)"
+                return "00:0\(s)"
             }
 
-            return "\(s)"
+            return "00:\(s)"
         }
     }
 
