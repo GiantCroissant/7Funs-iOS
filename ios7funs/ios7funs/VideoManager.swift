@@ -87,16 +87,9 @@ class VideoManager {
     func loadVideosWithRecipeId(recipeId: Int, onComplete: (videos: [VideoUIModel]) -> Void) {
         Async.background {
             let realm = try! Realm()
-            var videos = realm.objects(Video).filter("recipeId = \(recipeId)")
+            let videos = realm.objects(Video).filter("recipeId = \(recipeId)")
                 .map { VideoUIModel(dbData: $0) }
                 .sort { $0.type < $1.type }
-
-            // FIXME: fake data
-            let videoType2 = VideoUIModel()
-            videoType2.type = 2
-            videoType2.youtubeVideoId = "1Gw9fJGKvcc"
-            videos.append(videoType2)
-            //
 
             Async.main {
                 onComplete(videos: videos)

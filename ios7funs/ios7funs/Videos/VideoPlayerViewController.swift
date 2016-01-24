@@ -28,7 +28,6 @@ class VideoPlayerViewController: UIViewController {
         title = video.title
         lblVideoLength.text = "00:00"
 
-
         youtubePlayer.delegate = self
         youtubePlayer.loadWithVideoId(video.youtubeVideoId)
     }
@@ -63,9 +62,11 @@ extension VideoPlayerViewController {
     @IBAction func onCamButtonClick(sender: UIButton) {
         let type = sender.tag
         if let videoId = videoTypeYoutubeIds[type] {
-
-            youtubePlayer.cueVideoById(videoId, startSeconds: Float(currentTime), suggestedQuality:
-                YTPlaybackQuality.Default)
+            youtubePlayer.cueVideoById(
+                videoId,
+                startSeconds: currentTime,
+                suggestedQuality: YTPlaybackQuality.Default
+            )
             youtubePlayer.seekToSeconds(currentTime, allowSeekAhead: true)
         }
     }
@@ -84,10 +85,6 @@ extension VideoPlayerViewController: YTPlayerViewDelegate {
 
     func playerView(playerView: YTPlayerView!, receivedError error: YTPlayerError) {
         dLog("YTPlayerError = \(error.rawValue)")
-    }
-
-    func playerViewPreferredWebViewBackgroundColor(playerView: YTPlayerView!) -> UIColor! {
-        return UIColor.clearColor()
     }
 
 }
