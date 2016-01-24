@@ -10,6 +10,7 @@ import UIKit
 
 class RecipeTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var container: UIView!
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var lblInformation: UILabel!
     @IBOutlet weak var btnAddCollection: UIButton!
@@ -20,6 +21,8 @@ class RecipeTableViewCell: UITableViewCell {
     var recipe: RecipeUIModel!
     
     func updateCell() {
+        container.layer.cornerRadius = 3
+
         indicatorFoodImage.startAnimating()
         configureRecipeImage(recipe.id, imageName: recipe.imageName)
         configureFavoriteButton(recipe.favorite)

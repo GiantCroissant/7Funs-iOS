@@ -10,7 +10,7 @@
         <!--Recipes-->
         <scene sceneID="go5-U7-bJm">
             <objects>
-                <viewController title="Recipes" id="Em0-5b-b7w" customClass="RecipesViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Recipes" automaticallyAdjustsScrollViewInsets="NO" id="Em0-5b-b7w" customClass="RecipesViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cUS-Z3-lXa"/>
                         <viewControllerLayoutGuide type="bottom" id="gMc-JZ-G2F"/>
@@ -24,10 +24,15 @@
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="258" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NwZ-h3-aJb">
-                                <rect key="frame" x="5" y="69" width="365" height="593"/>
+                                <rect key="frame" x="5" y="64" width="365" height="603"/>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.95686274510000002" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="EUo-dN-B6g">
+                                    <rect key="frame" x="0.0" y="0.0" width="365" height="5"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="3P4-5u-5wD">
-                                    <rect key="frame" x="0.0" y="286" width="365" height="66"/>
+                                    <rect key="frame" x="0.0" y="291" width="365" height="66"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Cgu-Ac-xdg">
@@ -42,13 +47,17 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="idRecipeCell" rowHeight="258" id="eXP-D9-dGp" customClass="RecipeTableViewCell" customModule="ios7funs" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="365" height="258"/>
+                                        <rect key="frame" x="0.0" y="33" width="365" height="258"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eXP-D9-dGp" id="sfl-Js-dUI">
                                             <rect key="frame" x="0.0" y="0.0" width="365" height="258"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvP-5r-nGN" userLabel="Card" customClass="CardView" customModule="ios7funs" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7M-QD-CRM" customClass="CardView" customModule="ios7funs" customModuleProvider="target">
+                                                    <rect key="frame" x="5" y="5" width="355" height="248"/>
+                                                    <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                </view>
+                                                <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvP-5r-nGN" userLabel="Corner">
                                                     <rect key="frame" x="5" y="5" width="355" height="248"/>
                                                     <subviews>
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0g-mk-wnY" userLabel="Food Background">
@@ -140,7 +149,7 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5人收藏．991人看過 (Default)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Euu-Jm-t9V" userLabel="Recipe Info">
-                                                            <rect key="frame" x="40" y="214" width="259" height="20"/>
+                                                            <rect key="frame" x="40" y="214" width="259" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -163,15 +172,20 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstItem="U7M-QD-CRM" firstAttribute="leading" secondItem="sfl-Js-dUI" secondAttribute="leading" constant="5" id="1zb-LX-ufm"/>
                                                 <constraint firstAttribute="trailing" secondItem="mvP-5r-nGN" secondAttribute="trailing" constant="5" id="9A7-4e-uNu"/>
                                                 <constraint firstItem="mvP-5r-nGN" firstAttribute="leading" secondItem="sfl-Js-dUI" secondAttribute="leading" constant="5" id="Cis-MK-gxf"/>
+                                                <constraint firstAttribute="bottom" secondItem="U7M-QD-CRM" secondAttribute="bottom" constant="5" id="GcY-1G-YPr"/>
                                                 <constraint firstAttribute="bottom" secondItem="mvP-5r-nGN" secondAttribute="bottom" constant="5" id="Zn8-Fn-c8A"/>
                                                 <constraint firstItem="mvP-5r-nGN" firstAttribute="top" secondItem="sfl-Js-dUI" secondAttribute="top" constant="5" id="aVU-Fw-Jxb"/>
+                                                <constraint firstAttribute="trailing" secondItem="U7M-QD-CRM" secondAttribute="trailing" constant="5" id="acL-gc-S7M"/>
+                                                <constraint firstItem="U7M-QD-CRM" firstAttribute="top" secondItem="sfl-Js-dUI" secondAttribute="top" constant="5" id="yD1-Ol-NZQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="btnAddCollection" destination="ELg-qo-Dwt" id="f8z-Vy-r69"/>
                                             <outlet property="btnFood" destination="2Ku-tp-uXD" id="V1W-35-jCq"/>
+                                            <outlet property="container" destination="mvP-5r-nGN" id="XeL-ia-yT3"/>
                                             <outlet property="indicatorFoodImage" destination="pcw-wf-NcP" id="bqO-TV-bGr"/>
                                             <outlet property="labelTitle" destination="0Zb-gV-cP9" id="e0T-nx-PFd"/>
                                             <outlet property="lblInformation" destination="Euu-Jm-t9V" id="I4d-Y9-9C8"/>
@@ -193,7 +207,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NwZ-h3-aJb" firstAttribute="top" secondItem="pAg-Q3-wSo" secondAttribute="bottom" constant="5" id="4xO-R7-U8m"/>
+                            <constraint firstItem="NwZ-h3-aJb" firstAttribute="top" secondItem="pAg-Q3-wSo" secondAttribute="bottom" id="4xO-R7-U8m"/>
                             <constraint firstItem="NwZ-h3-aJb" firstAttribute="leading" secondItem="m1a-RO-TAI" secondAttribute="leading" constant="5" id="D30-pY-yA4"/>
                             <constraint firstItem="pAg-Q3-wSo" firstAttribute="leading" secondItem="m1a-RO-TAI" secondAttribute="leading" id="E4i-ot-ZIK"/>
                             <constraint firstItem="rGr-Xh-ssI" firstAttribute="leading" secondItem="m1a-RO-TAI" secondAttribute="leading" id="UcW-iL-cu2"/>
@@ -202,7 +216,7 @@
                             <constraint firstAttribute="trailing" secondItem="NwZ-h3-aJb" secondAttribute="trailing" constant="5" id="elY-cp-3te"/>
                             <constraint firstAttribute="trailing" secondItem="rGr-Xh-ssI" secondAttribute="trailing" id="ghc-iz-bHy"/>
                             <constraint firstItem="NwZ-h3-aJb" firstAttribute="top" secondItem="m1a-RO-TAI" secondAttribute="top" constant="8" id="iZA-hL-5Ac"/>
-                            <constraint firstItem="gMc-JZ-G2F" firstAttribute="top" secondItem="NwZ-h3-aJb" secondAttribute="bottom" constant="5" id="jpe-VM-w6q"/>
+                            <constraint firstItem="gMc-JZ-G2F" firstAttribute="top" secondItem="NwZ-h3-aJb" secondAttribute="bottom" id="jpe-VM-w6q"/>
                             <constraint firstItem="rGr-Xh-ssI" firstAttribute="top" secondItem="pAg-Q3-wSo" secondAttribute="bottom" id="mwp-he-K8i"/>
                             <constraint firstItem="NwZ-h3-aJb" firstAttribute="top" secondItem="pAg-Q3-wSo" secondAttribute="bottom" constant="5" id="rSX-LD-gms"/>
                             <constraint firstItem="gMc-JZ-G2F" firstAttribute="top" secondItem="rGr-Xh-ssI" secondAttribute="bottom" id="zuL-oF-Sh3"/>
@@ -214,7 +228,13 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="ZDy-jx-0ki">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="HFX-dv-vO7"/>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="indicatorLoadMore" destination="Cgu-Ac-xdg" id="efs-Un-dCA"/>
@@ -223,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5jU-kb-hq0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="435.5" y="1203.5"/>
+            <point key="canvasLocation" x="267.5" y="1203.5"/>
         </scene>
         <!--Recipe Detail-->
         <scene sceneID="Ck1-mE-hdg">

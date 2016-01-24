@@ -10,7 +10,6 @@ import UIKit
 import RealmSwift
 
 class RecipesViewController: UIViewController {
-
     @IBOutlet weak var tableRecipes: UITableView!
     @IBOutlet weak var indicatorLoadMore: UIActivityIndicatorView!
 
