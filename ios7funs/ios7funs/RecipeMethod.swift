@@ -8,10 +8,42 @@
 
 import Foundation
 
-
+@IBDesignable
 class RecipeMethod: NibDesignable {
 
     @IBOutlet weak var lblNumber: UILabel!
     @IBOutlet weak var lblMethod: UILabel!
+    @IBOutlet var verticalSpacings: [NSLayoutConstraint]!
+    @IBOutlet var horizontalSpacings: [NSLayoutConstraint]!
 
+}
+
+extension RecipeMethod {
+
+    func setupNumber(number: String, font: UIFont) {
+        lblNumber.text = number
+        lblNumber.font = font
+        lblNumber.numberOfLines = 1
+        lblNumber.sizeToFit()
+    }
+
+    func setupMethod(content: String, font: UIFont, containerWidth: CGFloat) {
+
+
+        let horizontalSpacing = horizontalSpacings.reduce(0) { $0 + $1.constant }
+        lblMethod.frame.size.width = containerWidth - horizontalSpacing
+        lblMethod.frame.size.height = CGFloat.max
+        lblMethod.text = content
+        lblMethod.font = font
+        lblMethod.numberOfLines = 0
+        lblMethod.sizeToFit()
+
+        dLog("method = \(content) height = \(lblMethod.frame.height)")
+    }
+
+    func getHeight() -> CGFloat {
+        return lblMethod.frame.height
+            + verticalSpacings.reduce(0) { $0 + $1.constant }
+    }
+    
 }

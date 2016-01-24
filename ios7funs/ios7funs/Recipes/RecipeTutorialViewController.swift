@@ -14,6 +14,8 @@ class RecipeTutorialViewController: UIViewController {
     var blurView: UIVisualEffectView!
     var recipe: RecipeUIModel!
 
+    @IBOutlet var containerHorizontalSpacings: [NSLayoutConstraint]!
+    @IBOutlet var containerVertiaclSpacings: [NSLayoutConstraint]!
     @IBOutlet weak var btnAddFavorite: UIButton!
     @IBOutlet weak var imgFood: UIImageView!
     @IBOutlet weak var labelFoodTitle: UILabel!
@@ -28,6 +30,12 @@ class RecipeTutorialViewController: UIViewController {
     @IBOutlet weak var bottomToTopHeight: NSLayoutConstraint!
 
     @IBOutlet weak var contentScrollView: UIScrollView!
+
+    var containerHeight: CGFloat = 0
+    var containerWidth: CGFloat = 0
+    var fontNumber: UIFont!
+    var fontMethod: UIFont!
+
     @IBAction func onAddFavoriteClick(sender: UIButton) {
         if let token = LoginManager.token {
             requestSwitchFavoriteState(token)
@@ -46,22 +54,59 @@ class RecipeTutorialViewController: UIViewController {
 
         labelFoodTitle.text = recipe.title
         foodTitle.text = recipe.title
-
+        setupFonts()
+        setupContainerWidth()
         configureFoodImageBlurEffect()
         configureFavoriteButton(recipe.favorite)
         configureInformation()
         configureTutorial()
+
     }
 
+    func setupContainerWidth() {
+        let horizontalSpacing = containerHorizontalSpacings.reduce(0) { $0 + $1.constant }
+        containerWidth = UIScreen.mainScreen().bounds.width - horizontalSpacing
+    }
+    
+    func setupFonts() {
+        let idiom = UIDevice.currentDevice().userInterfaceIdiom
+        if idiom == .Pad {
+            fontNumber = UIFont.boldSystemFontOfSize(46)
+            fontMethod = UIFont.systemFontOfSize(32, weight: UIFontWeightLight)
+
+        } else if idiom == .Phone {
+            fontNumber = UIFont.boldSystemFontOfSize(23)
+            fontMethod = UIFont.systemFontOfSize(16, weight: UIFontWeightLight)
+        }
+    }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        let bounds = self.bgBottom.bounds
-        let bottom = self.bgBottom.sizeThatFits(CGSize(width: bounds.width, height: 100000))
 
-        let newHeight = bottomToTopHeight.constant + bottom.height
+
+
+//        let bounds = self.bgBottom.bounds
+//        let bottom = self.bgBottom.sizeThatFits(CGSize(width: bounds.width, height: 100000))
+        let newHeight = bottomToTopHeight.constant
+            + containerHeight
+            + containerVertiaclSpacings.reduce(0) { $0 + $1.constant }
         contentScrollView.contentSize.height = newHeight
+    }
+
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        dLog("bgTutorial.frame.height = \(bgTutorial.frame.height)")
+        containerHeight = bgTutorial.frame.height
+        addRecipeMethods()
+
+//        let bounds = self.bgBottom.bounds
+//        let bottom = self.bgBottom.sizeThatFits(CGSize(width: bounds.width, height: 100000))
+//        let newHeight = bottomToTopHeight.constant + containerHeight
+//        contentScrollView.contentSize.height = newHeight
+
     }
 
     func configureTutorial() {
@@ -69,11 +114,24 @@ class RecipeTutorialViewController: UIViewController {
         let seasoning = recipe.seasoning
         lblIngredients.text = reformatIngredientString(ingredient)
         lblSeasonings.text = reformatSeasoningString(seasoning)
+    }
 
-//        dLog("recipe.method = \(recipe.method)")
+    func addRecipeMethods() {
+        for index in 0..<recipe.method.count {
+            let content = recipe.method[index]
 
-        // TODO: - FIX recipe method to better display
-    //        lblMethods.text = recipe.method
+            let methodView = RecipeMethod()
+            methodView.setupNumber(String(index), font: fontNumber)
+            methodView.setupMethod(content, font: fontMethod, containerWidth: containerWidth)
+
+            let methodViewHeight = methodView.getHeight()
+
+            methodView.frame = CGRectMake(0, containerHeight, containerWidth, methodViewHeight)
+            bgTutorial.addSubview(methodView)
+            containerHeight += methodViewHeight
+        }
+
+
     }
 
     func reformatIngredientString(ingredient: String) -> String {

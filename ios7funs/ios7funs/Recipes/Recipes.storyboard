@@ -474,7 +474,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="535"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHg-g2-FwB" userLabel="Bottom Content">
-                                                <rect key="frame" x="0.0" y="147" width="375" height="691.5"/>
+                                                <rect key="frame" x="0.0" y="147" width="375" height="285.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIR-gx-Iux" userLabel="Title View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
@@ -493,8 +493,8 @@
                                                             <constraint firstItem="qgF-pY-7sV" firstAttribute="centerY" secondItem="xIR-gx-Iux" secondAttribute="centerY" id="SS1-jM-ffT"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uax-Na-uPJ" userLabel="Card View" customClass="CardView" customModule="ios7funs" customModuleProvider="target">
-                                                        <rect key="frame" x="11" y="51" width="353" height="628.5"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uax-Na-uPJ" userLabel="Card View">
+                                                        <rect key="frame" x="11" y="51" width="353" height="222.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cc5-C9-RHE" userLabel="Top">
                                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="48"/>
@@ -537,7 +537,7 @@
                                                                         </variation>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 人收藏．991 人看過 (Default)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KJ-M8-EAS" userLabel="Information">
-                                                                        <rect key="frame" x="40" y="14" width="257" height="21"/>
+                                                                        <rect key="frame" x="40" y="14" width="257" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                                         <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -585,87 +585,57 @@
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9I-ib-NPL">
-                                                                <rect key="frame" x="12" y="61" width="32" height="20"/>
+                                                                <rect key="frame" x="12" y="61" width="32" height="19.5"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <color key="textColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOe-Dw-hKv" userLabel="Ingredients">
-                                                                <rect key="frame" x="12" y="92" width="329" height="134"/>
-                                                                <string key="text">在來米粉 100G
-雞蛋 一顆
-水 160G
-鹽 少許
-香油 0.5大匙
-芝麻 適量
-蔥 2根</string>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOe-Dw-hKv" userLabel="Ingredients">
+                                                                <rect key="frame" x="12" y="92" width="329" height="19.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="調味料" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipN-Be-w40">
-                                                                <rect key="frame" x="12" y="246" width="48" height="20"/>
+                                                                <rect key="frame" x="12" y="132" width="48" height="19.5"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <color key="textColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbz-bz-dwQ" userLabel="Seasonings">
-                                                                <rect key="frame" x="12" y="278" width="329" height="58"/>
-                                                                <string key="text">醬油露或日式醬油 一大匙
-砂糖 1/2茶匙
-白醋 1/4茶匙</string>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="調味料內文" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbz-bz-dwQ" userLabel="Seasonings">
+                                                                <rect key="frame" x="12" y="163" width="329" height="19.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="做法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7T-WQ-TFX">
-                                                                <rect key="frame" x="12" y="355" width="329" height="20"/>
+                                                                <rect key="frame" x="12" y="203" width="329" height="19.5"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <color key="textColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZk-fw-dtf" userLabel="Steps">
-                                                                <rect key="frame" x="12" y="387" width="329" height="230"/>
-                                                                <string key="text">１．在來米粉與水加鹽拌勻
-２．雞蛋打散
-３．與1拌勻成麵糊 
-４．蒸鍋抹一層油,分兩次倒入麵糊(油多一點比較不沾,我怕油所以抹得很少) 
-５．蒸5分鐘左右至熟取出 
-６．如果油抹得少可以用刮刀輕輕取出 
-７．捲起 
-８．切成你想要的大小 
-９．香油與蔥爆香 
-１０．加醬汁拌勻 
-１１．淋在粉皮上撒上芝麻就完成了! </string>
-                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstItem="GZk-fw-dtf" firstAttribute="top" secondItem="W7T-WQ-TFX" secondAttribute="bottom" constant="12" id="1NV-TQ-2dA"/>
                                                             <constraint firstItem="W7T-WQ-TFX" firstAttribute="leading" secondItem="uax-Na-uPJ" secondAttribute="leading" constant="12" id="1br-bw-dRY"/>
                                                             <constraint firstAttribute="trailing" secondItem="Wbz-bz-dwQ" secondAttribute="trailing" constant="12" id="5f4-Ld-kxv"/>
                                                             <constraint firstItem="W9I-ib-NPL" firstAttribute="leading" secondItem="uax-Na-uPJ" secondAttribute="leading" constant="12" id="8Qx-gy-vgT"/>
                                                             <constraint firstItem="HOe-Dw-hKv" firstAttribute="top" secondItem="W9I-ib-NPL" secondAttribute="bottom" constant="12" id="ACB-tw-Iks"/>
                                                             <constraint firstItem="cc5-C9-RHE" firstAttribute="top" secondItem="uax-Na-uPJ" secondAttribute="top" id="Dzz-Sj-Ys9"/>
-                                                            <constraint firstAttribute="bottom" secondItem="GZk-fw-dtf" secondAttribute="bottom" constant="12" id="IUY-Ke-G6F"/>
                                                             <constraint firstItem="Wbz-bz-dwQ" firstAttribute="leading" secondItem="uax-Na-uPJ" secondAttribute="leading" constant="12" id="Jg5-MS-uHr"/>
                                                             <constraint firstItem="W9I-ib-NPL" firstAttribute="top" secondItem="pfM-7j-4Sj" secondAttribute="bottom" constant="12" id="NCB-YH-8oo"/>
-                                                            <constraint firstAttribute="trailing" secondItem="GZk-fw-dtf" secondAttribute="trailing" constant="12" id="OsT-Yr-Sme"/>
                                                             <constraint firstAttribute="trailing" secondItem="pfM-7j-4Sj" secondAttribute="trailing" constant="12" id="Pto-vo-Kwy"/>
                                                             <constraint firstItem="ipN-Be-w40" firstAttribute="leading" secondItem="uax-Na-uPJ" secondAttribute="leading" constant="12" id="V5K-5X-irh"/>
                                                             <constraint firstAttribute="trailing" secondItem="W7T-WQ-TFX" secondAttribute="trailing" constant="12" id="aC5-oW-ah4"/>
                                                             <constraint firstItem="pfM-7j-4Sj" firstAttribute="leading" secondItem="uax-Na-uPJ" secondAttribute="leading" constant="12" id="diO-rb-JwR"/>
                                                             <constraint firstItem="pfM-7j-4Sj" firstAttribute="top" secondItem="cc5-C9-RHE" secondAttribute="bottom" id="hH4-xd-5MT"/>
                                                             <constraint firstAttribute="trailing" secondItem="HOe-Dw-hKv" secondAttribute="trailing" constant="12" id="ig3-vO-7y8"/>
+                                                            <constraint firstAttribute="bottom" secondItem="W7T-WQ-TFX" secondAttribute="bottom" id="mOi-J6-51c"/>
                                                             <constraint firstItem="ipN-Be-w40" firstAttribute="top" secondItem="HOe-Dw-hKv" secondAttribute="bottom" constant="20" id="miK-Z7-Oes"/>
                                                             <constraint firstItem="cc5-C9-RHE" firstAttribute="leading" secondItem="uax-Na-uPJ" secondAttribute="leading" id="nbT-59-TBT"/>
                                                             <constraint firstItem="Wbz-bz-dwQ" firstAttribute="top" secondItem="ipN-Be-w40" secondAttribute="bottom" constant="12" id="pN2-sh-shy"/>
                                                             <constraint firstAttribute="trailing" secondItem="cc5-C9-RHE" secondAttribute="trailing" id="tSg-a8-Msd"/>
                                                             <constraint firstItem="HOe-Dw-hKv" firstAttribute="leading" secondItem="uax-Na-uPJ" secondAttribute="leading" constant="12" id="tzq-qn-thb"/>
-                                                            <constraint firstItem="GZk-fw-dtf" firstAttribute="leading" secondItem="uax-Na-uPJ" secondAttribute="leading" constant="12" id="vPR-Fu-78m"/>
                                                             <constraint firstItem="W7T-WQ-TFX" firstAttribute="top" secondItem="Wbz-bz-dwQ" secondAttribute="bottom" constant="20" id="xJ4-5A-cS5"/>
                                                         </constraints>
                                                     </view>
@@ -736,8 +706,11 @@
                         <outlet property="labelFoodTitle" destination="7Gm-gd-ZaD" id="tZG-1K-aRx"/>
                         <outlet property="lblInformation" destination="5KJ-M8-EAS" id="hdS-qV-wQA"/>
                         <outlet property="lblIngredients" destination="HOe-Dw-hKv" id="Svn-cB-MxA"/>
-                        <outlet property="lblMethods" destination="GZk-fw-dtf" id="P4W-GC-JFA"/>
                         <outlet property="lblSeasonings" destination="Wbz-bz-dwQ" id="dEo-g8-9Xc"/>
+                        <outletCollection property="containerHorizontalSpacings" destination="rly-NL-8ab" collectionClass="NSMutableArray" id="oqe-K6-YFz"/>
+                        <outletCollection property="containerHorizontalSpacings" destination="UmN-tX-YRP" collectionClass="NSMutableArray" id="Tle-7m-eB6"/>
+                        <outletCollection property="containerVertiaclSpacings" destination="nGc-Qw-lPx" collectionClass="NSMutableArray" id="yH6-fK-vzO"/>
+                        <outletCollection property="containerVertiaclSpacings" destination="0zx-U9-jxZ" collectionClass="NSMutableArray" id="mTo-Jj-LKj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aPB-9i-TJm" userLabel="First Responder" sceneMemberID="firstResponder"/>

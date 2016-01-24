@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
@@ -8,15 +8,20 @@
             <connections>
                 <outlet property="lblMethod" destination="3vS-V6-NML" id="WYa-gm-1FV"/>
                 <outlet property="lblNumber" destination="OhM-aZ-kKe" id="IgF-5A-OfS"/>
+                <outletCollection property="verticalSpacings" destination="31z-Zu-0xt" collectionClass="NSMutableArray" id="c0W-at-pAR"/>
+                <outletCollection property="verticalSpacings" destination="b7p-qR-QOM" collectionClass="NSMutableArray" id="zlP-Og-g2L"/>
+                <outletCollection property="horizontalSpacings" destination="3rQ-ZV-nRS" collectionClass="NSMutableArray" id="bDB-aJ-T7X"/>
+                <outletCollection property="horizontalSpacings" destination="A5c-Ws-aMF" collectionClass="NSMutableArray" id="rCb-4m-EE6"/>
+                <outletCollection property="horizontalSpacings" destination="m74-yo-3wn" collectionClass="NSMutableArray" id="oJ6-nA-MtJ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="329" height="39"/>
+            <rect key="frame" x="0.0" y="0.0" width="329" height="167.5"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhM-aZ-kKe" userLabel="Number">
-                    <rect key="frame" x="0.0" y="0.0" width="32" height="28"/>
+                    <rect key="frame" x="12" y="13" width="32" height="27.5"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="A5c-Ws-aMF"/>
                     </constraints>
@@ -24,24 +29,25 @@
                     <color key="textColor" red="0.5607843137254902" green="0.46274509803921571" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="雞肉剁成約２公分塊狀，蒜切大丁，薑切片，辣椒切斜片備用" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vS-V6-NML" userLabel="Method">
-                    <rect key="frame" x="32" y="0.0" width="297" height="39"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="測試" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vS-V6-NML" userLabel="Method">
+                    <rect key="frame" x="44" y="13" width="273" height="141.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="3vS-V6-NML" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="31z-Zu-0xt"/>
-                <constraint firstAttribute="trailing" secondItem="3vS-V6-NML" secondAttribute="trailing" id="3rQ-ZV-nRS"/>
+                <constraint firstItem="3vS-V6-NML" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="13" id="31z-Zu-0xt"/>
+                <constraint firstAttribute="trailing" secondItem="3vS-V6-NML" secondAttribute="trailing" constant="12" id="3rQ-ZV-nRS"/>
                 <constraint firstItem="3vS-V6-NML" firstAttribute="leading" secondItem="OhM-aZ-kKe" secondAttribute="trailing" id="FaO-ja-Heu"/>
-                <constraint firstItem="OhM-aZ-kKe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="m74-yo-3wn"/>
-                <constraint firstItem="OhM-aZ-kKe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zL9-ii-IbO"/>
+                <constraint firstAttribute="bottom" secondItem="3vS-V6-NML" secondAttribute="bottom" constant="13" id="b7p-qR-QOM"/>
+                <constraint firstItem="OhM-aZ-kKe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="m74-yo-3wn"/>
+                <constraint firstItem="OhM-aZ-kKe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="13" id="zL9-ii-IbO"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="783.5" y="560.5"/>
+            <point key="canvasLocation" x="783.5" y="624.75"/>
         </view>
     </objects>
 </document>

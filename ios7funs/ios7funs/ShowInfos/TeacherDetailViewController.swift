@@ -38,6 +38,7 @@ class TeacherDetailViewController: UIViewController {
         }
         lblName.text = teacher.name
 
+        // container width
         let horizontalSpacing = infoContainerHorizontalSpacings.reduce(0) { $0 + $1.constant }
         containerWidth = UIScreen.mainScreen().bounds.width - horizontalSpacing
 
