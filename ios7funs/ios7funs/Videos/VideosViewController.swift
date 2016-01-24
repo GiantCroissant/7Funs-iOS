@@ -13,6 +13,7 @@ class VideosViewController: UIViewController {
 
     @IBOutlet weak var tableDummy: UIView!
     @IBOutlet weak var tableVideos: UITableView!
+    @IBOutlet var footerView: UIView!
 
     @IBAction func onSearchButtonClick(sender: UIBarButtonItem) {
         presentViewController(searchController, animated: true, completion: nil)
@@ -56,9 +57,11 @@ class VideosViewController: UIViewController {
         super.viewWillAppear(animated)
         self.title = "節目列表"
 
-        loadVideos(onEmpty: {
-            self.fetchMoreVideos()
-        })
+        loadVideos()
+
+//        loadVideos(onEmpty: {
+//            self.fetchMoreVideos()
+//        })
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -119,9 +122,12 @@ extension VideosViewController: UITableViewDataSource {
 extension VideosViewController {
 
     func loadVideos(onEmpty onEmpty: (() -> Void) = {}) {
-        VideoManager.sharedInstance.loadVideos { videos in
+        let curCount = videos.count
+        VideoManager.sharedInstance.loadVideos(curCount: curCount) { videos, remainCount in
             self.videos = videos
             self.tableVideos.reloadData()
+            self.tableVideos.tableFooterView = remainCount > 0 ? self.footerView : nil
+
             if videos.isEmpty {
                 onEmpty()
             }

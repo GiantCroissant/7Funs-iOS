@@ -44,6 +44,32 @@ class VideoManager {
             .addDisposableTo(self.disposeBag)
     }
 
+    func loadVideos(amount: Int = 10, curCount: Int, onComplete: (videos: [VideoUIModel], remainCount: Int) -> Void) {
+        Async.background {
+            let loadCount = curCount + amount
+
+            let realm = try! Realm()
+            let videos = realm.objects(Video).filter("youtubeVideoCode != ''")
+
+            var videoUIModels = [VideoUIModel]()
+            for i in 0..<loadCount {
+                if i >= videos.count {
+                    break
+                }
+
+                let video = videos[i]
+                let videoUIModel = VideoUIModel(dbData: video)
+                videoUIModels.append(videoUIModel)
+            }
+
+            let remainCount = videos.count - loadCount
+
+            Async.main {
+                onComplete(videos: videoUIModels, remainCount: remainCount)
+            }
+        }
+    }
+
     func loadVideos(completionHandler: (videos: [VideoUIModel]) -> ()) {
         Async.background {
             let realm = try! Realm()

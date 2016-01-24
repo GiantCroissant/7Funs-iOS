@@ -171,6 +171,7 @@
                                         </prototypes>
                                         <connections>
                                             <outlet property="dataSource" destination="ADh-Lo-N0C" id="Mbl-gS-YrE"/>
+                                            <outlet property="delegate" destination="ADh-Lo-N0C" id="uR0-Er-mGe"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
@@ -215,6 +216,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="footerView" destination="fwr-xf-WJz" id="OnJ-My-buz"/>
                         <outlet property="tableDummy" destination="HDS-O6-Hoh" id="gpd-xZ-6pK"/>
                         <outlet property="tableVideos" destination="xJK-Q1-SNP" id="cBW-Ye-Rhb"/>
                     </connections>
