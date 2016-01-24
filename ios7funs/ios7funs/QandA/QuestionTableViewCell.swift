@@ -14,24 +14,41 @@ class QuestionTableViewCell: UITableViewCell {
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblQuestion: UILabel!
     @IBOutlet weak var lblAnswerCount: UILabel!
+    @IBOutlet weak var lblUpdateTime: UILabel!
 
-    var question: QuestionUIModel?
+    var question: QuestionUIModel! {
+        didSet {
+            let name = NSAttributedString(string: question.username,
+                attributes: [
+                    NSFontAttributeName : UIFont.boldSystemFontOfSize(16),
+                    NSForegroundColorAttributeName : UIColor(hexString: "#f29c5c")
+                ]
+            )
+            let questionTitle = NSAttributedString(string: question.title,
+                attributes: [
+                    NSFontAttributeName: UIFont.systemFontOfSize(16),
+                    NSForegroundColorAttributeName : UIColor(hexString: "#606060")
+                ]
+            )
 
-    func setupViews(question: QuestionUIModel) {
-        self.question = question
+            let attrText = NSMutableAttributedString()
+            attrText.appendAttributedString(name)
+            attrText.appendAttributedString(NSAttributedString(string: " "))
+            attrText.appendAttributedString(questionTitle)
 
-        lblQuestion.text = question.title
-        lblAnswerCount.text = "\(question.answersCount) 篇回覆"
-
-        bgProfile.configureToCircularView()
+            lblQuestion.attributedText = attrText
+            lblAnswerCount.text = "\(question.answersCount) 篇回覆"
+            lblUpdateTime.text = NSDate().getOffsetStringFrom(question.updatedAt.toNSDate())
+            bgProfile.configureToCircularView()
+        }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
 }

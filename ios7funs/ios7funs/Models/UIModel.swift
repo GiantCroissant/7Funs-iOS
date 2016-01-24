@@ -114,6 +114,7 @@ class QuestionUIModel {
     var title: String = ""
     var description: String = ""
     var answersCount: Int = 0
+    var updatedAt: String = ""
 
     init(json: MessageJsonObject) {
         self.id = json.id
@@ -121,6 +122,7 @@ class QuestionUIModel {
         self.title = json.title ?? ""
         self.description = json.description ?? ""
         self.answersCount = json.commentsCount
+        self.updatedAt = json.updatedAt
     }
 }
 
