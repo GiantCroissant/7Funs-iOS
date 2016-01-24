@@ -14,8 +14,14 @@ class VideosViewController: UIViewController {
     @IBOutlet weak var tableDummy: UIView!
     @IBOutlet weak var tableVideos: UITableView!
 
+    @IBAction func onSearchButtonClick(sender: UIBarButtonItem) {
+        presentViewController(searchController, animated: true, completion: nil)
+    }
+
+    var searchController = UISearchController(searchResultsController: nil)
     var isFetching = false
     var videos = [VideoUIModel]()
+    var filteredVideos = [VideoUIModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +37,9 @@ class VideosViewController: UIViewController {
         tableVideos.rowHeight = UITableViewAutomaticDimension
 
         configureTableDummy()
+        configureSearchController()
+        configureSearchBar()
+        configureSearchBarCancelButton()
     }
 
     deinit {
@@ -75,19 +84,31 @@ class VideosViewController: UIViewController {
         let row = (sender?.tag)!
         dstVC.video = videos[row]
     }
+
+
 }
 
 // MARK: - UITableViewDataSource
 extension VideosViewController: UITableViewDataSource {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.active && searchController.searchBar.text != "" {
+            return filteredVideos.count
+        }
+
         return videos.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("idVideoCell", forIndexPath: indexPath) as! VideoTableViewCell
         cell.tag = indexPath.row
-        cell.video = videos[indexPath.row]
+
+        if searchController.active && searchController.searchBar.text != "" {
+            cell.video = filteredVideos[indexPath.row]
+
+        } else {
+            cell.video = videos[indexPath.row]
+        }
         return cell
     }
     
@@ -125,6 +146,60 @@ extension VideosViewController {
                 self.hideToastIndicator()
             }
         )
+    }
+
+}
+
+// MARK: - UITableViewDelegate
+extension VideosViewController: UITableViewDelegate {
+
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        let distFromBottom = scrollView.contentSize.height - scrollView.contentOffset.y
+        if (distFromBottom <= scrollView.frame.height) {
+            loadVideos()
+        }
+    }
+
+}
+
+
+extension VideosViewController: UISearchResultsUpdating {
+
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        filteredVideos = videos.filter { video in
+            return video.title.lowercaseString.containsString(searchText.lowercaseString)
+        }
+
+        tableVideos.reloadData()
+    }
+
+}
+
+extension VideosViewController: UISearchBarDelegate {
+
+    func configureSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+    }
+
+    func configureSearchBar() {
+        let searchBar = searchController.searchBar
+        searchBar.placeholder = "搜尋節目..."
+        searchBar.barTintColor = UIColor.orangeColor()
+        searchBar.tintColor = UIColor.darkGrayColor()
+        searchBar.delegate = self
+        searchBar.sizeToFit()
+    }
+
+    func configureSearchBarCancelButton() {
+        let item = UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])
+        item.tintColor = UIColor.whiteColor()
+        item.title = " 取消 "
     }
 
 }
