@@ -10,10 +10,6 @@ import UIKit
 
 class RecipeTutorialViewController: UIViewController {
 
-    let headerImageHeight: CGFloat = 211
-    var blurView: UIVisualEffectView!
-    var recipe: RecipeUIModel!
-
     @IBOutlet var containerHorizontalSpacings: [NSLayoutConstraint]!
     @IBOutlet var containerVertiaclSpacings: [NSLayoutConstraint]!
     @IBOutlet weak var btnAddFavorite: UIButton!
@@ -27,13 +23,15 @@ class RecipeTutorialViewController: UIViewController {
     @IBOutlet weak var bgContent: UIView!
     @IBOutlet weak var bgBottom: UIView!
     @IBOutlet weak var bottomToTopHeight: NSLayoutConstraint!
-
     @IBOutlet weak var contentScrollView: UIScrollView!
 
     var containerHeight: CGFloat = 0
     var containerWidth: CGFloat = 0
     var fontNumber: UIFont!
     var fontMethod: UIFont!
+    let headerImageHeight: CGFloat = 211
+    var blurView: UIVisualEffectView!
+    var recipe: RecipeUIModel!
 
     @IBAction func onAddFavoriteClick(sender: UIButton) {
         if let token = LoginManager.token {
