@@ -23,7 +23,6 @@ class RecipeTutorialViewController: UIViewController {
     @IBOutlet weak var lblInformation: UILabel!
     @IBOutlet weak var lblIngredients: UILabel!
     @IBOutlet weak var lblSeasonings: UILabel!
-    @IBOutlet weak var lblMethods: UILabel!
     @IBOutlet weak var bgTutorial: CardView!
     @IBOutlet weak var bgContent: UIView!
     @IBOutlet weak var bgBottom: UIView!
@@ -64,46 +63,20 @@ class RecipeTutorialViewController: UIViewController {
         showToastIndicator()
     }
 
-    func setupContainerWidth() {
-        let horizontalSpacing = containerHorizontalSpacings.reduce(0) { $0 + $1.constant }
-        containerWidth = UIScreen.mainScreen().bounds.width - horizontalSpacing
-    }
-    
-    func setupFonts() {
-        let idiom = UIDevice.currentDevice().userInterfaceIdiom
-        if idiom == .Pad {
-            fontNumber = UIFont.boldSystemFontOfSize(46)
-            fontMethod = UIFont.systemFontOfSize(32, weight: UIFontWeightLight)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        containerHeight = bgTutorial.frame.height
 
-        } else if idiom == .Phone {
-            fontNumber = UIFont.boldSystemFontOfSize(23)
-            fontMethod = UIFont.systemFontOfSize(16, weight: UIFontWeightLight)
-        }
+        addRecipeMethods()
+        configureScrollViewContentHeight()
+        hideToastIndicator()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
+    func configureScrollViewContentHeight() {
         let newHeight = bottomToTopHeight.constant
             + containerHeight
             + containerVertiaclSpacings.reduce(0) { $0 + $1.constant }
         contentScrollView.contentSize.height = newHeight
-    }
-
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-        dLog("bgTutorial.frame.height = \(bgTutorial.frame.height)")
-        containerHeight = bgTutorial.frame.height
-        addRecipeMethods()
-
-//        let bounds = self.bgBottom.bounds
-//        let bottom = self.bgBottom.sizeThatFits(CGSize(width: bounds.width, height: 100000))
-//        let newHeight = bottomToTopHeight.constant + containerHeight
-//        contentScrollView.contentSize.height = newHeight
-
-        hideToastIndicator()
     }
 
     func configureTutorial() {
@@ -127,8 +100,6 @@ class RecipeTutorialViewController: UIViewController {
             bgTutorial.addSubview(methodView)
             containerHeight += methodViewHeight
         }
-
-
     }
 
     func reformatIngredientString(ingredient: String) -> String {
@@ -198,6 +169,23 @@ class RecipeTutorialViewController: UIViewController {
         recipe.favorite = favorite
         configureFavoriteButton(favorite)
         showSwitchFavoriteToast(recipe)
+    }
+
+    func setupContainerWidth() {
+        let horizontalSpacing = containerHorizontalSpacings.reduce(0) { $0 + $1.constant }
+        containerWidth = UIScreen.mainScreen().bounds.width - horizontalSpacing
+    }
+
+    func setupFonts() {
+        let idiom = UIDevice.currentDevice().userInterfaceIdiom
+        if idiom == .Pad {
+            fontNumber = UIFont.boldSystemFontOfSize(46)
+            fontMethod = UIFont.systemFontOfSize(32, weight: UIFontWeightLight)
+
+        } else if idiom == .Phone {
+            fontNumber = UIFont.boldSystemFontOfSize(23)
+            fontMethod = UIFont.systemFontOfSize(16, weight: UIFontWeightLight)
+        }
     }
 
 }
