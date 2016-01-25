@@ -75,12 +75,17 @@
                                                                         <segue destination="9OQ-Cy-w8b" kind="show" id="pjZ-Cy-GSt"/>
                                                                     </connections>
                                                                 </button>
-                                                                <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_list_gradients" translatesAutoresizingMaskIntoConstraints="NO" id="7Im-IM-htS" userLabel="Gradient">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_list_gradients" translatesAutoresizingMaskIntoConstraints="NO" id="7Im-IM-htS" userLabel="Gradient">
                                                                     <rect key="frame" x="0.0" y="85" width="355" height="115"/>
                                                                     <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="115" id="kfN-q9-pbz"/>
                                                                     </constraints>
+                                                                    <variation key="default">
+                                                                        <mask key="constraints">
+                                                                            <exclude reference="kfN-q9-pbz"/>
+                                                                        </mask>
+                                                                    </variation>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="這是測試用的文字用來顯示食譜名稱，長度過長會變成三個點" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Zb-gV-cP9">
                                                                     <rect key="frame" x="12" y="164" width="331" height="24"/>
