@@ -63,6 +63,7 @@
 		3BC240EC1C29171100A79E4D /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 3BC240EB1C29171100A79E4D /* Assets */; };
 		3BC240EE1C291C1600A79E4D /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC240ED1C291C1600A79E4D /* VideoManager.swift */; };
 		3BC240F01C2922B300A79E4D /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC240EF1C2922B300A79E4D /* VideoTableViewCell.swift */; };
+		3BCB9A6F1C55C9C400B73C92 /* AnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB9A6E1C55C9C400B73C92 /* AnswerTableViewCell.swift */; };
 		3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE50681C15BFB60088794A /* MainViewController.swift */; };
 		3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */; };
 		3BCE506E1C15C6E20088794A /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 3BCE506D1C15C6E20088794A /* Cartfile */; };
@@ -146,6 +147,7 @@
 		3BC240EB1C29171100A79E4D /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = Utils/Assets; sourceTree = "<group>"; };
 		3BC240ED1C291C1600A79E4D /* VideoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
 		3BC240EF1C2922B300A79E4D /* VideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoTableViewCell.swift; path = Videos/VideoTableViewCell.swift; sourceTree = "<group>"; };
+		3BCB9A6E1C55C9C400B73C92 /* AnswerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnswerTableViewCell.swift; path = QandA/AnswerTableViewCell.swift; sourceTree = "<group>"; };
 		3BCE50681C15BFB60088794A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3BCE506A1C15C0A70088794A /* ShowInfosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowInfosViewController.swift; path = ShowInfos/ShowInfosViewController.swift; sourceTree = "<group>"; };
 		3BCE506D1C15C6E20088794A /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				3B4A47DE1C26FD6100662913 /* QandANewQuestionViewController.swift */,
 				3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */,
 				3B12806F1C3A6E4200AE2CC6 /* QuestionTableViewCell.swift */,
+				3BCB9A6E1C55C9C400B73C92 /* AnswerTableViewCell.swift */,
 			);
 			name = "Q & A";
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 			files = (
 				3B4178661C20B270006CB7ED /* Marco.swift in Sources */,
 				3B5FA7C41C4F97F600149129 /* TeacherInfoDataView.swift in Sources */,
+				3BCB9A6F1C55C9C400B73C92 /* AnswerTableViewCell.swift in Sources */,
 				09A6A8501C507ECF00CF279A /* JsonModelInstructor.swift in Sources */,
 				3B36CBAF1C27D673003666D7 /* ForgotPasswordViewController.swift in Sources */,
 				3BDF65C11C28FF370040F5DB /* YTPlayerView.m in Sources */,

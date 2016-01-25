@@ -130,13 +130,17 @@ class QuestionUIModel {
 class AnswerUIModel {
     var id: Int
     var userId: Int
+    var username: String
     var title: String
     var comment: String
     var updatedAt: String
 
     init(json: MessageWithCommentJsonObject) {
+        print(json)
+
         self.id = json.id
         self.userId = json.userId
+        self.username = "" // FIXME: no user name return
         self.title = json.title
         self.comment = json.comment
         self.updatedAt = json.updatedAt

@@ -41,27 +41,36 @@ class QandADetailViewController: UIViewController {
     var answers = [AnswerUIModel]()
 
     @IBAction func onSendClick(sender: UIButton) {
-        // TODO: send answer to server
         let questionId = question.id
         let answer = textInput.text
+
         if let token = LoginManager.token {
-
-            // TODO: handle Error
-            self.showToastIndicator()
-            QandAManager.sharedInstance.postAnswer(questionId, answer: answer, token: token,
-                onComplete: {
-                    self.hideToastIndicator()
-                    self.textInput.text = ""
-                    self.textInput.resignFirstResponder()
-
-                    // MARK: - maybe this can be do in textField edit change delegate
-                    self.configureSendButton()
-                }
-            )
+            postAnswer(questionId, answer: answer, token: token)
 
         } else {
             LoginManager.sharedInstance.showLoginViewController(self)
         }
+    }
+
+    func postAnswer(questionId: Int, answer: String, token: String) {
+        // TODO: handle Error
+        self.showToastIndicator()
+        QandAManager.sharedInstance.postAnswer(questionId, answer: answer, token: token,
+            onComplete: {
+                self.textInput.text = ""
+                self.textInput.resignFirstResponder()
+
+                // MARK: - maybe this can be do in textField edit change delegate
+                self.configureSendButton()
+                self.fetchAnswers()
+            },
+            onError: { _ in
+                self.showNetworkIsBusyAlertView()
+            },
+            onFinished: {
+                self.hideToastIndicator()
+            }
+        )
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -84,9 +93,14 @@ class QandADetailViewController: UIViewController {
         configureInputTextView()
         configureTableView()
 
+        fetchAnswers()
+    }
+
+    func fetchAnswers() {
         QandAManager.sharedInstance.fetchAnswers(question.id,
             onComplete: { answers in
                 self.answers = answers
+                self.tableAnswers.reloadData()
             }
         )
     }
@@ -239,7 +253,10 @@ extension QandADetailViewController: UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("id_cell_answer", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("id_cell_answer", forIndexPath: indexPath) as! AnswerTableViewCell
+
+        cell.answer = answers[indexPath.row]
+
         return cell
     }
 
