@@ -234,9 +234,7 @@
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="ZDy-jx-0ki">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="HFX-dv-vO7"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="ZDy-jx-0ki"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
