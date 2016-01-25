@@ -53,7 +53,6 @@ class QandADetailViewController: UIViewController {
     }
 
     func postAnswer(questionId: Int, answer: String, token: String) {
-        // TODO: handle Error
         self.showToastIndicator()
         QandAManager.sharedInstance.postAnswer(questionId, answer: answer, token: token,
             onComplete: {
@@ -62,7 +61,7 @@ class QandADetailViewController: UIViewController {
 
                 // MARK: - maybe this can be do in textField edit change delegate
                 self.configureSendButton()
-                self.fetchAnswers()
+                self.fetchAnswersAndScrollToBottom()
             },
             onError: { _ in
                 self.showNetworkIsBusyAlertView()
@@ -86,7 +85,6 @@ class QandADetailViewController: UIViewController {
         lblQuestionTitle.text = question.title
         lblDescription.text = question.description
 
-
         imgUser.configureToCircularView()
         configureInputBar()
         configureSendButton()
@@ -101,6 +99,16 @@ class QandADetailViewController: UIViewController {
             onComplete: { answers in
                 self.answers = answers
                 self.tableAnswers.reloadData()
+            }
+        )
+    }
+
+    func fetchAnswersAndScrollToBottom() {
+        QandAManager.sharedInstance.fetchAnswers(question.id,
+            onComplete: { answers in
+                self.answers = answers
+                self.tableAnswers.reloadData()
+                self.tableAnswers.scrollToBottom()
             }
         )
     }

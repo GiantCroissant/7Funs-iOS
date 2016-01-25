@@ -31,7 +31,7 @@ class QandAViewController: UIViewController {
 
             },
             onError: { error in
-
+                self.showNetworkIsBusyAlertView()
             },
             onFinished: {
                 self.hideToastIndicator()
@@ -50,7 +50,6 @@ class QandAViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         navigationItem.title = ""
 
-        // FIXME: check add question or reply answer
         let vc = segue.destinationViewController
         if vc.title == "Reply Question" {
             let detailVC = vc as! QandADetailViewController

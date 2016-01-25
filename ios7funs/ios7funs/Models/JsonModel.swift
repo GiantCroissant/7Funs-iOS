@@ -193,6 +193,12 @@ public struct MessageWithCommentJsonObject {
     public let role: String
     public let createdAt: String
     public let updatedAt: String
+    public let user: MessageCommentUser
+}
+
+public struct MessageCommentUser {
+    public let id: Int
+    public let name: String
 }
 
 public struct MessageSpecificJsonObject {
@@ -474,7 +480,20 @@ extension MessageWithCommentJsonObject: Decodable {
             <*> j <| "role"
             <*> j <| "created_at"
             <*> j <| "updated_at"
+            <*> j <| "user"
     }
+}
+
+extension MessageCommentUser: Decodable {
+
+    public static func decode(json: JSON) -> Decoded<MessageCommentUser> {
+        let user = curry(MessageCommentUser.init)
+            <^> json <| "id"
+
+        return user
+            <*> json <| "name"
+    }
+
 }
 
 extension MessageSpecificJsonObject: Decodable {

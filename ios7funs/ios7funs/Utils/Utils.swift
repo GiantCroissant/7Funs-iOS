@@ -359,6 +359,17 @@ extension UITextView {
     }
 }
 
+extension UITableView {
+
+    func scrollToBottom() {
+        if (contentSize.height > frame.size.height)
+        {
+            let offset = CGPointMake(0, contentSize.height - frame.size.height)
+            setContentOffset(offset, animated: true)
+        }
+    }
+
+}
 
 extension UIView {
 

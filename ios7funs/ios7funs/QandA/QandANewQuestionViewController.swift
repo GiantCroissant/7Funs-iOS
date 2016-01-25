@@ -25,14 +25,19 @@ class QandANewQuestionViewController: UIViewController {
                 return
             }
 
-            // TODO: handle Error
             self.showToastIndicator()
             QandAManager.sharedInstance.postQuestion(token, title: subject, description: content,
                 onComplete: {
-                    self.hideToastIndicator()
+                    self.hideToastIndicator()                    
                     self.showHTTPSuccessAlertView(title: "發問成功", message: "", onClickOK: {
                         self.navigationController?.popViewControllerAnimated(true)
                     })
+                },
+                onError: { _ in
+                    self.showNetworkIsBusyAlertView()
+                },
+                onFinished: {
+
                 }
             )
 

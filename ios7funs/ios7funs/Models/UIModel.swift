@@ -41,11 +41,7 @@ class RecipeUIModel {
         self.chefName = dbData.chefName
         self.desc = dbData.desc
         self.ingredient = dbData.ingredient
-
-
-        // FIXME
         self.method = dbData.method
-
         self.createdAt = dbData.createdAt
         self.updatedAt = dbData.updatedAt
         self.hits = dbData.hits
@@ -126,7 +122,6 @@ class QuestionUIModel {
     }
 }
 
-// TODO:
 class AnswerUIModel {
     var id: Int
     var userId: Int
@@ -137,10 +132,9 @@ class AnswerUIModel {
 
     init(json: MessageWithCommentJsonObject) {
         print(json)
-
         self.id = json.id
         self.userId = json.userId
-        self.username = "" // FIXME: no user name return
+        self.username = json.user.name
         self.title = json.title
         self.comment = json.comment
         self.updatedAt = json.updatedAt

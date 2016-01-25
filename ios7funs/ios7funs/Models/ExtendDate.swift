@@ -100,7 +100,7 @@ extension NSDate {
         if hoursFrom(date)   > 0 { return "\(hoursFrom(date))小時前"   }
         if minutesFrom(date) > 0 { return "\(minutesFrom(date))分鐘前" }
         if secondsFrom(date) > 0 { return "\(secondsFrom(date))秒前" }
-        return ""
+        return "0秒前"
     }
 
 }

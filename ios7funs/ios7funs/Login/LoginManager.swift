@@ -22,8 +22,6 @@ class LoginManager {
 
     static let sharedInstance = LoginManager()
 
-    static var logined = false // FIXME: should remove this
-
     let disposeBag = DisposeBag()
 
     let restApiProvider = RxMoyaProvider<RestApi>(endpointClosure: {
