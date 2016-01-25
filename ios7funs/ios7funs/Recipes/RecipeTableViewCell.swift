@@ -39,8 +39,6 @@ class RecipeTableViewCell: UITableViewCell {
         checkReuseId = recipeId
         RecipeManager.sharedInstance.loadFoodImage(recipeId, imageName: imageName) { image, recipeId, fadeIn in
             if (recipeId != self.recipe.id) {
-                print("recipeId = \(recipeId)")
-                print("self.recipe.id = \(self.recipe.id)")
                 return
             }
             self.btnFood.setImage(image, forState: .Normal)
