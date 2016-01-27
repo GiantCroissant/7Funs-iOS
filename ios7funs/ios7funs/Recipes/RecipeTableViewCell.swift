@@ -42,7 +42,7 @@ class RecipeTableViewCell: UITableViewCell {
                 return
             }
             self.btnFood.setImage(image, forState: .Normal)
-            self.btnFood.scaleButtonImage(.Center)
+//            self.btnFood.scaleButtonImage(.Top)
             self.btnFood.alpha = 1
             if fadeIn {
                 self.btnFood.alpha = 0

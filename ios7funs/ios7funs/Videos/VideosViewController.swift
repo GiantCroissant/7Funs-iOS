@@ -82,6 +82,8 @@ class VideosViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         navigationItem.title = ""
 
+        dismissViewControllerAnimated(true, completion: nil)
+
         let dstVC = segue.destinationViewController as! VideoPlayerViewController
         let row = (sender?.tag)!
         dstVC.video = videos[row]
@@ -185,6 +187,14 @@ extension VideosViewController: UISearchResultsUpdating {
 }
 
 extension VideosViewController: UISearchBarDelegate {
+
+//    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+//        dismissViewControllerAnimated(true, completion: nil)
+//    }
+//
+//    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+//        dismissViewControllerAnimated(true, completion: nil)
+//    }
 
     func configureSearchController() {
         searchController.searchResultsUpdater = self

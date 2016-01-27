@@ -24,7 +24,9 @@ class RecipeTutorialViewController: UIViewController {
     @IBOutlet weak var bgBottom: UIView!
     @IBOutlet weak var bottomToTopHeight: NSLayoutConstraint!
     @IBOutlet weak var contentScrollView: UIScrollView!
+    @IBOutlet weak var leftContainerOffset: NSLayoutConstraint!
 
+    let screenWidth = UIScreen.mainScreen().bounds.width
     var containerHeight: CGFloat = 0
     var containerWidth: CGFloat = 0
     var fontNumber: UIFont!
@@ -94,7 +96,12 @@ class RecipeTutorialViewController: UIViewController {
 
             let methodViewHeight = methodView.getHeight()
 
+            // FIXME:
+            let bg = UIView(frame: CGRect(x: -leftContainerOffset.constant, y: containerHeight, width: screenWidth, height: methodViewHeight))
+            bg.backgroundColor = UIColor(hexString: "#f6f4ef")
             methodView.frame = CGRectMake(0, containerHeight, containerWidth, methodViewHeight)
+
+            bgTutorial.addSubview(bg)
             bgTutorial.addSubview(methodView)
             containerHeight += methodViewHeight
         }
@@ -171,7 +178,7 @@ class RecipeTutorialViewController: UIViewController {
 
     func setupContainerWidth() {
         let horizontalSpacing = containerHorizontalSpacings.reduce(0) { $0 + $1.constant }
-        containerWidth = UIScreen.mainScreen().bounds.width - horizontalSpacing
+        containerWidth = screenWidth - horizontalSpacing
     }
 
     func setupFonts() {
@@ -222,7 +229,14 @@ extension RecipeTutorialViewController: UIScrollViewDelegate {
     }
 
     func updateBlurView(offsetY: CGFloat) {
+        let w = blurView.frame.size.width
+        var h = headerImageHeight - offsetY
+        if (h <= 64) {
+            h = 64
+        }
+
         blurView.alpha = 1 - ((headerImageHeight - offsetY) / headerImageHeight)
+        blurView.frame = CGRect(x: 0, y: 0, width: w, height: h)
     }
     
 }

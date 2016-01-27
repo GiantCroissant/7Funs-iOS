@@ -154,7 +154,7 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5人收藏．991人看過 (Default)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Euu-Jm-t9V" userLabel="Recipe Info">
-                                                            <rect key="frame" x="40" y="214" width="259" height="19.5"/>
+                                                            <rect key="frame" x="40" y="214" width="259" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -437,14 +437,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="599"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79i-K9-stq" userLabel="Image Container">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79i-K9-stq" userLabel="Image Container">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_default" translatesAutoresizingMaskIntoConstraints="NO" id="YJK-a9-vOa">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.4471883344" blue="0.52511704319999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="211" id="9VN-AM-KnE"/>
                                     <constraint firstItem="YJK-a9-vOa" firstAttribute="top" secondItem="79i-K9-stq" secondAttribute="top" id="Ofg-de-F5q"/>
@@ -457,7 +459,7 @@
                                 <rect key="frame" x="-4" y="20" width="383" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Gm-gd-ZaD">
-                                        <rect key="frame" x="171" y="300" width="42" height="20.5"/>
+                                        <rect key="frame" x="171" y="300" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -477,7 +479,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="535"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHg-g2-FwB" userLabel="Bottom Content">
-                                                <rect key="frame" x="0.0" y="147" width="375" height="285.5"/>
+                                                <rect key="frame" x="0.0" y="147" width="375" height="288"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIR-gx-Iux" userLabel="Title View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
@@ -497,7 +499,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uax-Na-uPJ" userLabel="Card View">
-                                                        <rect key="frame" x="11" y="51" width="353" height="222.5"/>
+                                                        <rect key="frame" x="11" y="51" width="353" height="225"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cc5-C9-RHE" userLabel="Top">
                                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="48"/>
@@ -540,7 +542,7 @@
                                                                         </variation>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 人收藏．991 人看過 (Default)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KJ-M8-EAS" userLabel="Information">
-                                                                        <rect key="frame" x="40" y="14" width="257" height="20.5"/>
+                                                                        <rect key="frame" x="40" y="14" width="257" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                                         <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -588,31 +590,31 @@
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9I-ib-NPL">
-                                                                <rect key="frame" x="12" y="61" width="32" height="19.5"/>
+                                                                <rect key="frame" x="12" y="61" width="32" height="20"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <color key="textColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOe-Dw-hKv" userLabel="Ingredients">
-                                                                <rect key="frame" x="12" y="92" width="329" height="19.5"/>
+                                                                <rect key="frame" x="12" y="93" width="329" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="調味料" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipN-Be-w40">
-                                                                <rect key="frame" x="12" y="132" width="48" height="19.5"/>
+                                                                <rect key="frame" x="12" y="133" width="48" height="20"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <color key="textColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="調味料內文" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbz-bz-dwQ" userLabel="Seasonings">
-                                                                <rect key="frame" x="12" y="163" width="329" height="19.5"/>
+                                                                <rect key="frame" x="12" y="165" width="329" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="做法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7T-WQ-TFX">
-                                                                <rect key="frame" x="12" y="203" width="329" height="19.5"/>
+                                                                <rect key="frame" x="12" y="205" width="329" height="20"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <color key="textColor" red="1" green="0.50196078430000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -661,7 +663,7 @@
                                                 </variation>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="eHg-g2-FwB" secondAttribute="trailing" id="Lwi-Hb-Noc"/>
                                             <constraint firstItem="eHg-g2-FwB" firstAttribute="leading" secondItem="L8V-d6-OEV" secondAttribute="leading" id="toZ-4o-SYk"/>
@@ -710,6 +712,7 @@
                         <outlet property="lblInformation" destination="5KJ-M8-EAS" id="hdS-qV-wQA"/>
                         <outlet property="lblIngredients" destination="HOe-Dw-hKv" id="Svn-cB-MxA"/>
                         <outlet property="lblSeasonings" destination="Wbz-bz-dwQ" id="dEo-g8-9Xc"/>
+                        <outlet property="leftContainerOffset" destination="UmN-tX-YRP" id="uJi-FZ-GzG"/>
                         <outletCollection property="containerHorizontalSpacings" destination="rly-NL-8ab" collectionClass="NSMutableArray" id="oqe-K6-YFz"/>
                         <outletCollection property="containerHorizontalSpacings" destination="UmN-tX-YRP" collectionClass="NSMutableArray" id="Tle-7m-eB6"/>
                         <outletCollection property="containerVertiaclSpacings" destination="nGc-Qw-lPx" collectionClass="NSMutableArray" id="yH6-fK-vzO"/>
@@ -752,8 +755,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FxT-uR-ihs" userLabel="Youtube Player" customClass="YTPlayerView">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此食譜尚未有影片教學喔！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cc-Xn-JJi">
-                                                <rect key="frame" x="85" y="95.5" width="204" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="此食譜尚未有影片教學喔！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cc-Xn-JJi">
+                                                <rect key="frame" x="85" y="96" width="204" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -769,7 +772,7 @@
                                         <rect key="frame" x="323" y="179" width="41" height="21"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNM-C8-NEE">
-                                                <rect key="frame" x="2" y="3" width="36.5" height="16"/>
+                                                <rect key="frame" x="2" y="3" width="37" height="16"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
