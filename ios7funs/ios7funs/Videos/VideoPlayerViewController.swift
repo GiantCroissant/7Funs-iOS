@@ -30,11 +30,12 @@ class VideoPlayerViewController: UIViewController {
     }
 
     func loadSeriesVideos() {
+        showToastIndicator()
         VideoManager.sharedInstance.loadVideosWithRecipeId(video.recipeId) { videos in
             videos.forEach { video in
-                print(video)
                 self.videoTypeYoutubeIds[video.type] = video.youtubeVideoId
                 self.configureCamButtons()
+                self.hideToastIndicator()
             }
         }
     }
@@ -42,6 +43,10 @@ class VideoPlayerViewController: UIViewController {
     func configureCamButtons() {
         for button in camButtons {
             button.enabled = videoTypeYoutubeIds[button.tag] != nil ? true : false
+
+            // TODO: eikiy give new colors for disabled button
+            button.hidden = !button.enabled
+
             button.layer.cornerRadius = 2
             button.layer.borderWidth = 1
             button.layer.borderColor = button.enabled ? UIColor(hexString: "#d4cdc8").CGColor
