@@ -24,8 +24,6 @@ class RecipeManager: NSObject {
     let recipeImageBaseUrl = "https://commondatastorage.googleapis.com/funs7-1/uploads/recipe/image/"
     let disposeBag = DisposeBag()
 
-
-    
     let restApiProvider = RxMoyaProvider<RestApi>(endpointClosure: { (target: RestApi) -> Endpoint<RestApi> in
         let url = target.baseURL.URLByAppendingPathComponent(target.path).absoluteString
         let endpoint = Endpoint<RestApi>(
@@ -38,9 +36,6 @@ class RecipeManager: NSObject {
         switch target {
         case .AddRemoveFavorite(_, let token):
             return endpoint.endpointByAddingHTTPHeaderFields(["Authorization": "Bearer \(token)"])
-
-//        case .LogOut(let token):
-//            return endpoint.endpointByAddingHTTPHeaderFields(["Authorization": "Bearer: \(token)"])
 
         default:
             return endpoint

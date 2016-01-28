@@ -212,9 +212,14 @@ extension VideosViewController: UISearchBarDelegate {
     }
 
     func configureSearchBarCancelButton() {
-        let item = UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])
-        item.tintColor = UIColor.whiteColor()
-        item.title = " 取消 "
+        if #available(iOS 9.0, *) {
+            let item = UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])
+            item.tintColor = UIColor.whiteColor()
+            item.title = " 取消 "
+
+        } else {
+            // Fallback on earlier versions
+        }
     }
 
 }

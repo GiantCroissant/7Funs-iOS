@@ -753,7 +753,7 @@
 					"$(PROJECT_DIR)/ios7funs/Lib3rdParty",
 				);
 				INFOPLIST_FILE = ios7funs/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.7funs.app;
@@ -776,7 +776,7 @@
 					"$(PROJECT_DIR)/ios7funs/Lib3rdParty",
 				);
 				INFOPLIST_FILE = ios7funs/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.7funs.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
