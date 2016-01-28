@@ -88,15 +88,16 @@ class RecipeTutorialViewController: UIViewController {
 
     func addRecipeMethods() {
         for index in 0..<recipe.method.count {
+            let stepNumber = String(index + 1)
             let content = recipe.method[index]
 
             let methodView = RecipeMethod()
-            methodView.setupNumber(String(index), font: fontNumber)
+            methodView.setupNumber(stepNumber, font: fontNumber)
             methodView.setupMethod(content, font: fontMethod, containerWidth: containerWidth)
 
             let methodViewHeight = methodView.getHeight()
 
-            // FIXME:
+            // FIXME: temporary fix, but seems too hacky
             let bg = UIView(frame: CGRect(x: -leftContainerOffset.constant, y: containerHeight, width: screenWidth, height: methodViewHeight))
             bg.backgroundColor = UIColor(hexString: "#f6f4ef")
             methodView.frame = CGRectMake(0, containerHeight, containerWidth, methodViewHeight)
