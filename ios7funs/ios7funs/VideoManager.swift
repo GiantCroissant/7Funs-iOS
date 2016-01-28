@@ -49,7 +49,10 @@ class VideoManager {
             let loadCount = curCount + amount
 
             let realm = try! Realm()
-            let videos = realm.objects(Video).filter("youtubeVideoCode != ''")
+            let condition = "youtubeVideoCode != '' AND publishedAt != '' AND duration != 0"
+            let videos = realm.objects(Video).filter(condition).sort {
+                $1.publishedAt.toNSDate() < $0.publishedAt.toNSDate()
+            }
 
             var videoUIModels = [VideoUIModel]()
             for i in 0..<loadCount {
@@ -58,6 +61,8 @@ class VideoManager {
                 }
 
                 let video = videos[i]
+                print(video)
+
                 let videoUIModel = VideoUIModel(dbData: video)
                 videoUIModels.append(videoUIModel)
             }
