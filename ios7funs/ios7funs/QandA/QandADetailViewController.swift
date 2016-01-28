@@ -10,6 +10,7 @@ import UIKit
 
 class QandADetailViewController: UIViewController {
 
+    @IBOutlet weak var questionHeader: UIView!
     @IBOutlet weak var imgUser: UIImageView!
     @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var lblQuestionTitle: UILabel!
@@ -92,6 +93,19 @@ class QandADetailViewController: UIViewController {
         configureTableView()
 
         fetchAnswers()
+
+        tableAnswers.rowHeight = UITableViewAutomaticDimension;
+        tableAnswers.estimatedRowHeight = 100
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        let size = questionHeader.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+
+        questionHeader.frame.size = CGSize(width: questionHeader.frame.width, height: size.height)
+
+        tableAnswers.tableHeaderView = questionHeader
     }
 
     func fetchAnswers() {

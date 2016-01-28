@@ -61,8 +61,6 @@ class VideoManager {
                 }
 
                 let video = videos[i]
-                print(video)
-
                 let videoUIModel = VideoUIModel(dbData: video)
                 videoUIModels.append(videoUIModel)
             }
