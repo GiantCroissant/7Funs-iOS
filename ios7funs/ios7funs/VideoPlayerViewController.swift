@@ -1,5 +1,5 @@
 //
-//  RecipeVideoTutorialViewController.swift
+//  VideoPlayerViewController
 //  ios7funs
 //
 //  Created by Bryan Lin on 12/16/15.
