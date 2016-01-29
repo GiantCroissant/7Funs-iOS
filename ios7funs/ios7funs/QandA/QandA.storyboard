@@ -252,13 +252,13 @@
                                             </variation>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GHc-9O-yDe" userLabel="BG create time">
-                                            <rect key="frame" x="147" y="173" width="80" height="15"/>
+                                            <rect key="frame" x="159" y="173" width="57" height="15"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_time" translatesAutoresizingMaskIntoConstraints="NO" id="qve-Te-TEf">
                                                     <rect key="frame" x="0.0" y="0.0" width="14" height="15"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10分鐘前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zWj-hR-TyW">
-                                                    <rect key="frame" x="22" y="0.0" width="58" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0秒前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zWj-hR-TyW">
+                                                    <rect key="frame" x="20" y="0.0" width="37" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="58" id="sPh-kg-Vx6"/>
                                                     </constraints>
@@ -286,6 +286,7 @@
                                                 <constraint firstItem="qve-Te-TEf" firstAttribute="top" secondItem="GHc-9O-yDe" secondAttribute="top" id="Pzy-BC-aRc"/>
                                                 <constraint firstItem="zWj-hR-TyW" firstAttribute="top" secondItem="GHc-9O-yDe" secondAttribute="top" id="Ybi-zm-jFd"/>
                                                 <constraint firstAttribute="bottom" secondItem="zWj-hR-TyW" secondAttribute="bottom" id="bKe-9e-Vf9"/>
+                                                <constraint firstItem="zWj-hR-TyW" firstAttribute="leading" secondItem="qve-Te-TEf" secondAttribute="trailing" constant="6" id="cF3-E7-QUe"/>
                                                 <constraint firstAttribute="bottom" secondItem="zWj-hR-TyW" secondAttribute="bottom" constant="-3" id="gbl-Ai-Qfh"/>
                                                 <constraint firstItem="zWj-hR-TyW" firstAttribute="top" secondItem="GHc-9O-yDe" secondAttribute="top" id="lLu-U8-18x"/>
                                                 <constraint firstAttribute="bottom" secondItem="qve-Te-TEf" secondAttribute="bottom" id="n97-o2-w2E"/>
@@ -297,6 +298,7 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="yzO-Zw-LUP"/>
                                                     <exclude reference="5Vi-Q8-1f6"/>
                                                     <exclude reference="6if-G5-DG0"/>
                                                     <exclude reference="FxI-hM-IPJ"/>

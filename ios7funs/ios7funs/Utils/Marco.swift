@@ -39,6 +39,5 @@ import UIKit
 
 func aLog(message: NSString, filename: NSString = __FILE__, function: NSString = __FUNCTION__, line: Int = __LINE__) {
     let thread = NSThread.currentThread().isMainThread ? "main" : "background"
-//    print("\(thread) : [\(filename.lastPathComponent):\(line)] \(function) - \(message)")
     print("\(thread) : \(function) - \(message)")
 }

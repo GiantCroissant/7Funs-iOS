@@ -131,7 +131,6 @@ class AnswerUIModel {
     var updatedAt: String
 
     init(json: MessageWithCommentJsonObject) {
-        print(json)
         self.id = json.id
         self.userId = json.userId
         self.username = json.user.name

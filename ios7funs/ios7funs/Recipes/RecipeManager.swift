@@ -144,7 +144,7 @@ class RecipeManager: NSObject {
 
         let ids = recipesOverviews.map({ $0.id }).sort(>)
         let recipeIds = Array(ids.prefix(self.kFetchAmount))
-        aLog("fetch Ids = \(recipeIds.first)..\(recipeIds.last) count = \(recipeIds.count)")
+        aLog("fetch recipe count = \(recipeIds.count)")
         return recipeIds
     }
 
@@ -189,7 +189,6 @@ class RecipeManager: NSObject {
                     tagJson.taggings?.forEach {
                         recipeIds.append($0.taggableId)
                     }
-                    print(NSThread.currentThread())
                     dLog("tagName[ \(tagJson.name) ] => 數量： \(recipeIds.count)")
                 },
                 onError: { err in
