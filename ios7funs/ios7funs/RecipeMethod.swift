@@ -35,8 +35,6 @@ extension RecipeMethod {
         lblMethod.font = font
         lblMethod.numberOfLines = 0
         lblMethod.sizeToFit()
-
-        dLog("method = \(content) height = \(lblMethod.frame.height)")
     }
 
     func getHeight() -> CGFloat {

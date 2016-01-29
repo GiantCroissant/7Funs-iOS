@@ -82,8 +82,8 @@ class RecipeTutorialViewController: UIViewController {
     func configureTutorial() {
         let ingredient = recipe.ingredient
         let seasoning = recipe.seasoning
-        lblIngredients.attributedText = reformatIngredientString(ingredient).addLineSpacing(4)
-        lblSeasonings.attributedText = reformatSeasoningString(seasoning).addLineSpacing(4)
+        lblIngredients.attributedText = reformatTutorialString(ingredient).addLineSpacing(4)
+        lblSeasonings.attributedText = reformatTutorialString(seasoning).addLineSpacing(4)
     }
 
     func addRecipeMethods() {
@@ -108,30 +108,23 @@ class RecipeTutorialViewController: UIViewController {
         }
     }
 
-    func reformatIngredientString(ingredient: String) -> String {
+    func reformatTutorialString(ingredient: String) -> String {
         let ingredients = ingredient.componentsSeparatedByString("、")
-        var ingredientText: String = "無"
-        for ingre in ingredients {
-            ingredientText.appendContentsOf(ingre)
-            ingredientText.appendContentsOf("\n")
-        }
-        let range = ingredientText.endIndex.advancedBy(-2)..<ingredientText.endIndex
-        ingredientText.removeRange(range)
-        return ingredientText
-    }
+        var ingredientText: String = ""
 
-    func reformatSeasoningString(seasoning: String) -> String {
-        let seasonings = seasoning.componentsSeparatedByString("、")
-        var seasoningText: String = "無"
-        for sea in seasonings {
-            seasoningText.appendContentsOf(sea)
-            seasoningText.appendContentsOf("\n")
+        for i in 0..<ingredients.count {
+            let ingre = ingredients[i]
+            ingredientText.appendContentsOf(ingre)
+
+            if i < ingredients.count - 1 {
+                ingredientText.appendContentsOf("\n")
+            }
         }
-        if seasoningText.characters.count > 2 {
-            let range = seasoningText.endIndex.advancedBy(-2)..<seasoningText.endIndex
-            seasoningText.removeRange(range)
+
+        if ingredientText.isEmpty {
+            ingredientText = "無"
         }
-        return seasoningText
+        return ingredientText
     }
 
     func configureInformation() {
