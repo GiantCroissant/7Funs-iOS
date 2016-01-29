@@ -48,12 +48,17 @@ class RecipeManager: NSObject {
             let loadCount = curRecipes.count + 30
 
             let realm = try! Realm()
-            let recipes = realm.objects(Recipe).sort { $0.id < $1.id }
+            let recipes = realm.objects(Recipe).sort { $0.id > $1.id }.filter { recipe in
+                if let _ = realm.objects(Video).filter("recipeId = \(recipe.id) AND number = 1 AND youtubeVideoCode != '' AND publishedAt != '' AND duration != 0").first {
+                    return true
+                }
+                return false
+            }
 
             var recipeUIModels = [RecipeUIModel]()
             for i in 0..<loadCount {
                 if i >= recipes.count {
-                    return
+                    break
                 }
 
                 let recipe = recipes[i]
@@ -128,7 +133,7 @@ class RecipeManager: NSObject {
             return nil
         }
 
-        let ids = recipesOverviews.map({ $0.id }).sort(<)
+        let ids = recipesOverviews.map({ $0.id }).sort(>)
         let recipeIds = Array(ids.prefix(self.kFetchAmount))
         aLog("fetch Ids = \(recipeIds.first)..\(recipeIds.last) count = \(recipeIds.count)")
         return recipeIds

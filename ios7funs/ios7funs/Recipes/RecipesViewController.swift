@@ -135,6 +135,8 @@ extension RecipesViewController {
             self.tableRecipes.reloadData()
             UIUtils.hideStatusBarNetworking()
 
+            print(recipes)
+
             if (recipes.isEmpty) {
                 onEmpty()
             }

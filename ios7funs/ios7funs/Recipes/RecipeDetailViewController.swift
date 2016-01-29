@@ -51,12 +51,13 @@ class RecipeDetailViewController: UIViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let vc = segue.destinationViewController
-        if vc.title == "Video Tutorial" {
+        if vc.title == "Video Player" {
             let videoTutorialVC = vc as! VideoPlayerViewController
 
             VideoManager.sharedInstance.loadMainVideoWithRecipeId(recipe.id) { video in
                 if video != nil {
                     videoTutorialVC.video = video
+                    videoTutorialVC.configureUILayout()
                 }
             }
         }

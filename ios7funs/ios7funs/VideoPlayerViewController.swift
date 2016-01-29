@@ -22,8 +22,12 @@ class VideoPlayerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadSeriesVideos()
 
+        configureUILayout()
+    }
+
+    func configureUILayout() {
+        loadSeriesVideos()
         if let video = video {
             title = video.title
             lblVideoLength.text = "00:00"
