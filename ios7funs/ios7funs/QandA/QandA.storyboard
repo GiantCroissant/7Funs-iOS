@@ -494,6 +494,7 @@
                         <outlet property="inputPlaceholder" destination="a7F-SN-Woc" id="Lum-ha-UFJ"/>
                         <outlet property="lblDescription" destination="tug-Zy-K6j" id="H0d-v3-lH9"/>
                         <outlet property="lblQuestionTitle" destination="XBJ-kh-PrP" id="ETH-41-Za3"/>
+                        <outlet property="lblTime" destination="zWj-hR-TyW" id="jur-Ze-sCK"/>
                         <outlet property="lblUserName" destination="n5o-dr-mPE" id="4Ty-Id-Njz"/>
                         <outlet property="questionHeader" destination="zBX-OB-VYA" id="2ib-Dz-esA"/>
                         <outlet property="tableAnswers" destination="hiH-EI-UI8" id="Ia1-UJ-h7g"/>

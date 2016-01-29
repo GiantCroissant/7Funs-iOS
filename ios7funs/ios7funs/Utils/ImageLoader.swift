@@ -54,14 +54,14 @@ class ImageLoader {
 
     func loadImage(imageName: String, url: String, completionHandler:(image: UIImage?, imageName: String, fadeIn: Bool) -> ()) {
         Async.background {
-            if let image = ImageCache.sharedCache.objectForKey(imageName) as? UIImage {
+            if let image = ImageCache.sharedCache.objectForKey(url) as? UIImage {
                 Async.main {
                     completionHandler(image: image, imageName: imageName, fadeIn: false)
                 }
                 return
             }
 
-            if let image = self.loadImageFromFile(imageName) {
+            if let image = self.loadImageFromFile(url) {
                 ImageCache.sharedCache.setObject(image, forKey: imageName)
 
                 Async.main {

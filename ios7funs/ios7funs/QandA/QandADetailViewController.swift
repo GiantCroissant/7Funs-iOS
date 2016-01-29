@@ -15,6 +15,7 @@ class QandADetailViewController: UIViewController {
     @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var lblQuestionTitle: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var lblTime: UILabel!
 
     // ---------------------------------------
     @IBOutlet weak var inputPlaceholder: UILabel!
@@ -86,6 +87,7 @@ class QandADetailViewController: UIViewController {
         lblUserName.text = question.username
         lblQuestionTitle.text = question.title
         lblDescription.text = question.description
+        lblTime.text = NSDate().getOffsetStringFrom(question.updatedAt.toNSDate())
 
         imgUser.configureToCircularView()
         configureInputBar()
