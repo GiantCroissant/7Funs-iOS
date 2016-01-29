@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Rd-Jr-p9d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Rd-Jr-p9d">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -38,12 +38,29 @@
                                                     <segue destination="hPt-vT-C04" kind="show" identifier="id_segue_link_friend_01" id="fC3-hk-Bm5"/>
                                                 </connections>
                                             </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_list_gradients" translatesAutoresizingMaskIntoConstraints="NO" id="FVT-o0-QVK" userLabel="Gradient">
+                                                <rect key="frame" x="11" y="182" width="353" height="115"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="115" id="so1-82-ZWI"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="豆油伯" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Awm-vR-1uN" userLabel="Title">
+                                                <rect key="frame" x="24" y="260" width="60" height="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="FVT-o0-QVK" secondAttribute="trailing" constant="11" id="1WE-3V-0jo"/>
+                                            <constraint firstAttribute="bottom" secondItem="FVT-o0-QVK" secondAttribute="bottom" constant="5.5" id="1fA-wo-3ZK"/>
+                                            <constraint firstAttribute="bottom" secondItem="Awm-vR-1uN" secondAttribute="bottom" constant="17.5" id="7vv-qz-CaZ"/>
                                             <constraint firstAttribute="trailing" secondItem="vEg-aJ-NrM" secondAttribute="trailing" constant="11" id="CId-d9-IMB"/>
                                             <constraint firstItem="vEg-aJ-NrM" firstAttribute="top" secondItem="lVk-MN-sEV" secondAttribute="top" constant="11" id="J2a-Bl-XVX"/>
                                             <constraint firstAttribute="bottom" secondItem="vEg-aJ-NrM" secondAttribute="bottom" constant="5.5" id="LOL-ix-Xmq"/>
+                                            <constraint firstItem="Awm-vR-1uN" firstAttribute="leading" secondItem="lVk-MN-sEV" secondAttribute="leading" constant="24" id="lpq-BG-Plv"/>
+                                            <constraint firstItem="FVT-o0-QVK" firstAttribute="leading" secondItem="lVk-MN-sEV" secondAttribute="leading" constant="11" id="nD4-fI-b7s"/>
                                             <constraint firstItem="vEg-aJ-NrM" firstAttribute="leading" secondItem="lVk-MN-sEV" secondAttribute="leading" constant="11" id="tgh-U4-fA1"/>
                                         </constraints>
                                     </view>
@@ -57,14 +74,38 @@
                                                     <segue destination="hPt-vT-C04" kind="show" identifier="id_segue_link_friend_02" id="4Kw-dw-xUj"/>
                                                 </connections>
                                             </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_list_gradients" translatesAutoresizingMaskIntoConstraints="NO" id="Shx-pJ-6LB" userLabel="Gradient">
+                                                <rect key="frame" x="11" y="175" width="353" height="115"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="115" id="Bte-dV-4TC"/>
+                                                    <constraint firstAttribute="height" constant="115" id="U6L-f3-slv"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UCOM 益康屋" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fkh-Rw-1gg" userLabel="Title">
+                                                <rect key="frame" x="24" y="254" width="127" height="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstItem="Shx-pJ-6LB" firstAttribute="leading" secondItem="0O8-bA-I5O" secondAttribute="leading" constant="11" id="7dq-ho-axP"/>
                                             <constraint firstItem="e6S-O6-HLZ" firstAttribute="leading" secondItem="0O8-bA-I5O" secondAttribute="leading" constant="11" id="Nle-LG-V7j"/>
                                             <constraint firstItem="e6S-O6-HLZ" firstAttribute="top" secondItem="0O8-bA-I5O" secondAttribute="top" constant="5.5" id="Nnr-UD-ReU"/>
+                                            <constraint firstAttribute="trailing" secondItem="Shx-pJ-6LB" secondAttribute="trailing" constant="11" id="Yyi-yC-9Cq"/>
                                             <constraint firstAttribute="bottom" secondItem="e6S-O6-HLZ" secondAttribute="bottom" constant="11" id="bdS-iT-Mh9"/>
+                                            <constraint firstAttribute="bottom" secondItem="Fkh-Rw-1gg" secondAttribute="bottom" constant="23" id="btX-rC-lt1"/>
+                                            <constraint firstItem="Shx-pJ-6LB" firstAttribute="top" secondItem="Fkh-Rw-1gg" secondAttribute="bottom" constant="23" id="dPJ-aE-c8J"/>
+                                            <constraint firstItem="Fkh-Rw-1gg" firstAttribute="leading" secondItem="0O8-bA-I5O" secondAttribute="leading" constant="24" id="fAX-al-0k7"/>
+                                            <constraint firstAttribute="bottom" secondItem="Shx-pJ-6LB" secondAttribute="bottom" constant="11" id="pIi-gh-HFB"/>
                                             <constraint firstAttribute="trailing" secondItem="e6S-O6-HLZ" secondAttribute="trailing" constant="11" id="sy3-GY-1SA"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="dPJ-aE-c8J"/>
+                                            </mask>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
@@ -150,6 +191,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="food_list_gradients" width="353" height="115"/>
         <image name="friend_logo_01" width="353" height="285"/>
         <image name="friend_logo_02" width="353" height="285"/>
     </resources>
