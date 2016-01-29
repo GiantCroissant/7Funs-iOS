@@ -1,8 +1,8 @@
 //
-//  VideoPlayerViewController.swift
+//  RecipeVideoTutorialViewController.swift
 //  ios7funs
 //
-//  Created by Bryan Lin on 12/22/15.
+//  Created by Bryan Lin on 12/16/15.
 //  Copyright © 2015 Giant Croissant. All rights reserved.
 //
 
@@ -12,31 +12,40 @@ class VideoPlayerViewController: UIViewController {
 
     @IBOutlet weak var youtubePlayer: YTPlayerView!
     @IBOutlet weak var lblVideoLength: UILabel!
+    @IBOutlet weak var warningNoVideo: UIView!
     @IBOutlet var camButtons: [UIButton]!
 
+
     var videoTypeYoutubeIds = [Int : String]()
-    var video: VideoUIModel!
+    var video: VideoUIModel?
     var currentTime: Float = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         loadSeriesVideos()
 
-        title = video.title
-        lblVideoLength.text = "00:00"
+        if let video = video {
+            title = video.title
+            lblVideoLength.text = "00:00"
 
-        youtubePlayer.delegate = self
-        youtubePlayer.loadWithVideoId(video.youtubeVideoId)
+            youtubePlayer.delegate = self
+            youtubePlayer.loadWithVideoId(video.youtubeVideoId)
+            warningNoVideo.hidden = true
+        }
     }
 
     func loadSeriesVideos() {
-        showToastIndicator()
-        VideoManager.sharedInstance.loadVideosWithRecipeId(video.recipeId) { videos in
-            videos.forEach { video in
-                self.videoTypeYoutubeIds[video.type] = video.youtubeVideoId
-                self.configureCamButtons()
-                self.hideToastIndicator()
+        if let video = video {
+            VideoManager.sharedInstance.loadVideosWithRecipeId(video.recipeId) { videos in
+                videos.forEach { video in
+                    print(video)
+                    self.videoTypeYoutubeIds[video.type] = video.youtubeVideoId
+                    self.configureCamButtons()
+                }
             }
+
+        } else {
+            configureCamButtons()
         }
     }
 
@@ -61,7 +70,7 @@ class VideoPlayerViewController: UIViewController {
 
 
 extension VideoPlayerViewController {
-    
+
     // save Type ( 1, 2, 3 ) to UIButton's tag in IB
     @IBAction func onCamButtonClick(sender: UIButton) {
         let type = sender.tag
@@ -92,3 +101,4 @@ extension VideoPlayerViewController: YTPlayerViewDelegate {
     }
 
 }
+
