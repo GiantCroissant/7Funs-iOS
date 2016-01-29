@@ -10,6 +10,8 @@ import UIKit
 import RealmSwift
 
 class RecipesViewController: UIViewController {
+    @IBOutlet var loadingFooter: UIView!
+    @IBOutlet var tableSpacing: UIView!
     @IBOutlet weak var tableRecipes: UITableView!
     @IBOutlet weak var indicatorLoadMore: UIActivityIndicatorView!
 
@@ -130,13 +132,12 @@ extension RecipesViewController {
 
     func loadRecipes(onEmpty onEmpty: (() -> Void) = {}) {
         UIUtils.showStatusBarNetworking()
-        RecipeManager.sharedInstance.loadRecipes(self.recipes) { recipes in
+        RecipeManager.sharedInstance.loadRecipes(self.recipes) { recipes, remainCount in
             self.recipes = recipes
             self.tableRecipes.reloadData()
+            self.tableRecipes.tableHeaderView = recipes.count > 0 ? self.tableSpacing : nil
+            self.tableRecipes.tableFooterView = remainCount > 0 ? self.loadingFooter : self.tableSpacing
             UIUtils.hideStatusBarNetworking()
-
-            print(recipes)
-
             if (recipes.isEmpty) {
                 onEmpty()
             }

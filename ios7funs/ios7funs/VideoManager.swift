@@ -103,7 +103,8 @@ class VideoManager {
     func loadMainVideoWithRecipeId(recipeId: Int, onComplete: (video: VideoUIModel?) -> Void) {
         Async.background {
             let realm = try! Realm()
-            let video = realm.objects(Video).filter("recipeId = \(recipeId) AND number = 1")
+            let condition = "recipeId = \(recipeId) AND number = 1 AND youtubeVideoCode != '' AND publishedAt != '' AND duration != 0"
+            let video = realm.objects(Video).filter(condition)
                 .map { VideoUIModel(dbData: $0) }.first
 
             Async.main {

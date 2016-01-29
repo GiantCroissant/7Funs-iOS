@@ -27,8 +27,12 @@ class VideoPlayerViewController: UIViewController {
     }
 
     func configureUILayout() {
+        dLog("hi")
+
         loadSeriesVideos()
         if let video = video {
+            dLog("video = \(video.youtubeVideoId)")
+
             title = video.title
             lblVideoLength.text = "00:00"
 
@@ -42,7 +46,6 @@ class VideoPlayerViewController: UIViewController {
         if let video = video {
             VideoManager.sharedInstance.loadVideosWithRecipeId(video.recipeId) { videos in
                 videos.forEach { video in
-                    print(video)
                     self.videoTypeYoutubeIds[video.type] = video.youtubeVideoId
                     self.configureCamButtons()
                 }

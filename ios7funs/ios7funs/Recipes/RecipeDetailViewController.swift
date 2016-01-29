@@ -57,8 +57,8 @@ class RecipeDetailViewController: UIViewController {
             VideoManager.sharedInstance.loadMainVideoWithRecipeId(recipe.id) { video in
                 if video != nil {
                     videoTutorialVC.video = video
-                    videoTutorialVC.configureUILayout()
                 }
+                videoTutorialVC.configureUILayout()
             }
         }
 

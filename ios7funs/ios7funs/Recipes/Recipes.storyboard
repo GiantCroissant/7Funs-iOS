@@ -27,28 +27,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="258" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NwZ-h3-aJb">
                                 <rect key="frame" x="5" y="64" width="365" height="603"/>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.95686274510000002" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="EUo-dN-B6g">
-                                    <rect key="frame" x="0.0" y="0.0" width="365" height="5"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
-                                </view>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="3P4-5u-5wD">
-                                    <rect key="frame" x="0.0" y="291" width="365" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Cgu-Ac-xdg">
-                                            <rect key="frame" x="173" y="23" width="20" height="20"/>
-                                        </activityIndicatorView>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstItem="Cgu-Ac-xdg" firstAttribute="centerX" secondItem="3P4-5u-5wD" secondAttribute="centerX" id="CeW-3D-Hvp"/>
-                                        <constraint firstItem="Cgu-Ac-xdg" firstAttribute="centerY" secondItem="3P4-5u-5wD" secondAttribute="centerY" id="LUM-Ny-kvv"/>
-                                    </constraints>
-                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="idRecipeCell" rowHeight="258" id="eXP-D9-dGp" customClass="RecipeTableViewCell" customModule="ios7funs" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="33" width="365" height="258"/>
+                                        <rect key="frame" x="0.0" y="28" width="365" height="258"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eXP-D9-dGp" id="sfl-Js-dUI">
                                             <rect key="frame" x="0.0" y="0.0" width="365" height="258"/>
@@ -242,10 +223,31 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="indicatorLoadMore" destination="Cgu-Ac-xdg" id="efs-Un-dCA"/>
+                        <outlet property="loadingFooter" destination="3P4-5u-5wD" id="KJU-AS-fcL"/>
                         <outlet property="tableRecipes" destination="NwZ-h3-aJb" id="XhT-rs-cLv"/>
+                        <outlet property="tableSpacing" destination="EUo-dN-B6g" id="7iU-t4-aab"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5jU-kb-hq0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="3P4-5u-5wD" userLabel="Loading VIew">
+                    <rect key="frame" x="0.0" y="0.0" width="365" height="66"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Cgu-Ac-xdg">
+                            <rect key="frame" x="173" y="23" width="20" height="20"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="Cgu-Ac-xdg" firstAttribute="centerX" secondItem="3P4-5u-5wD" secondAttribute="centerX" id="CeW-3D-Hvp"/>
+                        <constraint firstItem="Cgu-Ac-xdg" firstAttribute="centerY" secondItem="3P4-5u-5wD" secondAttribute="centerY" id="LUM-Ny-kvv"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" id="EUo-dN-B6g" userLabel="Spacing">
+                    <rect key="frame" x="0.0" y="0.0" width="365" height="5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="267.5" y="1203.5"/>
         </scene>

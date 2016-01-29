@@ -42,18 +42,21 @@ class RecipeManager: NSObject {
         }
     })
 
-    func loadRecipes(curRecipes: [RecipeUIModel], onCompleted: (recipes: [RecipeUIModel]) -> Void) {
+    func loadRecipes(curRecipes: [RecipeUIModel], onCompleted: (recipes: [RecipeUIModel], remainCount: Int) -> Void) {
         Async.background {
 
             let loadCount = curRecipes.count + 30
 
             let realm = try! Realm()
-            let recipes = realm.objects(Recipe).sort { $0.id > $1.id }.filter { recipe in
-                if let _ = realm.objects(Video).filter("recipeId = \(recipe.id) AND number = 1 AND youtubeVideoCode != '' AND publishedAt != '' AND duration != 0").first {
-                    return true
-                }
-                return false
-            }
+            let recipes = realm.objects(Recipe).sort { $0.id > $1.id }
+//                .filter
+//                {
+//                    recipe in
+//                    if let _ = realm.objects(Video).filter("recipeId = \(recipe.id) AND number = 1 AND youtubeVideoCode != '' AND publishedAt != '' AND duration != 0").first {
+//                        return true
+//                    }
+//                    return false
+//                }
 
             var recipeUIModels = [RecipeUIModel]()
             for i in 0..<loadCount {
@@ -66,8 +69,10 @@ class RecipeManager: NSObject {
                 recipeUIModels.append(recipeUIModel)
             }
 
+            let remainCount = recipes.count - loadCount
+
             Async.main {
-                onCompleted(recipes: recipeUIModels)
+                onCompleted(recipes: recipeUIModels, remainCount: remainCount)
             }
         }
     }
@@ -247,7 +252,7 @@ class RecipeManager: NSObject {
         self.restApiProvider
             .request(RestApi.TagById(tagId))
             .observeOn(BackgroundScheduler.instance())
-            .mapSuccessfulHTTPToObject(TagJsonObject)   
+            .mapSuccessfulHTTPToObject(TagJsonObject)
             .subscribe(
                 onNext: { tagJson in
                     var recipeIds = [Int]()
@@ -372,11 +377,11 @@ extension Observable {
                                 return
                         }
                         realm.add($0.toDBModel(), update: true)
-                    }
+                }
                 try! realm.commitWrite()
             }
             return Observable<Any>.empty()
         }
     }
-
+    
 }
