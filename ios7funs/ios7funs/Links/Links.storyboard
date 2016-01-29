@@ -96,16 +96,10 @@
                                             <constraint firstAttribute="trailing" secondItem="Shx-pJ-6LB" secondAttribute="trailing" constant="11" id="Yyi-yC-9Cq"/>
                                             <constraint firstAttribute="bottom" secondItem="e6S-O6-HLZ" secondAttribute="bottom" constant="11" id="bdS-iT-Mh9"/>
                                             <constraint firstAttribute="bottom" secondItem="Fkh-Rw-1gg" secondAttribute="bottom" constant="23" id="btX-rC-lt1"/>
-                                            <constraint firstItem="Shx-pJ-6LB" firstAttribute="top" secondItem="Fkh-Rw-1gg" secondAttribute="bottom" constant="23" id="dPJ-aE-c8J"/>
                                             <constraint firstItem="Fkh-Rw-1gg" firstAttribute="leading" secondItem="0O8-bA-I5O" secondAttribute="leading" constant="24" id="fAX-al-0k7"/>
                                             <constraint firstAttribute="bottom" secondItem="Shx-pJ-6LB" secondAttribute="bottom" constant="11" id="pIi-gh-HFB"/>
                                             <constraint firstAttribute="trailing" secondItem="e6S-O6-HLZ" secondAttribute="trailing" constant="11" id="sy3-GY-1SA"/>
                                         </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="dPJ-aE-c8J"/>
-                                            </mask>
-                                        </variation>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
