@@ -59,6 +59,7 @@ class QandADetailViewController: UIViewController {
             onComplete: {
                 self.textInput.text = ""
                 self.textInput.resignFirstResponder()
+                self.updateInputBarFrame()
 
                 // MARK: - maybe this can be do in textField edit change delegate
                 self.configureSendButton()
@@ -152,7 +153,6 @@ extension QandADetailViewController {
         btnSend.configureHexColorBGForState()
         btnSend.layer.cornerRadius = 5
         btnSend.clipsToBounds = true
-
         btnSend.enabled = !textInput.text.isEmpty
     }
 
@@ -241,7 +241,11 @@ extension QandADetailViewController: UITextViewDelegate {
         inputPlaceholder.hidden = !textView.text.isEmpty
         btnSend.enabled = !textView.text.isEmpty
 
-        if let newHeight = getNewInputBarHeight(textView) {
+        updateInputBarFrame()
+    }
+
+    func updateInputBarFrame() {
+        if let newHeight = getNewInputBarHeight(textInput) {
             inputBarHeight.constant = newHeight
 
             self.view.setNeedsUpdateConstraints()
@@ -249,7 +253,6 @@ extension QandADetailViewController: UITextViewDelegate {
                 self.view.layoutIfNeeded()
             }
         }
-
     }
 
     func getNewInputBarHeight(textView: UITextView) -> CGFloat? {
