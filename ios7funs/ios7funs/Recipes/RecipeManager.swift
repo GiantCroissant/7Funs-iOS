@@ -78,12 +78,7 @@ class RecipeManager: NSObject {
     }
 
     func loadFoodImage(recipeId: Int, imageName: String, completionHandler:(image: UIImage?, recipeId: Int, fadeIn: Bool) -> ()) {
-
-//        dLog("recipeId(\(recipeId)) imageName(\(imageName))")
-
         let imageUrl = recipeImageBaseUrl + String(recipeId) + "/" + imageName
-        dLog("imageUrl : \(imageUrl)")
-
         ImageLoader.sharedInstance.loadImage(imageName, url: imageUrl) { image, imageName, fadeIn in
             completionHandler(image: image, recipeId: recipeId, fadeIn: fadeIn)
         }
