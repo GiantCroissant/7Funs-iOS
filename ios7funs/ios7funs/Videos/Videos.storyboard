@@ -141,9 +141,6 @@
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                             <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
-                                                            <variation key="heightClass=regular-widthClass=regular">
-                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                                            </variation>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期跟觀看次數" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="D9D-m7-UET" userLabel="Time &amp; ViewCount">
                                                             <rect key="frame" x="172" y="73" width="169" height="17"/>
@@ -153,9 +150,6 @@
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                             <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
-                                                            <variation key="heightClass=regular-widthClass=regular">
-                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                                            </variation>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dET-uy-k16" userLabel="Separator">
                                                             <rect key="frame" x="12" y="107" width="329" height="1"/>
@@ -170,17 +164,12 @@
                                                         <constraint firstItem="dET-uy-k16" firstAttribute="leading" secondItem="v21-AG-L6g" secondAttribute="leading" constant="12" id="3fH-d0-ihB"/>
                                                         <constraint firstAttribute="trailing" secondItem="rWh-Q5-h24" secondAttribute="trailing" constant="12" id="4MV-xC-Zei"/>
                                                         <constraint firstAttribute="bottom" secondItem="dET-uy-k16" secondAttribute="bottom" id="HhZ-6v-EnX"/>
-                                                        <constraint firstItem="Kxr-M2-idC" firstAttribute="top" secondItem="S2A-s2-ldV" secondAttribute="top" id="Mz8-yO-NxW"/>
-                                                        <constraint firstItem="D9D-m7-UET" firstAttribute="top" secondItem="rWh-Q5-h24" secondAttribute="bottom" constant="2" id="PVG-P3-pue"/>
                                                         <constraint firstItem="Kxr-M2-idC" firstAttribute="leading" secondItem="v21-AG-L6g" secondAttribute="leading" constant="12" id="WUi-36-MDm"/>
                                                         <constraint firstAttribute="trailing" secondItem="dET-uy-k16" secondAttribute="trailing" constant="12" id="XY6-bN-Ugi"/>
                                                         <constraint firstItem="D9D-m7-UET" firstAttribute="top" secondItem="rWh-Q5-h24" secondAttribute="bottom" constant="2" id="cYO-xl-2CK"/>
                                                         <constraint firstItem="dET-uy-k16" firstAttribute="top" secondItem="Kxr-M2-idC" secondAttribute="bottom" constant="12" id="dWz-oc-2ld"/>
                                                         <constraint firstItem="rWh-Q5-h24" firstAttribute="top" secondItem="S2A-s2-ldV" secondAttribute="bottom" constant="3" id="eup-Pv-7tS"/>
-                                                        <constraint firstItem="Kxr-M2-idC" firstAttribute="height" secondItem="v21-AG-L6g" secondAttribute="height" multiplier="83:108" id="f9M-UT-bSo"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Kxr-M2-idC" secondAttribute="bottom" constant="12" id="ge3-OA-abl"/>
                                                         <constraint firstAttribute="trailing" secondItem="D9D-m7-UET" secondAttribute="trailing" constant="12" id="gqK-T1-yES"/>
-                                                        <constraint firstItem="rWh-Q5-h24" firstAttribute="top" secondItem="S2A-s2-ldV" secondAttribute="bottom" constant="3" id="lgy-69-jdM"/>
                                                         <constraint firstAttribute="trailing" secondItem="S2A-s2-ldV" secondAttribute="trailing" constant="12" id="ljN-05-LhT"/>
                                                         <constraint firstItem="D9D-m7-UET" firstAttribute="leading" secondItem="Kxr-M2-idC" secondAttribute="trailing" constant="10" id="n2k-S3-Jt2"/>
                                                         <constraint firstItem="Kxr-M2-idC" firstAttribute="top" secondItem="v21-AG-L6g" secondAttribute="top" constant="12" id="ngL-Nb-bbR"/>
@@ -188,17 +177,7 @@
                                                         <constraint firstItem="S2A-s2-ldV" firstAttribute="top" secondItem="v21-AG-L6g" secondAttribute="top" constant="12" id="pQ9-yR-nzL"/>
                                                         <constraint firstItem="Kxr-M2-idC" firstAttribute="width" secondItem="v21-AG-L6g" secondAttribute="width" multiplier="150:353" id="poC-sK-CmO"/>
                                                         <constraint firstItem="rWh-Q5-h24" firstAttribute="leading" secondItem="Kxr-M2-idC" secondAttribute="trailing" constant="10" id="qfy-mk-9ZN"/>
-                                                        <constraint firstItem="Kxr-M2-idC" firstAttribute="centerY" secondItem="v21-AG-L6g" secondAttribute="centerY" id="suo-Ye-xYK"/>
-                                                        <constraint firstItem="S2A-s2-ldV" firstAttribute="leading" secondItem="Kxr-M2-idC" secondAttribute="trailing" constant="10" id="xHO-bf-xlJ"/>
                                                     </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="Mz8-yO-NxW"/>
-                                                            <exclude reference="f9M-UT-bSo"/>
-                                                            <exclude reference="ge3-OA-abl"/>
-                                                            <exclude reference="suo-Ye-xYK"/>
-                                                        </mask>
-                                                    </variation>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                                 <connections>

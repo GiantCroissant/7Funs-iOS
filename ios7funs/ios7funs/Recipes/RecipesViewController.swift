@@ -27,6 +27,8 @@ class RecipesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+      
+
         if type == .Collection {
             if (LoginManager.token == nil)  {
                 LoginManager.sharedInstance.showLoginViewController(self)
