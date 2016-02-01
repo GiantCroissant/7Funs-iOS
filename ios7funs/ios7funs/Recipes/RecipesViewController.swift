@@ -130,19 +130,20 @@ extension RecipesViewController {
         )
     }
 
-    func loadRecipes(onEmpty onEmpty: (() -> Void) = {}) {
-        UIUtils.showStatusBarNetworking()
-        RecipeManager.sharedInstance.loadRecipes(self.recipes) { recipes, remainCount in
-            self.recipes = recipes
-            self.tableRecipes.reloadData()
-            self.tableRecipes.tableHeaderView = recipes.count > 0 ? self.tableSpacing : nil
-            self.tableRecipes.tableFooterView = remainCount > 0 ? self.loadingFooter : self.tableSpacing
-            UIUtils.hideStatusBarNetworking()
-            if (recipes.isEmpty) {
-                onEmpty()
-            }
-        }
+  func loadRecipes(onEmpty onEmpty: (() -> Void) = {}) {
+    self.tableRecipes.tableFooterView = self.loadingFooter
+    UIUtils.showStatusBarNetworking()
+    RecipeManager.sharedInstance.loadRecipes(self.recipes) { recipes, remainCount in
+      self.recipes = recipes
+      self.tableRecipes.reloadData()
+      self.tableRecipes.tableHeaderView = recipes.count > 0 ? self.tableSpacing : nil
+      self.tableRecipes.tableFooterView = remainCount > 0 ? self.loadingFooter : self.tableSpacing
+      UIUtils.hideStatusBarNetworking()
+      if (recipes.isEmpty) {
+        onEmpty()
+      }
     }
+  }
 
 }
 

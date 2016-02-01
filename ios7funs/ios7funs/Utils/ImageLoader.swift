@@ -53,33 +53,36 @@ class ImageLoader {
     }
 
     func loadImage(imageName: String, url: String, completionHandler:(image: UIImage?, imageName: String, fadeIn: Bool) -> ()) {
-        Async.background {
-            if let image = ImageCache.sharedCache.objectForKey(url) as? UIImage {
-                Async.main {
-                    completionHandler(image: image, imageName: imageName, fadeIn: false)
-                }
-                return
-            }
-
-            if let image = self.loadImageFromFile(url) {
-                ImageCache.sharedCache.setObject(image, forKey: imageName)
-
-                Async.main {
-                    completionHandler(image: image, imageName: imageName, fadeIn: true)
-                }
-                return
-            }
-
-            self.loadImageFromUrl(imageName, url: url) { image, url in
-                if let image = image {
-                    ImageCache.sharedCache.setObject(image, forKey: imageName)
-                }
-
-                Async.main {
-                    completionHandler(image: image, imageName: imageName, fadeIn: true)
-                }
-            }
+      Async.background {
+        if let image = ImageCache.sharedCache.objectForKey(imageName) as? UIImage {
+          Async.main {
+            print("from [ Cache ]")
+            completionHandler(image: image, imageName: imageName, fadeIn: false)
+          }
+          return
         }
+
+        if let image = self.loadImageFromFile(imageName) {
+          ImageCache.sharedCache.setObject(image, forKey: imageName)
+
+          Async.main {
+            print("from [ FILE ]")
+            completionHandler(image: image, imageName: imageName, fadeIn: true)
+          }
+          return
+        }
+
+        self.loadImageFromUrl(imageName, url: url) { image, url in
+          if let image = image {
+            ImageCache.sharedCache.setObject(image, forKey: imageName)
+          }
+
+          Async.main {
+            print("from [ URL ]")
+            completionHandler(image: image, imageName: imageName, fadeIn: true)
+          }
+        }
+      }
     }
 
     private func loadImageFromFile(imageName: String) -> UIImage? {
@@ -88,31 +91,31 @@ class ImageLoader {
         return image
     }
 
-    private func loadImageFromUrl(imageName: String, url: String, completionHandler:(image: UIImage?, url: String) -> ()) {
-        let nsurl = NSURL(string: url)!
+  private func loadImageFromUrl(imageName: String, url: String, completionHandler:(image: UIImage?, url: String) -> ()) {
+    let nsurl = NSURL(string: url)!
 
-        NSURLSession.sharedSession().dataTaskWithURL(nsurl) { data, response, error in
-            if let error = error {
-                dLog("error : \(error)")
-                completionHandler(image: nil, url: url)
-                return
-            }
+    NSURLSession.sharedSession().dataTaskWithURL(nsurl) { data, response, error in
+      if let error = error {
+        dLog("error : \(error)")
+        completionHandler(image: nil, url: url)
+        return
+      }
 
-            if let data = data, image = UIImage(data: data) {
-                completionHandler(image: image, url: url)
-                self.saveImageToFile(nsurl.lastPathComponent!, image: image)
-            }
+      if let data = data, image = UIImage(data: data) {
+        self.saveImageToFile(imageName, image: image)
+        completionHandler(image: image, url: url)
+        //                self.saveImageToFile(nsurl.lastPathComponent!, image: image)
+      }
 
-            }.resume()
-    }
+      }.resume()
+  }
 
     private func saveImageToFile(filename: String, image: UIImage) {
         if let jpg = UIImageJPEGRepresentation(image, imageSaveQuality) {
             let filePath = FileUtils.getFilePathInDocumentsDirectory(filename)
             if jpg.writeToFile(filePath, atomically: true) {
-
             } else {
-                uLog("save failed : \(filePath)")
+                aLog("save failed : \(filePath)")
             }
         }
     }

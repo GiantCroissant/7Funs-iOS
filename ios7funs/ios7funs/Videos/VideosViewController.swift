@@ -122,18 +122,19 @@ extension VideosViewController: UITableViewDataSource {
 // MARK: - Video datas
 extension VideosViewController {
 
-    func loadVideos(onEmpty onEmpty: (() -> Void) = {}) {
-        let curCount = videos.count
-        VideoManager.sharedInstance.loadVideos(curCount: curCount) { videos, remainCount in
-            self.videos = videos
-            self.tableVideos.reloadData()
-            self.tableVideos.tableFooterView = remainCount > 0 ? self.footerView : nil
+  func loadVideos(onEmpty onEmpty: (() -> Void) = {}) {
+    self.tableVideos.tableFooterView = self.footerView
+    let curCount = videos.count
+    VideoManager.sharedInstance.loadVideos(curCount: curCount) { videos, remainCount in
+      self.videos = videos
+      self.tableVideos.reloadData()
+      self.tableVideos.tableFooterView = remainCount > 0 ? self.footerView : nil
 
-            if videos.isEmpty {
-                onEmpty()
-            }
-        }
+      if videos.isEmpty {
+        onEmpty()
+      }
     }
+  }
 
     func fetchMoreVideos() {
         if isFetching {

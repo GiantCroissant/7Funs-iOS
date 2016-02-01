@@ -77,12 +77,15 @@ class RecipeManager: NSObject {
         }
     }
 
-    func loadFoodImage(recipeId: Int, imageName: String, completionHandler:(image: UIImage?, recipeId: Int, fadeIn: Bool) -> ()) {
-        let imageUrl = recipeImageBaseUrl + String(recipeId) + "/" + imageName
-        ImageLoader.sharedInstance.loadImage(imageName, url: imageUrl) { image, imageName, fadeIn in
-            completionHandler(image: image, recipeId: recipeId, fadeIn: fadeIn)
-        }
+  func loadFoodImage(recipeId: Int, imageName: String, completionHandler:(image: UIImage?, recipeId: Int, fadeIn: Bool) -> ()) {
+    let imageUrl = recipeImageBaseUrl + String(recipeId) + "/" + imageName
+    let key = "recipe_" + String(recipeId) + "_" + imageName
+    print("load food image key: \(key)")
+
+    ImageLoader.sharedInstance.loadImage(key, url: imageUrl) { image, imageName, fadeIn in
+      completionHandler(image: image, recipeId: recipeId, fadeIn: fadeIn)
     }
+  }
 
     func fetchRecipeOverview(onComplete onComplete: (() -> Void) = {}, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
         self.restApiProvider
