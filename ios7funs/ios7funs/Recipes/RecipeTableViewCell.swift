@@ -42,7 +42,8 @@ class RecipeTableViewCell: UITableViewCell {
     }
     currentRecipeId = recipeId
 
-    RecipeManager.sharedInstance.loadFoodImage(recipeId, imageName: imageName, size: btnFood.frame.size) { image, recipeId, fadeIn in
+    print("btnFood size = \(btnFood.frame.size) cell.size = \(self.frame.size)")
+    RecipeManager.sharedInstance.loadFoodImage(recipeId, imageName: imageName, size: self.frame.size) { image, recipeId, fadeIn in
       if (recipeId != self.recipe.id) {
         // check if after async, loaded image is not for this cell
         return
@@ -53,11 +54,11 @@ class RecipeTableViewCell: UITableViewCell {
   }
 
   func showImageWithFadeIn(image: UIImage, fadeIn: Bool) {
-    self.btnFood.imageView?.contentMode = .Center
-    self.btnFood.setImage(image, forState: .Normal)
-    self.btnFood.alpha = 1
+    btnFood.imageView?.contentMode = .ScaleAspectFill
+    btnFood.setImage(image, forState: .Normal)
+    btnFood.alpha = 1
     if fadeIn {
-      self.btnFood.alpha = 0
+      btnFood.alpha = 0
       UIView.animateWithDuration(0.3) {
         self.btnFood.alpha = 1
       }

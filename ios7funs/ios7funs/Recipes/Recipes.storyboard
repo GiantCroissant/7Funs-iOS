@@ -28,7 +28,7 @@
                                 <rect key="frame" x="5" y="64" width="365" height="603"/>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.95686274510000002" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="idRecipeCell" rowHeight="258" id="eXP-D9-dGp" customClass="RecipeTableViewCell" customModule="ios7funs" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="idRecipeCell" id="eXP-D9-dGp" customClass="RecipeTableViewCell" customModule="ios7funs" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="365" height="258"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eXP-D9-dGp" id="sfl-Js-dUI">
@@ -87,7 +87,9 @@
                                                                 <constraint firstAttribute="bottom" secondItem="2Ku-tp-uXD" secondAttribute="bottom" id="W4Y-ft-aQ3"/>
                                                                 <constraint firstItem="7Im-IM-htS" firstAttribute="leading" secondItem="a0g-mk-wnY" secondAttribute="leading" id="X5A-7K-fVR"/>
                                                                 <constraint firstItem="Rim-vc-cYi" firstAttribute="leading" secondItem="a0g-mk-wnY" secondAttribute="leading" id="XIx-cO-b6G"/>
-                                                                <constraint firstAttribute="height" constant="200" id="aTm-qQ-FjZ"/>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="aTm-qQ-FjZ">
+                                                                    <variation key="heightClass=regular-widthClass=regular" constant="400"/>
+                                                                </constraint>
                                                                 <constraint firstAttribute="trailing" secondItem="0Zb-gV-cP9" secondAttribute="trailing" constant="12" id="anu-Uz-uDq"/>
                                                                 <constraint firstItem="2Ku-tp-uXD" firstAttribute="leading" secondItem="a0g-mk-wnY" secondAttribute="leading" id="ayr-Pn-hiS"/>
                                                                 <constraint firstItem="pcw-wf-NcP" firstAttribute="centerX" secondItem="a0g-mk-wnY" secondAttribute="centerX" id="haQ-Kv-New"/>
@@ -96,6 +98,11 @@
                                                                 <constraint firstAttribute="trailing" secondItem="Rim-vc-cYi" secondAttribute="trailing" id="s35-0y-GUx"/>
                                                                 <constraint firstAttribute="trailing" secondItem="2Ku-tp-uXD" secondAttribute="trailing" id="uHP-Lz-prz"/>
                                                             </constraints>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="aTm-qQ-FjZ"/>
+                                                                </mask>
+                                                            </variation>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WwI-J7-F3h" userLabel="Add Collection Background">
                                                             <rect key="frame" x="299" y="200" width="56" height="48"/>
@@ -136,7 +143,7 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5人收藏．991人看過 (Default)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Euu-Jm-t9V" userLabel="Recipe Info">
-                                                            <rect key="frame" x="40" y="215" width="259" height="19"/>
+                                                            <rect key="frame" x="40" y="215" width="259" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
