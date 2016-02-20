@@ -69,57 +69,57 @@ NSString static *const kYTPlayerStaticProxyRegexPattern = @"^https://content.goo
 @implementation YTPlayerView
 
 - (BOOL)loadWithVideoId:(NSString *)videoId {
-    return [self loadWithVideoId:videoId playerVars:nil];
+  return [self loadWithVideoId:videoId playerVars:nil];
 }
 
 - (BOOL)loadWithPlaylistId:(NSString *)playlistId {
-    return [self loadWithPlaylistId:playlistId playerVars:nil];
+  return [self loadWithPlaylistId:playlistId playerVars:nil];
 }
 
 - (BOOL)loadWithVideoId:(NSString *)videoId playerVars:(NSDictionary *)playerVars {
-    if (!playerVars) {
-        playerVars = @{};
-    }
-    NSDictionary *playerParams = @{ @"videoId" : videoId, @"playerVars" : playerVars };
-    return [self loadWithPlayerParams:playerParams];
+  if (!playerVars) {
+    playerVars = @{};
+  }
+  NSDictionary *playerParams = @{ @"videoId" : videoId, @"playerVars" : playerVars };
+  return [self loadWithPlayerParams:playerParams];
 }
 
 - (BOOL)loadWithPlaylistId:(NSString *)playlistId playerVars:(NSDictionary *)playerVars {
 
-    // Mutable copy because we may have been passed an immutable config dictionary.
-    NSMutableDictionary *tempPlayerVars = [[NSMutableDictionary alloc] init];
-    [tempPlayerVars setValue:@"playlist" forKey:@"listType"];
-    [tempPlayerVars setValue:playlistId forKey:@"list"];
-    [tempPlayerVars addEntriesFromDictionary:playerVars];  // No-op if playerVars is null
+  // Mutable copy because we may have been passed an immutable config dictionary.
+  NSMutableDictionary *tempPlayerVars = [[NSMutableDictionary alloc] init];
+  [tempPlayerVars setValue:@"playlist" forKey:@"listType"];
+  [tempPlayerVars setValue:playlistId forKey:@"list"];
+  [tempPlayerVars addEntriesFromDictionary:playerVars];  // No-op if playerVars is null
 
-    NSDictionary *playerParams = @{ @"playerVars" : tempPlayerVars };
-    return [self loadWithPlayerParams:playerParams];
+  NSDictionary *playerParams = @{ @"playerVars" : tempPlayerVars };
+  return [self loadWithPlayerParams:playerParams];
 }
 
 #pragma mark - Player methods
 
 - (void)playVideo {
-    [self stringFromEvaluatingJavaScript:@"player.playVideo();"];
+  [self stringFromEvaluatingJavaScript:@"player.playVideo();"];
 }
 
 - (void)pauseVideo {
-    [self notifyDelegateOfYouTubeCallbackUrl:[NSURL URLWithString:[NSString stringWithFormat:@"ytplayer://onStateChange?data=%@", kYTPlayerStatePausedCode]]];
-    [self stringFromEvaluatingJavaScript:@"player.pauseVideo();"];
+  [self notifyDelegateOfYouTubeCallbackUrl:[NSURL URLWithString:[NSString stringWithFormat:@"ytplayer://onStateChange?data=%@", kYTPlayerStatePausedCode]]];
+  [self stringFromEvaluatingJavaScript:@"player.pauseVideo();"];
 }
 
 - (void)stopVideo {
-    [self stringFromEvaluatingJavaScript:@"player.stopVideo();"];
+  [self stringFromEvaluatingJavaScript:@"player.stopVideo();"];
 }
 
 - (void)seekToSeconds:(float)seekToSeconds allowSeekAhead:(BOOL)allowSeekAhead {
-    NSNumber *secondsValue = [NSNumber numberWithFloat:seekToSeconds];
-    NSString *allowSeekAheadValue = [self stringForJSBoolean:allowSeekAhead];
-    NSString *command = [NSString stringWithFormat:@"player.seekTo(%@, %@);", secondsValue, allowSeekAheadValue];
-    [self stringFromEvaluatingJavaScript:command];
+  NSNumber *secondsValue = [NSNumber numberWithFloat:seekToSeconds];
+  NSString *allowSeekAheadValue = [self stringForJSBoolean:allowSeekAhead];
+  NSString *command = [NSString stringWithFormat:@"player.seekTo(%@, %@);", secondsValue, allowSeekAheadValue];
+  [self stringFromEvaluatingJavaScript:command];
 }
 
 - (void)clearVideo {
-    [self stringFromEvaluatingJavaScript:@"player.clearVideo();"];
+  [self stringFromEvaluatingJavaScript:@"player.clearVideo();"];
 }
 
 #pragma mark - Cueing methods
@@ -127,87 +127,87 @@ NSString static *const kYTPlayerStaticProxyRegexPattern = @"^https://content.goo
 - (void)cueVideoById:(NSString *)videoId
         startSeconds:(float)startSeconds
     suggestedQuality:(YTPlaybackQuality)suggestedQuality {
-    NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
-    NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
-    NSString *command = [NSString stringWithFormat:@"player.cueVideoById('%@', %@, '%@');",
-                         videoId, startSecondsValue, qualityValue];
-    [self stringFromEvaluatingJavaScript:command];
+  NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
+  NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
+  NSString *command = [NSString stringWithFormat:@"player.cueVideoById('%@', %@, '%@');",
+                       videoId, startSecondsValue, qualityValue];
+  [self stringFromEvaluatingJavaScript:command];
 }
 
 - (void)cueVideoById:(NSString *)videoId
         startSeconds:(float)startSeconds
           endSeconds:(float)endSeconds
     suggestedQuality:(YTPlaybackQuality)suggestedQuality {
-    NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
-    NSNumber *endSecondsValue = [NSNumber numberWithFloat:endSeconds];
-    NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
-    NSString *command = [NSString stringWithFormat:@"player.cueVideoById({'videoId': '%@', 'startSeconds': %@, 'endSeconds': %@, 'suggestedQuality': '%@'});", videoId, startSecondsValue, endSecondsValue, qualityValue];
-    [self stringFromEvaluatingJavaScript:command];
+  NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
+  NSNumber *endSecondsValue = [NSNumber numberWithFloat:endSeconds];
+  NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
+  NSString *command = [NSString stringWithFormat:@"player.cueVideoById({'videoId': '%@', 'startSeconds': %@, 'endSeconds': %@, 'suggestedQuality': '%@'});", videoId, startSecondsValue, endSecondsValue, qualityValue];
+  [self stringFromEvaluatingJavaScript:command];
 }
 
 - (void)loadVideoById:(NSString *)videoId
          startSeconds:(float)startSeconds
      suggestedQuality:(YTPlaybackQuality)suggestedQuality {
-    NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
-    NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
-    NSString *command = [NSString stringWithFormat:@"player.loadVideoById('%@', %@, '%@');",
-                         videoId, startSecondsValue, qualityValue];
-    [self stringFromEvaluatingJavaScript:command];
+  NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
+  NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
+  NSString *command = [NSString stringWithFormat:@"player.loadVideoById('%@', %@, '%@');",
+                       videoId, startSecondsValue, qualityValue];
+  [self stringFromEvaluatingJavaScript:command];
 }
 
 - (void)loadVideoById:(NSString *)videoId
          startSeconds:(float)startSeconds
            endSeconds:(float)endSeconds
      suggestedQuality:(YTPlaybackQuality)suggestedQuality {
-    NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
-    NSNumber *endSecondsValue = [NSNumber numberWithFloat:endSeconds];
-    NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
-    NSString *command = [NSString stringWithFormat:@"player.loadVideoById({'videoId': '%@', 'startSeconds': %@, 'endSeconds': %@, 'suggestedQuality': '%@'});",videoId, startSecondsValue, endSecondsValue, qualityValue];
-    [self stringFromEvaluatingJavaScript:command];
+  NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
+  NSNumber *endSecondsValue = [NSNumber numberWithFloat:endSeconds];
+  NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
+  NSString *command = [NSString stringWithFormat:@"player.loadVideoById({'videoId': '%@', 'startSeconds': %@, 'endSeconds': %@, 'suggestedQuality': '%@'});",videoId, startSecondsValue, endSecondsValue, qualityValue];
+  [self stringFromEvaluatingJavaScript:command];
 }
 
 - (void)cueVideoByURL:(NSString *)videoURL
          startSeconds:(float)startSeconds
      suggestedQuality:(YTPlaybackQuality)suggestedQuality {
-    NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
-    NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
-    NSString *command = [NSString stringWithFormat:@"player.cueVideoByUrl('%@', %@, '%@');",
-                         videoURL, startSecondsValue, qualityValue];
-    [self stringFromEvaluatingJavaScript:command];
+  NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
+  NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
+  NSString *command = [NSString stringWithFormat:@"player.cueVideoByUrl('%@', %@, '%@');",
+                       videoURL, startSecondsValue, qualityValue];
+  [self stringFromEvaluatingJavaScript:command];
 }
 
 - (void)cueVideoByURL:(NSString *)videoURL
          startSeconds:(float)startSeconds
            endSeconds:(float)endSeconds
      suggestedQuality:(YTPlaybackQuality)suggestedQuality {
-    NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
-    NSNumber *endSecondsValue = [NSNumber numberWithFloat:endSeconds];
-    NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
-    NSString *command = [NSString stringWithFormat:@"player.cueVideoByUrl('%@', %@, %@, '%@');",
-                         videoURL, startSecondsValue, endSecondsValue, qualityValue];
-    [self stringFromEvaluatingJavaScript:command];
+  NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
+  NSNumber *endSecondsValue = [NSNumber numberWithFloat:endSeconds];
+  NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
+  NSString *command = [NSString stringWithFormat:@"player.cueVideoByUrl('%@', %@, %@, '%@');",
+                       videoURL, startSecondsValue, endSecondsValue, qualityValue];
+  [self stringFromEvaluatingJavaScript:command];
 }
 
 - (void)loadVideoByURL:(NSString *)videoURL
           startSeconds:(float)startSeconds
       suggestedQuality:(YTPlaybackQuality)suggestedQuality {
-    NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
-    NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
-    NSString *command = [NSString stringWithFormat:@"player.loadVideoByUrl('%@', %@, '%@');",
-                         videoURL, startSecondsValue, qualityValue];
-    [self stringFromEvaluatingJavaScript:command];
+  NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
+  NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
+  NSString *command = [NSString stringWithFormat:@"player.loadVideoByUrl('%@', %@, '%@');",
+                       videoURL, startSecondsValue, qualityValue];
+  [self stringFromEvaluatingJavaScript:command];
 }
 
 - (void)loadVideoByURL:(NSString *)videoURL
           startSeconds:(float)startSeconds
             endSeconds:(float)endSeconds
       suggestedQuality:(YTPlaybackQuality)suggestedQuality {
-    NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
-    NSNumber *endSecondsValue = [NSNumber numberWithFloat:endSeconds];
-    NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
-    NSString *command = [NSString stringWithFormat:@"player.loadVideoByUrl('%@', %@, %@, '%@');",
-                         videoURL, startSecondsValue, endSecondsValue, qualityValue];
-    [self stringFromEvaluatingJavaScript:command];
+  NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
+  NSNumber *endSecondsValue = [NSNumber numberWithFloat:endSeconds];
+  NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
+  NSString *command = [NSString stringWithFormat:@"player.loadVideoByUrl('%@', %@, %@, '%@');",
+                       videoURL, startSecondsValue, endSecondsValue, qualityValue];
+  [self stringFromEvaluatingJavaScript:command];
 }
 
 #pragma mark - Cueing methods for lists
@@ -216,193 +216,193 @@ NSString static *const kYTPlayerStaticProxyRegexPattern = @"^https://content.goo
                           index:(int)index
                    startSeconds:(float)startSeconds
                suggestedQuality:(YTPlaybackQuality)suggestedQuality {
-    NSString *playlistIdString = [NSString stringWithFormat:@"'%@'", playlistId];
-    [self cuePlaylist:playlistIdString
-                index:index
-         startSeconds:startSeconds
-     suggestedQuality:suggestedQuality];
+  NSString *playlistIdString = [NSString stringWithFormat:@"'%@'", playlistId];
+  [self cuePlaylist:playlistIdString
+              index:index
+       startSeconds:startSeconds
+   suggestedQuality:suggestedQuality];
 }
 
 - (void)cuePlaylistByVideos:(NSArray *)videoIds
                       index:(int)index
                startSeconds:(float)startSeconds
            suggestedQuality:(YTPlaybackQuality)suggestedQuality {
-    [self cuePlaylist:[self stringFromVideoIdArray:videoIds]
-                index:index
-         startSeconds:startSeconds
-     suggestedQuality:suggestedQuality];
+  [self cuePlaylist:[self stringFromVideoIdArray:videoIds]
+              index:index
+       startSeconds:startSeconds
+   suggestedQuality:suggestedQuality];
 }
 
 - (void)loadPlaylistByPlaylistId:(NSString *)playlistId
                            index:(int)index
                     startSeconds:(float)startSeconds
                 suggestedQuality:(YTPlaybackQuality)suggestedQuality {
-    NSString *playlistIdString = [NSString stringWithFormat:@"'%@'", playlistId];
-    [self loadPlaylist:playlistIdString
-                 index:index
-          startSeconds:startSeconds
-      suggestedQuality:suggestedQuality];
+  NSString *playlistIdString = [NSString stringWithFormat:@"'%@'", playlistId];
+  [self loadPlaylist:playlistIdString
+               index:index
+        startSeconds:startSeconds
+    suggestedQuality:suggestedQuality];
 }
 
 - (void)loadPlaylistByVideos:(NSArray *)videoIds
                        index:(int)index
                 startSeconds:(float)startSeconds
             suggestedQuality:(YTPlaybackQuality)suggestedQuality {
-    [self loadPlaylist:[self stringFromVideoIdArray:videoIds]
-                 index:index
-          startSeconds:startSeconds
-      suggestedQuality:suggestedQuality];
+  [self loadPlaylist:[self stringFromVideoIdArray:videoIds]
+               index:index
+        startSeconds:startSeconds
+    suggestedQuality:suggestedQuality];
 }
 
 #pragma mark - Setting the playback rate
 
 - (float)playbackRate {
-    NSString *returnValue = [self stringFromEvaluatingJavaScript:@"player.getPlaybackRate();"];
-    return [returnValue floatValue];
+  NSString *returnValue = [self stringFromEvaluatingJavaScript:@"player.getPlaybackRate();"];
+  return [returnValue floatValue];
 }
 
 - (void)setPlaybackRate:(float)suggestedRate {
-    NSString *command = [NSString stringWithFormat:@"player.setPlaybackRate(%f);", suggestedRate];
-    [self stringFromEvaluatingJavaScript:command];
+  NSString *command = [NSString stringWithFormat:@"player.setPlaybackRate(%f);", suggestedRate];
+  [self stringFromEvaluatingJavaScript:command];
 }
 
 - (NSArray *)availablePlaybackRates {
-    NSString *returnValue =
-    [self stringFromEvaluatingJavaScript:@"player.getAvailablePlaybackRates();"];
+  NSString *returnValue =
+  [self stringFromEvaluatingJavaScript:@"player.getAvailablePlaybackRates();"];
 
-    NSData *playbackRateData = [returnValue dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *jsonDeserializationError;
-    NSArray *playbackRates = [NSJSONSerialization JSONObjectWithData:playbackRateData
-                                                             options:kNilOptions
-                                                               error:&jsonDeserializationError];
-    if (jsonDeserializationError) {
-        return nil;
-    }
+  NSData *playbackRateData = [returnValue dataUsingEncoding:NSUTF8StringEncoding];
+  NSError *jsonDeserializationError;
+  NSArray *playbackRates = [NSJSONSerialization JSONObjectWithData:playbackRateData
+                                                           options:kNilOptions
+                                                             error:&jsonDeserializationError];
+  if (jsonDeserializationError) {
+    return nil;
+  }
 
-    return playbackRates;
+  return playbackRates;
 }
 
 #pragma mark - Setting playback behavior for playlists
 
 - (void)setLoop:(BOOL)loop {
-    NSString *loopPlayListValue = [self stringForJSBoolean:loop];
-    NSString *command = [NSString stringWithFormat:@"player.setLoop(%@);", loopPlayListValue];
-    [self stringFromEvaluatingJavaScript:command];
+  NSString *loopPlayListValue = [self stringForJSBoolean:loop];
+  NSString *command = [NSString stringWithFormat:@"player.setLoop(%@);", loopPlayListValue];
+  [self stringFromEvaluatingJavaScript:command];
 }
 
 - (void)setShuffle:(BOOL)shuffle {
-    NSString *shufflePlayListValue = [self stringForJSBoolean:shuffle];
-    NSString *command = [NSString stringWithFormat:@"player.setShuffle(%@);", shufflePlayListValue];
-    [self stringFromEvaluatingJavaScript:command];
+  NSString *shufflePlayListValue = [self stringForJSBoolean:shuffle];
+  NSString *command = [NSString stringWithFormat:@"player.setShuffle(%@);", shufflePlayListValue];
+  [self stringFromEvaluatingJavaScript:command];
 }
 
 #pragma mark - Playback status
 
 - (float)videoLoadedFraction {
-    return [[self stringFromEvaluatingJavaScript:@"player.getVideoLoadedFraction();"] floatValue];
+  return [[self stringFromEvaluatingJavaScript:@"player.getVideoLoadedFraction();"] floatValue];
 }
 
 - (YTPlayerState)playerState {
-    NSString *returnValue = [self stringFromEvaluatingJavaScript:@"player.getPlayerState();"];
-    return [YTPlayerView playerStateForString:returnValue];
+  NSString *returnValue = [self stringFromEvaluatingJavaScript:@"player.getPlayerState();"];
+  return [YTPlayerView playerStateForString:returnValue];
 }
 
 - (float)currentTime {
-    return [[self stringFromEvaluatingJavaScript:@"player.getCurrentTime();"] floatValue];
+  return [[self stringFromEvaluatingJavaScript:@"player.getCurrentTime();"] floatValue];
 }
 
 // Playback quality
 - (YTPlaybackQuality)playbackQuality {
-    NSString *qualityValue = [self stringFromEvaluatingJavaScript:@"player.getPlaybackQuality();"];
-    return [YTPlayerView playbackQualityForString:qualityValue];
+  NSString *qualityValue = [self stringFromEvaluatingJavaScript:@"player.getPlaybackQuality();"];
+  return [YTPlayerView playbackQualityForString:qualityValue];
 }
 
 - (void)setPlaybackQuality:(YTPlaybackQuality)suggestedQuality {
-    NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
-    NSString *command = [NSString stringWithFormat:@"player.setPlaybackQuality('%@');", qualityValue];
-    [self stringFromEvaluatingJavaScript:command];
+  NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
+  NSString *command = [NSString stringWithFormat:@"player.setPlaybackQuality('%@');", qualityValue];
+  [self stringFromEvaluatingJavaScript:command];
 }
 
 #pragma mark - Video information methods
 
 - (NSTimeInterval)duration {
-    return [[self stringFromEvaluatingJavaScript:@"player.getDuration();"] doubleValue];
+  return [[self stringFromEvaluatingJavaScript:@"player.getDuration();"] doubleValue];
 }
 
 - (NSURL *)videoUrl {
-    return [NSURL URLWithString:[self stringFromEvaluatingJavaScript:@"player.getVideoUrl();"]];
+  return [NSURL URLWithString:[self stringFromEvaluatingJavaScript:@"player.getVideoUrl();"]];
 }
 
 - (NSString *)videoEmbedCode {
-    return [self stringFromEvaluatingJavaScript:@"player.getVideoEmbedCode();"];
+  return [self stringFromEvaluatingJavaScript:@"player.getVideoEmbedCode();"];
 }
 
 #pragma mark - Playlist methods
 
 - (NSArray *)playlist {
-    NSString *returnValue = [self stringFromEvaluatingJavaScript:@"player.getPlaylist();"];
+  NSString *returnValue = [self stringFromEvaluatingJavaScript:@"player.getPlaylist();"];
 
-    NSData *playlistData = [returnValue dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *jsonDeserializationError;
-    NSArray *videoIds = [NSJSONSerialization JSONObjectWithData:playlistData
-                                                        options:kNilOptions
-                                                          error:&jsonDeserializationError];
-    if (jsonDeserializationError) {
-        return nil;
-    }
+  NSData *playlistData = [returnValue dataUsingEncoding:NSUTF8StringEncoding];
+  NSError *jsonDeserializationError;
+  NSArray *videoIds = [NSJSONSerialization JSONObjectWithData:playlistData
+                                                      options:kNilOptions
+                                                        error:&jsonDeserializationError];
+  if (jsonDeserializationError) {
+    return nil;
+  }
 
-    return videoIds;
+  return videoIds;
 }
 
 - (int)playlistIndex {
-    NSString *returnValue = [self stringFromEvaluatingJavaScript:@"player.getPlaylistIndex();"];
-    return [returnValue intValue];
+  NSString *returnValue = [self stringFromEvaluatingJavaScript:@"player.getPlaylistIndex();"];
+  return [returnValue intValue];
 }
 
 #pragma mark - Playing a video in a playlist
 
 - (void)nextVideo {
-    [self stringFromEvaluatingJavaScript:@"player.nextVideo();"];
+  [self stringFromEvaluatingJavaScript:@"player.nextVideo();"];
 }
 
 - (void)previousVideo {
-    [self stringFromEvaluatingJavaScript:@"player.previousVideo();"];
+  [self stringFromEvaluatingJavaScript:@"player.previousVideo();"];
 }
 
 - (void)playVideoAt:(int)index {
-    NSString *command =
-    [NSString stringWithFormat:@"player.playVideoAt(%@);", [NSNumber numberWithInt:index]];
-    [self stringFromEvaluatingJavaScript:command];
+  NSString *command =
+  [NSString stringWithFormat:@"player.playVideoAt(%@);", [NSNumber numberWithInt:index]];
+  [self stringFromEvaluatingJavaScript:command];
 }
 
 #pragma mark - Helper methods
 
 - (NSArray *)availableQualityLevels {
-    NSString *returnValue =
-    [self stringFromEvaluatingJavaScript:@"player.getAvailableQualityLevels().toString();"];
-    if(!returnValue) return nil;
+  NSString *returnValue =
+  [self stringFromEvaluatingJavaScript:@"player.getAvailableQualityLevels().toString();"];
+  if(!returnValue) return nil;
 
-    NSArray *rawQualityValues = [returnValue componentsSeparatedByString:@","];
-    NSMutableArray *levels = [[NSMutableArray alloc] init];
-    for (NSString *rawQualityValue in rawQualityValues) {
-        YTPlaybackQuality quality = [YTPlayerView playbackQualityForString:rawQualityValue];
-        [levels addObject:[NSNumber numberWithInt:quality]];
-    }
-    return levels;
+  NSArray *rawQualityValues = [returnValue componentsSeparatedByString:@","];
+  NSMutableArray *levels = [[NSMutableArray alloc] init];
+  for (NSString *rawQualityValue in rawQualityValues) {
+    YTPlaybackQuality quality = [YTPlayerView playbackQualityForString:rawQualityValue];
+    [levels addObject:[NSNumber numberWithInt:quality]];
+  }
+  return levels;
 }
 
 - (BOOL)webView:(UIWebView *)webView
 shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType {
-    if ([request.URL.host isEqual: self.originURL.host]) {
-        return YES;
-    } else if ([request.URL.scheme isEqual:@"ytplayer"]) {
-        [self notifyDelegateOfYouTubeCallbackUrl:request.URL];
-        return NO;
-    } else if ([request.URL.scheme isEqual: @"http"] || [request.URL.scheme isEqual:@"https"]) {
-        return [self handleHttpNavigationToUrl:request.URL];
-    }
+  if ([request.URL.host isEqual: self.originURL.host]) {
     return YES;
+  } else if ([request.URL.scheme isEqual:@"ytplayer"]) {
+    [self notifyDelegateOfYouTubeCallbackUrl:request.URL];
+    return NO;
+  } else if ([request.URL.scheme isEqual: @"http"] || [request.URL.scheme isEqual:@"https"]) {
+    return [self handleHttpNavigationToUrl:request.URL];
+  }
+  return YES;
 }
 
 /**
@@ -412,25 +412,25 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * @return An enum value representing the playback quality.
  */
 + (YTPlaybackQuality)playbackQualityForString:(NSString *)qualityString {
-    YTPlaybackQuality quality = kYTPlaybackQualityUnknown;
+  YTPlaybackQuality quality = kYTPlaybackQualityUnknown;
 
-    if ([qualityString isEqualToString:kYTPlaybackQualitySmallQuality]) {
-        quality = kYTPlaybackQualitySmall;
-    } else if ([qualityString isEqualToString:kYTPlaybackQualityMediumQuality]) {
-        quality = kYTPlaybackQualityMedium;
-    } else if ([qualityString isEqualToString:kYTPlaybackQualityLargeQuality]) {
-        quality = kYTPlaybackQualityLarge;
-    } else if ([qualityString isEqualToString:kYTPlaybackQualityHD720Quality]) {
-        quality = kYTPlaybackQualityHD720;
-    } else if ([qualityString isEqualToString:kYTPlaybackQualityHD1080Quality]) {
-        quality = kYTPlaybackQualityHD1080;
-    } else if ([qualityString isEqualToString:kYTPlaybackQualityHighResQuality]) {
-        quality = kYTPlaybackQualityHighRes;
-    } else if ([qualityString isEqualToString:kYTPlaybackQualityAutoQuality]) {
-        quality = kYTPlaybackQualityAuto;
-    }
+  if ([qualityString isEqualToString:kYTPlaybackQualitySmallQuality]) {
+    quality = kYTPlaybackQualitySmall;
+  } else if ([qualityString isEqualToString:kYTPlaybackQualityMediumQuality]) {
+    quality = kYTPlaybackQualityMedium;
+  } else if ([qualityString isEqualToString:kYTPlaybackQualityLargeQuality]) {
+    quality = kYTPlaybackQualityLarge;
+  } else if ([qualityString isEqualToString:kYTPlaybackQualityHD720Quality]) {
+    quality = kYTPlaybackQualityHD720;
+  } else if ([qualityString isEqualToString:kYTPlaybackQualityHD1080Quality]) {
+    quality = kYTPlaybackQualityHD1080;
+  } else if ([qualityString isEqualToString:kYTPlaybackQualityHighResQuality]) {
+    quality = kYTPlaybackQualityHighRes;
+  } else if ([qualityString isEqualToString:kYTPlaybackQualityAutoQuality]) {
+    quality = kYTPlaybackQualityAuto;
+  }
 
-    return quality;
+  return quality;
 }
 
 /**
@@ -440,24 +440,24 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * @return An |NSString| value to be used in the JavaScript bridge.
  */
 + (NSString *)stringForPlaybackQuality:(YTPlaybackQuality)quality {
-    switch (quality) {
-        case kYTPlaybackQualitySmall:
-            return kYTPlaybackQualitySmallQuality;
-        case kYTPlaybackQualityMedium:
-            return kYTPlaybackQualityMediumQuality;
-        case kYTPlaybackQualityLarge:
-            return kYTPlaybackQualityLargeQuality;
-        case kYTPlaybackQualityHD720:
-            return kYTPlaybackQualityHD720Quality;
-        case kYTPlaybackQualityHD1080:
-            return kYTPlaybackQualityHD1080Quality;
-        case kYTPlaybackQualityHighRes:
-            return kYTPlaybackQualityHighResQuality;
-        case kYTPlaybackQualityAuto:
-            return kYTPlaybackQualityAutoQuality;
-        default:
-            return kYTPlaybackQualityUnknownQuality;
-    }
+  switch (quality) {
+    case kYTPlaybackQualitySmall:
+      return kYTPlaybackQualitySmallQuality;
+    case kYTPlaybackQualityMedium:
+      return kYTPlaybackQualityMediumQuality;
+    case kYTPlaybackQualityLarge:
+      return kYTPlaybackQualityLargeQuality;
+    case kYTPlaybackQualityHD720:
+      return kYTPlaybackQualityHD720Quality;
+    case kYTPlaybackQualityHD1080:
+      return kYTPlaybackQualityHD1080Quality;
+    case kYTPlaybackQualityHighRes:
+      return kYTPlaybackQualityHighResQuality;
+    case kYTPlaybackQualityAuto:
+      return kYTPlaybackQualityAutoQuality;
+    default:
+      return kYTPlaybackQualityUnknownQuality;
+  }
 }
 
 /**
@@ -467,21 +467,21 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * @return An enum value representing the player state.
  */
 + (YTPlayerState)playerStateForString:(NSString *)stateString {
-    YTPlayerState state = kYTPlayerStateUnknown;
-    if ([stateString isEqualToString:kYTPlayerStateUnstartedCode]) {
-        state = kYTPlayerStateUnstarted;
-    } else if ([stateString isEqualToString:kYTPlayerStateEndedCode]) {
-        state = kYTPlayerStateEnded;
-    } else if ([stateString isEqualToString:kYTPlayerStatePlayingCode]) {
-        state = kYTPlayerStatePlaying;
-    } else if ([stateString isEqualToString:kYTPlayerStatePausedCode]) {
-        state = kYTPlayerStatePaused;
-    } else if ([stateString isEqualToString:kYTPlayerStateBufferingCode]) {
-        state = kYTPlayerStateBuffering;
-    } else if ([stateString isEqualToString:kYTPlayerStateCuedCode]) {
-        state = kYTPlayerStateQueued;
-    }
-    return state;
+  YTPlayerState state = kYTPlayerStateUnknown;
+  if ([stateString isEqualToString:kYTPlayerStateUnstartedCode]) {
+    state = kYTPlayerStateUnstarted;
+  } else if ([stateString isEqualToString:kYTPlayerStateEndedCode]) {
+    state = kYTPlayerStateEnded;
+  } else if ([stateString isEqualToString:kYTPlayerStatePlayingCode]) {
+    state = kYTPlayerStatePlaying;
+  } else if ([stateString isEqualToString:kYTPlayerStatePausedCode]) {
+    state = kYTPlayerStatePaused;
+  } else if ([stateString isEqualToString:kYTPlayerStateBufferingCode]) {
+    state = kYTPlayerStateBuffering;
+  } else if ([stateString isEqualToString:kYTPlayerStateCuedCode]) {
+    state = kYTPlayerStateQueued;
+  }
+  return state;
 }
 
 /**
@@ -491,22 +491,22 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * @return A string value to be used in the JavaScript bridge.
  */
 + (NSString *)stringForPlayerState:(YTPlayerState)state {
-    switch (state) {
-        case kYTPlayerStateUnstarted:
-            return kYTPlayerStateUnstartedCode;
-        case kYTPlayerStateEnded:
-            return kYTPlayerStateEndedCode;
-        case kYTPlayerStatePlaying:
-            return kYTPlayerStatePlayingCode;
-        case kYTPlayerStatePaused:
-            return kYTPlayerStatePausedCode;
-        case kYTPlayerStateBuffering:
-            return kYTPlayerStateBufferingCode;
-        case kYTPlayerStateQueued:
-            return kYTPlayerStateCuedCode;
-        default:
-            return kYTPlayerStateUnknownCode;
-    }
+  switch (state) {
+    case kYTPlayerStateUnstarted:
+      return kYTPlayerStateUnstartedCode;
+    case kYTPlayerStateEnded:
+      return kYTPlayerStateEndedCode;
+    case kYTPlayerStatePlaying:
+      return kYTPlayerStatePlayingCode;
+    case kYTPlayerStatePaused:
+      return kYTPlayerStatePausedCode;
+    case kYTPlayerStateBuffering:
+      return kYTPlayerStateBufferingCode;
+    case kYTPlayerStateQueued:
+      return kYTPlayerStateCuedCode;
+    default:
+      return kYTPlayerStateUnknownCode;
+  }
 }
 
 #pragma mark - Private methods
@@ -520,120 +520,120 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * @param url A URL of the format ytplayer://action?data=value.
  */
 - (void)notifyDelegateOfYouTubeCallbackUrl: (NSURL *) url {
-    NSString *action = url.host;
+  NSString *action = url.host;
 
-    // We know the query can only be of the format ytplayer://action?data=SOMEVALUE,
-    // so we parse out the value.
-    NSString *query = url.query;
-    NSString *data;
-    if (query) {
-        data = [query componentsSeparatedByString:@"="][1];
+  // We know the query can only be of the format ytplayer://action?data=SOMEVALUE,
+  // so we parse out the value.
+  NSString *query = url.query;
+  NSString *data;
+  if (query) {
+    data = [query componentsSeparatedByString:@"="][1];
+  }
+
+  if ([action isEqual:kYTPlayerCallbackOnReady]) {
+    if ([self.delegate respondsToSelector:@selector(playerViewDidBecomeReady:)]) {
+      [self.delegate playerViewDidBecomeReady:self];
+    }
+  } else if ([action isEqual:kYTPlayerCallbackOnStateChange]) {
+    if ([self.delegate respondsToSelector:@selector(playerView:didChangeToState:)]) {
+      YTPlayerState state = kYTPlayerStateUnknown;
+
+      if ([data isEqual:kYTPlayerStateEndedCode]) {
+        state = kYTPlayerStateEnded;
+      } else if ([data isEqual:kYTPlayerStatePlayingCode]) {
+        state = kYTPlayerStatePlaying;
+      } else if ([data isEqual:kYTPlayerStatePausedCode]) {
+        state = kYTPlayerStatePaused;
+      } else if ([data isEqual:kYTPlayerStateBufferingCode]) {
+        state = kYTPlayerStateBuffering;
+      } else if ([data isEqual:kYTPlayerStateCuedCode]) {
+        state = kYTPlayerStateQueued;
+      } else if ([data isEqual:kYTPlayerStateUnstartedCode]) {
+        state = kYTPlayerStateUnstarted;
+      }
+
+      [self.delegate playerView:self didChangeToState:state];
+    }
+  } else if ([action isEqual:kYTPlayerCallbackOnPlaybackQualityChange]) {
+    if ([self.delegate respondsToSelector:@selector(playerView:didChangeToQuality:)]) {
+      YTPlaybackQuality quality = [YTPlayerView playbackQualityForString:data];
+      [self.delegate playerView:self didChangeToQuality:quality];
+    }
+  } else if ([action isEqual:kYTPlayerCallbackOnError]) {
+    if ([self.delegate respondsToSelector:@selector(playerView:receivedError:)]) {
+      YTPlayerError error = kYTPlayerErrorUnknown;
+
+      if ([data isEqual:kYTPlayerErrorInvalidParamErrorCode]) {
+        error = kYTPlayerErrorInvalidParam;
+      } else if ([data isEqual:kYTPlayerErrorHTML5ErrorCode]) {
+        error = kYTPlayerErrorHTML5Error;
+      } else if ([data isEqual:kYTPlayerErrorNotEmbeddableErrorCode] ||
+                 [data isEqual:kYTPlayerErrorSameAsNotEmbeddableErrorCode]) {
+        error = kYTPlayerErrorNotEmbeddable;
+      } else if ([data isEqual:kYTPlayerErrorVideoNotFoundErrorCode] ||
+                 [data isEqual:kYTPlayerErrorCannotFindVideoErrorCode]) {
+        error = kYTPlayerErrorVideoNotFound;
+      }
+
+      [self.delegate playerView:self receivedError:error];
+    }
+  } else if ([action isEqualToString:kYTPlayerCallbackOnPlayTime]) {
+    if ([self.delegate respondsToSelector:@selector(playerView:didPlayTime:)]) {
+      float time = [data floatValue];
+      [self.delegate playerView:self didPlayTime:time];
     }
 
-    if ([action isEqual:kYTPlayerCallbackOnReady]) {
-        if ([self.delegate respondsToSelector:@selector(playerViewDidBecomeReady:)]) {
-            [self.delegate playerViewDidBecomeReady:self];
-        }
-    } else if ([action isEqual:kYTPlayerCallbackOnStateChange]) {
-        if ([self.delegate respondsToSelector:@selector(playerView:didChangeToState:)]) {
-            YTPlayerState state = kYTPlayerStateUnknown;
-
-            if ([data isEqual:kYTPlayerStateEndedCode]) {
-                state = kYTPlayerStateEnded;
-            } else if ([data isEqual:kYTPlayerStatePlayingCode]) {
-                state = kYTPlayerStatePlaying;
-            } else if ([data isEqual:kYTPlayerStatePausedCode]) {
-                state = kYTPlayerStatePaused;
-            } else if ([data isEqual:kYTPlayerStateBufferingCode]) {
-                state = kYTPlayerStateBuffering;
-            } else if ([data isEqual:kYTPlayerStateCuedCode]) {
-                state = kYTPlayerStateQueued;
-            } else if ([data isEqual:kYTPlayerStateUnstartedCode]) {
-                state = kYTPlayerStateUnstarted;
-            }
-
-            [self.delegate playerView:self didChangeToState:state];
-        }
-    } else if ([action isEqual:kYTPlayerCallbackOnPlaybackQualityChange]) {
-        if ([self.delegate respondsToSelector:@selector(playerView:didChangeToQuality:)]) {
-            YTPlaybackQuality quality = [YTPlayerView playbackQualityForString:data];
-            [self.delegate playerView:self didChangeToQuality:quality];
-        }
-    } else if ([action isEqual:kYTPlayerCallbackOnError]) {
-        if ([self.delegate respondsToSelector:@selector(playerView:receivedError:)]) {
-            YTPlayerError error = kYTPlayerErrorUnknown;
-
-            if ([data isEqual:kYTPlayerErrorInvalidParamErrorCode]) {
-                error = kYTPlayerErrorInvalidParam;
-            } else if ([data isEqual:kYTPlayerErrorHTML5ErrorCode]) {
-                error = kYTPlayerErrorHTML5Error;
-            } else if ([data isEqual:kYTPlayerErrorNotEmbeddableErrorCode] ||
-                       [data isEqual:kYTPlayerErrorSameAsNotEmbeddableErrorCode]) {
-                error = kYTPlayerErrorNotEmbeddable;
-            } else if ([data isEqual:kYTPlayerErrorVideoNotFoundErrorCode] ||
-                       [data isEqual:kYTPlayerErrorCannotFindVideoErrorCode]) {
-                error = kYTPlayerErrorVideoNotFound;
-            }
-
-            [self.delegate playerView:self receivedError:error];
-        }
-    } else if ([action isEqualToString:kYTPlayerCallbackOnPlayTime]) {
-        if ([self.delegate respondsToSelector:@selector(playerView:didPlayTime:)]) {
-            float time = [data floatValue];
-            [self.delegate playerView:self didPlayTime:time];
-        }
-
-    }
+  }
 }
 
 - (BOOL)handleHttpNavigationToUrl:(NSURL *) url {
-    // Usually this means the user has clicked on the YouTube logo or an error message in the
-    // player. Most URLs should open in the browser. The only http(s) URL that should open in this
-    // UIWebView is the URL for the embed, which is of the format:
-    //     http(s)://www.youtube.com/embed/[VIDEO ID]?[PARAMETERS]
-    NSError *error = NULL;
-    NSRegularExpression *ytRegex =
-    [NSRegularExpression regularExpressionWithPattern:kYTPlayerEmbedUrlRegexPattern
-                                              options:NSRegularExpressionCaseInsensitive
-                                                error:&error];
-    NSTextCheckingResult *ytMatch =
-    [ytRegex firstMatchInString:url.absoluteString
-                        options:0
-                          range:NSMakeRange(0, [url.absoluteString length])];
+  // Usually this means the user has clicked on the YouTube logo or an error message in the
+  // player. Most URLs should open in the browser. The only http(s) URL that should open in this
+  // UIWebView is the URL for the embed, which is of the format:
+  //     http(s)://www.youtube.com/embed/[VIDEO ID]?[PARAMETERS]
+  NSError *error = NULL;
+  NSRegularExpression *ytRegex =
+  [NSRegularExpression regularExpressionWithPattern:kYTPlayerEmbedUrlRegexPattern
+                                            options:NSRegularExpressionCaseInsensitive
+                                              error:&error];
+  NSTextCheckingResult *ytMatch =
+  [ytRegex firstMatchInString:url.absoluteString
+                      options:0
+                        range:NSMakeRange(0, [url.absoluteString length])];
 
-    NSRegularExpression *adRegex =
-    [NSRegularExpression regularExpressionWithPattern:kYTPlayerAdUrlRegexPattern
-                                              options:NSRegularExpressionCaseInsensitive
-                                                error:&error];
-    NSTextCheckingResult *adMatch =
-    [adRegex firstMatchInString:url.absoluteString
-                        options:0
-                          range:NSMakeRange(0, [url.absoluteString length])];
+  NSRegularExpression *adRegex =
+  [NSRegularExpression regularExpressionWithPattern:kYTPlayerAdUrlRegexPattern
+                                            options:NSRegularExpressionCaseInsensitive
+                                              error:&error];
+  NSTextCheckingResult *adMatch =
+  [adRegex firstMatchInString:url.absoluteString
+                      options:0
+                        range:NSMakeRange(0, [url.absoluteString length])];
 
-    NSRegularExpression *oauthRegex =
-    [NSRegularExpression regularExpressionWithPattern:kYTPlayerOAuthRegexPattern
-                                              options:NSRegularExpressionCaseInsensitive
-                                                error:&error];
-    NSTextCheckingResult *oauthMatch =
-    [oauthRegex firstMatchInString:url.absoluteString
-                           options:0
-                             range:NSMakeRange(0, [url.absoluteString length])];
+  NSRegularExpression *oauthRegex =
+  [NSRegularExpression regularExpressionWithPattern:kYTPlayerOAuthRegexPattern
+                                            options:NSRegularExpressionCaseInsensitive
+                                              error:&error];
+  NSTextCheckingResult *oauthMatch =
+  [oauthRegex firstMatchInString:url.absoluteString
+                         options:0
+                           range:NSMakeRange(0, [url.absoluteString length])];
 
-    NSRegularExpression *staticProxyRegex =
-    [NSRegularExpression regularExpressionWithPattern:kYTPlayerStaticProxyRegexPattern
-                                              options:NSRegularExpressionCaseInsensitive
-                                                error:&error];
-    NSTextCheckingResult *staticProxyMatch =
-    [staticProxyRegex firstMatchInString:url.absoluteString
-                                 options:0
-                                   range:NSMakeRange(0, [url.absoluteString length])];
+  NSRegularExpression *staticProxyRegex =
+  [NSRegularExpression regularExpressionWithPattern:kYTPlayerStaticProxyRegexPattern
+                                            options:NSRegularExpressionCaseInsensitive
+                                              error:&error];
+  NSTextCheckingResult *staticProxyMatch =
+  [staticProxyRegex firstMatchInString:url.absoluteString
+                               options:0
+                                 range:NSMakeRange(0, [url.absoluteString length])];
 
-    if (ytMatch || adMatch || oauthMatch || staticProxyMatch) {
-        return YES;
-    } else {
-        [[UIApplication sharedApplication] openURL:url];
-        return NO;
-    }
+  if (ytMatch || adMatch || oauthMatch || staticProxyMatch) {
+    return YES;
+  } else {
+    [[UIApplication sharedApplication] openURL:url];
+    return NO;
+  }
 }
 
 
@@ -646,84 +646,84 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * @return YES if successful, NO if not.
  */
 - (BOOL)loadWithPlayerParams:(NSDictionary *)additionalPlayerParams {
-    NSDictionary *playerCallbacks = @{
-                                      @"onReady" : @"onReady",
-                                      @"onStateChange" : @"onStateChange",
-                                      @"onPlaybackQualityChange" : @"onPlaybackQualityChange",
-                                      @"onError" : @"onPlayerError"
-                                      };
-    NSMutableDictionary *playerParams = [[NSMutableDictionary alloc] init];
-    [playerParams addEntriesFromDictionary:additionalPlayerParams];
-    if (![playerParams objectForKey:@"height"]) {
-        [playerParams setValue:@"100%" forKey:@"height"];
-    }
-    if (![playerParams objectForKey:@"width"]) {
-        [playerParams setValue:@"100%" forKey:@"width"];
-    }
+  NSDictionary *playerCallbacks = @{
+                                    @"onReady" : @"onReady",
+                                    @"onStateChange" : @"onStateChange",
+                                    @"onPlaybackQualityChange" : @"onPlaybackQualityChange",
+                                    @"onError" : @"onPlayerError"
+                                    };
+  NSMutableDictionary *playerParams = [[NSMutableDictionary alloc] init];
+  [playerParams addEntriesFromDictionary:additionalPlayerParams];
+  if (![playerParams objectForKey:@"height"]) {
+    [playerParams setValue:@"100%" forKey:@"height"];
+  }
+  if (![playerParams objectForKey:@"width"]) {
+    [playerParams setValue:@"100%" forKey:@"width"];
+  }
 
-    [playerParams setValue:playerCallbacks forKey:@"events"];
+  [playerParams setValue:playerCallbacks forKey:@"events"];
 
-    if ([playerParams objectForKey:@"playerVars"]) {
-        NSMutableDictionary *playerVars = [[NSMutableDictionary alloc] init];
-        [playerVars addEntriesFromDictionary:[playerParams objectForKey:@"playerVars"]];
+  if ([playerParams objectForKey:@"playerVars"]) {
+    NSMutableDictionary *playerVars = [[NSMutableDictionary alloc] init];
+    [playerVars addEntriesFromDictionary:[playerParams objectForKey:@"playerVars"]];
 
-        if (![playerVars objectForKey:@"origin"]) {
-            self.originURL = [NSURL URLWithString:@"about:blank"];
-        } else {
-            self.originURL = [NSURL URLWithString: [playerVars objectForKey:@"origin"]];
-        }
+    if (![playerVars objectForKey:@"origin"]) {
+      self.originURL = [NSURL URLWithString:@"about:blank"];
     } else {
-        // This must not be empty so we can render a '{}' in the output JSON
-        [playerParams setValue:[[NSDictionary alloc] init] forKey:@"playerVars"];
+      self.originURL = [NSURL URLWithString: [playerVars objectForKey:@"origin"]];
     }
+  } else {
+    // This must not be empty so we can render a '{}' in the output JSON
+    [playerParams setValue:[[NSDictionary alloc] init] forKey:@"playerVars"];
+  }
 
-    // Remove the existing webView to reset any state
-    [self.webView removeFromSuperview];
-    _webView = [self createNewWebView];
-    [self addSubview:self.webView];
+  // Remove the existing webView to reset any state
+  [self.webView removeFromSuperview];
+  _webView = [self createNewWebView];
+  [self addSubview:self.webView];
 
-    NSError *error = nil;
-    NSString *path = [[NSBundle bundleForClass:[YTPlayerView class]] pathForResource:@"YTPlayerView-iframe-player"
-                                                                              ofType:@"html"
-                                                                         inDirectory:@"Assets"];
+  NSError *error = nil;
+  NSString *path = [[NSBundle bundleForClass:[YTPlayerView class]] pathForResource:@"YTPlayerView-iframe-player"
+                                                                            ofType:@"html"
+                                                                       inDirectory:@"Assets"];
 
-    // in case of using Swift and embedded frameworks, resources included not in main bundle,
-    // but in framework bundle
-    if (!path) {
-        path = [[[self class] frameworkBundle] pathForResource:@"YTPlayerView-iframe-player"
-                                                        ofType:@"html"
-                                                   inDirectory:@"Assets"];
-    }
+  // in case of using Swift and embedded frameworks, resources included not in main bundle,
+  // but in framework bundle
+  if (!path) {
+    path = [[[self class] frameworkBundle] pathForResource:@"YTPlayerView-iframe-player"
+                                                    ofType:@"html"
+                                               inDirectory:@"Assets"];
+  }
 
-    NSString *embedHTMLTemplate =
-    [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+  NSString *embedHTMLTemplate =
+  [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
 
-    if (error) {
-        NSLog(@"Received error rendering template: %@", error);
-        return NO;
-    }
+  if (error) {
+    NSLog(@"Received error rendering template: %@", error);
+    return NO;
+  }
 
-    // Render the playerVars as a JSON dictionary.
-    NSError *jsonRenderingError = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:playerParams
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:&jsonRenderingError];
-    if (jsonRenderingError) {
-        NSLog(@"Attempted configuration of player with invalid playerVars: %@ \tError: %@",
-              playerParams,
-              jsonRenderingError);
-        return NO;
-    }
+  // Render the playerVars as a JSON dictionary.
+  NSError *jsonRenderingError = nil;
+  NSData *jsonData = [NSJSONSerialization dataWithJSONObject:playerParams
+                                                     options:NSJSONWritingPrettyPrinted
+                                                       error:&jsonRenderingError];
+  if (jsonRenderingError) {
+    NSLog(@"Attempted configuration of player with invalid playerVars: %@ \tError: %@",
+          playerParams,
+          jsonRenderingError);
+    return NO;
+  }
 
-    NSString *playerVarsJsonString =
-    [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+  NSString *playerVarsJsonString =
+  [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 
-    NSString *embedHTML = [NSString stringWithFormat:embedHTMLTemplate, playerVarsJsonString];
-    [self.webView loadHTMLString:embedHTML baseURL: self.originURL];
-    [self.webView setDelegate:self];
-    self.webView.allowsInlineMediaPlayback = YES;
-    self.webView.mediaPlaybackRequiresUserAction = NO;
-    return YES;
+  NSString *embedHTML = [NSString stringWithFormat:embedHTMLTemplate, playerVarsJsonString];
+  [self.webView loadHTMLString:embedHTML baseURL: self.originURL];
+  [self.webView setDelegate:self];
+  self.webView.allowsInlineMediaPlayback = YES;
+  self.webView.mediaPlaybackRequiresUserAction = NO;
+  return YES;
 }
 
 /**
@@ -741,12 +741,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
               index:(int)index
        startSeconds:(float)startSeconds
    suggestedQuality:(YTPlaybackQuality)suggestedQuality {
-    NSNumber *indexValue = [NSNumber numberWithInt:index];
-    NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
-    NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
-    NSString *command = [NSString stringWithFormat:@"player.cuePlaylist(%@, %@, %@, '%@');",
-                         cueingString, indexValue, startSecondsValue, qualityValue];
-    [self stringFromEvaluatingJavaScript:command];
+  NSNumber *indexValue = [NSNumber numberWithInt:index];
+  NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
+  NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
+  NSString *command = [NSString stringWithFormat:@"player.cuePlaylist(%@, %@, %@, '%@');",
+                       cueingString, indexValue, startSecondsValue, qualityValue];
+  [self stringFromEvaluatingJavaScript:command];
 }
 
 /**
@@ -764,12 +764,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                index:(int)index
         startSeconds:(float)startSeconds
     suggestedQuality:(YTPlaybackQuality)suggestedQuality {
-    NSNumber *indexValue = [NSNumber numberWithInt:index];
-    NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
-    NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
-    NSString *command = [NSString stringWithFormat:@"player.loadPlaylist(%@, %@, %@, '%@');",
-                         cueingString, indexValue, startSecondsValue, qualityValue];
-    [self stringFromEvaluatingJavaScript:command];
+  NSNumber *indexValue = [NSNumber numberWithInt:index];
+  NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
+  NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
+  NSString *command = [NSString stringWithFormat:@"player.loadPlaylist(%@, %@, %@, '%@');",
+                       cueingString, indexValue, startSecondsValue, qualityValue];
+  [self stringFromEvaluatingJavaScript:command];
 }
 
 /**
@@ -779,13 +779,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * @return A JavaScript array in String format containing video IDs.
  */
 - (NSString *)stringFromVideoIdArray:(NSArray *)videoIds {
-    NSMutableArray *formattedVideoIds = [[NSMutableArray alloc] init];
+  NSMutableArray *formattedVideoIds = [[NSMutableArray alloc] init];
 
-    for (id unformattedId in videoIds) {
-        [formattedVideoIds addObject:[NSString stringWithFormat:@"'%@'", unformattedId]];
-    }
+  for (id unformattedId in videoIds) {
+    [formattedVideoIds addObject:[NSString stringWithFormat:@"'%@'", unformattedId]];
+  }
 
-    return [NSString stringWithFormat:@"[%@]", [formattedVideoIds componentsJoinedByString:@", "]];
+  return [NSString stringWithFormat:@"[%@]", [formattedVideoIds componentsJoinedByString:@", "]];
 }
 
 /**
@@ -795,7 +795,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * @return JavaScript response from evaluating code.
  */
 - (NSString *)stringFromEvaluatingJavaScript:(NSString *)jsToExecute {
-    return [self.webView stringByEvaluatingJavaScriptFromString:jsToExecute];
+  return [self.webView stringByEvaluatingJavaScriptFromString:jsToExecute];
 }
 
 /**
@@ -805,44 +805,44 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * @return JavaScript Boolean value, i.e. "true" or "false".
  */
 - (NSString *)stringForJSBoolean:(BOOL)boolValue {
-    return boolValue ? @"true" : @"false";
+  return boolValue ? @"true" : @"false";
 }
 
 #pragma mark Exposed for Testing
 - (void)setWebView:(UIWebView *)webView {
-    _webView = webView;
+  _webView = webView;
 }
 
 - (UIWebView *)createNewWebView {
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:self.bounds];
-    webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    webView.scrollView.scrollEnabled = NO;
-    webView.scrollView.bounces = NO;
-    
-    if ([self.delegate respondsToSelector:@selector(playerViewPreferredWebViewBackgroundColor:)]) {
-        webView.backgroundColor = [self.delegate playerViewPreferredWebViewBackgroundColor:self];
-        if (webView.backgroundColor == [UIColor clearColor]) {
-            webView.opaque = NO;
-        }
+  UIWebView *webView = [[UIWebView alloc] initWithFrame:self.bounds];
+  webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+  webView.scrollView.scrollEnabled = NO;
+  webView.scrollView.bounces = NO;
+
+  if ([self.delegate respondsToSelector:@selector(playerViewPreferredWebViewBackgroundColor:)]) {
+    webView.backgroundColor = [self.delegate playerViewPreferredWebViewBackgroundColor:self];
+    if (webView.backgroundColor == [UIColor clearColor]) {
+      webView.opaque = NO;
     }
-    
-    return webView;
+  }
+
+  return webView;
 }
 
 - (void)removeWebView {
-    [self.webView removeFromSuperview];
-    self.webView = nil;
+  [self.webView removeFromSuperview];
+  self.webView = nil;
 }
 
 + (NSBundle *)frameworkBundle {
-    static NSBundle* frameworkBundle = nil;
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
-        NSString* mainBundlePath = [[NSBundle bundleForClass:[self class]] resourcePath];
-        NSString* frameworkBundlePath = [mainBundlePath stringByAppendingPathComponent:@"Assets.bundle"];
-        frameworkBundle = [NSBundle bundleWithPath:frameworkBundlePath];
-    });
-    return frameworkBundle;
+  static NSBundle* frameworkBundle = nil;
+  static dispatch_once_t predicate;
+  dispatch_once(&predicate, ^{
+    NSString* mainBundlePath = [[NSBundle bundleForClass:[self class]] resourcePath];
+    NSString* frameworkBundlePath = [mainBundlePath stringByAppendingPathComponent:@"Assets.bundle"];
+    frameworkBundle = [NSBundle bundleWithPath:frameworkBundlePath];
+  });
+  return frameworkBundle;
 }
 
 @end

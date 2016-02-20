@@ -1,11 +1,3 @@
-//
-//  YTPlayerView.h
-//  ios7funs
-//
-//  Created by Bryan Lin on 12/22/15.
-//  Copyright © 2015 Giant Croissant. All rights reserved.
-//
-
 // Copyright 2014 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,37 +18,37 @@
 
 /** These enums represent the state of the current video in the player. */
 typedef NS_ENUM(NSInteger, YTPlayerState) {
-    kYTPlayerStateUnstarted,
-    kYTPlayerStateEnded,
-    kYTPlayerStatePlaying,
-    kYTPlayerStatePaused,
-    kYTPlayerStateBuffering,
-    kYTPlayerStateQueued,
-    kYTPlayerStateUnknown
+  kYTPlayerStateUnstarted,
+  kYTPlayerStateEnded,
+  kYTPlayerStatePlaying,
+  kYTPlayerStatePaused,
+  kYTPlayerStateBuffering,
+  kYTPlayerStateQueued,
+  kYTPlayerStateUnknown
 };
 
 /** These enums represent the resolution of the currently loaded video. */
 typedef NS_ENUM(NSInteger, YTPlaybackQuality) {
-    kYTPlaybackQualitySmall,
-    kYTPlaybackQualityMedium,
-    kYTPlaybackQualityLarge,
-    kYTPlaybackQualityHD720,
-    kYTPlaybackQualityHD1080,
-    kYTPlaybackQualityHighRes,
-    kYTPlaybackQualityAuto, /** Addition for YouTube Live Events. */
-    kYTPlaybackQualityDefault,
-    kYTPlaybackQualityUnknown /** This should never be returned. It is here for future proofing. */
+  kYTPlaybackQualitySmall,
+  kYTPlaybackQualityMedium,
+  kYTPlaybackQualityLarge,
+  kYTPlaybackQualityHD720,
+  kYTPlaybackQualityHD1080,
+  kYTPlaybackQualityHighRes,
+  kYTPlaybackQualityAuto, /** Addition for YouTube Live Events. */
+  kYTPlaybackQualityDefault,
+  kYTPlaybackQualityUnknown /** This should never be returned. It is here for future proofing. */
 };
 
 /** These enums represent error codes thrown by the player. */
 typedef NS_ENUM(NSInteger, YTPlayerError) {
-    kYTPlayerErrorInvalidParam,
-    kYTPlayerErrorHTML5Error,
-    kYTPlayerErrorVideoNotFound, // Functionally equivalent error codes 100 and
-    // 105 have been collapsed into |kYTPlayerErrorVideoNotFound|.
-    kYTPlayerErrorNotEmbeddable, // Functionally equivalent error codes 101 and
-    // 150 have been collapsed into |kYTPlayerErrorNotEmbeddable|.
-    kYTPlayerErrorUnknown
+  kYTPlayerErrorInvalidParam,
+  kYTPlayerErrorHTML5Error,
+  kYTPlayerErrorVideoNotFound, // Functionally equivalent error codes 100 and
+  // 105 have been collapsed into |kYTPlayerErrorVideoNotFound|.
+  kYTPlayerErrorNotEmbeddable, // Functionally equivalent error codes 101 and
+  // 150 have been collapsed into |kYTPlayerErrorNotEmbeddable|.
+  kYTPlayerErrorUnknown
 };
 
 /**
