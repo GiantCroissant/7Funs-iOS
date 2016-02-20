@@ -23,6 +23,7 @@ class VideoPlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureCamButtons()
         configureUILayout()
     }
 

@@ -54,6 +54,7 @@ class ImageLoader {
 
   func loadImage(imageName: String, url: String, size: CGSize = CGSize.zero,
       completionHandler:(image: UIImage?, imageName: String, fadeIn: Bool) -> ()) {
+
       Async.background {
         if let image = ImageCache.sharedCache.objectForKey(imageName) as? UIImage {
           var outImage = image

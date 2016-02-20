@@ -44,7 +44,7 @@ class VideoManager {
             .addDisposableTo(self.disposeBag)
     }
 
-    func loadVideos(amount: Int = 10, curCount: Int, onComplete: (videos: [VideoUIModel], remainCount: Int) -> Void) {
+    func loadVideos(amount: Int = 30, curCount: Int, onComplete: (videos: [VideoUIModel], remainCount: Int) -> Void) {
         Async.background {
             let loadCount = curCount + amount
 

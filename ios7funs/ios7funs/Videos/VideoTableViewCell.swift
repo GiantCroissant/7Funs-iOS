@@ -10,71 +10,71 @@ import UIKit
 
 class VideoTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var lblLength: UILabel!
-    @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblDescription: UILabel!
-    @IBOutlet weak var lblDateAndViewCount: UILabel!
-    @IBOutlet weak var Imagethumbnail: UIImageView!
-    @IBOutlet weak var videoLengthContainer: UIView!
+  @IBOutlet weak var lblLength: UILabel!
+  @IBOutlet weak var lblName: UILabel!
+  @IBOutlet weak var lblDescription: UILabel!
+  @IBOutlet weak var lblDateAndViewCount: UILabel!
+  @IBOutlet weak var Imagethumbnail: UIImageView!
+  @IBOutlet weak var videoLengthContainer: UIView!
 
-    var checkReuseId = 0
+  var currentVideoId = 0
 
-    var video: VideoUIModel! {
-        didSet {
-            // This line check whether cell is being RE-USE
-            if (Imagethumbnail.tag != video.id) {
-                Imagethumbnail.image = nil
-            }
-            Imagethumbnail.tag = video.id
+  var video: VideoUIModel!
 
-            let imageName = video.youtubeVideoId
-            let url = video.thumbUrl
-            ImageLoader.sharedInstance.loadImage(imageName, url: url) { image, imageName, fadeIn in
-                self.handleLoadVideoThumbnailCompelte(image, imageName: imageName, fadeIn: fadeIn)
-            }
+  func updateCell() {
+    // This line check whether cell is being RE-USE
+    if (video.id == currentVideoId) {
+      print("videoId[\(video.id)] == currentVideoId[\(currentVideoId)]")
+      return
 
-            self.lblName.text = video.title
-            self.lblLength.text = UIUtils.getVideoLengthString(video.duration)
-            self.lblDescription.text = video.desc
-
-            let dateOffset = NSDate().getOffsetStringFrom(video.publishedAt.toNSDate())
-            let viewCount = video.viewCount
-            lblDateAndViewCount.text = "\(dateOffset) ‧ 觀看次數: \(viewCount)"
-        }
+    } else {
+      Imagethumbnail.image = nil
     }
+    currentVideoId = video.id
 
-    func handleLoadVideoThumbnailCompelte(image: UIImage?, imageName: String, fadeIn: Bool) {
-        // check if cell has been reuse, not the same cell when load image
-        if imageName != self.video.youtubeVideoId {
-            return
-        }
+    let imageName = video.youtubeVideoId
+    let url = video.thumbUrl
+    ImageLoader.sharedInstance.loadImage(imageName, url: url) { image, imageName, fadeIn in
+      if imageName != self.video.youtubeVideoId {
+        print("not for this video image view")
+        return
+      }
 
-        self.Imagethumbnail.image = image
+      self.handleLoadVideoThumbnailCompelte(image, imageName: imageName, fadeIn: fadeIn)
+    }
+    self.lblName.text = video.title
+    self.lblLength.text = video.duration
+    self.lblDescription.text = video.desc
+    self.lblDateAndViewCount.text = video.dateAndViewCount
+  }
+
+  func handleLoadVideoThumbnailCompelte(image: UIImage?, imageName: String, fadeIn: Bool) {
+    self.Imagethumbnail.image = image
+    self.Imagethumbnail.alpha = 1
+    if fadeIn {
+      self.Imagethumbnail.alpha = 0
+      UIView.animateWithDuration(0.3) {
         self.Imagethumbnail.alpha = 1
-        if fadeIn {
-            self.Imagethumbnail.alpha = 0
-            UIView.animateWithDuration(0.3) {
-                self.Imagethumbnail.alpha = 1
-            }
-        }
+      }
     }
+  }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        let color = videoLengthContainer.backgroundColor
-        super.setSelected(selected, animated: animated)
+  override func setSelected(selected: Bool, animated: Bool) {
+    let color = videoLengthContainer.backgroundColor
+    super.setSelected(selected, animated: animated)
 
-        if (selected) {
-            videoLengthContainer.backgroundColor = color
-        }
+    if (selected) {
+      videoLengthContainer.backgroundColor = color
     }
+  }
 
-    override func setHighlighted(highlighted: Bool, animated: Bool) {
-        let color = videoLengthContainer.backgroundColor
-        super.setHighlighted(highlighted, animated: animated)
+  override func setHighlighted(highlighted: Bool, animated: Bool) {
+    let color = videoLengthContainer.backgroundColor
+    super.setHighlighted(highlighted, animated: animated)
 
-        if (highlighted) {
-            videoLengthContainer.backgroundColor = color
-        }
+    if (highlighted) {
+      videoLengthContainer.backgroundColor = color
     }
-
+  }
+  
 }
