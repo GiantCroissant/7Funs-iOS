@@ -52,22 +52,32 @@ class ImageLoader {
         }
     }
 
-    func loadImage(imageName: String, url: String, completionHandler:(image: UIImage?, imageName: String, fadeIn: Bool) -> ()) {
+  func loadImage(imageName: String, url: String, size: CGSize = CGSize.zero,
+      completionHandler:(image: UIImage?, imageName: String, fadeIn: Bool) -> ()) {
       Async.background {
         if let image = ImageCache.sharedCache.objectForKey(imageName) as? UIImage {
+          var outImage = image
+          if size != CGSize.zero {
+            outImage = self.scaleImage(image, size: size)
+          }
+
           Async.main {
             print("from [ Cache ]")
-            completionHandler(image: image, imageName: imageName, fadeIn: false)
+            completionHandler(image: outImage, imageName: imageName, fadeIn: false)
           }
           return
         }
 
         if let image = self.loadImageFromFile(imageName) {
           ImageCache.sharedCache.setObject(image, forKey: imageName)
+          var outImage = image
+          if size != CGSize.zero {
+            outImage = self.scaleImage(image, size: size)
+          }
 
           Async.main {
             print("from [ FILE ]")
-            completionHandler(image: image, imageName: imageName, fadeIn: true)
+            completionHandler(image: outImage, imageName: imageName, fadeIn: true)
           }
           return
         }
@@ -77,13 +87,36 @@ class ImageLoader {
             ImageCache.sharedCache.setObject(image, forKey: imageName)
           }
 
+          var outImage = image
+          if size != CGSize.zero {
+            outImage = self.scaleImage(image!, size: size)
+          }
+
           Async.main {
             print("from [ URL ]")
-            completionHandler(image: image, imageName: imageName, fadeIn: true)
+            completionHandler(image: outImage, imageName: imageName, fadeIn: true)
           }
         }
       }
     }
+
+  func scaleImage(image: UIImage, size: CGSize) -> UIImage {
+    print("scaleImage : size = \(size)")
+
+    let imageRatio = image.size.height / image.size.width
+    let sizeRatio = size.height / size.width
+
+    var scaledImage: UIImage!
+    if imageRatio > sizeRatio {
+      let width = size.width
+      scaledImage = UIImage.scaleImageToWidth(image, newWidth: width)
+
+    } else {
+      let height = size.height
+      scaledImage = UIImage.scaleImageToHeight(image, newHeight: height)
+    }
+    return scaledImage
+  }
 
     private func loadImageFromFile(imageName: String) -> UIImage? {
         let filePath = FileUtils.getFilePathInDocumentsDirectory(imageName)
