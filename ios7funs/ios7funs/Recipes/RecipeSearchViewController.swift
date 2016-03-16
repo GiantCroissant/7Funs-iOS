@@ -13,18 +13,54 @@ class RecipeSearchViewController: UIViewController {
 
   @IBOutlet weak var tagCollectionView: UICollectionView!
   let recipeTags = try! Realm().objects(RecipeTag).sorted("id", ascending: true)
+  let searchController = UISearchController(searchResultsController: nil)
+
+  @IBAction func onSearchButtonClick(sender: UIBarButtonItem) {
+    presentViewController(searchController, animated: true, completion: nil)
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     title = "食譜搜尋"
     tagCollectionView.contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+
+    configureSearchController()
+    configureSearchBar()
+    configureSearchBarCancelButton()
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "tag_search" {
+    print("sender = \(sender)")
+
+    if segue.identifier == "tag_search" && sender is UISearchBar {
+
+      print("UISearchBar")
+
       let detailVC = segue.destinationViewController as! RecipesViewController
 
+
+      let bar = sender as! UISearchBar
+//      let row = (sender?.tag)!
+//      let recipeIds = recipeTags[row].recipeIds
+
+      print("bar.text = \(bar.text)")
+      detailVC.title = bar.text
+
+
+      detailVC.type = RecipesViewController.StoryboardType.Search
+      detailVC.searchResults = try! Realm().objects(Recipe)
+        .filter("title CONTAINS %@" +
+          " OR chefName CONTAINS %@" +
+          " OR ingredient CONTAINS %@" +
+          " OR seasoning CONTAINS %@"
+          , bar.text!, bar.text!, bar.text!, bar.text!)
+        .sorted("id", ascending: false)
+
+    }
+
+    else if segue.identifier == "tag_search" {
+      let detailVC = segue.destinationViewController as! RecipesViewController
 
       let row = (sender?.tag)!
       let recipeIds = recipeTags[row].recipeIds
@@ -33,7 +69,7 @@ class RecipeSearchViewController: UIViewController {
       detailVC.searchResults = try! Realm().objects(Recipe)
         .filter("id IN %@", recipeIds)
         .sorted("id", ascending: false)
-
+      
     }
   }
 
@@ -76,5 +112,47 @@ extension RecipeSearchViewController: UICollectionViewDelegateFlowLayout {
     let height: CGFloat = 60
     return CGSize(width: width, height: height)
   }
+
+}
+
+
+extension RecipeSearchViewController: UISearchBarDelegate {
+
+  func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    dismissViewControllerAnimated(true, completion: nil)
+    performSegueWithIdentifier("tag_search", sender: searchBar)
+  }
+
+  //    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+  //        dismissViewControllerAnimated(true, completion: nil)
+  //    }
+
+  func configureSearchController() {
+    //    searchController.searchResultsUpdater = self
+    searchController.dimsBackgroundDuringPresentation = true
+    searchController.hidesNavigationBarDuringPresentation = false
+  }
+
+  func configureSearchBar() {
+    let searchBar = searchController.searchBar
+    searchBar.placeholder = "搜尋食譜..."
+    searchBar.barTintColor = UIColor.orangeColor()
+    searchBar.tintColor = UIColor.darkGrayColor()
+    searchBar.delegate = self
+    searchBar.sizeToFit()
+  }
+
+  func configureSearchBarCancelButton() {
+    if #available(iOS 9.0, *) {
+      let item = UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])
+      item.tintColor = UIColor.whiteColor()
+      item.title = " 取消 "
+
+    } else {
+      // Fallback on earlier versions
+    }
+  }
   
 }
+
+

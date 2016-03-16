@@ -393,7 +393,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VMU-hW-0SG">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="684-Yy-R20"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="684-Yy-R20">
+                            <connections>
+                                <action selector="onSearchButtonClick:" destination="WUm-6x-Ih1" id="wVQ-ED-yuu"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tagCollectionView" destination="0pd-u8-pqV" id="9Iq-63-bSx"/>

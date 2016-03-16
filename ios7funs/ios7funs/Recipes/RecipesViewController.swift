@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 
 class RecipesViewController: UIViewController {
+
   @IBOutlet var loadingFooter: UIView!
   @IBOutlet var tableSpacing: UIView!
   @IBOutlet weak var tableRecipes: UITableView!
@@ -44,6 +45,10 @@ class RecipesViewController: UIViewController {
     if type == .Collection && LoginManager.token == nil {
       LoginManager.sharedInstance.showLoginViewController(self)
     }
+
+    if type == .Search || type == .Collection {
+      navigationItem.rightBarButtonItems = []
+    }
   }
 
   func configureTableView() {
@@ -58,7 +63,7 @@ class RecipesViewController: UIViewController {
       tableRecipes.tableHeaderView = searchResults.count > 0 ? tableSpacing : nil
     }
 
-    tableRecipes.tableFooterView = loadingFooter
+    tableRecipes.tableFooterView = tableSpacing
   }
 
   func setupRealmNotificationToken() {
@@ -175,7 +180,9 @@ class RecipesViewController: UIViewController {
 
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    navigationItem.title = ""
+    if type != .Search {
+      navigationItem.title = ""
+    }
 
     if segue.identifier == "recipe_detail_vc" {
       let detailVC = segue.destinationViewController as! RecipeDetailViewController
