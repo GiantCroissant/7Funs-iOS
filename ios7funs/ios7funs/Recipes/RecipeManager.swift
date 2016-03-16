@@ -81,7 +81,7 @@ class RecipeManager: NSObject {
     completionHandler:(image: UIImage?, recipeId: Int, fadeIn: Bool) -> ()) {
       let imageUrl = recipeImageBaseUrl + String(recipeId) + "/" + imageName
       let key = "recipe_" + String(recipeId) + "_" + imageName
-      
+
       ImageLoader.sharedInstance.loadImage(key, url: imageUrl, size: size) { image, imageName, fadeIn in
         completionHandler(image: image, recipeId: recipeId, fadeIn: fadeIn)
       }
@@ -173,7 +173,7 @@ class RecipeManager: NSObject {
       .addDisposableTo(disposeBag)
   }
 
-  func fetchTags() {
+  func fetchTags(onGetTagJson: (TagJsonObject -> Void) = { _ in }, onError: (ErrorType -> Void) = { _ in }, onFinished: (() -> Void) = {}) {
     self.restApiProvider.request(RestApi.Categories)
       .observeOn(BackgroundScheduler.instance())
       .mapSuccessfulHTTPToObjectArray(CategoryJsonObject)
@@ -191,13 +191,30 @@ class RecipeManager: NSObject {
           tagJson.taggings?.forEach {
             recipeIds.append($0.taggableId)
           }
+
+          let realm = try! Realm()
+          realm.beginWrite()
+          realm.add(tagJson.toDBModel(), update: true)
+          try! realm.commitWrite()
+
+//          Async.main {
+//            onGetTagJson(tagJson)
+//          }
           dLog("tagName[ \(tagJson.name) ] => 數量： \(recipeIds.count)")
         },
         onError: { err in
           dLog("\(err)")
+          Async.main {
+            onError(err)
+          }
         },
         onCompleted: {
           dLog("fetch tags complete")
+        },
+        onDisposed: {
+          Async.main {
+            onFinished()
+          }
         }
       ).addDisposableTo(disposeBag)
   }
@@ -260,11 +277,13 @@ class RecipeManager: NSObject {
       .mapSuccessfulHTTPToObject(TagJsonObject)
       .subscribe(
         onNext: { tagJson in
-          var recipeIds = [Int]()
-          tagJson.taggings?.forEach {
-            recipeIds.append($0.taggableId)
-          }
-          dLog("tagName[ \(tagJson.name) ] => 數量： \(recipeIds.count)")
+
+          let realm = try! Realm()
+          realm.beginWrite()
+          realm.add(tagJson.toDBModel(), update: true)
+          try! realm.commitWrite()
+
+
         },
         onError: { err in
           dLog("\(err)")
@@ -389,5 +408,5 @@ extension Observable {
       return Observable<Any>.empty()
     }
   }
-
+  
 }

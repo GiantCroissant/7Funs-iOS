@@ -18,11 +18,13 @@ class RecipesViewController: UIViewController {
   enum StoryboardType {
     case Recipe
     case Collection
+    case Search
   }
 
   var type = StoryboardType.Recipe
   var isFetching = false
 //  var recipes = [RecipeUIModel]()
+
   let refreshControl = UIRefreshControl()
 
   // Testing new way to fetch recipe
@@ -30,6 +32,7 @@ class RecipesViewController: UIViewController {
   let recipesV2 = try! Realm().objects(Recipe).sorted("id", ascending: false)
   let collections = try! Realm().objects(Recipe).filter("favorite == true").sorted("id", ascending: false)
   var notificationToken: NotificationToken?
+  var searchResults = try! Realm().objects(Recipe).sorted("id", ascending: false)
   //
 
   override func viewDidLoad() {
@@ -50,6 +53,9 @@ class RecipesViewController: UIViewController {
 
     case .Collection:
       tableRecipes.tableHeaderView = collections.count > 0 ? tableSpacing : nil
+
+    case .Search:
+      tableRecipes.tableHeaderView = searchResults.count > 0 ? tableSpacing : nil
     }
 
     tableRecipes.tableFooterView = loadingFooter
@@ -63,6 +69,10 @@ class RecipesViewController: UIViewController {
       }
     case .Collection:
       notificationToken = collections.addNotificationBlock { results, error in
+        self.tableRecipes.reloadData()
+      }
+    case .Search:
+      notificationToken = searchResults.addNotificationBlock { results, error in
         self.tableRecipes.reloadData()
       }
     }
@@ -207,6 +217,9 @@ extension RecipesViewController: UITableViewDataSource {
 
     case .Collection:
       return collections.count
+
+    case .Search:
+      return searchResults.count
     }
   }
 
@@ -235,6 +248,9 @@ extension RecipesViewController: UITableViewDataSource {
 
     case .Collection:
       return collections[row]
+
+    case .Search:
+      return searchResults[row]
     }
   }
 

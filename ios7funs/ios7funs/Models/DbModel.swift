@@ -74,7 +74,7 @@ public class RecipesFavorite : Object {
     }
 }
 
-class RecipeTag: Object {
+public class RecipeTag: Object {
     dynamic var id = 0
     dynamic var name = ""
     var _recipeIds = List<RealmInt>()
@@ -91,11 +91,11 @@ class RecipeTag: Object {
         }
     }
 
-    override static func primaryKey() -> String? {
+    override public static func primaryKey() -> String? {
         return "id"
     }
 
-    override static func ignoredProperties() -> [String] {
+    override public static func ignoredProperties() -> [String] {
         return ["recipeIds"]
     }
 }

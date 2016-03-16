@@ -70,7 +70,7 @@ extension RestApi : TargetType {
         case .Categories:
             return "/api/categories"
         case .CategoryById(let id):
-            return "/api/categories/\(id)"
+            return "/api/subCategories/\(id)"
             
         case .Messages(_):
             return "/api/messages"

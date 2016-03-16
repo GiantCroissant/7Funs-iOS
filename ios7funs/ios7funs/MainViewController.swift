@@ -56,6 +56,11 @@ class MainViewController: UIViewController {
   func fetchOverviews() {
     fetchRecipeOverview()
     fetchVideoOverview()
+    fetchRecipeTags()
+  }
+
+  func fetchRecipeTags() {
+    RecipeManager.sharedInstance.fetchTags()
   }
 
   func fetchRecipeOverview() {
