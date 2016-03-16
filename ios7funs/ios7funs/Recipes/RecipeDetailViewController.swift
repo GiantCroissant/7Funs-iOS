@@ -10,7 +10,8 @@ import UIKit
 
 class RecipeDetailViewController: UIViewController {
 
-    var recipe: RecipeUIModel!
+//    var recipe: RecipeUIModel!
+  var recipe: Recipe!
 
     @IBOutlet weak var page1: UIView!
     @IBOutlet weak var page2: UIView!

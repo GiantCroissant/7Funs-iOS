@@ -33,7 +33,8 @@ class RecipeTutorialViewController: UIViewController {
     var fontMethod: UIFont!
     let headerImageHeight: CGFloat = 211
     var blurView: UIVisualEffectView!
-    var recipe: RecipeUIModel!
+//    var recipe: RecipeUIModel!
+  var recipe: Recipe!
 
     @IBAction func onAddFavoriteClick(sender: UIButton) {
         if let token = LoginManager.token {
@@ -47,9 +48,9 @@ class RecipeTutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        recipe.loadFoodImage { image in
-            self.imgFood.image = image
-        }
+//        recipe.loadFoodImage { image in
+//            self.imgFood.image = image
+//        }
 
         labelFoodTitle.text = recipe.title
         foodTitle.text = recipe.title

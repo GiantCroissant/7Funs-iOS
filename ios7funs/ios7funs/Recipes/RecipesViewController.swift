@@ -22,11 +22,13 @@ class RecipesViewController: UIViewController {
 
   var type = StoryboardType.Recipe
   var isFetching = false
-  var recipes = [RecipeUIModel]()
+//  var recipes = [RecipeUIModel]()
   let refreshControl = UIRefreshControl()
 
   // Testing new way to fetch recipe
+  let realm = try! Realm()
   let recipesV2 = try! Realm().objects(Recipe).sorted("id", ascending: false)
+  let collections = try! Realm().objects(Recipe).filter("favorite == true").sorted("id", ascending: false)
   var notificationToken: NotificationToken?
   //
 
@@ -39,19 +41,23 @@ class RecipesViewController: UIViewController {
 
     tableRecipes.tableFooterView = loadingFooter
 
-    if type == .Collection {
-      if (LoginManager.token == nil)  {
-        LoginManager.sharedInstance.showLoginViewController(self)
-      }
+    if type == .Collection && LoginManager.token == nil {
+      LoginManager.sharedInstance.showLoginViewController(self)
     }
   }
 
   func setupRealmNotificationToken() {
-    notificationToken = recipesV2.addNotificationBlock { results, error in
-      self.tableRecipes.reloadData()
+    switch type {
+    case .Recipe:
+      notificationToken = recipesV2.addNotificationBlock { results, error in
+        self.tableRecipes.reloadData()
+      }
+    case .Collection:
+      notificationToken = collections.addNotificationBlock { results, error in
+        self.tableRecipes.reloadData()
+      }
     }
   }
-
 
   private func configureRefreshControl() {
     let lastUpdateTime = NSUserDefaults.standardUserDefaults().stringForKey("lastRecipeOverviewUpdateTime") ?? "下拉刷新"
@@ -100,7 +106,7 @@ class RecipesViewController: UIViewController {
   func onRecipeVCWillAppear() {
     self.title = "食譜列表"
     indicatorLoadMore.startAnimating()
-    loadRecipes()
+//    loadRecipes()
   }
 
   func onCollectionVCWillAppear() {
@@ -113,7 +119,7 @@ class RecipesViewController: UIViewController {
     indicatorLoadMore.startAnimating()
     CollectionManager.sharedInstance.fetchCollections(token,
       onComplete: {
-        self.handleFetchCollectionComplete()
+        //        self.handleFetchCollectionComplete()
       },
       onError: { err in
         self.showNetworkIsBusyAlertView()
@@ -125,12 +131,12 @@ class RecipesViewController: UIViewController {
     )
   }
 
-  func handleFetchCollectionComplete() {
-    CollectionManager.sharedInstance.loadCollections { recipes in
-      self.recipes = recipes
-      self.tableRecipes.reloadData()
-    }
-  }
+  //  func handleFetchCollectionComplete() {
+  //    CollectionManager.sharedInstance.loadCollections { recipes in
+  //      self.recipes = recipes
+  //      self.tableRecipes.reloadData()
+  //    }
+  //  }
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
@@ -154,7 +160,7 @@ class RecipesViewController: UIViewController {
 
     let detailVC = segue.destinationViewController as! RecipeDetailViewController
     let row = (sender?.tag)!
-    detailVC.recipe = recipes[row]
+    detailVC.recipe = getRecipe(row)
   }
 
 }
@@ -162,16 +168,16 @@ class RecipesViewController: UIViewController {
 // MARK: - Recpie Datas
 extension RecipesViewController {
 
-  func loadRecipes() {
-    UIUtils.showStatusBarNetworking()
-    RecipeManager.sharedInstance.loadRecipes(self.recipes) { recipes, remainCount in
-      self.recipes = recipes
-      self.tableRecipes.reloadData()
-      self.tableRecipes.tableHeaderView = recipes.count > 0 ? self.tableSpacing : nil
-      self.tableRecipes.tableFooterView = remainCount > 0 ? self.loadingFooter : self.tableSpacing
-      UIUtils.hideStatusBarNetworking()
-    }
-  }
+//  func loadRecipes() {
+//    UIUtils.showStatusBarNetworking()
+//    RecipeManager.sharedInstance.loadRecipes(self.recipes) { recipes, remainCount in
+//      self.recipes = recipes
+//      self.tableRecipes.reloadData()
+//      self.tableRecipes.tableHeaderView = recipes.count > 0 ? self.tableSpacing : nil
+//      self.tableRecipes.tableFooterView = remainCount > 0 ? self.loadingFooter : self.tableSpacing
+//      UIUtils.hideStatusBarNetworking()
+//    }
+//  }
 
 }
 
@@ -179,15 +185,21 @@ extension RecipesViewController {
 extension RecipesViewController: UITableViewDataSource {
 
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    return recipes.count
-    return recipesV2.count
+    switch type {
+    case .Recipe:
+      return recipesV2.count
+
+    case .Collection:
+      return collections.count
+    }
   }
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("idRecipeCell", forIndexPath: indexPath) as! RecipeTableViewCell
 
-//    let recipe = recipes[indexPath.row]
-    let recipe = recipesV2[indexPath.row]
+    let recipe = getRecipe(indexPath.row)  // recipesV2[indexPath.row]
+
+
     cell.recipe = recipe
     cell.updateCell()
 
@@ -198,6 +210,16 @@ extension RecipesViewController: UITableViewDataSource {
     cell.btnFood.tag = indexPath.row
 
     return cell
+  }
+
+  func getRecipe(row: Int) -> Recipe {
+    switch type {
+    case .Recipe:
+      return recipesV2[row]
+
+    case .Collection:
+      return collections[row]
+    }
   }
 
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -236,8 +258,13 @@ extension RecipesViewController {
     UIUtils.showStatusBarNetworking()
     RecipeManager.sharedInstance.switchFavorite(recipeId, token: token,
       onComplete: { isFavorite in
-        let recipe = self.recipes[index]
+
+        let recipe = self.getRecipe(index)
+
+        self.realm.beginWrite()
         recipe.favorite = isFavorite
+        try! self.realm.commitWrite()
+
         self.tableRecipes.reloadData()
         self.showSwitchFavoriteToast(recipe)
       },
@@ -252,16 +279,16 @@ extension RecipesViewController {
 
 }
 
-// MARK: - UITableViewDelegate
-extension RecipesViewController: UITableViewDelegate {
-
-  func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-    if type == .Recipe {
-      let distFromBottom = scrollView.contentSize.height - scrollView.contentOffset.y
-      if (distFromBottom <= scrollView.frame.height) {
-        loadRecipes()
-      }
-    }
-  }
-  
-}
+//// MARK: - UITableViewDelegate
+//extension RecipesViewController: UITableViewDelegate {
+//
+//  func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+//    if type == .Recipe {
+//      let distFromBottom = scrollView.contentSize.height - scrollView.contentOffset.y
+//      if (distFromBottom <= scrollView.frame.height) {
+//        loadRecipes()
+//      }
+//    }
+//  }
+//  
+//}

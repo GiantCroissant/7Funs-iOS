@@ -166,7 +166,7 @@ extension UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
-    func showSwitchFavoriteToast(recipe: RecipeUIModel) {
+    func showSwitchFavoriteToast(recipe: Recipe) {
         let recipeName = recipe.title
         let msg = recipe.favorite ? "\(recipeName) : 加入收藏" : "\(recipeName) : 取消收藏"
         self.view.makeToast(msg, duration: 1, position: .Top)
