@@ -36,6 +36,8 @@ class VideosViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    navigationItem.rightBarButtonItems = []
+
     //    NSNotificationCenter.defaultCenter().addObserver(
     //      self,
     //      selector: Selector("didReceiveReloadNotification:"),

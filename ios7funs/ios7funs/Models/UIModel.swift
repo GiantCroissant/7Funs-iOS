@@ -66,6 +66,20 @@ extension RecipeUIModel {
 
 }
 
+extension Recipe {
+
+  func loadFoodImage(completionHandler: (UIImage?) -> Void) {
+    let recipeId = self.id
+    let imageName = self.image
+    RecipeManager.sharedInstance.loadFoodImage(recipeId, imageName: imageName) { image, recipeId, fadeIn in
+      if let image = image {
+        completionHandler(image)
+      }
+    }
+  }
+
+}
+
 class VideoUIModel {
 
   var id: Int = 0

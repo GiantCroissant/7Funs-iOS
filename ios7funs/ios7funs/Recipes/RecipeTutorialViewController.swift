@@ -48,9 +48,11 @@ class RecipeTutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        recipe.loadFoodImage { image in
-//            self.imgFood.image = image
-//        }
+
+
+        recipe.loadFoodImage { image in
+            self.imgFood.image = image
+        }
 
         labelFoodTitle.text = recipe.title
         foodTitle.text = recipe.title
