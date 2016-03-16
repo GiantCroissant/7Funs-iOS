@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class VideosViewController: UIViewController {
 
@@ -20,45 +21,52 @@ class VideosViewController: UIViewController {
 
   var searchController = UISearchController(searchResultsController: nil)
   var isFetching = false
+
+  //  realm.objects(Video).filter(condition).sort {
+  //  $1.publishedAt.toNSDate() < $0.publishedAt.toNSDate()
+  //  }
+
+  let videosV2 = try! Realm().objects(Video)
+    .filter("youtubeVideoCode != '' AND publishedAt != '' AND duration != 0")
+    .sort { $1.publishedAt.toNSDate() < $0.publishedAt.toNSDate() }
+
   var videos = [VideoUIModel]()
   var filteredVideos = [VideoUIModel]()
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    NSNotificationCenter.defaultCenter().addObserver(
-      self,
-      selector: Selector("didReceiveReloadNotification:"),
-      name: "RELOAD_VIDEO_NOTIFICATION",
-      object: nil
-    )
+    //    NSNotificationCenter.defaultCenter().addObserver(
+    //      self,
+    //      selector: Selector("didReceiveReloadNotification:"),
+    //      name: "RELOAD_VIDEO_NOTIFICATION",
+    //      object: nil
+    //    )
 
-//    tableVideos.estimatedRowHeight = 100
-//    tableVideos.rowHeight = UITableViewAutomaticDimension
-    tableVideos.tableFooterView = self.footerView
-    
+    //    tableVideos.tableFooterView = self.footerView
+
     configureTableDummy()
     configureSearchController()
     configureSearchBar()
     configureSearchBarCancelButton()
   }
 
-  deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(self)
-  }
-
-  func didReceiveReloadNotification(notification: NSNotification) {
-    if videos.isEmpty {
-      loadVideos()
-    }
-  }
+  //  deinit {
+  //    NSNotificationCenter.defaultCenter().removeObserver(self)
+  //  }
+  //
+  //  func didReceiveReloadNotification(notification: NSNotification) {
+  //    if videos.isEmpty {
+  //      loadVideos()
+  //    }
+  //  }
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     self.title = "節目列表"
-
-
-    loadVideos()
+    //
+    //
+    //    loadVideos()
   }
 
   override func viewDidAppear(animated: Bool) {
@@ -84,7 +92,9 @@ class VideosViewController: UIViewController {
 
     let dstVC = segue.destinationViewController as! VideoPlayerViewController
     let row = (sender?.tag)!
-    dstVC.video = videos[row]
+    dstVC.video = VideoUIModel(dbData: videosV2[row])
+
+    
   }
 
 
@@ -98,7 +108,7 @@ extension VideosViewController: UITableViewDataSource {
       return filteredVideos.count
     }
 
-    return videos.count
+    return videosV2.count
   }
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -106,10 +116,10 @@ extension VideosViewController: UITableViewDataSource {
     cell.tag = indexPath.row
 
     if searchController.active && searchController.searchBar.text != "" {
-      cell.video = filteredVideos[indexPath.row]
+      //      cell.video = filteredVideos[indexPath.row]
 
     } else {
-      cell.video = videos[indexPath.row]
+      cell.video = videosV2[indexPath.row]
 
     }
     cell.updateCell()
@@ -119,35 +129,35 @@ extension VideosViewController: UITableViewDataSource {
 }
 
 
-// MARK: - Video datas
-extension VideosViewController {
-
-  func loadVideos() {
-    let curCount = videos.count
-    VideoManager.sharedInstance.loadVideos(curCount: curCount) { videos, remainCount in
-      if videos.count > 0 && videos.count == self.videos.count {
-        print("same")
-        return
-      }
-
-      self.videos = videos
-      self.tableVideos.reloadData()
-      self.tableVideos.tableFooterView = remainCount > 0 ? self.footerView : nil
-    }
-  }
-}
-
-// MARK: - UITableViewDelegate
-extension VideosViewController: UITableViewDelegate {
-
-  func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-    let distFromBottom = scrollView.contentSize.height - scrollView.contentOffset.y
-    if (distFromBottom <= scrollView.frame.height) {
-      loadVideos()
-    }
-  }
-
-}
+//// MARK: - Video datas
+//extension VideosViewController {
+//
+//  func loadVideos() {
+//    let curCount = videos.count
+//    VideoManager.sharedInstance.loadVideos(curCount: curCount) { videos, remainCount in
+//      if videos.count > 0 && videos.count == self.videos.count {
+//        print("same")
+//        return
+//      }
+//
+//      self.videos = videos
+//      self.tableVideos.reloadData()
+//      self.tableVideos.tableFooterView = remainCount > 0 ? self.footerView : nil
+//    }
+//  }
+//}
+//
+//// MARK: - UITableViewDelegate
+//extension VideosViewController: UITableViewDelegate {
+//
+//  func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+//    let distFromBottom = scrollView.contentSize.height - scrollView.contentOffset.y
+//    if (distFromBottom <= scrollView.frame.height) {
+//      loadVideos()
+//    }
+//  }
+//
+//}
 
 
 extension VideosViewController: UISearchResultsUpdating {
@@ -196,10 +206,10 @@ extension VideosViewController: UISearchBarDelegate {
       let item = UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])
       item.tintColor = UIColor.whiteColor()
       item.title = " 取消 "
-
+      
     } else {
       // Fallback on earlier versions
     }
   }
-
+  
 }

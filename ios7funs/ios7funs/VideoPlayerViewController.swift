@@ -18,6 +18,7 @@ class VideoPlayerViewController: UIViewController {
 
     var videoTypeYoutubeIds = [Int : String]()
     var video: VideoUIModel?
+//  var video: Video!
     var currentTime: Float = 0
 
     override func viewDidLoad() {
@@ -33,7 +34,7 @@ class VideoPlayerViewController: UIViewController {
         loadSeriesVideos()
         if let video = video {
             dLog("video = \(video.youtubeVideoId)")
-
+          dLog("video.title = \(video.title)")
             title = video.title
             lblVideoLength.text = "00:00"
 

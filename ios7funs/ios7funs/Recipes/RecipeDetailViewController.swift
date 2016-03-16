@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RecipeDetailViewController: UIViewController {
 
@@ -54,6 +55,12 @@ class RecipeDetailViewController: UIViewController {
         let vc = segue.destinationViewController
         if vc.title == "Video Player" {
             let videoTutorialVC = vc as! VideoPlayerViewController
+
+//          let condition = "recipeId = \(recipe.id) AND number = 1 AND youtubeVideoCode != '' AND publishedAt != '' AND duration != 0"
+//          if let video = try! Realm().objects(Video).filter(condition).first {
+//            videoTutorialVC.video = video
+//          }
+//          videoTutorialVC.configureUILayout()
 
             VideoManager.sharedInstance.loadMainVideoWithRecipeId(recipe.id) { video in
                 if video != nil {

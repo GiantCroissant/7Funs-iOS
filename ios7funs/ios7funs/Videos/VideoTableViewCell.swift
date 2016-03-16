@@ -19,7 +19,8 @@ class VideoTableViewCell: UITableViewCell {
 
   var currentVideoId = 0
 
-  var video: VideoUIModel!
+//  var video: VideoUIModel!
+  var video: Video!
 
   func updateCell() {
     // This line check whether cell is being RE-USE
@@ -32,10 +33,10 @@ class VideoTableViewCell: UITableViewCell {
     }
     currentVideoId = video.id
 
-    let imageName = video.youtubeVideoId
-    let url = video.thumbUrl
+    let imageName = video.youtubeVideoCode
+    let url = video.thumbnailUrl
     ImageLoader.sharedInstance.loadImage(imageName, url: url) { image, imageName, fadeIn in
-      if imageName != self.video.youtubeVideoId {
+      if imageName != self.video.youtubeVideoCode {
         print("not for this video image view")
         return
       }
@@ -43,9 +44,9 @@ class VideoTableViewCell: UITableViewCell {
       self.handleLoadVideoThumbnailCompelte(image, imageName: imageName, fadeIn: fadeIn)
     }
     self.lblName.text = video.title
-    self.lblLength.text = video.duration
+    self.lblLength.text = UIUtils.getVideoLengthString(video.duration)
     self.lblDescription.text = video.desc
-    self.lblDateAndViewCount.text = video.dateAndViewCount
+    self.lblDateAndViewCount.text = NSDate().getOffsetStringFrom(video.publishedAt.toNSDate())
   }
 
   func handleLoadVideoThumbnailCompelte(image: UIImage?, imageName: String, fadeIn: Bool) {
