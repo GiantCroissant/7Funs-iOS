@@ -381,6 +381,7 @@ extension Observable {
               where recipe.updatedAt.toNSDate() == $0.updatedAt.toNSDate() {
                 return
             }
+            print("need update recipe \($0.id)")
             realm.add($0.toDBModel(), update: true)
         }
         try! realm.commitWrite()

@@ -54,8 +54,9 @@ class RecipesViewController: UIViewController {
 
 
   private func configureRefreshControl() {
+    let lastUpdateTime = NSUserDefaults.standardUserDefaults().stringForKey("lastRecipeOverviewUpdateTime") ?? "下拉刷新"
     refreshControl.tintColor = UIColor.orangeColor()
-    refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
+    refreshControl.attributedTitle = NSAttributedString(string: lastUpdateTime)
     refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
     tableRecipes.addSubview(refreshControl)
   }
@@ -64,30 +65,25 @@ class RecipesViewController: UIViewController {
     UIUtils.showStatusBarNetworking()
     RecipeManager.sharedInstance.fetchRecipeOverview(
       onComplete: {
-        if (self.refreshControl.refreshing) {
-          self.refreshControl.endRefreshing()
-        }
       },
       onError: { error in
         self.showNetworkIsBusyAlertView()
       },
       onFinished: {
         UIUtils.hideStatusBarNetworking()
+
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        let updateString = "上次更新時間：" + dateFormatter.stringFromDate(NSDate())
+        NSUserDefaults.standardUserDefaults().setObject(updateString, forKey: "lastRecipeOverviewUpdateTime")
+
+        self.refreshControl.attributedTitle = NSAttributedString(string: updateString)
         if (self.refreshControl.refreshing) {
           self.refreshControl.endRefreshing()
         }
       }
     )
-//    delay(2.0) {
-//
-//      // update "last updated" title for refresh control
-//      let now = NSDate()
-//      let updateString = "Last Updated at " + self.dateFormatter.stringFromDate(now)
-//      self.refreshControl.attributedTitle = NSAttributedString(string: updateString)
-//      if self.refreshControl.refreshing {
-//        self.refreshControl.endRefreshing()
-//      }
-//    }
   }
 
   override func viewWillAppear(animated: Bool) {
