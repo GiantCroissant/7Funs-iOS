@@ -13,6 +13,7 @@
 		09A6A8521C507FF100CF279A /* Info.json in Resources */ = {isa = PBXBuildFile; fileRef = 09A6A8511C507FF100CF279A /* Info.json */; };
 		3B12806E1C3A64BF00AE2CC6 /* QandAManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */; };
 		3B1280701C3A6E4200AE2CC6 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12806F1C3A6E4200AE2CC6 /* QuestionTableViewCell.swift */; };
+		3B2296B01C99C3D300B0FA14 /* RecipeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2296AF1C99C3D300B0FA14 /* RecipeSearchViewController.swift */; };
 		3B36CBAD1C27D535003666D7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */; };
 		3B36CBAF1C27D673003666D7 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */; };
 		3B4178611C20B23F006CB7ED /* AYOSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */; };
@@ -94,6 +95,7 @@
 		09A6A8511C507FF100CF279A /* Info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Info.json; sourceTree = "<group>"; };
 		3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QandAManager.swift; path = QandA/QandAManager.swift; sourceTree = "<group>"; };
 		3B12806F1C3A6E4200AE2CC6 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionTableViewCell.swift; path = QandA/QuestionTableViewCell.swift; sourceTree = "<group>"; };
+		3B2296AF1C99C3D300B0FA14 /* RecipeSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeSearchViewController.swift; path = Recipes/RecipeSearchViewController.swift; sourceTree = "<group>"; };
 		3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Login/RegisterViewController.swift; sourceTree = "<group>"; };
 		3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForgotPasswordViewController.swift; path = Login/ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AYOSegmentedControl.swift; path = Utils/AYOSegmentedControl.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				3B41D11A1C16C6DA0054FC10 /* RecipeManager.swift */,
 				3BBCC62B1C4CC28900497FBC /* RecipeMethod.xib */,
 				3BBCC62D1C4CC29D00497FBC /* RecipeMethod.swift */,
+				3B2296AF1C99C3D300B0FA14 /* RecipeSearchViewController.swift */,
 			);
 			name = Recipes;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				3B5565891C17F2DA00CFF1B4 /* UIModel.swift in Sources */,
 				3BC240EE1C291C1600A79E4D /* VideoManager.swift in Sources */,
 				3BD9FB351C468F8400B8FAB3 /* Async.swift in Sources */,
+				3B2296B01C99C3D300B0FA14 /* RecipeSearchViewController.swift in Sources */,
 				3BCE507C1C168C040088794A /* QandAViewController.swift in Sources */,
 				3BCE50691C15BFB60088794A /* MainViewController.swift in Sources */,
 				3B1280701C3A6E4200AE2CC6 /* QuestionTableViewCell.swift in Sources */,

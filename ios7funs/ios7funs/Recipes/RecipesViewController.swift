@@ -167,9 +167,16 @@ class RecipesViewController: UIViewController {
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     navigationItem.title = ""
 
-    let detailVC = segue.destinationViewController as! RecipeDetailViewController
-    let row = (sender?.tag)!
-    detailVC.recipe = getRecipe(row)
+    if segue.identifier == "recipe_detail_vc" {
+      let detailVC = segue.destinationViewController as! RecipeDetailViewController
+      let row = (sender?.tag)!
+      detailVC.recipe = getRecipe(row)
+
+    } else if segue.identifier == "recipe_search_vc" {
+//      let detailVC = segue.destinationViewController as! RecipeDetailViewController
+//      let row = (sender?.tag)!
+//      detailVC.recipe = getRecipe(row)
+    }
   }
 
 }
