@@ -35,15 +35,24 @@ class RecipesViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-
-
     configureRefreshControl()
-
-    tableRecipes.tableFooterView = loadingFooter
+    configureTableView()
 
     if type == .Collection && LoginManager.token == nil {
       LoginManager.sharedInstance.showLoginViewController(self)
     }
+  }
+
+  func configureTableView() {
+    switch type {
+    case .Recipe:
+      tableRecipes.tableHeaderView = recipesV2.count > 0 ? tableSpacing : nil
+
+    case .Collection:
+      tableRecipes.tableHeaderView = collections.count > 0 ? tableSpacing : nil
+    }
+
+    tableRecipes.tableFooterView = loadingFooter
   }
 
   func setupRealmNotificationToken() {
