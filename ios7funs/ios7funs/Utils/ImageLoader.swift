@@ -102,8 +102,6 @@ class ImageLoader {
     }
 
   func scaleImage(image: UIImage, size: CGSize) -> UIImage {
-    print("scaleImage : size = \(size)")
-
     let imageRatio = image.size.height / image.size.width
     let sizeRatio = size.height / size.width
 

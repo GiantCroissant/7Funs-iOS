@@ -19,13 +19,14 @@ class RecipeTableViewCell: UITableViewCell {
   @IBOutlet weak var indicatorFoodImage: UIActivityIndicatorView!
 
   var currentRecipeId = 0
-  var recipe: RecipeUIModel!
+//  var recipe: RecipeUIModel!
+  var recipe: Recipe!
 
   func updateCell() {
     container.layer.cornerRadius = 3
 
     indicatorFoodImage.startAnimating()
-    configureRecipeImage(recipe.id, imageName: recipe.imageName)
+    configureRecipeImage(recipe.id, imageName: recipe.image)
     configureFavoriteButton(recipe.favorite)
     configureInformation()
     labelTitle.text = recipe.title
@@ -41,15 +42,13 @@ class RecipeTableViewCell: UITableViewCell {
       btnFood.setImage(nil, forState: .Normal)
     }
     currentRecipeId = recipeId
-
-    print("btnFood size = \(btnFood.frame.size) cell.size = \(self.frame.size)")
     RecipeManager.sharedInstance.loadFoodImage(recipeId, imageName: imageName, size: self.frame.size) { image, recipeId, fadeIn in
       if (recipeId != self.recipe.id) {
         // check if after async, loaded image is not for this cell
         return
       }
 
-      self.showImageWithFadeIn(image!, fadeIn: true)
+      self.showImageWithFadeIn(image!, fadeIn: fadeIn)
     }
   }
 

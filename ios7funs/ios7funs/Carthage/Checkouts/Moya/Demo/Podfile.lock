@@ -1,17 +1,17 @@
 PODS:
-  - Alamofire (3.1.4)
-  - Moya (6.0.0):
-    - Moya/Core (= 6.0.0)
-  - Moya/Core (6.0.0):
+  - Alamofire (3.2.0)
+  - Moya (6.2.0):
+    - Moya/Core (= 6.2.0)
+  - Moya/Core (6.2.0):
     - Alamofire (~> 3.0)
     - Result (~> 1.0)
-  - Moya/ReactiveCocoa (6.0.0):
+  - Moya/ReactiveCocoa (6.2.0):
     - Moya/Core
-    - ReactiveCocoa (= 4.0.0-RC.1)
-  - Moya/RxSwift (6.0.0):
+    - ReactiveCocoa (= 4.0.0)
+  - Moya/RxSwift (6.2.0):
     - Moya/Core
-    - RxSwift (= 2.0.0)
-  - Nimble (3.0.0)
+    - RxSwift (~> 2.0)
+  - Nimble (3.1.0)
   - OHHTTPStubs (4.7.0):
     - OHHTTPStubs/Default (= 4.7.0)
   - OHHTTPStubs/Core (4.7.0)
@@ -25,20 +25,20 @@ PODS:
   - OHHTTPStubs/NSURLSession (4.7.0):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (4.7.0)
-  - Quick (0.8.0)
-  - ReactiveCocoa (4.0.0-RC.1):
-    - ReactiveCocoa/UI (= 4.0.0-RC.1)
-    - Result (~> 1.0)
-  - ReactiveCocoa/Core (4.0.0-RC.1):
+  - Quick (0.9.0)
+  - ReactiveCocoa (4.0.0):
+    - ReactiveCocoa/UI (= 4.0.0)
+    - Result (~> 1.0.1)
+  - ReactiveCocoa/Core (4.0.0):
     - ReactiveCocoa/no-arc
-    - Result (~> 1.0)
-  - ReactiveCocoa/no-arc (4.0.0-RC.1):
-    - Result (~> 1.0)
-  - ReactiveCocoa/UI (4.0.0-RC.1):
+    - Result (~> 1.0.1)
+  - ReactiveCocoa/no-arc (4.0.0):
+    - Result (~> 1.0.1)
+  - ReactiveCocoa/UI (4.0.0):
     - ReactiveCocoa/Core
-    - Result (~> 1.0)
-  - Result (1.0.1)
-  - RxSwift (2.0.0)
+    - Result (~> 1.0.1)
+  - Result (1.0.2)
+  - RxSwift (2.2.0)
 
 DEPENDENCIES:
   - Moya (from `../`)
@@ -50,16 +50,16 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Moya:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
-  Alamofire: fbc829692f351fa1d8a31dd75fd7f7f56fea31fb
-  Moya: 9bd9f20e6451c820c17ca40e1b3f6489757fa821
-  Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
+  Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
+  Moya: a5e57a405584177027daab240f4d47baa0722562
+  Nimble: 79d40f4d69d47314229bbabacaa02b8838c779b9
   OHHTTPStubs: d2bf6a0f407620d67e75a1d3f12d86a2b1dd15c0
-  Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
-  ReactiveCocoa: 2b0f654beb7642b82cfd3fdb845205ae9889422c
-  Result: caef80340451e1f07492fa1e89117f83613bce24
-  RxSwift: d83246efa6f16c50c143bec134649d045498f601
+  Quick: 332eb1da73125a2106dd637424c803f2ae97e4a9
+  ReactiveCocoa: 69be555be30674b07a86b60a91b855063841acc0
+  Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
+  RxSwift: b8a749f2204c6c7a5c29b306a9c3bc11d5b87c5b
 
 COCOAPODS: 0.39.0

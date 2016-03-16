@@ -38,6 +38,12 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7M-QD-CRM" customClass="CardView" customModule="ios7funs" customModuleProvider="target">
                                                     <rect key="frame" x="5" y="5" width="355" height="248"/>
                                                     <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="248" id="hu3-c1-idr"/>
+                                                    </constraints>
+                                                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                        <rect key="frame" x="5" y="5" width="647" height="600"/>
+                                                    </variation>
                                                 </view>
                                                 <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvP-5r-nGN" userLabel="Corner">
                                                     <rect key="frame" x="5" y="5" width="355" height="248"/>
@@ -47,12 +53,26 @@
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_default" translatesAutoresizingMaskIntoConstraints="NO" id="Rim-vc-cYi" userLabel="Default Food Image">
                                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
+                                                                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="647" height="352"/>
+                                                                    </variation>
                                                                 </imageView>
                                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="pcw-wf-NcP">
                                                                     <rect key="frame" x="159" y="82" width="37" height="37"/>
+                                                                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                                        <rect key="frame" x="305" y="158" width="37" height="37"/>
+                                                                    </variation>
                                                                 </activityIndicatorView>
                                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ku-tp-uXD" userLabel="Food Button">
                                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="200" id="r9Q-5A-fZK">
+                                                                            <variation key="heightClass=regular-widthClass=regular" constant="400"/>
+                                                                        </constraint>
+                                                                    </constraints>
+                                                                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="647" height="352"/>
+                                                                    </variation>
                                                                     <connections>
                                                                         <segue destination="9OQ-Cy-w8b" kind="show" id="pjZ-Cy-GSt"/>
                                                                     </connections>
@@ -68,12 +88,18 @@
                                                                             <exclude reference="kfN-q9-pbz"/>
                                                                         </mask>
                                                                     </variation>
+                                                                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="237" width="647" height="115"/>
+                                                                    </variation>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="這是測試用的文字用來顯示食譜名稱，長度過長會變成三個點" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Zb-gV-cP9">
                                                                     <rect key="frame" x="12" y="164" width="331" height="24"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                                        <rect key="frame" x="12" y="316" width="623" height="24"/>
+                                                                    </variation>
                                                                 </label>
                                                             </subviews>
                                                             <color key="backgroundColor" red="0.86666666670000003" green="0.67843137249999996" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -103,6 +129,9 @@
                                                                     <exclude reference="aTm-qQ-FjZ"/>
                                                                 </mask>
                                                             </variation>
+                                                            <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                                <rect key="frame" x="0.0" y="0.0" width="647" height="352"/>
+                                                            </variation>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WwI-J7-F3h" userLabel="Add Collection Background">
                                                             <rect key="frame" x="299" y="200" width="56" height="48"/>
@@ -124,6 +153,9 @@
                                                                 <constraint firstItem="ELg-qo-Dwt" firstAttribute="top" secondItem="WwI-J7-F3h" secondAttribute="top" id="o4t-q1-X15"/>
                                                                 <constraint firstAttribute="bottom" secondItem="ELg-qo-Dwt" secondAttribute="bottom" id="yd4-Ow-Crb"/>
                                                             </constraints>
+                                                            <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                                <rect key="frame" x="591" y="352" width="56" height="48"/>
+                                                            </variation>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lba-x1-arn" userLabel="BG Love Icon">
                                                             <rect key="frame" x="0.0" y="200" width="40" height="48"/>
@@ -141,12 +173,18 @@
                                                                 <constraint firstAttribute="height" constant="48" id="u2W-1r-cQ6"/>
                                                                 <constraint firstAttribute="trailing" secondItem="N9w-4K-abc" secondAttribute="trailing" id="vwz-wt-kRT"/>
                                                             </constraints>
+                                                            <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                                <rect key="frame" x="0.0" y="352" width="40" height="48"/>
+                                                            </variation>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5人收藏．991人看過 (Default)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Euu-Jm-t9V" userLabel="Recipe Info">
-                                                            <rect key="frame" x="40" y="215" width="259" height="19.5"/>
+                                                            <rect key="frame" x="40" y="214" width="259" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
+                                                            <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                                <rect key="frame" x="40" y="366" width="551" height="20"/>
+                                                            </variation>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -163,6 +201,9 @@
                                                         <constraint firstItem="lba-x1-arn" firstAttribute="leading" secondItem="mvP-5r-nGN" secondAttribute="leading" id="xeM-KU-y6n"/>
                                                         <constraint firstItem="Euu-Jm-t9V" firstAttribute="leading" secondItem="lba-x1-arn" secondAttribute="trailing" id="y5Q-Nh-Tyo"/>
                                                     </constraints>
+                                                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                        <rect key="frame" x="5" y="5" width="647" height="400"/>
+                                                    </variation>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96470588235294119" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>

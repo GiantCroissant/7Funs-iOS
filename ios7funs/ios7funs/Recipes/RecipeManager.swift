@@ -101,6 +101,9 @@ class RecipeManager: NSObject {
         },
         onCompleted: {
           onComplete()
+        },
+        onDisposed: {
+          onFinished()
         }
       )
       .addDisposableTo(self.disposeBag)

@@ -27,6 +27,22 @@ extension ControlTests {
 
         XCTAssert(subject.enabled == false, "Expected enabled set to false")
     }
+
+    func testSubscribedSelectedToTrue() {
+        let subject = UIControl()
+        let disposable = Observable.just(true).subscribe(subject.rx_selected)
+        defer { disposable.dispose() }
+
+        XCTAssert(subject.selected == true, "Expected selected set to true")
+    }
+
+    func testSubscribeSelectedToFalse() {
+        let subject = UIControl()
+        let disposable = Observable.just(false).subscribe(subject.rx_selected)
+        defer { disposable.dispose() }
+
+        XCTAssert(subject.selected == false, "Expected selected set to false")
+    }
 }
 
 // UITextField
@@ -106,7 +122,7 @@ extension ControlTests {
         ensureEventDeallocated(createView) { (view: UICollectionView) in view.rx_modelSelected(Int.self) }
     }
 
-    func testCollectionView_ModelSelected1() {
+    func testCollectionView_ModelSelected_itemsWithCellFactory() {
         let items: Observable<[Int]> = Observable.just([1, 2, 3])
 
         let layout = UICollectionViewFlowLayout()
@@ -137,7 +153,7 @@ extension ControlTests {
         s.dispose()
     }
 
-    func testCollectionView_ModelSelected2() {
+    func testCollectionView_ModelSelected_itemsWithCellIdentifier() {
         let items: Observable<[Int]> = Observable.just([1, 2, 3])
 
         let layout = UICollectionViewFlowLayout()
@@ -167,6 +183,90 @@ extension ControlTests {
         s.dispose()
         dataSourceSubscription.dispose()
     }
+
+    func testCollectionView_ModelDeselected_itemsWithCellFactory() {
+        let items: Observable<[Int]> = Observable.just([1, 2, 3])
+
+        let layout = UICollectionViewFlowLayout()
+
+        let createView: () -> (UICollectionView, Disposable) = {
+            let collectionView = UICollectionView(frame: CGRectMake(0, 0, 1, 1), collectionViewLayout: layout)
+            let s = items.bindTo(collectionView.rx_itemsWithCellFactory) { (cv, index: Int, item: Int) -> UICollectionViewCell in
+                return UICollectionViewCell(frame: CGRectMake(1, 1, 1, 1))
+            }
+
+            return (collectionView, s)
+        }
+
+        let (collectionView, dataSourceSubscription) = createView()
+
+        var selectedItem: Int? = nil
+
+        let s = collectionView.rx_modelDeselected(Int.self)
+            .subscribeNext { (item: Int) in
+                selectedItem = item
+        }
+
+        collectionView.delegate!.collectionView!(collectionView, didDeselectItemAtIndexPath: NSIndexPath(forRow: 1, inSection: 0))
+
+        XCTAssertEqual(selectedItem, 2)
+
+        dataSourceSubscription.dispose()
+        s.dispose()
+    }
+
+    func testCollectionView_ModelDeselected_itemsWithCellIdentifier() {
+        let items: Observable<[Int]> = Observable.just([1, 2, 3])
+
+        let layout = UICollectionViewFlowLayout()
+        let createView: () -> (UICollectionView, Disposable) = {
+            let collectionView = UICollectionView(frame: CGRectMake(0, 0, 1, 1), collectionViewLayout: layout)
+            collectionView.registerClass(NSClassFromString("UICollectionViewCell"), forCellWithReuseIdentifier: "a")
+            let dataSourceSubscription = items.bindTo(collectionView.rx_itemsWithCellIdentifier("a")) { (index: Int, item: Int, cell) in
+
+            }
+
+            return (collectionView, dataSourceSubscription)
+
+        }
+        let (collectionView, dataSourceSubscription) = createView()
+
+        var selectedItem: Int? = nil
+
+        let s = collectionView.rx_modelDeselected(Int.self)
+            .subscribeNext { item in
+                selectedItem = item
+            }
+
+        collectionView.delegate!.collectionView!(collectionView, didDeselectItemAtIndexPath: NSIndexPath(forRow: 1, inSection: 0))
+        
+        XCTAssertEqual(selectedItem, 2)
+        
+        s.dispose()
+        dataSourceSubscription.dispose()
+    }
+
+    func testCollectionView_modelAtIndexPath_normal() {
+        let items: Observable<[Int]> = Observable.just([1, 2, 3])
+
+        let layout = UICollectionViewFlowLayout()
+        let createView: () -> (UICollectionView, Disposable) = {
+            let collectionView = UICollectionView(frame: CGRectMake(0, 0, 1, 1), collectionViewLayout: layout)
+            collectionView.registerClass(NSClassFromString("UICollectionViewCell"), forCellWithReuseIdentifier: "a")
+            let dataSource = SectionedViewDataSourceMock()
+            let dataSourceSubscription = items.bindTo(collectionView.rx_itemsWithDataSource(dataSource))
+
+            return (collectionView, dataSourceSubscription)
+
+        }
+        let (collectionView, dataSourceSubscription) = createView()
+
+        let model: Int = try! collectionView.rx_modelAtIndexPath(NSIndexPath(forItem: 1, inSection: 0))
+
+        XCTAssertEqual(model, 2)
+
+        dataSourceSubscription.dispose()
+    }
 }
 
 // UILabel
@@ -193,11 +293,14 @@ extension ControlTests {
         let createView: () -> UITableView = { UITableView(frame: CGRectMake(0, 0, 1, 1)) }
 
         ensureEventDeallocated(createView) { (view: UITableView) in view.rx_itemSelected }
+        ensureEventDeallocated(createView) { (view: UITableView) in view.rx_itemDeselected }
+        ensureEventDeallocated(createView) { (view: UITableView) in view.rx_itemAccessoryButtonTapped }
         ensureEventDeallocated(createView) { (view: UITableView) in view.rx_modelSelected(Int.self) }
         ensureEventDeallocated(createView) { (view: UITableView) in view.rx_itemDeleted }
         ensureEventDeallocated(createView) { (view: UITableView) in view.rx_itemMoved }
         ensureEventDeallocated(createView) { (view: UITableView) in view.rx_itemInserted }
         ensureEventDeallocated(createView) { (view: UITableView) in view.rx_modelSelected(Int.self) }
+        ensureEventDeallocated(createView) { (view: UITableView) in view.rx_modelDeselected(Int.self) }
     }
 
     func testTableView_DelegateEventCompletesOnDealloc1() {
@@ -244,7 +347,36 @@ extension ControlTests {
         ensureEventDeallocated(createView) { (view: UITableView) in view.rx_modelSelected(Int.self) }
     }
 
-    func testTableView_ModelSelected1() {
+    func testTableView_ModelSelected_rx_itemsWithCellFactory() {
+        let items: Observable<[Int]> = Observable.just([1, 2, 3])
+        
+        let createView: () -> (UITableView, Disposable) = {
+            let tableView = UITableView(frame: CGRectMake(0, 0, 1, 1))
+            let dataSourceSubscription = items.bindTo(tableView.rx_itemsWithCellFactory) { (tv, index: Int, item: Int) -> UITableViewCell in
+                return UITableViewCell(style: .Default, reuseIdentifier: "Identity")
+            }
+            
+            return (tableView, dataSourceSubscription)
+        }
+        
+        let (tableView, dataSourceSubscription) = createView()
+        
+        var selectedItem: Int? = nil
+        
+        let s = tableView.rx_modelSelected(Int.self)
+            .subscribeNext { item in
+                selectedItem = item
+        }
+        
+        tableView.delegate!.tableView!(tableView, didSelectRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 0))
+        
+        XCTAssertEqual(selectedItem, 2)
+        
+        dataSourceSubscription.dispose()
+        s.dispose()
+    }
+
+    func testTableView_IndexPath_rx_itemAccessoryButtonTapped() {
         let items: Observable<[Int]> = Observable.just([1, 2, 3])
 
         let createView: () -> (UITableView, Disposable) = {
@@ -258,22 +390,23 @@ extension ControlTests {
 
         let (tableView, dataSourceSubscription) = createView()
 
-        var selectedItem: Int? = nil
+        var selectedItem: NSIndexPath? = nil
         
-        let s = tableView.rx_modelSelected(Int.self)
+        let s = tableView.rx_itemAccessoryButtonTapped
             .subscribeNext { item in
                 selectedItem = item
             }
 
-        tableView.delegate!.tableView!(tableView, didSelectRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 0))
+        let testRow = NSIndexPath(forRow: 1, inSection: 0)
+        tableView.delegate!.tableView!(tableView, accessoryButtonTappedForRowWithIndexPath: testRow)
 
-        XCTAssertEqual(selectedItem, 2)
+        XCTAssertEqual(selectedItem, testRow)
 
         dataSourceSubscription.dispose()
         s.dispose()
     }
 
-    func testTableView_ModelSelected2() {
+    func testTableView_ModelSelected_itemsWithCellIdentifier() {
         let items: Observable<[Int]> = Observable.just([1, 2, 3])
 
         let createView: () -> (UITableView, Disposable) = {
@@ -301,6 +434,86 @@ extension ControlTests {
 
         dataSourceSubscription.dispose()
         s.dispose()
+    }
+
+    func testTableView_ModelDeselected_rx_itemsWithCellFactory() {
+        let items: Observable<[Int]> = Observable.just([1, 2, 3])
+
+        let createView: () -> (UITableView, Disposable) = {
+            let tableView = UITableView(frame: CGRectMake(0, 0, 1, 1))
+            let dataSourceSubscription = items.bindTo(tableView.rx_itemsWithCellFactory) { (tv, index: Int, item: Int) -> UITableViewCell in
+                return UITableViewCell(style: .Default, reuseIdentifier: "Identity")
+            }
+
+            return (tableView, dataSourceSubscription)
+        }
+
+        let (tableView, dataSourceSubscription) = createView()
+
+        var selectedItem: Int? = nil
+
+        let s = tableView.rx_modelDeselected(Int.self)
+            .subscribeNext { item in
+                selectedItem = item
+            }
+
+        tableView.delegate!.tableView!(tableView, didDeselectRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 0))
+
+        XCTAssertEqual(selectedItem, 2)
+
+        dataSourceSubscription.dispose()
+        s.dispose()
+    }
+
+    func testTableView_ModelDeselected_itemsWithCellIdentifier() {
+        let items: Observable<[Int]> = Observable.just([1, 2, 3])
+
+        let createView: () -> (UITableView, Disposable) = {
+            let tableView = UITableView(frame: CGRectMake(0, 0, 1, 1))
+            tableView.registerClass(NSClassFromString("UITableViewCell"), forCellReuseIdentifier: "a")
+            let dataSourceSubscription = items.bindTo(tableView.rx_itemsWithCellIdentifier("a")) { (index: Int, item: Int, cell) in
+
+            }
+
+            return (tableView, dataSourceSubscription)
+        }
+
+        let (tableView, dataSourceSubscription) = createView()
+
+        var selectedItem: Int? = nil
+
+        let s = tableView.rx_modelDeselected(Int.self)
+            .subscribeNext { item in
+                selectedItem = item
+            }
+
+        tableView.delegate!.tableView!(tableView, didDeselectRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 0))
+        
+        XCTAssertEqual(selectedItem, 2)
+        
+        dataSourceSubscription.dispose()
+        s.dispose()
+    }
+
+    func testTableView_modelAtIndexPath_normal() {
+        let items: Observable<[Int]> = Observable.just([1, 2, 3])
+
+        let createView: () -> (UITableView, Disposable) = {
+            let tableView = UITableView(frame: CGRectMake(0, 0, 1, 1))
+            tableView.registerClass(NSClassFromString("UITableViewCell"), forCellReuseIdentifier: "a")
+            let dataSource = SectionedViewDataSourceMock()
+            let dataSourceSubscription = items.bindTo(tableView.rx_itemsWithDataSource(dataSource))
+
+            return (tableView, dataSourceSubscription)
+        }
+
+        let (tableView, dataSourceSubscription) = createView()
+
+        let model: Int = try! tableView.rx_modelAtIndexPath(NSIndexPath(forItem: 1, inSection: 0))
+
+        XCTAssertEqual(model, 2)
+        
+        dataSourceSubscription.dispose()
     }
 }
 

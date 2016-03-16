@@ -9,7 +9,7 @@ if [ `xcodebuild -showsdks | grep tvOS | wc -l` -gt 0 ]; then
 fi
 
 if [ "$1" == "r" ]; then
-	printf "${GREEN}Pre release tests on, hang on tight ...${RESET}"
+	printf "${GREEN}Pre release tests on, hang on tight ...${RESET}\n"
 	RELEASE_TEST=1
 fi
 
@@ -123,8 +123,6 @@ done
 . scripts/validate-playgrounds.sh
 
 if [ "${RELEASE_TEST}" -eq 1 ]; then
-	mdast -u mdast-slug -u mdast-validate-links ./*.md
-	mdast -u mdast-slug -u mdast-validate-links ./**/*.md
-
+    scripts/validate-markdown.sh
 	scripts/validate-podspec.sh
 fi

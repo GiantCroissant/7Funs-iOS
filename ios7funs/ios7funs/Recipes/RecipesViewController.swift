@@ -23,16 +23,71 @@ class RecipesViewController: UIViewController {
   var type = StoryboardType.Recipe
   var isFetching = false
   var recipes = [RecipeUIModel]()
+  let refreshControl = UIRefreshControl()
+
+  // Testing new way to fetch recipe
+  let recipesV2 = try! Realm().objects(Recipe).sorted("id", ascending: false)
+  var notificationToken: NotificationToken?
+  //
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.tableRecipes.tableFooterView = self.loadingFooter
+
+
+
+    configureRefreshControl()
+
+    tableRecipes.tableFooterView = loadingFooter
 
     if type == .Collection {
       if (LoginManager.token == nil)  {
         LoginManager.sharedInstance.showLoginViewController(self)
       }
     }
+  }
+
+  func setupRealmNotificationToken() {
+    notificationToken = recipesV2.addNotificationBlock { results, error in
+      self.tableRecipes.reloadData()
+    }
+  }
+
+
+  private func configureRefreshControl() {
+    refreshControl.tintColor = UIColor.orangeColor()
+    refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
+    refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+    tableRecipes.addSubview(refreshControl)
+  }
+
+  func refresh(sender: UIRefreshControl) {
+    UIUtils.showStatusBarNetworking()
+    RecipeManager.sharedInstance.fetchRecipeOverview(
+      onComplete: {
+        if (self.refreshControl.refreshing) {
+          self.refreshControl.endRefreshing()
+        }
+      },
+      onError: { error in
+        self.showNetworkIsBusyAlertView()
+      },
+      onFinished: {
+        UIUtils.hideStatusBarNetworking()
+        if (self.refreshControl.refreshing) {
+          self.refreshControl.endRefreshing()
+        }
+      }
+    )
+//    delay(2.0) {
+//
+//      // update "last updated" title for refresh control
+//      let now = NSDate()
+//      let updateString = "Last Updated at " + self.dateFormatter.stringFromDate(now)
+//      self.refreshControl.attributedTitle = NSAttributedString(string: updateString)
+//      if self.refreshControl.refreshing {
+//        self.refreshControl.endRefreshing()
+//      }
+//    }
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -84,6 +139,12 @@ class RecipesViewController: UIViewController {
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
     self.showNavigationBar()
+    setupRealmNotificationToken()
+  }
+
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    notificationToken?.stop()
   }
 
   override func viewWillDisappear(animated: Bool) {
@@ -91,9 +152,6 @@ class RecipesViewController: UIViewController {
     self.hideToastIndicator()
   }
 
-  override func viewDidDisappear(animated: Bool) {
-    super.viewDidDisappear(animated)
-  }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     navigationItem.title = ""
@@ -125,13 +183,15 @@ extension RecipesViewController {
 extension RecipesViewController: UITableViewDataSource {
 
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return recipes.count
+//    return recipes.count
+    return recipesV2.count
   }
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("idRecipeCell", forIndexPath: indexPath) as! RecipeTableViewCell
 
-    let recipe = recipes[indexPath.row]
+//    let recipe = recipes[indexPath.row]
+    let recipe = recipesV2[indexPath.row]
     cell.recipe = recipe
     cell.updateCell()
 
@@ -143,6 +203,18 @@ extension RecipesViewController: UITableViewDataSource {
 
     return cell
   }
+
+  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+
+    if self.traitCollection.verticalSizeClass
+      == .Regular && self.traitCollection.horizontalSizeClass == .Regular {
+
+        return 458
+    }
+
+    return 258
+  }
+
 }
 
 class RecipeFavoriteButton: UIButton {

@@ -87,6 +87,14 @@ public final class Signal<Value, Error: ErrorType> {
 		return self.init { _ in nil }
 	}
 
+	/// A Signal that completes immediately without emitting any value.
+	public static var empty: Signal {
+		return self.init { observer in
+			observer.sendCompleted()
+			return nil
+		}
+	}
+
 	/// Creates a Signal that will be controlled by sending events to the given
 	/// observer.
 	///
@@ -803,9 +811,7 @@ extension SignalType {
 				case let .Failed(error):
 					observer.sendFailed(error)
 				case .Completed:
-					for bufferedValue in buffer {
-						observer.sendNext(bufferedValue)
-					}
+					buffer.forEach(observer.sendNext)
 					
 					observer.sendCompleted()
 				case .Interrupted:
@@ -873,8 +879,8 @@ extension SignalType {
 				}
 			}
 			
-			let onFailed = { observer.sendFailed($0) }
-			let onInterrupted = { observer.sendInterrupted() }
+			let onFailed = observer.sendFailed
+			let onInterrupted = observer.sendInterrupted
 
 			disposable += self.observe { event in
 				switch event {
@@ -949,11 +955,10 @@ extension SignalType {
 			self.observe { event in
 				switch event {
 				case let .Next(value):
-					operation(value).analysis(ifSuccess: { value in
-						observer.sendNext(value)
-						}, ifFailure: { error in
-							observer.sendFailed(error)
-					})
+					operation(value).analysis(
+						ifSuccess: observer.sendNext,
+						ifFailure: observer.sendFailed
+					)
 				case let .Failed(error):
 					observer.sendFailed(error)
 				case .Completed:
