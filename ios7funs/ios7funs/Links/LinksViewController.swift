@@ -18,6 +18,8 @@ class LinksViewController: UIViewController {
     let urlMitdub = "http://www.mitdub.com/"
     let titleUcom = "Ucom"
     let urlUcom = "https://www.facebook.com/rakenhouse/?fref=ts"
+    
+    var sponsors = [SponsorUIModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,22 @@ class LinksViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.title = vcTitle
+        
+        SponsorManager.sharedInstance.fetchSponsors(
+            onComplete: { sponsors -> Void in
+                dLog("sponsors.count = \(sponsors.count)")
+                
+                self.sponsors = sponsors
+                //self.tableQuestions.reloadData()
+                
+            },
+            onError: { error in
+                self.showNetworkIsBusyAlertView()
+            },
+            onFinished: {
+                self.hideToastIndicator()
+            }
+        )
     }
 
     override func viewDidAppear(animated: Bool) {

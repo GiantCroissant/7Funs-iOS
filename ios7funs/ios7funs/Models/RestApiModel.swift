@@ -31,6 +31,9 @@ public enum RestApi {
     case CreateMessageComment(id: Int, token: String, comment: String)
     
     //
+    case Sponsors(Int)
+    
+    //
     case Videos(Int)
     case VideoOverview
     case VideoByIdList([Int])
@@ -82,6 +85,9 @@ extension RestApi : TargetType {
             return "/api/messages"
         case .CreateMessageComment(let id, _, _):
             return "/api/messages/\(id)/comments"
+
+        case .Sponsors(_):
+            return "/api/sponsors"
             
         case .Videos(_):
             return "/api/recipe_videos"
@@ -189,6 +195,11 @@ extension RestApi : TargetType {
                 "comment": comment
             ]
             
+        case .Sponsors(let page):
+            return [
+                "page": page
+            ]
+            
         case .Videos(let page):
             return [
                 "page": page
@@ -267,6 +278,9 @@ extension RestApi : TargetType {
             return "".dataUsingEncoding(NSUTF8StringEncoding)!
 
         case .CreateMessageComment(_, _, _):
+            return "".dataUsingEncoding(NSUTF8StringEncoding)!
+            
+        case .Sponsors(_):
             return "".dataUsingEncoding(NSUTF8StringEncoding)!
             
         case .Videos(_):

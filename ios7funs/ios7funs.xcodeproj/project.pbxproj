@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0957F1DB1C33BE0D00357DF4 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0957F1D91C33BE0D00357DF4 /* FBSDKCoreKit.framework */; };
 		0957F1DC1C33BE0D00357DF4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0957F1DA1C33BE0D00357DF4 /* FBSDKLoginKit.framework */; };
+		098AD9251CD585C7001DA05C /* SponsorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AD9241CD585C7001DA05C /* SponsorManager.swift */; };
 		09A6A8501C507ECF00CF279A /* JsonModelInstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6A84F1C507ECF00CF279A /* JsonModelInstructor.swift */; };
 		09A6A8521C507FF100CF279A /* Info.json in Resources */ = {isa = PBXBuildFile; fileRef = 09A6A8511C507FF100CF279A /* Info.json */; };
 		3B12806E1C3A64BF00AE2CC6 /* QandAManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */; };
@@ -91,6 +92,7 @@
 /* Begin PBXFileReference section */
 		0957F1D91C33BE0D00357DF4 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ios7funs/Lib3rdParty/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		0957F1DA1C33BE0D00357DF4 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ios7funs/Lib3rdParty/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		098AD9241CD585C7001DA05C /* SponsorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SponsorManager.swift; path = Links/SponsorManager.swift; sourceTree = "<group>"; };
 		09A6A84F1C507ECF00CF279A /* JsonModelInstructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonModelInstructor.swift; sourceTree = "<group>"; };
 		09A6A8511C507FF100CF279A /* Info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Info.json; sourceTree = "<group>"; };
 		3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QandAManager.swift; path = QandA/QandAManager.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				3B9DD5621C214554000FE1DF /* Links.storyboard */,
 				3BCE507D1C168C100088794A /* LinksViewController.swift */,
 				3BA2580C1C2824D800FA5A7C /* LinkFriendViewController.swift */,
+				098AD9241CD585C7001DA05C /* SponsorManager.swift */,
 			);
 			name = Links;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				3BFBD56D1C278CF100313896 /* LoginManager.swift in Sources */,
 				3B41786B1C20DEBE006CB7ED /* RecipeTutorialViewController.swift in Sources */,
 				3BDF65B91C28EE2A0040F5DB /* CollectionManager.swift in Sources */,
+				098AD9251CD585C7001DA05C /* SponsorManager.swift in Sources */,
 				3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */,
 				3BBCC62A1C4CC0CC00497FBC /* NibDesignable.swift in Sources */,
 				3B41D1301C16C9230054FC10 /* RestApiModel.swift in Sources */,

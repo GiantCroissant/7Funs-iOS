@@ -140,6 +140,24 @@ class QuestionUIModel {
   }
 }
 
+class SponsorUIModel {
+    var id: Int = 0
+//    var username: String = ""
+//    var title: String = ""
+//    var description: String = ""
+//    var answersCount: Int = 0
+//    var updatedAt: String = ""
+    
+    init(json: SponsorDetailJsonObject) {
+        self.id = json.id
+//        self.username = json.user.name
+//        self.title = json.title ?? ""
+//        self.description = json.description ?? ""
+//        self.answersCount = json.commentsCount
+//        self.updatedAt = json.updatedAt
+    }
+}
+
 class AnswerUIModel {
   var id: Int
   var userId: Int

@@ -192,6 +192,12 @@ public struct UserJsonObject {
   public let name: String
   public let fbId: String
   public let image: String
+  public let signInCount: Int
+  public let currentSignInAt: String
+  public let lastSignInAt: String
+  public let createdAt: String
+  public let updatedAt: String
+  public let isAdmin: Bool
 }
 
 public struct MessageWithCommentJsonObject {
@@ -253,6 +259,37 @@ public struct MessageCommentCreateResultJsonObject {
   public let id: Int
 }
 
+// MARK: Sponsor related
+public struct SponsorVideoDataJsonObject{
+    public let title: String
+    public let duration: Int
+    public let likeCount: Int
+    public let viewCount: Int
+    public let description: String
+    public let publishedAt: String
+    public let thumbnailUrl: String
+}
+
+public struct SponsorVideoDetailJsonObject {
+    public let id: Int
+    public let sponsorId: String
+    public let youtubeVideoCode: String
+    public let videoData: SponsorVideoDataJsonObject
+    public let createdAt: String
+    public let updatedAt: String
+    public let number: Int
+}
+
+public struct SponsorDetailJsonObject {
+    public let id: Int
+    public let name: String
+    public let url: String
+    public let image: String
+    public let description: String
+    public let createdAt: String
+    public let updatedAt: String
+    public let spnosorVideos: [SponsorVideoDetailJsonObject]
+}
 
 // MARK: Login related
 public struct RegisterUserJsonObject {
@@ -335,6 +372,11 @@ public struct VideoQueryJsonObject {
 public struct MessageQueryJsonObject {
   public let collections: [MessageJsonObject]
   public let pagination: PaginationDetailJsonObject
+}
+
+public struct SponsorQueryJsonObject {
+    public let collections: [SponsorDetailJsonObject]
+    public let pagination: PaginationDetailJsonObject
 }
 
 // MARK: Extensions to confirm decodable protocol
@@ -474,6 +516,12 @@ extension UserJsonObject: Decodable {
       <*> j <| "image"
 
     return f
+      <*> j <| "sign_in_count"
+      <*> j <| "current_sign_in_at"
+      <*> j <| "last_sign_in_at"
+      <*> j <| "created_at"
+      <*> j <| "updated_at"
+      <*> j <| "is_admin"
   }
 }
 
@@ -566,6 +614,52 @@ extension MessageCommentCreateResultJsonObject: Decodable {
       <*> j <| "created_at"
       <*> j <| "id"
   }
+}
+
+extension SponsorVideoDataJsonObject: Decodable {
+    public static func decode(j: JSON) -> Decoded<SponsorVideoDataJsonObject> {
+        let f = curry(SponsorVideoDataJsonObject.init)
+            <^> j <| "title"
+            <*> j <| "duration"
+            <*> j <| "like_count"
+            <*> j <| "view_count"
+        
+        return f
+            <*> j <| "description"
+            <*> j <| "published_at"
+            <*> j <| "thumbnail_url"
+    }
+}
+
+extension SponsorVideoDetailJsonObject: Decodable {
+    public static func decode(j: JSON) -> Decoded<SponsorVideoDetailJsonObject> {
+        let f = curry(SponsorVideoDetailJsonObject.init)
+            <^> j <| "id"
+            <*> j <| "sponsor_id"
+            <*> j <| "youtube_video_code"
+            <*> j <| "video_data"
+        
+        return f
+            <*> j <| "created_at"
+            <*> j <| "updated_at"
+            <*> j <| "number"
+    }
+}
+
+extension SponsorDetailJsonObject: Decodable {
+    public static func decode(j: JSON) -> Decoded<SponsorDetailJsonObject> {
+        let f = curry(SponsorDetailJsonObject.init)
+            <^> j <| "id"
+            <*> j <| "name"
+            <*> j <| "url"
+            <*> j <| "image"
+        
+        return f
+            <*> j <| "description"
+            <*> j <| "created_at"
+            <*> j <| "updated_at"
+            <*> j <|| "spnosor_videos"
+    }
 }
 
 extension TaggingJsonObject: Decodable {
@@ -749,4 +843,12 @@ extension MessageQueryJsonObject: Decodable {
       <^> j <|| "collection"
       <*> j <| "pagination"
   }
+}
+
+extension SponsorQueryJsonObject: Decodable {
+    public static func decode(j: JSON) -> Decoded<SponsorQueryJsonObject> {
+        return curry(SponsorQueryJsonObject.init)
+            <^> j <|| "collection"
+            <*> j <| "pagination"
+    }
 }
