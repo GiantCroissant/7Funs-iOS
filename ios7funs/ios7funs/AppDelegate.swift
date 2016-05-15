@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func startBackgroundLoadVideos() {
     NSTimer.scheduledTimerWithTimeInterval(loadVideoInBackgroundTimeInterval,
       target: self,
-      selector: "loadVideosInBackground",
+      selector: #selector(AppDelegate.loadVideosInBackground),
       userInfo: nil,
       repeats: true
     )

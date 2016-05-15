@@ -109,14 +109,14 @@ extension LoginViewController {
     private func setupKeyboardObservers() {
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "keyboardWillShow:",
+            selector: #selector(LoginViewController.keyboardWillShow(_:)),
             name: UIKeyboardWillShowNotification,
             object: nil
         )
 
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "keyboardWillHide:",
+            selector: #selector(LoginViewController.keyboardWillHide(_:)),
             name: UIKeyboardWillHideNotification,
             object: nil
         )

@@ -58,8 +58,8 @@ class ShowTeacherViewController: UIViewController {
 
                 if let d = data {
                     do {
-                        let jsonObject = try NSJSONSerialization.JSONObjectWithData(d, options: .AllowFragments) as! [String : AnyObject]
-                        let decoded = InstructorJsonObject.self.decode(JSON.parse(jsonObject))
+                        let jsonObject = try NSJSONSerialization.JSONObjectWithData(d, options: .AllowFragments) as! [String : Argo.JSON]
+                        let decoded = InstructorJsonObject.self.decode(JSON.Object(jsonObject))
                         switch decoded {
                         case .Success(let result):
                             return result

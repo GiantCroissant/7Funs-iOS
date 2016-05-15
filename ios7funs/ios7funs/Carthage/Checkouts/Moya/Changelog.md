@@ -1,6 +1,19 @@
 # Next
 
-# 6.2.0
+# 6.4.0
+
+- Makes `convertResponseToResult` public to make use of this method when dealing with Alamofire directly
+- Updates to ReactiveCocoa 4.1
+- Updates to Result 2.0
+
+# 6.3.1
+
+- Updates for Swift 2.2 / Xcode 7.3 compatibility.
+
+# 6.3.0
+
+- Fixed endpoint setup when adding `parameters` or `headers` when `parameters` or `headers` or nil.
+- Adds StructTarget for using Moya with structs.
 
 # 6.2.0
 

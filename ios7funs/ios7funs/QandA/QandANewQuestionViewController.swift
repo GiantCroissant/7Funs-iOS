@@ -95,7 +95,7 @@ extension QandANewQuestionViewController {
     func setupKeyboardObservers() {
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "keyboardWillShow:",
+            selector: #selector(QandANewQuestionViewController.keyboardWillShow(_:)),
             name: UIKeyboardWillShowNotification,
             object: nil
         )

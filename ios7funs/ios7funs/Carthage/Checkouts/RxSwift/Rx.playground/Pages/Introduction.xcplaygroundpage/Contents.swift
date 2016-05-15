@@ -1,3 +1,12 @@
+/*:
+> # IMPORTANT: To use `Rx.playground`, please:
+
+1. Open `Rx.xcworkspace`
+2. Build `RxSwift-OSX` scheme
+3. And then open `Rx` playground in `Rx.xcworkspace` tree view.
+4. Choose `View > Show Debug Area`
+*/
+
 //: [<< Index](@previous)
 
 import RxSwift
@@ -130,11 +139,11 @@ example("generate") {
 }
 
 /*:
-### failWith
+### error
 create an Observable that emits no items and terminates with an error
 */
 
-example("failWith") {
+example("error") {
     let error = NSError(domain: "Test", code: -1, userInfo: nil)
     
     let erroredSequence = Observable<Int>.error(error)

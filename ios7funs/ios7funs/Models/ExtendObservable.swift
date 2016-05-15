@@ -23,8 +23,8 @@ enum ORMError : ErrorType {
 }
 
 extension Observable {
-    private func resultFromJSON<T: Decodable>(object:[String: AnyObject], classType: T.Type) -> T? {
-        let decoded = classType.decode(JSON.parse(object))
+    private func resultFromJSON<T: Decodable>(object: JSON, classType: T.Type) -> T? {
+        let decoded = classType.decode(object)
         switch decoded {
         case .Success(let result):
             return result as? T
@@ -45,20 +45,25 @@ extension Observable {
             guard ((200...209) ~= response.statusCode) else {
                 dLog("statusCode = \(response.statusCode)")
 
-                if let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [String: AnyObject] {
+                if let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: []) as! JSON {
                     dLog("onHTTPFail = \(json)")
-                    onHTTPFail(self.resultFromJSON(json!, classType: ErrorResultJsonObject.self))
+
+                    onHTTPFail(self.resultFromJSON(json, classType: ErrorResultJsonObject.self))
                 }
+
+//              if let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [String: AnyObject] {
+//                dLog("onHTTPFail = \(json)")
+//                onHTTPFail(self.resultFromJSON(json!, classType: ErrorResultJsonObject.self))
+//              }
+
 
                 throw ORMError.ORMNotSuccessfulHTTP
             }
 
             do {
-                guard let json = try NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [String: AnyObject] else {
+                guard let json = try NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? JSON else {
                     throw ORMError.ORMCouldNotMakeObjectError
                 }
-
-
 
                 if let result = self.resultFromJSON(json, classType:type) {
                     return result
@@ -90,7 +95,7 @@ extension Observable {
             }
             
             do {
-                guard let jsonArray = try NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [[String : AnyObject]] else {
+                guard let jsonArray = try NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [JSON] else {
                     throw ORMError.ORMCouldNotMakeObjectError
                 }
 

@@ -16,11 +16,11 @@ import UIKit
 //   dLog("Log this!")
 //
 #if DEBUG
-    func dLog(message: NSString, filename: NSString = __FILE__, function: NSString = __FUNCTION__, line: Int = __LINE__) {
+    func dLog(message: NSString, filename: NSString = #file, function: NSString = #function, line: Int = #line) {
         NSLog("[\(filename.lastPathComponent):\(line)] \(function) - \(message)")
     }
 
-    func uLog(message: NSString, filename: NSString = __FILE__, function: NSString = __FUNCTION__, line: Int = __LINE__) {
+    func uLog(message: NSString, filename: NSString = #file, function: NSString = #function, line: Int = #line) {
 
         let alert = UIAlertController(title: "[\(filename.lastPathComponent):\(line)]", message: "\(function) - \(message)", preferredStyle: .Alert)
 
@@ -31,13 +31,13 @@ import UIKit
     }
 
 #else
-    func dLog(message: NSString, filename: NSString = __FILE__, function: NSString = __FUNCTION__, line: Int = __LINE__) { }
+    func dLog(message: NSString, filename: NSString = #file, function: NSString = #function, line: Int = #line) { }
 
-    func uLog(message: NSString, filename: NSString = __FILE__, function: NSString = __FUNCTION__, line: Int = __LINE__) { }
+    func uLog(message: NSString, filename: NSString = #file, function: NSString = #function, line: Int = #line) { }
 
 #endif
 
-func aLog(message: NSString, filename: NSString = __FILE__, function: NSString = __FUNCTION__, line: Int = __LINE__) {
+func aLog(message: NSString, filename: NSString = #file, function: NSString = #function, line: Int = #line) {
     let thread = NSThread.currentThread().isMainThread ? "main" : "background"
     print("\(thread) : \(function) - \(message)")
 }

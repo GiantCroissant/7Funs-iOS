@@ -19,7 +19,7 @@ This project tries to be consistent with [ReactiveX.io](http://reactivex.io/). T
 1. [KVO](#kvo)
 1. [UI layer tips](#ui-layer-tips)
 1. [Making HTTP requests](#making-http-requests)
-1. [RxDataSourceStarterKit](#rxdatasourcestarterkit)
+1. [RxDataSources](#rxdatasources)
 1. [Driver](Units.md#driver-unit)
 1. [Examples](Examples.md)
 
@@ -90,7 +90,7 @@ protocol ObserverType {
 }
 ```
 
-**When a sequence sends the `Complete` or `Error` event all internal resources that compute sequence elements will be freed.**
+**When a sequence sends the `Completed` or `Error` event all internal resources that compute sequence elements will be freed.**
 
 **To cancel production of sequence elements and free resources immediately, call `dispose` on the returned subscription.**
 
@@ -481,7 +481,7 @@ Disposed
 Ended ----
 ```
 
-**Every subscriber upon subscription usually generates it's own separate sequence of elements. Operators are stateless by default. There is vastly more stateless operators then stateful ones.**
+**Every subscriber upon subscription usually generates it's own separate sequence of elements. Operators are stateless by default. There are vastly more stateless operators than stateful ones.**
 
 ## Sharing subscription and `shareReplay` operator
 
@@ -590,7 +590,7 @@ Almost all operators are demonstrated in [Playgrounds](../Rx.playground).
 
 To use playgrounds please open `Rx.xcworkspace`, build `RxSwift-OSX` scheme and then open playgrounds in `Rx.xcworkspace` tree view.
 
-In case you need an operator, and don't know how to find it there a [decision tree of operators]() http://reactivex.io/documentation/operators.html#tree).
+In case you need an operator, and don't know how to find it there a [decision tree of operators](http://reactivex.io/documentation/operators.html#tree).
 
 [Supported RxSwift operators](API.md#rxswift-supported-operators) are also grouped by function they perform, so that can also help.
 
@@ -771,7 +771,7 @@ Usually after you have fixed the error, you can remove the type annotations to c
 
 ## Debugging
 
-Using debugger alone is useful, but you can also use `debug`. `debug` operator will print out all events to standard output and you can add also label those events.
+Using debugger alone is useful, but usually using `debug` operator will be more efficient. `debug` operator will print out all events to standard output and you can add also label those events.
 
 `debug` acts like a probe. Here is an example of using it:
 
@@ -809,17 +809,34 @@ This is simply 4
 Disposed
 ```
 
-You can also use `subscribe` instead of `subscribeNext`
+You can also easily create your version of the `debug` operator.
 
 ```swift
-NSURLSession.sharedSession().rx_JSON(request)
-   .map { json in
-       return parse()
-   }
-   .subscribe { n in      // this subscribes on all events including error and completed
-       print(n)
-   }
-```
+extension ObservableType {
+    public func myDebug(identifier: String) -> Observable<Self.E> {
+        return Observable.create { observer in
+            print("subscribed \(identifier)")
+            let subscription = self.subscribe { e in
+                print("event \(identifier)  \(e)")
+                switch e {
+                case .Next(let value):
+                    observer.on(.Next(value))
+
+                case .Error(let error):
+                    observer.on(.Error(error))
+
+                case .Completed:
+                    observer.on(.Completed)
+                }
+            }
+            return AnonymousDisposable {
+                   print("disposing \(identifier)")
+                   subscription.dispose()
+            }
+        }
+    }
+ }
+ ```
 
 ## Debugging memory leaks
 
@@ -964,7 +981,7 @@ self.rx_observe(CGRect.self, "view.frame", retainSelf: false)
 
 ### `rx_observeWeakly`
 
-`rx_observeWeakly` has somewhat slower then `rx_observe` because it has to handle object deallocation in case of weak references.
+`rx_observeWeakly` has somewhat slower than `rx_observe` because it has to handle object deallocation in case of weak references.
 
 It can be used in all cases where `rx_observe` can be used and additionally
 
@@ -1082,12 +1099,12 @@ NSURLSession.sharedSession().rx_response(myNSURLRequest)
                 return just(transform(data))
             }
             else {
-                return failWith(yourNSError)
+                return Observable.error(yourNSError)
             }
         }
         else {
             rxFatalError("response = nil")
-            return failWith(yourNSError)
+            return Observable.error(yourNSError)
         }
     }
     .subscribe { event in
@@ -1113,12 +1130,10 @@ public struct Logging {
 }
 ```
 
-## RxDataSourceStarterKit
+## RxDataSources
 
 ... is a set of classes that implement fully functional reactive data sources for `UITableView`s and `UICollectionView`s.
 
-Source code, more information and rationale why these classes are separated into their directory can be found [here](../RxExample/RxDataSourceStarterKit).
-
-Using them should come down to just importing all of the files into your project.
+RxDataSources are bundled [here](https://github.com/RxSwiftCommunity/RxDataSources).
 
 Fully functional demonstration how to use them is included in the [RxExample](../RxExample) project.
