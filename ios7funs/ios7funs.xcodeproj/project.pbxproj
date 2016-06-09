@@ -161,7 +161,7 @@
 		3BCE50811C168E1E0088794A /* ShowInfos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ShowInfos.storyboard; path = ShowInfos/ShowInfos.storyboard; sourceTree = "<group>"; };
 		3BCE50831C1698AF0088794A /* Recipes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Recipes.storyboard; path = Recipes/Recipes.storyboard; sourceTree = "<group>"; };
 		3BCE50851C1698DA0088794A /* Videos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Videos.storyboard; path = Videos/Videos.storyboard; sourceTree = "<group>"; };
-		3BD721101C117870006716D4 /* ios7funs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios7funs.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BD721101C117870006716D4 /* 7Funs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 7Funs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD721131C117870006716D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BD721181C117870006716D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3BD7211A1C117870006716D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -363,7 +363,7 @@
 		3BD721111C117870006716D4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3BD721101C117870006716D4 /* ios7funs.app */,
+				3BD721101C117870006716D4 /* 7Funs.app */,
 				3BABFFD51C533DE7007DD81A /* testUIview.app */,
 			);
 			name = Products;
@@ -440,7 +440,7 @@
 			);
 			name = ios7funs;
 			productName = ios7funs;
-			productReference = 3BD721101C117870006716D4 /* ios7funs.app */;
+			productReference = 3BD721101C117870006716D4 /* 7Funs.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -761,7 +761,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.7funs.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = 7Funs;
 				SWIFT_OBJC_BRIDGING_HEADER = "ios7funs/ios7funs-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -783,7 +783,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.7funs.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = 7Funs;
 				SWIFT_OBJC_BRIDGING_HEADER = "ios7funs/ios7funs-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

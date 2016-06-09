@@ -23,8 +23,9 @@ enum ORMError : ErrorType {
 }
 
 extension Observable {
-    private func resultFromJSON<T: Decodable>(object: JSON, classType: T.Type) -> T? {
-        let decoded = classType.decode(object)
+    private func resultFromJSON<T: Decodable>(object: AnyObject, classType: T.Type) -> T? {
+        let json = JSON.init(object)
+        let decoded = classType.decode(json)
         switch decoded {
         case .Success(let result):
             return result as? T
@@ -45,7 +46,7 @@ extension Observable {
             guard ((200...209) ~= response.statusCode) else {
                 dLog("statusCode = \(response.statusCode)")
 
-                if let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: []) as! JSON {
+                if let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: []) as! AnyObject {
                     dLog("onHTTPFail = \(json)")
 
                     onHTTPFail(self.resultFromJSON(json, classType: ErrorResultJsonObject.self))
@@ -61,7 +62,7 @@ extension Observable {
             }
 
             do {
-                guard let json = try NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? JSON else {
+                guard let json = try NSJSONSerialization.JSONObjectWithData(response.data, options: []) as? AnyObject else {
                     throw ORMError.ORMCouldNotMakeObjectError
                 }
 
@@ -95,7 +96,7 @@ extension Observable {
             }
             
             do {
-                guard let jsonArray = try NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [JSON] else {
+                guard let jsonArray = try NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [AnyObject] else {
                     throw ORMError.ORMCouldNotMakeObjectError
                 }
 
