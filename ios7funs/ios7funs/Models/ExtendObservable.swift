@@ -46,23 +46,17 @@ extension Observable {
             guard ((200...209) ~= response.statusCode) else {
                 dLog("statusCode = \(response.statusCode)")
 
-                if let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: []) as! AnyObject {
+                if let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: []) {
                     dLog("onHTTPFail = \(json)")
 
                     onHTTPFail(self.resultFromJSON(json, classType: ErrorResultJsonObject.self))
                 }
 
-//              if let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments) as? [String: AnyObject] {
-//                dLog("onHTTPFail = \(json)")
-//                onHTTPFail(self.resultFromJSON(json!, classType: ErrorResultJsonObject.self))
-//              }
-
-
                 throw ORMError.ORMNotSuccessfulHTTP
             }
 
             do {
-                guard let json = try NSJSONSerialization.JSONObjectWithData(response.data, options: []) as? AnyObject else {
+                guard let json = try? NSJSONSerialization.JSONObjectWithData(response.data, options: []) else {
                     throw ORMError.ORMCouldNotMakeObjectError
                 }
 
