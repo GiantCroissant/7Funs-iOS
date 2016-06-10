@@ -37,11 +37,16 @@ class MainViewController: UIViewController {
     setupRepeatChangeLinkImageTimer()
 
     btnShowInfos.scaleButtonImage(.Center)
-    btnVideos.scaleButtonImage(.Center)
     btnRecipes.scaleButtonImage(.Top)
-    btnCollections.scaleButtonImage(.Center)
-    btnQandA.scaleButtonImage(.Top)
-    btnLinks.scaleButtonImage(.Top)
+//    btnCollections.scaleButtonImage(.ScaleAspectFill)
+//    btnQandA.scaleButtonImage(.Center)
+//    btnLinks.scaleButtonImage(.Center)
+
+//    btnShowInfos.imageView?.contentMode = .ScaleAspectFill
+//    btnRecipes.imageView?.contentMode = .ScaleAspectFill
+//    btnRecipes.imageView?.clipsToBounds = true
+//    btnQandA.imageView?.contentMode = .ScaleAspectFill
+//    btnCollections.imageView?.contentMode = .ScaleAspectFill
 
     fetchOverviews()
 

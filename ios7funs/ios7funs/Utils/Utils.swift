@@ -205,8 +205,19 @@ extension UIButton {
 
     func scaleButtonImage(mode: UIViewContentMode, radius: CGFloat = 2) {
         let image = self.imageView?.image
-        let width = self.frame.size.width
-        let scaledImage = image?.scaleImageToWidth(width)
+        let buttonWidth = self.frame.size.width
+      let imageWidth = image?.size.width
+
+      aLog("UIButton(\(self.accessibilityLabel)) width = \(buttonWidth) image width = \(image?.size.width)")
+      aLog("UIButton(\(self.accessibilityLabel)) height = \(self.frame.size.height) image height = \(image?.size.height)")
+
+
+      var scaledImage = image
+
+      // scaleImageToWidth ONLY IF image width SMALLER than button
+      if (imageWidth < buttonWidth) {
+        scaledImage = image?.scaleImageToWidth(buttonWidth)
+      }
 
         self.layer.cornerRadius = radius
         self.clipsToBounds = true
