@@ -48,7 +48,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="吃飯美食網" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXL-0k-nVB">
-                                        <rect key="frame" x="175" y="43" width="101" height="25"/>
+                                        <rect key="frame" x="175" y="42" width="101" height="25"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -73,8 +73,14 @@
                                     <constraint firstAttribute="height" constant="105" id="c9T-Nl-NLD"/>
                                     <constraint firstItem="gtf-Di-ZFB" firstAttribute="centerY" secondItem="mL1-OU-WGV" secondAttribute="centerY" constant="1" id="m7A-bF-zAf"/>
                                     <constraint firstAttribute="bottom" secondItem="eDh-Hh-AEs" secondAttribute="bottom" constant="5" id="ql7-Kd-KYa"/>
+                                    <constraint firstItem="aXL-0k-nVB" firstAttribute="bottom" secondItem="gtf-Di-ZFB" secondAttribute="bottom" constant="-1" id="sMb-B4-cZR"/>
                                     <constraint firstAttribute="bottom" secondItem="tUj-re-cxJ" secondAttribute="bottom" id="xpR-kL-bnG"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7bd-1V-2UV"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYt-sm-Utd" userLabel="Recipes">
                                 <rect key="frame" x="0.0" y="125" width="375" height="297"/>
@@ -153,16 +159,16 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edy-O0-3F3" userLabel="Links">
                                 <rect key="frame" x="0.0" y="542" width="375" height="125"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYd-YY-i5X">
-                                        <rect key="frame" x="0.0" y="-542" width="232" height="110"/>
-                                        <state key="normal" image="ser_08_logo_a"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pqi-iv-jkz" userLabel="Temp Image">
+                                        <rect key="frame" x="10" y="5" width="355" height="110"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYd-YY-i5X">
+                                        <rect key="frame" x="10" y="5" width="355" height="110"/>
+                                        <state key="normal" image="ser_05-1"/>
                                         <connections>
                                             <segue destination="jbq-k3-Orr" kind="show" id="1vC-5a-cvB"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ser_05-1" translatesAutoresizingMaskIntoConstraints="NO" id="pqi-iv-jkz" userLabel="Temp Image">
-                                        <rect key="frame" x="10" y="5" width="355" height="110"/>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="吃飯好朋友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omi-kG-yX5">
                                         <rect key="frame" x="20" y="80" width="101" height="25"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -180,11 +186,21 @@
                                     <constraint firstItem="pqi-iv-jkz" firstAttribute="top" secondItem="edy-O0-3F3" secondAttribute="top" constant="5" id="0KH-2T-Tvh"/>
                                     <constraint firstAttribute="bottom" secondItem="omi-kG-yX5" secondAttribute="bottom" constant="20" id="0iq-O7-va2"/>
                                     <constraint firstAttribute="trailing" secondItem="pqi-iv-jkz" secondAttribute="trailing" constant="10" id="E9a-9M-KK0"/>
+                                    <constraint firstAttribute="bottom" secondItem="MYd-YY-i5X" secondAttribute="bottom" constant="10" id="GCx-PF-EVJ"/>
                                     <constraint firstItem="pqi-iv-jkz" firstAttribute="leading" secondItem="edy-O0-3F3" secondAttribute="leading" constant="10" id="UZe-gp-0AV"/>
+                                    <constraint firstItem="MYd-YY-i5X" firstAttribute="top" secondItem="edy-O0-3F3" secondAttribute="top" constant="5" id="WuS-62-ylO"/>
+                                    <constraint firstItem="pqi-iv-jkz" firstAttribute="top" secondItem="MYd-YY-i5X" secondAttribute="bottom" id="biD-1Q-NiU"/>
+                                    <constraint firstItem="MYd-YY-i5X" firstAttribute="leading" secondItem="edy-O0-3F3" secondAttribute="leading" constant="10" id="dbn-YZ-3vR"/>
                                     <constraint firstAttribute="height" constant="125" id="dnH-lM-MMV"/>
                                     <constraint firstAttribute="bottom" secondItem="pqi-iv-jkz" secondAttribute="bottom" constant="10" id="o5j-tH-lde"/>
                                     <constraint firstItem="omi-kG-yX5" firstAttribute="leading" secondItem="edy-O0-3F3" secondAttribute="leading" constant="20" id="qer-4t-kcN"/>
+                                    <constraint firstAttribute="trailing" secondItem="MYd-YY-i5X" secondAttribute="trailing" constant="10" id="vVh-5E-12b"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="biD-1Q-NiU"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZ6-4O-5Wy" userLabel="Q &amp; A">
                                 <rect key="frame" x="0.0" y="422" width="188" height="120"/>
@@ -451,7 +467,6 @@
         <image name="ser_05-1" width="353" height="110"/>
         <image name="ser_06" width="110" height="110"/>
         <image name="ser_07" width="110" height="110"/>
-        <image name="ser_08_logo_a" width="232" height="110"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="biz-6l-gmZ"/>

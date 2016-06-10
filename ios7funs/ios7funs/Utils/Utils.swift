@@ -192,68 +192,69 @@ class ImageUtils {
 
 extension UIButton {
 
-    static func scaleButtonImage(button: UIButton, mode: UIViewContentMode, radius: CGFloat = 2) {
-        let image = button.imageView?.image
-        let width = button.frame.size.width
-        let scaledImage = image?.scaleImageToWidth(width)
+  static func scaleButtonImage(button: UIButton, mode: UIViewContentMode, radius: CGFloat = 2) {
+    let image = button.imageView?.image
+    let width = button.frame.size.width
+    let scaledImage = image?.scaleImageToWidth(width)
 
-        button.layer.cornerRadius = radius
-        button.clipsToBounds = true
-        button.setImage(scaledImage, forState: UIControlState.Normal)
-        button.imageView?.contentMode = mode
+    button.layer.cornerRadius = radius
+    button.clipsToBounds = true
+    button.setImage(scaledImage, forState: UIControlState.Normal)
+    button.imageView?.contentMode = mode
+  }
+
+  func scaleButtonImage(mode: UIViewContentMode, radius: CGFloat = 2) {
+    let image = self.imageView?.image
+    let buttonWidth = self.frame.size.width
+    let buttonHeight = self.frame.size.height
+
+    let imageWidth = image?.size.width
+    let imageHeight = image?.size.height
+
+    var scaledImage = image
+    if (imageWidth < buttonWidth) {
+      scaledImage = image?.scaleImageToWidth(buttonWidth)
+      aLog("Button[\(self.accessibilityLabel)] image scale to button width")
+    }
+    else if (imageHeight < buttonHeight) {
+      scaledImage = UIImage.scaleImageToHeight(image!, newHeight: buttonHeight)
+      aLog("Button[\(self.accessibilityLabel)] image scale to button height")
     }
 
-    func scaleButtonImage(mode: UIViewContentMode, radius: CGFloat = 2) {
-        let image = self.imageView?.image
-        let buttonWidth = self.frame.size.width
-      let imageWidth = image?.size.width
+    self.layer.cornerRadius = radius
+    self.clipsToBounds = true
+    self.setImage(scaledImage, forState: UIControlState.Normal)
+    self.imageView?.contentMode = mode
+  }
 
-      aLog("UIButton(\(self.accessibilityLabel)) width = \(buttonWidth) image width = \(image?.size.width)")
-      aLog("UIButton(\(self.accessibilityLabel)) height = \(self.frame.size.height) image height = \(image?.size.height)")
+  func configureHexColorBGForState(disabled: String = "#b9b9b9", normal: String = "#ff8022", highlight: String = "#B55B17") {
 
+    let size = self.frame.size
 
-      var scaledImage = image
+    let disabledColor = UIColor(hexString: disabled)
+    let normalColor = UIColor(hexString: normal)
+    let highlihgtColor = UIColor(hexString: highlight)
 
-      // scaleImageToWidth ONLY IF image width SMALLER than button
-      if (imageWidth < buttonWidth) {
-        scaledImage = image?.scaleImageToWidth(buttonWidth)
-      }
+    let diabledBG = ImageUtils.getImageWithColor(disabledColor, size: size)
+    let normalBG = ImageUtils.getImageWithColor(normalColor, size: size)
+    let highlightedBG = ImageUtils.getImageWithColor(highlihgtColor, size: size)
 
-        self.layer.cornerRadius = radius
-        self.clipsToBounds = true
-        self.setImage(scaledImage, forState: UIControlState.Normal)
-        self.imageView?.contentMode = mode
-    }
+    self.setBackgroundImage(diabledBG, forState: UIControlState.Disabled)
+    self.setBackgroundImage(normalBG, forState: UIControlState.Normal)
+    self.setBackgroundImage(highlightedBG, forState: UIControlState.Highlighted)
+  }
 
-    func configureHexColorBGForState(disabled: String = "#b9b9b9", normal: String = "#ff8022", highlight: String = "#B55B17") {
-
-        let size = self.frame.size
-
-        let disabledColor = UIColor(hexString: disabled)
-        let normalColor = UIColor(hexString: normal)
-        let highlihgtColor = UIColor(hexString: highlight)
-
-        let diabledBG = ImageUtils.getImageWithColor(disabledColor, size: size)
-        let normalBG = ImageUtils.getImageWithColor(normalColor, size: size)
-        let highlightedBG = ImageUtils.getImageWithColor(highlihgtColor, size: size)
-
-        self.setBackgroundImage(diabledBG, forState: UIControlState.Disabled)
-        self.setBackgroundImage(normalBG, forState: UIControlState.Normal)
-        self.setBackgroundImage(highlightedBG, forState: UIControlState.Highlighted)
-    }
-
-    func loadImage(tag: Int, name: String) {
-        Async.background {
-            ImageLoader.sharedInstance.loadDefaultImage(name) { image in
-                Async.main {
-                    if (tag == self.tag) {
-                        self.setImage(image, forState: .Normal)
-                    }
-                }
-            }
+  func loadImage(tag: Int, name: String) {
+    Async.background {
+      ImageLoader.sharedInstance.loadDefaultImage(name) { image in
+        Async.main {
+          if (tag == self.tag) {
+            self.setImage(image, forState: .Normal)
+          }
         }
+      }
     }
-
+  }
 }
 
 extension String {
@@ -275,9 +276,25 @@ extension String {
 extension UIImageView {
 
     func scaleImageViewImage(mode: UIViewContentMode, radius: CGFloat = 2) {
-        let image = self.image
-        let width = self.frame.size.width
-        let scaledImage = image?.scaleImageToWidth(width)
+      let image = self.image
+      let imageWidth = image?.size.width
+      let imageHeight = image?.size.height
+
+      let frameWidth = self.frame.size.width
+      let frameHeight = self.frame.size.height
+
+//        let scaledImage = image?.scaleImageToWidth(width)
+      
+
+      var scaledImage = image
+      if (imageWidth < frameWidth) {
+        scaledImage = image?.scaleImageToWidth(frameWidth)
+        aLog("Button[\(self.accessibilityLabel)] image scale to button width")
+      }
+      else if (imageHeight < frameHeight) {
+        scaledImage = UIImage.scaleImageToHeight(image!, newHeight: frameHeight)
+        aLog("Button[\(self.accessibilityLabel)] image scale to button height")
+      }
 
         self.layer.cornerRadius = 2
         self.clipsToBounds = true

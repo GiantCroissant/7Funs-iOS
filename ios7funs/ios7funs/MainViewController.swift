@@ -22,8 +22,8 @@ class MainViewController: UIViewController {
   let kChangeLinkImageTimeInterval: NSTimeInterval = 5
   let kFadeInOutTimeInterval: NSTimeInterval = 1
   let linkImageNames = [
-    "ser_08_logo_a",
-    "ser_08_logo_b"
+    "ser_05-1",
+    "ser_05-2"
   ]
 
   var currentLinkImageIndex = 0
@@ -31,32 +31,21 @@ class MainViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    //        dLog("Hello world")
-    //        RecipeManager.sharedInstance.fetchTags()
 
     setupRepeatChangeLinkImageTimer()
 
     btnShowInfos.scaleButtonImage(.Center)
     btnRecipes.scaleButtonImage(.Top)
-//    btnCollections.scaleButtonImage(.ScaleAspectFill)
-//    btnQandA.scaleButtonImage(.Center)
-//    btnLinks.scaleButtonImage(.Center)
+    btnCollections.scaleButtonImage(.Center)
+    btnQandA.scaleButtonImage(.Center)
+    btnLinks.scaleButtonImage(.Center)
 
-//    btnShowInfos.imageView?.contentMode = .ScaleAspectFill
-//    btnRecipes.imageView?.contentMode = .ScaleAspectFill
-//    btnRecipes.imageView?.clipsToBounds = true
-//    btnQandA.imageView?.contentMode = .ScaleAspectFill
-//    btnCollections.imageView?.contentMode = .ScaleAspectFill
 
     fetchOverviews()
-
-
-    //        RecipeManager.sharedInstance.fetchCategories()
 
     // for disabling swipe back to previous view controller - part I
     self.navigationController?.interactivePopGestureRecognizer?.delegate = self
   }
-
 
   func fetchOverviews() {
     fetchRecipeOverview()
@@ -145,13 +134,13 @@ extension MainViewController {
     let preImage = btnLinks.imageView?.image
     tempImage.image = preImage
     tempImage.alpha = 1.0
-    tempImage.scaleImageViewImage(.Top)
+    tempImage.scaleImageViewImage(.Center)
 
     let name = linkImageNames[currentLinkImageIndex]
     let nextImage = UIImage(named: name)
     btnLinks.setImage(nextImage, forState: .Normal)
     btnLinks.alpha = 0.0
-    btnLinks.scaleButtonImage(.Top)
+    btnLinks.scaleButtonImage(.Center)
 
     UIView.animateWithDuration(kFadeInOutTimeInterval,
       delay: 0,
