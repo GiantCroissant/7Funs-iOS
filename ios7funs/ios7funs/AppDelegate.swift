@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func startBackgroundLoadRecipes() {
     NSTimer.scheduledTimerWithTimeInterval(loadRecipesInBackgroundTimeInterval,
       target: self,
-      selector: "loadRecipesInBackground",
+      selector: #selector(AppDelegate.loadRecipesInBackground),
       userInfo: nil,
       repeats: true
     )

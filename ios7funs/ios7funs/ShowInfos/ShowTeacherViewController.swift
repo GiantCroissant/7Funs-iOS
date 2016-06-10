@@ -114,7 +114,7 @@ class ShowTeacherViewController: UIViewController {
 
         while emptyCellCount > 0 {
             teachers.append(emptyTeacher)
-            emptyCellCount--
+            emptyCellCount -= 1
         }
     }
 

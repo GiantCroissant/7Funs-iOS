@@ -123,7 +123,7 @@ extension MainViewController {
   func setupRepeatChangeLinkImageTimer() {
     NSTimer.scheduledTimerWithTimeInterval(kChangeLinkImageTimeInterval,
       target: self,
-      selector: "changeLinksButtonImage",
+      selector: #selector(MainViewController.changeLinksButtonImage),
       userInfo: nil,
       repeats: true
     )

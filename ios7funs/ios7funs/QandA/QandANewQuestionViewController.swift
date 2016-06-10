@@ -102,7 +102,7 @@ extension QandANewQuestionViewController {
 
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "keyboardWillHide:",
+            selector: #selector(QandANewQuestionViewController.keyboardWillHide(_:)),
             name: UIKeyboardWillHideNotification,
             object: nil
         )

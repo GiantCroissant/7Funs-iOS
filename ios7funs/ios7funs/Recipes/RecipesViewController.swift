@@ -87,7 +87,7 @@ class RecipesViewController: UIViewController {
     let lastUpdateTime = NSUserDefaults.standardUserDefaults().stringForKey("lastRecipeOverviewUpdateTime") ?? "下拉刷新"
     refreshControl.tintColor = UIColor.orangeColor()
     refreshControl.attributedTitle = NSAttributedString(string: lastUpdateTime)
-    refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+    refreshControl.addTarget(self, action: #selector(RecipesViewController.refresh(_:)), forControlEvents: .ValueChanged)
     tableRecipes.addSubview(refreshControl)
   }
 

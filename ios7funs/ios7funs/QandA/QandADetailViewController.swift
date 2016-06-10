@@ -167,7 +167,7 @@ extension QandADetailViewController {
     }
 
     func configureTableView() {
-        let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(QandADetailViewController.dismissKeyboard))
         tableAnswers.addGestureRecognizer(tap)
     }
     
@@ -184,14 +184,14 @@ extension QandADetailViewController {
     func setupKeyboardObservers() {
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "keyboardWillShow:",
+            selector: #selector(QandADetailViewController.keyboardWillShow(_:)),
             name: UIKeyboardWillShowNotification,
             object: nil
         )
 
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "keyboardWillHide:",
+            selector: #selector(QandADetailViewController.keyboardWillHide(_:)),
             name: UIKeyboardWillHideNotification,
             object: nil
         )
