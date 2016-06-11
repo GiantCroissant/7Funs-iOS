@@ -283,7 +283,6 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1P-dZ-siy">
                             <rect key="frame" x="5" y="5" width="115" height="110"/>
-                            <state key="normal" image="ser_06"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="外部連結" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7r-q6-pvJ">
                             <rect key="frame" x="22" y="80" width="80" height="25"/>
@@ -318,7 +317,6 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ub-2J-TzO">
                             <rect key="frame" x="10" y="5" width="355" height="154"/>
-                            <state key="normal" image="ser_02"/>
                             <connections>
                                 <segue destination="dXT-9Y-cQ5" kind="show" id="2Lr-Jw-Dgg"/>
                             </connections>
@@ -359,7 +357,6 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwz-8Y-KeD">
                             <rect key="frame" x="5" y="5" width="110" height="110"/>
-                            <state key="normal" image="ser_07"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="好康菜藍" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gp6-ck-mfM">
                             <rect key="frame" x="20" y="80" width="81" height="25"/>
@@ -460,13 +457,10 @@
     <resources>
         <image name="logo_7funs_w" width="80" height="29"/>
         <image name="ser_01" width="706" height="180"/>
-        <image name="ser_02" width="353" height="159"/>
         <image name="ser_02-1" width="353" height="282"/>
         <image name="ser_03" width="171" height="110"/>
         <image name="ser_04" width="171" height="110"/>
         <image name="ser_05-1" width="353" height="110"/>
-        <image name="ser_06" width="110" height="110"/>
-        <image name="ser_07" width="110" height="110"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="biz-6l-gmZ"/>
