@@ -85,7 +85,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYt-sm-Utd" userLabel="Recipes">
                                 <rect key="frame" x="0.0" y="125" width="375" height="297"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rPm-Qi-ZiS">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rPm-Qi-ZiS" userLabel="temp_recipe_image">
                                         <rect key="frame" x="10" y="5" width="355" height="287"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O21-1d-aca">
@@ -159,7 +159,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edy-O0-3F3" userLabel="Links">
                                 <rect key="frame" x="0.0" y="542" width="375" height="125"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pqi-iv-jkz" userLabel="Temp Image">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pqi-iv-jkz" userLabel="temp_links_image">
                                         <rect key="frame" x="10" y="5" width="355" height="110"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYd-YY-i5X">
@@ -273,7 +273,8 @@
                         <outlet property="btnQandA" destination="cBc-NW-397" id="gVr-bj-Ed9"/>
                         <outlet property="btnRecipes" destination="O21-1d-aca" id="3YR-u5-jqh"/>
                         <outlet property="btnShowInfos" destination="eDh-Hh-AEs" id="wXr-0V-w3D"/>
-                        <outlet property="tempImage" destination="pqi-iv-jkz" id="eSu-1A-W6W"/>
+                        <outlet property="tempLinkImage" destination="pqi-iv-jkz" id="afp-6R-HBP"/>
+                        <outlet property="tempRecipeImage" destination="rPm-Qi-ZiS" id="qGF-bW-66C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

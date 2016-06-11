@@ -10,14 +10,15 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+  //@IBOutlet weak var btnVideos: UIButton!
+
   @IBOutlet weak var btnShowInfos: UIButton!
-  @IBOutlet weak var btnVideos: UIButton!
   @IBOutlet weak var btnRecipes: UIButton!
   @IBOutlet weak var btnCollections: UIButton!
   @IBOutlet weak var btnQandA: UIButton!
   @IBOutlet weak var btnLinks: UIButton!
-  @IBOutlet weak var tempImage: UIImageView!
-
+  @IBOutlet weak var tempLinkImage: UIImageView!
+  @IBOutlet weak var tempRecipeImage: UIImageView!
 
   let kChangeLinkImageTimeInterval: NSTimeInterval = 5
   let kFadeInOutTimeInterval: NSTimeInterval = 1
@@ -26,22 +27,29 @@ class MainViewController: UIViewController {
     "ser_05-2"
   ]
 
+  let recipeImageNames = [
+    "ser_02-1",
+    "ser_02-2",
+    "ser_02-3"
+  ]
+
+  let recipeImagePosition = [
+    UIViewContentMode.Top,
+    UIViewContentMode.Center,
+    UIViewContentMode.Center
+  ]
+
   var currentLinkImageIndex = 0
+  var currentRecipeImageIndex = 0
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-
     setupRepeatChangeLinkImageTimer()
-
-    btnShowInfos.scaleButtonImage(.Center)
-    btnRecipes.scaleButtonImage(.Top)
-    btnCollections.scaleButtonImage(.Center)
-    btnQandA.scaleButtonImage(.Center)
-    btnLinks.scaleButtonImage(.Center)
-
+    setupRepeatChangeRecipeImageTimer()
 
     fetchOverviews()
+    updateMainUIButtonImages()
 
     // for disabling swipe back to previous view controller - part I
     self.navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -51,6 +59,14 @@ class MainViewController: UIViewController {
     fetchRecipeOverview()
     fetchVideoOverview()
     fetchRecipeTags()
+  }
+
+  func updateMainUIButtonImages() {
+    btnShowInfos.scaleButtonImage(.Center)
+    btnRecipes.scaleButtonImage(.Top)
+    btnCollections.scaleButtonImage(.Center)
+    btnQandA.scaleButtonImage(.Center)
+    btnLinks.scaleButtonImage(.Center)
   }
 
   func fetchRecipeTags() {
@@ -115,9 +131,20 @@ class MainViewController: UIViewController {
 extension MainViewController {
 
   func setupRepeatChangeLinkImageTimer() {
-    NSTimer.scheduledTimerWithTimeInterval(kChangeLinkImageTimeInterval,
+    NSTimer.scheduledTimerWithTimeInterval(
+      kChangeLinkImageTimeInterval,
       target: self,
       selector: #selector(MainViewController.changeLinksButtonImage),
+      userInfo: nil,
+      repeats: true
+    )
+  }
+
+  func setupRepeatChangeRecipeImageTimer() {
+    NSTimer.scheduledTimerWithTimeInterval(
+      kChangeLinkImageTimeInterval,
+      target: self,
+      selector: #selector(MainViewController.changeRecipeButtonImage),
       userInfo: nil,
       repeats: true
     )
@@ -132,9 +159,9 @@ extension MainViewController {
     }
 
     let preImage = btnLinks.imageView?.image
-    tempImage.image = preImage
-    tempImage.alpha = 1.0
-    tempImage.scaleImageViewImage(.Center)
+    tempLinkImage.image = preImage
+    tempLinkImage.alpha = 1.0
+    tempLinkImage.scaleImageViewImage(.Center)
 
     let name = linkImageNames[currentLinkImageIndex]
     let nextImage = UIImage(named: name)
@@ -146,8 +173,42 @@ extension MainViewController {
       delay: 0,
       options: UIViewAnimationOptions.CurveEaseOut,
       animations: {
-        self.tempImage.alpha = 0.0
+        self.tempLinkImage.alpha = 0.0
         self.btnLinks.alpha = 1.0
+      },
+      completion: nil
+    )
+  }
+
+  func changeRecipeButtonImage() {
+    let preImage = btnRecipes.imageView?.image
+    tempRecipeImage.image = preImage
+    tempRecipeImage.alpha = 1.0
+    let prePos = recipeImagePosition[currentRecipeImageIndex]
+    tempRecipeImage.scaleImageViewImage(prePos)
+
+    if (currentRecipeImageIndex + 1 >= recipeImageNames.count) {
+      currentRecipeImageIndex = 0
+
+    } else {
+      currentRecipeImageIndex += 1
+    }
+
+    let name = recipeImageNames[currentRecipeImageIndex]
+    let nextImage = UIImage(named: name)
+    btnRecipes.setImage(nextImage, forState: .Normal)
+    btnRecipes.alpha = 0.0
+
+    let curPos = recipeImagePosition[currentRecipeImageIndex]
+    btnRecipes.scaleButtonImage(curPos)
+
+    UIView.animateWithDuration(
+      kFadeInOutTimeInterval,
+      delay: 0,
+      options: UIViewAnimationOptions.CurveEaseOut,
+      animations: {
+        self.tempRecipeImage.alpha = 0.0
+        self.btnRecipes.alpha = 1.0
       },
       completion: nil
     )

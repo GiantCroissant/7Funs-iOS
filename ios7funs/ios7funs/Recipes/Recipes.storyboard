@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Em0-5b-b7w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Em0-5b-b7w">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -11,7 +11,7 @@
         <!--Recipes-->
         <scene sceneID="go5-U7-bJm">
             <objects>
-                <viewController title="Recipes" automaticallyAdjustsScrollViewInsets="NO" id="Em0-5b-b7w" customClass="RecipesViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Recipes" automaticallyAdjustsScrollViewInsets="NO" id="Em0-5b-b7w" customClass="RecipesViewController" customModule="_Funs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cUS-Z3-lXa"/>
                         <viewControllerLayoutGuide type="bottom" id="gMc-JZ-G2F"/>
@@ -28,14 +28,14 @@
                                 <rect key="frame" x="5" y="64" width="365" height="603"/>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.95686274510000002" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="idRecipeCell" id="eXP-D9-dGp" customClass="RecipeTableViewCell" customModule="ios7funs" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="idRecipeCell" id="eXP-D9-dGp" customClass="RecipeTableViewCell" customModule="_Funs" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="365" height="258"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eXP-D9-dGp" id="sfl-Js-dUI">
                                             <rect key="frame" x="0.0" y="0.0" width="365" height="258"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7M-QD-CRM" customClass="CardView" customModule="ios7funs" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7M-QD-CRM" customClass="CardView" customModule="_Funs" customModuleProvider="target">
                                                     <rect key="frame" x="5" y="5" width="355" height="248"/>
                                                     <color key="backgroundColor" red="0.20000000000000001" green="0.41176470590000003" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -136,7 +136,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WwI-J7-F3h" userLabel="Add Collection Background">
                                                             <rect key="frame" x="299" y="200" width="56" height="48"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELg-qo-Dwt" userLabel="Favorite Button" customClass="RecipeFavoriteButton" customModule="ios7funs" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELg-qo-Dwt" userLabel="Favorite Button" customClass="RecipeFavoriteButton" customModule="_Funs" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="56" height="48"/>
                                                                     <state key="normal" image="icon_love_m"/>
                                                                     <connections>
@@ -309,7 +309,7 @@
         <!--Recipe Search View Controller-->
         <scene sceneID="GSs-CY-75X">
             <objects>
-                <viewController id="WUm-6x-Ih1" customClass="RecipeSearchViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WUm-6x-Ih1" customClass="RecipeSearchViewController" customModule="_Funs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tPq-MO-thn"/>
                         <viewControllerLayoutGuide type="bottom" id="C6a-pq-E2o"/>
@@ -335,7 +335,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recipe_tag" id="gpW-hq-dAG" customClass="RecipeTagCell" customModule="ios7funs" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recipe_tag" id="gpW-hq-dAG" customClass="RecipeTagCell" customModule="_Funs" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="164" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -410,7 +410,7 @@
         <!--Recipe Detail-->
         <scene sceneID="Ck1-mE-hdg">
             <objects>
-                <viewController title="Recipe Detail" id="9OQ-Cy-w8b" customClass="RecipeDetailViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Recipe Detail" id="9OQ-Cy-w8b" customClass="RecipeDetailViewController" customModule="_Funs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7pr-z6-2j0"/>
                         <viewControllerLayoutGuide type="bottom" id="aQV-SV-GBA"/>
@@ -433,7 +433,7 @@
                                     <constraint firstAttribute="height" constant="1" id="XTU-Nx-e6I"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VAQ-CY-gFC" customClass="AYOSegmentedControl" customModule="ios7funs" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VAQ-CY-gFC" customClass="AYOSegmentedControl" customModule="_Funs" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="600" width="375" height="67"/>
                                 <subviews>
                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Jl-s9-P14" userLabel="Tab 1">
@@ -587,7 +587,7 @@
         <!--Tutorial-->
         <scene sceneID="Z4S-IH-ZRh">
             <objects>
-                <viewController title="Tutorial" id="5cF-RS-soK" customClass="RecipeTutorialViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Tutorial" id="5cF-RS-soK" customClass="RecipeTutorialViewController" customModule="_Funs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w7J-tk-6e6"/>
                         <viewControllerLayoutGuide type="bottom" id="tDZ-kY-3F3"/>
@@ -885,7 +885,7 @@
         <!--Video Player-->
         <scene sceneID="BRT-ul-sWU">
             <objects>
-                <viewController title="Video Player" id="Kjp-6O-4li" customClass="VideoPlayerViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Video Player" id="Kjp-6O-4li" customClass="VideoPlayerViewController" customModule="_Funs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jvw-ec-CHo"/>
                         <viewControllerLayoutGuide type="bottom" id="wHG-fU-Ego"/>
