@@ -69,16 +69,50 @@ class RecipesViewController: UIViewController {
   func setupRealmNotificationToken() {
     switch type {
     case .Recipe:
-      notificationToken = recipesV2.addNotificationBlock { results, error in
-        self.tableRecipes.reloadData()
-      }
+      setupNotificationToken(recipesV2)
+      break
+
     case .Collection:
-      notificationToken = collections.addNotificationBlock { results, error in
-        self.tableRecipes.reloadData()
-      }
+      setupNotificationToken(collections)
+      break
+
     case .Search:
-      notificationToken = searchResults.addNotificationBlock { results, error in
-        self.tableRecipes.reloadData()
+      setupNotificationToken(searchResults)
+      break
+    }
+  }
+
+  func setupNotificationToken(results: Results<Recipe>) {
+    notificationToken = results.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+      guard let tableView = self?.tableRecipes else { return }
+      switch changes {
+      case .Initial:
+        // Results are now populated and can be accessed without blocking the UI
+        tableView.reloadData()
+        break
+
+      case .Update(_, let deletions, let insertions, let modifications):
+        // Query results have changed, so apply them to the UITableView
+        tableView.beginUpdates()
+        tableView.insertRowsAtIndexPaths(
+          insertions.map { NSIndexPath(forRow: $0, inSection: 0) },
+          withRowAnimation: .Automatic
+        )
+        tableView.deleteRowsAtIndexPaths(
+          deletions.map { NSIndexPath(forRow: $0, inSection: 0) },
+          withRowAnimation: .Automatic
+        )
+        tableView.reloadRowsAtIndexPaths(
+          modifications.map { NSIndexPath(forRow: $0, inSection: 0) },
+          withRowAnimation: .Automatic
+        )
+        tableView.endUpdates()
+        break
+
+      case .Error(let error):
+        // An error occurred while opening the Realm file on the background worker thread
+        fatalError("\(error)")
+        break
       }
     }
   }
