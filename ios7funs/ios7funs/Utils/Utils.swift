@@ -216,7 +216,8 @@ extension UIButton {
       scaledImage = image?.scaleImageToWidth(buttonWidth)
       aLog("Button[\(self.accessibilityLabel)] image scale to button width")
     }
-    else if (imageHeight < buttonHeight) {
+
+    if (imageHeight < buttonHeight) {
       scaledImage = UIImage.scaleImageToHeight(image!, newHeight: buttonHeight)
       aLog("Button[\(self.accessibilityLabel)] image scale to button height")
     }

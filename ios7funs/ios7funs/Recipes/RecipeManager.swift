@@ -209,7 +209,7 @@ class RecipeManager: NSObject {
           }
         },
         onCompleted: {
-          dLog("fetch tags complete")
+//          dLog("fetch tags complete")
         },
         onDisposed: {
           Async.main {
@@ -289,7 +289,7 @@ class RecipeManager: NSObject {
           dLog("\(err)")
         },
         onCompleted: {
-          dLog("fetch tags complete")
+//          dLog("fetch tags complete")
         }
       ).addDisposableTo(disposeBag)
   }

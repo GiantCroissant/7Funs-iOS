@@ -55,7 +55,7 @@
                                         <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <size key="shadowOffset" width="1" height="1"/>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -103,7 +103,7 @@
                                         <color key="shadowColor" red="0.1647058824" green="0.1647058824" blue="0.15686274510000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <size key="shadowOffset" width="1" height="1"/>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -142,7 +142,7 @@
                                         <color key="shadowColor" red="0.1647058824" green="0.1647058824" blue="0.15686274510000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <size key="shadowOffset" width="1" height="1"/>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -177,7 +177,7 @@
                                         <color key="shadowColor" red="0.1647058824" green="0.1647058824" blue="0.15686274510000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <size key="shadowOffset" width="1" height="1"/>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -220,7 +220,7 @@
                                         <color key="shadowColor" red="0.1647058824" green="0.1647058824" blue="0.15686274510000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <size key="shadowOffset" width="1" height="1"/>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         </variation>
                                     </label>
                                 </subviews>
