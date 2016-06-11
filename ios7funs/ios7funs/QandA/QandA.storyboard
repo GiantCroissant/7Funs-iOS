@@ -143,6 +143,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="fSW-Od-b2e" id="AW3-Mc-mkL"/>
+                                    <outlet property="delegate" destination="fSW-Od-b2e" id="t80-Qt-off"/>
                                 </connections>
                             </tableView>
                         </subviews>

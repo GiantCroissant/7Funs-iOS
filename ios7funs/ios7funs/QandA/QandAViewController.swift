@@ -16,6 +16,8 @@ class QandAViewController: UIViewController {
   let initialPageNumber = 1
   var questions = [QuestionUIModel]()
   var targetPage = 0
+  var noMorePage = false
+  var isFetching = false
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -28,18 +30,30 @@ class QandAViewController: UIViewController {
 
     self.title = "美食問與答"
     self.showToastIndicator()
+    fetchQuestions()
+  }
+
+  private func fetchQuestions() {
+    if (isFetching) {
+      return
+    }
+    isFetching = true
+
     QandAManager.sharedInstance.fetchQuestions(
       targetPage,
       onComplete: { questions, isLast -> Void in
+        self.noMorePage = isLast
         self.tableQuestions.tableFooterView = isLast ? nil : self.loadMoreView
-        self.questions = questions
+        self.questions.appendContentsOf(questions)
         self.tableQuestions.reloadData()
+        self.targetPage += 1
       },
       onError: { error in
         self.showNetworkIsBusyAlertView()
       },
       onFinished: {
         self.hideToastIndicator()
+        self.isFetching = false
       }
     )
   }
@@ -80,3 +94,39 @@ extension QandAViewController: UITableViewDataSource {
   }
 
 }
+
+
+extension QandAViewController: UITableViewDelegate {
+
+  func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    if (decelerate) {
+      return
+    }
+    aLog("scrollViewDidEndDragging")
+
+    let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+    if (bottomEdge >= scrollView.contentSize.height) {
+      // we are at the end
+      loadMoreQuestions()
+    }
+  }
+
+  func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    aLog("scrollViewDidEndDecelerating")
+    let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+    if (bottomEdge >= scrollView.contentSize.height) {
+      // we are at the end
+      loadMoreQuestions()
+    }
+  }
+
+  private func loadMoreQuestions() {
+    if (noMorePage) {
+      return
+    }
+    aLog("loadMoreQuestions")
+    fetchQuestions()
+  }
+
+}
+
