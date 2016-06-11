@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fSW-Od-b2e">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fSW-Od-b2e">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,7 +8,7 @@
         <!--Q & A-->
         <scene sceneID="GOu-aL-hkh">
             <objects>
-                <viewController title="Q &amp; A" id="fSW-Od-b2e" customClass="QandAViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Q &amp; A" id="fSW-Od-b2e" customClass="QandAViewController" customModule="_Funs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fbe-ql-N95"/>
                         <viewControllerLayoutGuide type="bottom" id="rzW-bj-WcI"/>
@@ -28,7 +28,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="id_cell_question" id="rWs-Ij-oq9" customClass="QuestionTableViewCell" customModule="ios7funs" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="id_cell_question" id="rWs-Ij-oq9" customClass="QuestionTableViewCell" customModule="_Funs" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rWs-Ij-oq9" id="OsE-Fa-aRN">
@@ -168,17 +168,32 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="loadMoreView" destination="7F8-QB-EXk" id="4pK-tB-R6t"/>
                         <outlet property="tableQuestions" destination="DuS-cP-tB9" id="pYu-d4-NOj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XJc-1b-n6I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="7F8-QB-EXk" userLabel="load_more_view">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="siI-Tr-Gxq">
+                            <rect key="frame" x="178" y="25" width="20" height="20"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="siI-Tr-Gxq" firstAttribute="centerY" secondItem="7F8-QB-EXk" secondAttribute="centerY" id="AR8-dt-5KD"/>
+                        <constraint firstItem="siI-Tr-Gxq" firstAttribute="centerX" secondItem="7F8-QB-EXk" secondAttribute="centerX" id="yxl-Mq-FP8"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="-235.5" y="370.5"/>
         </scene>
         <!--Reply Question-->
         <scene sceneID="9Rz-FJ-wlQ">
             <objects>
-                <viewController title="Reply Question" id="VZG-8z-zgy" customClass="QandADetailViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Reply Question" id="VZG-8z-zgy" customClass="QandADetailViewController" customModule="_Funs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RAe-a7-oqv"/>
                         <viewControllerLayoutGuide type="bottom" id="SJz-5S-20t"/>
@@ -353,7 +368,7 @@
                                     </variation>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="id_cell_answer" id="pQx-ZZ-KGz" customClass="AnswerTableViewCell" customModule="ios7funs" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="id_cell_answer" id="pQx-ZZ-KGz" customClass="AnswerTableViewCell" customModule="_Funs" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="228" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pQx-ZZ-KGz" id="grd-MY-JeH">
@@ -536,7 +551,7 @@
         <!--New Question-->
         <scene sceneID="osK-Xk-iby">
             <objects>
-                <viewController title="New Question" id="9S8-6O-dYw" customClass="QandANewQuestionViewController" customModule="ios7funs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="New Question" id="9S8-6O-dYw" customClass="QandANewQuestionViewController" customModule="_Funs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VHg-qp-2C3"/>
                         <viewControllerLayoutGuide type="bottom" id="qd0-Fr-IhX"/>
