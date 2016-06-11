@@ -63,7 +63,7 @@ class ImageLoader {
           }
 
           Async.main {
-            print("from [ Cache ]")
+//            print("from [ Cache ]")
             completionHandler(image: outImage, imageName: imageName, fadeIn: false)
           }
           return
@@ -77,7 +77,7 @@ class ImageLoader {
           }
 
           Async.main {
-            print("from [ FILE ]")
+//            print("from [ FILE ]")
             completionHandler(image: outImage, imageName: imageName, fadeIn: true)
           }
           return
@@ -94,7 +94,7 @@ class ImageLoader {
           }
 
           Async.main {
-            print("from [ URL ]")
+//            print("from [ URL ]")
             completionHandler(image: outImage, imageName: imageName, fadeIn: true)
           }
         }

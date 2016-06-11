@@ -146,7 +146,7 @@ class RecipeManager: NSObject {
 
     let ids = recipesOverviews.map({ $0.id }).sort(>)
     let recipeIds = Array(ids.prefix(self.kFetchAmount))
-    aLog("fetch recipe count = \(recipeIds.count)")
+//    aLog("fetch recipe count = \(recipeIds.count)")
     return recipeIds
   }
 
@@ -200,7 +200,7 @@ class RecipeManager: NSObject {
 //          Async.main {
 //            onGetTagJson(tagJson)
 //          }
-          dLog("tagName[ \(tagJson.name) ] => 數量： \(recipeIds.count)")
+//          dLog("tagName[ \(tagJson.name) ] => 數量： \(recipeIds.count)")
         },
         onError: { err in
           dLog("\(err)")
@@ -400,7 +400,6 @@ extension Observable {
               where recipe.updatedAt.toNSDate() == $0.updatedAt.toNSDate() {
                 return
             }
-            print("need update recipe \($0.id)")
             realm.add($0.toDBModel(), update: true)
         }
         try! realm.commitWrite()

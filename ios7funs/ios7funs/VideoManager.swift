@@ -122,7 +122,7 @@ class VideoManager {
 
         let ids = videosOverviews.map({ $0.id }).sort(>)
         let videoIds = Array(ids.prefix(kFetchAmount))
-        aLog("fetch videos count = \(videoIds.count)")
+//        aLog("fetch videos count = \(videoIds.count)")
         return videoIds
     }
 
