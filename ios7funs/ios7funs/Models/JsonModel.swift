@@ -194,7 +194,7 @@ public struct UserJsonObject {
   public let image: String
   public let signInCount: Int
   public let currentSignInAt: String
-  public let lastSignInAt: String
+//  public let lastSignInAt: String
   public let createdAt: String
   public let updatedAt: String
   public let isAdmin: Bool
@@ -518,7 +518,7 @@ extension UserJsonObject: Decodable {
     return f
       <*> j <| "sign_in_count"
       <*> j <| "current_sign_in_at"
-      <*> j <| "last_sign_in_at"
+      // <*> j <| "last_sign_in_at"
       <*> j <| "created_at"
       <*> j <| "updated_at"
       <*> j <| "is_admin"

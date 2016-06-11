@@ -216,7 +216,7 @@ extension UIButton {
       scaledImage = image?.scaleImageToWidth(buttonWidth)
     }
 
-    if (imageHeight < buttonHeight) {
+    if (scaledImage?.size.height < buttonHeight) {
       scaledImage = UIImage.scaleImageToHeight(image!, newHeight: buttonHeight)
     }
 

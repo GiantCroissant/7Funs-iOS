@@ -55,13 +55,12 @@ class RecipeTableViewCell: UITableViewCell {
   func showImageWithFadeIn(image: UIImage, fadeIn: Bool) {
     btnFood.imageView?.contentMode = .ScaleAspectFill
     btnFood.setImage(image, forState: .Normal)
-//    btnFood.alpha = 1
-//    if fadeIn {
-      btnFood.alpha = 0
-      UIView.animateWithDuration(0.3) {
-        self.btnFood.alpha = 1
-      }
-//    }
+    btnFood.scaleButtonImage(.Center, radius: 0)
+
+    btnFood.alpha = 0
+    UIView.animateWithDuration(0.3) {
+      self.btnFood.alpha = 1
+    }
   }
 
   func configureInformation() {
