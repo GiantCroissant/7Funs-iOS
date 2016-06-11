@@ -17,8 +17,8 @@ func bundlePath(path: String) -> String? {
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  let loadRecipesInBackgroundTimeInterval: NSTimeInterval = 5
-  let loadVideoInBackgroundTimeInterval: NSTimeInterval = 5
+  let loadRecipesInBackgroundTimeInterval: NSTimeInterval = 15
+  let loadVideoInBackgroundTimeInterval: NSTimeInterval = 15
   var window: UIWindow?
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
