@@ -63,7 +63,6 @@ class ImageLoader {
           }
 
           Async.main {
-//            print("from [ Cache ]")
             completionHandler(image: outImage, imageName: imageName, fadeIn: false)
           }
           return
@@ -77,7 +76,6 @@ class ImageLoader {
           }
 
           Async.main {
-//            print("from [ FILE ]")
             completionHandler(image: outImage, imageName: imageName, fadeIn: true)
           }
           return
@@ -86,16 +84,15 @@ class ImageLoader {
         self.loadImageFromUrl(imageName, url: url) { image, url in
           if let image = image {
             ImageCache.sharedCache.setObject(image, forKey: imageName)
-          }
 
-          var outImage = image
-          if size != CGSize.zero {
-            outImage = self.scaleImage(image!, size: size)
-          }
+            var outImage = image
+            if size != CGSize.zero {
+              outImage = self.scaleImage(image, size: size)
+            }
 
-          Async.main {
-//            print("from [ URL ]")
-            completionHandler(image: outImage, imageName: imageName, fadeIn: true)
+            Async.main {
+              completionHandler(image: outImage, imageName: imageName, fadeIn: true)
+            }
           }
         }
       }

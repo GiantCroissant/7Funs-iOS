@@ -88,25 +88,28 @@ class RecipesViewController: UIViewController {
       switch changes {
       case .Initial:
         // Results are now populated and can be accessed without blocking the UI
-        tableView.reloadData()
+//        tableView.reloadData()
         break
 
       case .Update(_, let deletions, let insertions, let modifications):
+
+        tableView.reloadData()
+
         // Query results have changed, so apply them to the UITableView
-        tableView.beginUpdates()
-        tableView.insertRowsAtIndexPaths(
-          insertions.map { NSIndexPath(forRow: $0, inSection: 0) },
-          withRowAnimation: .Automatic
-        )
-        tableView.deleteRowsAtIndexPaths(
-          deletions.map { NSIndexPath(forRow: $0, inSection: 0) },
-          withRowAnimation: .Automatic
-        )
-        tableView.reloadRowsAtIndexPaths(
-          modifications.map { NSIndexPath(forRow: $0, inSection: 0) },
-          withRowAnimation: .Automatic
-        )
-        tableView.endUpdates()
+//        tableView.beginUpdates()
+//        tableView.insertRowsAtIndexPaths(
+//          insertions.map { NSIndexPath(forRow: $0, inSection: 0) },
+//          withRowAnimation: .Automatic
+//        )
+//        tableView.deleteRowsAtIndexPaths(
+//          deletions.map { NSIndexPath(forRow: $0, inSection: 0) },
+//          withRowAnimation: .Automatic
+//        )
+//        tableView.reloadRowsAtIndexPaths(
+//          modifications.map { NSIndexPath(forRow: $0, inSection: 0) },
+//          withRowAnimation: .Automatic
+//        )
+//        tableView.endUpdates()
         break
 
       case .Error(let error):
@@ -267,30 +270,31 @@ extension RecipesViewController: UITableViewDataSource {
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("idRecipeCell", forIndexPath: indexPath) as! RecipeTableViewCell
 
-    let recipe = getRecipe(indexPath.row)  // recipesV2[indexPath.row]
+    if let recipe = getRecipe(indexPath.row) {
+      cell.recipe = recipe
+      cell.updateCell()
 
+      let favoriteButton = cell.btnAddCollection as! RecipeFavoriteButton
+      favoriteButton.tag = recipe.id
+      favoriteButton.row = indexPath.row
 
-    cell.recipe = recipe
-    cell.updateCell()
-
-    let favoriteButton = cell.btnAddCollection as! RecipeFavoriteButton
-    favoriteButton.tag = recipe.id
-    favoriteButton.row = indexPath.row
-
-    cell.btnFood.tag = indexPath.row
-
+      cell.btnFood.tag = indexPath.row
+    }
     return cell
   }
 
-  func getRecipe(row: Int) -> Recipe {
+  func getRecipe(row: Int) -> Recipe? {
     switch type {
     case .Recipe:
+      if (recipesV2.isEmpty) { return nil }
       return recipesV2[row]
 
     case .Collection:
+      if (collections.isEmpty) { return nil }
       return collections[row]
 
     case .Search:
+      if (searchResults.isEmpty) { return nil }
       return searchResults[row]
     }
   }
@@ -332,14 +336,14 @@ extension RecipesViewController {
     RecipeManager.sharedInstance.switchFavorite(recipeId, token: token,
       onComplete: { isFavorite in
 
-        let recipe = self.getRecipe(index)
+        if let recipe = self.getRecipe(index) {
+          self.realm.beginWrite()
+          recipe.favorite = isFavorite
+          try! self.realm.commitWrite()
 
-        self.realm.beginWrite()
-        recipe.favorite = isFavorite
-        try! self.realm.commitWrite()
-
-        self.tableRecipes.reloadData()
-        self.showSwitchFavoriteToast(recipe)
+          self.tableRecipes.reloadData()
+          self.showSwitchFavoriteToast(recipe)
+        }
       },
       onError: { _ in
         self.showNetworkIsBusyAlertView()
