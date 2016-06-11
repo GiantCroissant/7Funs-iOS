@@ -214,12 +214,10 @@ extension UIButton {
     var scaledImage = image
     if (imageWidth < buttonWidth) {
       scaledImage = image?.scaleImageToWidth(buttonWidth)
-      aLog("Button[\(self.accessibilityLabel)] image scale to button width")
     }
 
     if (imageHeight < buttonHeight) {
       scaledImage = UIImage.scaleImageToHeight(image!, newHeight: buttonHeight)
-      aLog("Button[\(self.accessibilityLabel)] image scale to button height")
     }
 
     self.layer.cornerRadius = radius
@@ -276,32 +274,28 @@ extension String {
 
 extension UIImageView {
 
-    func scaleImageViewImage(mode: UIViewContentMode, radius: CGFloat = 2) {
-      let image = self.image
-      let imageWidth = image?.size.width
-      let imageHeight = image?.size.height
+  func scaleImageViewImage(mode: UIViewContentMode, radius: CGFloat = 2) {
+    let image = self.image
+    let imageWidth = image?.size.width
+    let imageHeight = image?.size.height
 
-      let frameWidth = self.frame.size.width
-      let frameHeight = self.frame.size.height
+    let frameWidth = self.frame.size.width
+    let frameHeight = self.frame.size.height
 
-//        let scaledImage = image?.scaleImageToWidth(width)
-      
-
-      var scaledImage = image
-      if (imageWidth < frameWidth) {
-        scaledImage = image?.scaleImageToWidth(frameWidth)
-        aLog("Button[\(self.accessibilityLabel)] image scale to button width")
-      }
-      else if (imageHeight < frameHeight) {
-        scaledImage = UIImage.scaleImageToHeight(image!, newHeight: frameHeight)
-        aLog("Button[\(self.accessibilityLabel)] image scale to button height")
-      }
-
-        self.layer.cornerRadius = 2
-        self.clipsToBounds = true
-        self.image = scaledImage
-        self.contentMode = mode
+    var scaledImage = image
+    if (imageWidth < frameWidth) {
+      scaledImage = image?.scaleImageToWidth(frameWidth)
     }
+
+    if (imageHeight < frameHeight) {
+      scaledImage = UIImage.scaleImageToHeight(image!, newHeight: frameHeight)
+    }
+
+    self.layer.cornerRadius = 2
+    self.clipsToBounds = true
+    self.image = scaledImage
+    self.contentMode = mode
+  }
 
 }
 
