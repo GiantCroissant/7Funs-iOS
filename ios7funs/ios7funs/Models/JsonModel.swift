@@ -216,6 +216,7 @@ public struct MessageWithCommentJsonObject {
 public struct MessageCommentUser {
   public let id: Int
   public let name: String
+  public let isAdmin: Bool
 }
 
 public struct MessageSpecificJsonObject {
@@ -551,6 +552,7 @@ extension MessageCommentUser: Decodable {
 
     return user
       <*> json <| "name"
+      <*> json <| "is_admin"
   }
 
 }

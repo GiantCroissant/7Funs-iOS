@@ -60,6 +60,9 @@ extension Observable {
                     throw ORMError.ORMCouldNotMakeObjectError
                 }
 
+
+              aLog("json = \(json)")
+
                 if let result = self.resultFromJSON(json, classType:type) {
                     return result
                 }

@@ -165,6 +165,7 @@ class AnswerUIModel {
   var title: String
   var comment: String
   var updatedAt: String
+  var isAdmin: Bool
 
   init(json: MessageWithCommentJsonObject) {
     self.id = json.id
@@ -173,6 +174,7 @@ class AnswerUIModel {
     self.title = json.title
     self.comment = json.comment
     self.updatedAt = json.updatedAt
+    self.isAdmin = json.user.isAdmin
   }
 }
 
