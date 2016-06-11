@@ -186,7 +186,6 @@ public struct VideoOverviewJsonObject {
   }
 }
 
-// MARK: Message realted
 public struct UserJsonObject {
   public let id: Int
   public let name: String
@@ -217,6 +216,8 @@ public struct MessageCommentUser {
   public let id: Int
   public let name: String
   public let isAdmin: Bool
+  public let image: String
+  public let fbId: String
 }
 
 public struct MessageSpecificJsonObject {
@@ -553,8 +554,10 @@ extension MessageCommentUser: Decodable {
     return user
       <*> json <| "name"
       <*> json <| "is_admin"
+      <*> json <| "image"
+      <*> json <| "fb_id"
   }
-
+  
 }
 
 extension MessageSpecificJsonObject: Decodable {

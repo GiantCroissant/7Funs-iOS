@@ -27,6 +27,13 @@ class AnswerTableViewCell: UITableViewCell {
   func configureImage() {
     if (answer.isAdmin) {
       imgProfile.image = UIImage(named: adminImageName)
+
+    } else if (!answer.userImage.isEmpty) {
+      let userImageUrl = "https://storage.googleapis.com/funs7-1/uploads/user/image/" + String(answer.userId) + "/square_" + answer.userImage
+
+      ImageLoader.sharedInstance.loadImage("XD", url: userImageUrl, completionHandler: { (image, imageName, fadeIn) in
+        self.imgProfile.image = image
+      })
     }
 
     imgProfile.configureToCircularView()

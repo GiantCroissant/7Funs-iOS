@@ -129,6 +129,10 @@ class QuestionUIModel {
   var description: String = ""
   var answersCount: Int = 0
   var updatedAt: String = ""
+  var isAdmin: Bool = false
+  var userImage: String = ""
+  var userFbId: String = ""
+  var userId: Int = 0
 
   init(json: MessageJsonObject) {
     self.id = json.id
@@ -137,6 +141,10 @@ class QuestionUIModel {
     self.description = json.description ?? ""
     self.answersCount = json.commentsCount
     self.updatedAt = json.updatedAt
+    self.isAdmin = json.user.isAdmin
+    self.userImage = json.user.image ?? ""
+    self.userFbId = json.user.fbId ?? ""
+    self.userId = json.userId
   }
 }
 
@@ -166,6 +174,8 @@ class AnswerUIModel {
   var comment: String
   var updatedAt: String
   var isAdmin: Bool
+  var userImage: String
+  var userFbId: String
 
   init(json: MessageWithCommentJsonObject) {
     self.id = json.id
@@ -175,6 +185,8 @@ class AnswerUIModel {
     self.comment = json.comment
     self.updatedAt = json.updatedAt
     self.isAdmin = json.user.isAdmin
+    self.userImage = json.user.image
+    self.userFbId = json.user.fbId
   }
 }
 
