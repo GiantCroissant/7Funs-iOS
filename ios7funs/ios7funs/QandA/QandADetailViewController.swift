@@ -11,7 +11,7 @@ import UIKit
 class QandADetailViewController: UIViewController {
 
     @IBOutlet weak var questionHeader: UIView!
-    @IBOutlet weak var imgUser: UIImageView!
+    @IBOutlet weak var userImageView: UserProfileImageView!
     @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var lblQuestionTitle: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
@@ -89,7 +89,8 @@ class QandADetailViewController: UIViewController {
         lblDescription.text = question.description
         lblTime.text = NSDate().getOffsetStringFrom(question.updatedAt.toNSDate())
 
-        imgUser.configureToCircularView()
+
+        configureUserProfileImageView()
         configureInputBar()
         configureSendButton()
         configureInputTextView()
@@ -100,6 +101,12 @@ class QandADetailViewController: UIViewController {
         tableAnswers.rowHeight = UITableViewAutomaticDimension;
         tableAnswers.estimatedRowHeight = 100
     }
+
+  func configureUserProfileImageView() {
+    let user = UserProfile(questionUIModel: question)
+    userImageView.loadUserProfileImage(user)
+    userImageView.configureToCircularView()
+  }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

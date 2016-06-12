@@ -11,17 +11,16 @@ import UIKit
 class QuestionTableViewCell: UITableViewCell {
 
   @IBOutlet weak var bgProfile: UIView!
-  @IBOutlet weak var imgProfile: UIImageView!
+  @IBOutlet weak var userImageView: UserProfileImageView!
   @IBOutlet weak var lblQuestion: UILabel!
   @IBOutlet weak var lblAnswerCount: UILabel!
   @IBOutlet weak var lblUpdateTime: UILabel!
 
-  let defaultUserImage = "profile"
-  let adminImageName = "profile_editors"
+
 
   var question: QuestionUIModel! {
     didSet {
-      configureUserImage()
+      configureUserProfileImageView()
 
       let name = NSAttributedString(
         string: question.username,
@@ -50,27 +49,16 @@ class QuestionTableViewCell: UITableViewCell {
     }
   }
 
-  func configureUserImage() {
-    if (imgProfile.tag == question.id) {
-      return
-    }
-    imgProfile.tag = question.id
+  func configureUserProfileImageView() {
+    // blocking from image flash when tableview reload
+//    if (userImageView.tag == question.id) {
+//      return
+//    }
+//    userImageView.tag = question.id
 
-
-    imgProfile.image = UIImage(named: defaultUserImage)
-    if (question.isAdmin) {
-      imgProfile.image = UIImage(named: adminImageName)
-
-    } else if (!question.userImage.isEmpty) {
-      let userImageUrl = "https://storage.googleapis.com/funs7-1/uploads/user/image/" + String(question.userId) + "/square_" + question.userImage
-
-      imgProfile.image = nil
-      ImageLoader.sharedInstance.loadImage("XD", url: userImageUrl, completionHandler: { (image, imageName, fadeIn) in
-        self.imgProfile.image = image
-      })
-    } // TODO 
-
-    imgProfile.configureToCircularView()
+    let user = UserProfile(questionUIModel: question)
+    userImageView.loadUserProfileImage(user)
+    userImageView.configureToCircularView()
   }
 
   override func awakeFromNib() {

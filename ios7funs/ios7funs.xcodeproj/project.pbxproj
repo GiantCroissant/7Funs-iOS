@@ -14,6 +14,7 @@
 		09A6A8521C507FF100CF279A /* Info.json in Resources */ = {isa = PBXBuildFile; fileRef = 09A6A8511C507FF100CF279A /* Info.json */; };
 		3B12806E1C3A64BF00AE2CC6 /* QandAManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */; };
 		3B1280701C3A6E4200AE2CC6 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12806F1C3A6E4200AE2CC6 /* QuestionTableViewCell.swift */; };
+		3B19EAD71D0CDDFD00EBAC5F /* UserProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19EAD61D0CDDFD00EBAC5F /* UserProfileImageView.swift */; };
 		3B2296B01C99C3D300B0FA14 /* RecipeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2296AF1C99C3D300B0FA14 /* RecipeSearchViewController.swift */; };
 		3B36CBAD1C27D535003666D7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */; };
 		3B36CBAF1C27D673003666D7 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */; };
@@ -97,6 +98,7 @@
 		09A6A8511C507FF100CF279A /* Info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Info.json; sourceTree = "<group>"; };
 		3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QandAManager.swift; path = QandA/QandAManager.swift; sourceTree = "<group>"; };
 		3B12806F1C3A6E4200AE2CC6 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionTableViewCell.swift; path = QandA/QuestionTableViewCell.swift; sourceTree = "<group>"; };
+		3B19EAD61D0CDDFD00EBAC5F /* UserProfileImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfileImageView.swift; path = QandA/UserProfileImageView.swift; sourceTree = "<group>"; };
 		3B2296AF1C99C3D300B0FA14 /* RecipeSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeSearchViewController.swift; path = Recipes/RecipeSearchViewController.swift; sourceTree = "<group>"; };
 		3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Login/RegisterViewController.swift; sourceTree = "<group>"; };
 		3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForgotPasswordViewController.swift; path = Login/ForgotPasswordViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				3B12806D1C3A64BF00AE2CC6 /* QandAManager.swift */,
 				3B12806F1C3A6E4200AE2CC6 /* QuestionTableViewCell.swift */,
 				3BCB9A6E1C55C9C400B73C92 /* AnswerTableViewCell.swift */,
+				3B19EAD61D0CDDFD00EBAC5F /* UserProfileImageView.swift */,
 			);
 			name = "Q & A";
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 				3B62E8C01C16A473008AA784 /* CardView.swift in Sources */,
 				3BFBD56D1C278CF100313896 /* LoginManager.swift in Sources */,
 				3B41786B1C20DEBE006CB7ED /* RecipeTutorialViewController.swift in Sources */,
+				3B19EAD71D0CDDFD00EBAC5F /* UserProfileImageView.swift in Sources */,
 				3BDF65B91C28EE2A0040F5DB /* CollectionManager.swift in Sources */,
 				098AD9251CD585C7001DA05C /* SponsorManager.swift in Sources */,
 				3BCE506B1C15C0A70088794A /* ShowInfosViewController.swift in Sources */,

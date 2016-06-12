@@ -10,11 +10,9 @@ import UIKit
 
 class AnswerTableViewCell: UITableViewCell {
 
-  @IBOutlet weak var imgProfile: UIImageView!
+  @IBOutlet weak var userImageView: UserProfileImageView!
   @IBOutlet weak var lblQuestion: UILabel!
   @IBOutlet weak var lblUpdateTime: UILabel!
-
-  let adminImageName = "profile_editors"
 
   var answer: AnswerUIModel! {
     didSet {
@@ -25,18 +23,9 @@ class AnswerTableViewCell: UITableViewCell {
   }
 
   func configureImage() {
-    if (answer.isAdmin) {
-      imgProfile.image = UIImage(named: adminImageName)
-
-    } else if (!answer.userImage.isEmpty) {
-      let userImageUrl = "https://storage.googleapis.com/funs7-1/uploads/user/image/" + String(answer.userId) + "/square_" + answer.userImage
-
-      ImageLoader.sharedInstance.loadImage("XD", url: userImageUrl, completionHandler: { (image, imageName, fadeIn) in
-        self.imgProfile.image = image
-      })
-    }
-
-    imgProfile.configureToCircularView()
+    let user = UserProfile(answerUIModel: answer)
+    userImageView.loadUserProfileImage(user)
+    userImageView.configureToCircularView()
   }
 
   func configureAnswer() {

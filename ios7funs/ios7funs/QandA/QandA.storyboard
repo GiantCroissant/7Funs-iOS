@@ -45,7 +45,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iyd-ig-EcJ" userLabel="Profile">
                                                     <rect key="frame" x="11" y="12" width="48" height="48"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="7pI-Rh-lSZ">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="7pI-Rh-lSZ" userLabel="user_profile_image" customClass="UserProfileImageView" customModule="_Funs" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                                         </imageView>
                                                     </subviews>
@@ -133,10 +133,10 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="bgProfile" destination="Iyd-ig-EcJ" id="MnI-oO-rqr"/>
-                                            <outlet property="imgProfile" destination="7pI-Rh-lSZ" id="GtW-mn-J72"/>
                                             <outlet property="lblAnswerCount" destination="gmL-JD-Oib" id="fjL-Ut-NCv"/>
                                             <outlet property="lblQuestion" destination="qkl-3x-lkN" id="3V5-ia-vdV"/>
                                             <outlet property="lblUpdateTime" destination="Mdh-U4-uNC" id="2yU-9c-3f8"/>
+                                            <outlet property="userImageView" destination="7pI-Rh-lSZ" id="2qS-wx-pNU"/>
                                             <segue destination="VZG-8z-zgy" kind="show" id="kuo-1d-pqU"/>
                                         </connections>
                                     </tableViewCell>
@@ -220,7 +220,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NAT-Ck-Sni" userLabel="BG User Image">
                                             <rect key="frame" x="157" y="12" width="61" height="61"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_top" translatesAutoresizingMaskIntoConstraints="NO" id="ISq-TK-dLU">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_top" translatesAutoresizingMaskIntoConstraints="NO" id="ISq-TK-dLU" userLabel="user_profile_image" customClass="UserProfileImageView" customModule="_Funs" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="61" height="61"/>
                                                 </imageView>
                                             </subviews>
@@ -376,7 +376,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="htT-Pa-1yE">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="htT-Pa-1yE" userLabel="user_profile_image" customClass="UserProfileImageView" customModule="_Funs" customModuleProvider="target">
                                                     <rect key="frame" x="10" y="11" width="48" height="48"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="48" id="L8K-2o-FqD"/>
@@ -440,9 +440,9 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="imgProfile" destination="htT-Pa-1yE" id="MZQ-EX-eFk"/>
                                             <outlet property="lblQuestion" destination="f6t-er-85r" id="LND-gy-RMJ"/>
                                             <outlet property="lblUpdateTime" destination="JFF-Yd-ceD" id="70z-YI-55J"/>
+                                            <outlet property="userImageView" destination="htT-Pa-1yE" id="lUG-fP-WkQ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -527,7 +527,6 @@
                     </view>
                     <connections>
                         <outlet property="btnSend" destination="IpM-N3-nBg" id="z29-Wu-10j"/>
-                        <outlet property="imgUser" destination="ISq-TK-dLU" id="v4X-5T-W1C"/>
                         <outlet property="inputBG" destination="haD-HO-dmn" id="FON-bp-fp4"/>
                         <outlet property="inputBarHeight" destination="Qnh-tD-75x" id="V3i-tG-3vz"/>
                         <outlet property="inputPlaceholder" destination="a7F-SN-Woc" id="Lum-ha-UFJ"/>
@@ -538,6 +537,7 @@
                         <outlet property="questionHeader" destination="zBX-OB-VYA" id="2ib-Dz-esA"/>
                         <outlet property="tableAnswers" destination="hiH-EI-UI8" id="Ia1-UJ-h7g"/>
                         <outlet property="textInput" destination="JSL-bC-hlj" id="8An-Eh-ZqA"/>
+                        <outlet property="userImageView" destination="ISq-TK-dLU" id="Ogt-KE-ZWt"/>
                         <outletCollection property="bottomConstraints" destination="l3j-dY-z0d" collectionClass="NSMutableArray" id="JfO-J6-gFG"/>
                         <outletCollection property="inputBarHeightConstraints" destination="BjB-SI-2OB" collectionClass="NSMutableArray" id="0v8-I5-7b8"/>
                         <outletCollection property="inputBarHeightConstraints" destination="c0V-zG-xEt" collectionClass="NSMutableArray" id="vq6-i8-6h3"/>

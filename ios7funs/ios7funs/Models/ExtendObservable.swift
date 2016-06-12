@@ -61,7 +61,7 @@ extension Observable {
                 }
 
 
-              aLog("json = \(json)")
+//              aLog("json = \(json)")
 
                 if let result = self.resultFromJSON(json, classType:type) {
                     return result
