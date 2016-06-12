@@ -76,24 +76,37 @@ class CollectionManager: NSObject {
 
 extension Observable {
 
-    func updateFavoriteRecipes() -> Observable<Any> {
-        return map { res in
-            guard let favoriteRecipes = res as? [MyFavoriteRecipesResultJsonObject] else {
-                throw ORMError.ORMNoRepresentor
-            }
+  func updateFavoriteRecipes() -> Observable<Any> {
+    return map { res in
+      guard let favoriteRecipes = res as? [MyFavoriteRecipesResultJsonObject] else {
+        throw ORMError.ORMNoRepresentor
+      }
 
-            favoriteRecipes.forEach {
-                let realm = try! Realm()
-                if let recipe = realm.objects(Recipe).filter("id = \($0.id)").first {
-                    try! realm.write {
-                        recipe.favorite = true
-                    }
-                }
-            }
 
-            return Observable<Any>.empty()
+      let realm = try! Realm()
+      var favoriteRecipeIds = [Int]()
+      favoriteRecipes.forEach {
+        favoriteRecipeIds.append($0.id)
+
+        if let recipe = realm.objects(Recipe).filter("id = \($0.id)").first {
+          try! realm.write {
+            recipe.favorite = true
+          }
         }
+      }
+
+      let predicate = NSPredicate(format: "NOT id IN %@ AND favorite == true", favoriteRecipeIds)
+      let notFavoriteRecipes = realm.objects(Recipe).filter(predicate)
+      notFavoriteRecipes.forEach { recipe in
+        try! realm.write {
+          recipe.favorite = false
+        }
+      }
+
+
+      return Observable<Any>.empty()
     }
-    
-    
+  }
+
+
 }

@@ -192,6 +192,11 @@ extension UIViewController {
         self.view.makeToast(msg, duration: 1, position: .Top)
     }
 
+  func showSwitchFavoriteToast(favorite: Bool, recipeName: String) {
+    let msg = favorite ? "\(recipeName) : 加入收藏" : "\(recipeName) : 取消收藏"
+    self.view.makeToast(msg, duration: 1, position: .Top)
+  }
+
 }
 
 class ImageUtils {

@@ -24,7 +24,7 @@ class RecipesViewController: UIViewController {
 
   var type = StoryboardType.Recipe
   var isFetching = false
-//  var recipes = [RecipeUIModel]()
+  //  var recipes = [RecipeUIModel]()
 
   let refreshControl = UIRefreshControl()
 
@@ -88,27 +88,27 @@ class RecipesViewController: UIViewController {
       switch changes {
       case .Initial:
         // Results are now populated and can be accessed without blocking the UI
-//        tableView.reloadData()
+        //        tableView.reloadData()
         break
 
-//      case .Update(_, let deletions, let insertions, let modifications):
+      //      case .Update(_, let deletions, let insertions, let modifications):
       case .Update(_, _, _, _):
         tableView.reloadData()
         // Query results have changed, so apply them to the UITableView
-//        tableView.beginUpdates()
-//        tableView.insertRowsAtIndexPaths(
-//          insertions.map { NSIndexPath(forRow: $0, inSection: 0) },
-//          withRowAnimation: .Automatic
-//        )
-//        tableView.deleteRowsAtIndexPaths(
-//          deletions.map { NSIndexPath(forRow: $0, inSection: 0) },
-//          withRowAnimation: .Automatic
-//        )
-//        tableView.reloadRowsAtIndexPaths(
-//          modifications.map { NSIndexPath(forRow: $0, inSection: 0) },
-//          withRowAnimation: .Automatic
-//        )
-//        tableView.endUpdates()
+        //        tableView.beginUpdates()
+        //        tableView.insertRowsAtIndexPaths(
+        //          insertions.map { NSIndexPath(forRow: $0, inSection: 0) },
+        //          withRowAnimation: .Automatic
+        //        )
+        //        tableView.deleteRowsAtIndexPaths(
+        //          deletions.map { NSIndexPath(forRow: $0, inSection: 0) },
+        //          withRowAnimation: .Automatic
+        //        )
+        //        tableView.reloadRowsAtIndexPaths(
+        //          modifications.map { NSIndexPath(forRow: $0, inSection: 0) },
+        //          withRowAnimation: .Automatic
+        //        )
+        //        tableView.endUpdates()
         break
 
       case .Error(let error):
@@ -154,6 +154,10 @@ class RecipesViewController: UIViewController {
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+
+    updateFavoriteStates()
+    tableRecipes.reloadData()
+
     if type == .Recipe {
       onRecipeVCWillAppear()
     }
@@ -166,20 +170,23 @@ class RecipesViewController: UIViewController {
   func onRecipeVCWillAppear() {
     self.title = "食譜列表"
     indicatorLoadMore.startAnimating()
-//    loadRecipes()
   }
 
   func onCollectionVCWillAppear() {
     self.title = "我的收藏"
+  }
+
+  func updateFavoriteStates() {
     UIUtils.showStatusBarNetworking()
     guard let token = LoginManager.token else {
       return
     }
 
     indicatorLoadMore.startAnimating()
-    CollectionManager.sharedInstance.fetchCollections(token,
+    CollectionManager.sharedInstance.fetchCollections(
+      token,
       onComplete: {
-        //        self.handleFetchCollectionComplete()
+        self.tableRecipes.reloadData()
       },
       onError: { err in
         self.showNetworkIsBusyAlertView()
@@ -226,9 +233,9 @@ class RecipesViewController: UIViewController {
       detailVC.recipe = getRecipe(row)
 
     } else if segue.identifier == "recipe_search_vc" {
-//      let detailVC = segue.destinationViewController as! RecipeDetailViewController
-//      let row = (sender?.tag)!
-//      detailVC.recipe = getRecipe(row)
+      //      let detailVC = segue.destinationViewController as! RecipeDetailViewController
+      //      let row = (sender?.tag)!
+      //      detailVC.recipe = getRecipe(row)
     }
   }
 
@@ -237,16 +244,16 @@ class RecipesViewController: UIViewController {
 // MARK: - Recpie Datas
 extension RecipesViewController {
 
-//  func loadRecipes() {
-//    UIUtils.showStatusBarNetworking()
-//    RecipeManager.sharedInstance.loadRecipes(self.recipes) { recipes, remainCount in
-//      self.recipes = recipes
-//      self.tableRecipes.reloadData()
-//      self.tableRecipes.tableHeaderView = recipes.count > 0 ? self.tableSpacing : nil
-//      self.tableRecipes.tableFooterView = remainCount > 0 ? self.loadingFooter : self.tableSpacing
-//      UIUtils.hideStatusBarNetworking()
-//    }
-//  }
+  //  func loadRecipes() {
+  //    UIUtils.showStatusBarNetworking()
+  //    RecipeManager.sharedInstance.loadRecipes(self.recipes) { recipes, remainCount in
+  //      self.recipes = recipes
+  //      self.tableRecipes.reloadData()
+  //      self.tableRecipes.tableHeaderView = recipes.count > 0 ? self.tableSpacing : nil
+  //      self.tableRecipes.tableFooterView = remainCount > 0 ? self.loadingFooter : self.tableSpacing
+  //      UIUtils.hideStatusBarNetworking()
+  //    }
+  //  }
 
 }
 
@@ -273,7 +280,7 @@ extension RecipesViewController: UITableViewDataSource {
       cell.recipe = recipe
       cell.updateCell()
 
-      let favoriteButton = cell.btnAddCollection as! RecipeFavoriteButton
+      let favoriteButton = cell.btnAddCollection as RecipeFavoriteButton
       favoriteButton.tag = recipe.id
       favoriteButton.row = indexPath.row
 
@@ -303,7 +310,7 @@ extension RecipesViewController: UITableViewDataSource {
     if self.traitCollection.verticalSizeClass
       == .Regular && self.traitCollection.horizontalSizeClass == .Regular {
 
-        return 458
+      return 458
     }
 
     return 258
@@ -336,13 +343,15 @@ extension RecipesViewController {
     let recipeId = favoriteButton.tag
     let index = favoriteButton.row
 
-//    favoriteButton.imageView?.image = UIImage(named: "icon_love_m_pink_uploading")
+    //    favoriteButton.imageView?.image = UIImage(named: "icon_love_m_pink_uploading")
     let uploadingImage = UIImage(named: "icon_love_m_pink_uploading")
     favoriteButton.setImage(uploadingImage, forState: .Normal)
     favoriteButton.isUploading = true
 
     UIUtils.showStatusBarNetworking()
-    RecipeManager.sharedInstance.switchFavorite(recipeId, token: token,
+    RecipeManager.sharedInstance.switchFavorite(
+      recipeId,
+      token: token,
       onComplete: { isFavorite in
 
         if let recipe = self.getRecipe(index) {
@@ -356,7 +365,7 @@ extension RecipesViewController {
       },
       onError: { _ in
         self.showNetworkIsBusyAlertView()
-//        favoriteButton.imageView?.image = UIImage(named: "icon_love_m")
+        //        favoriteButton.imageView?.image = UIImage(named: "icon_love_m")
         favoriteButton.setImage(UIImage(named: "icon_love_m"), forState: .Normal)
       },
       onFinished: {
@@ -379,5 +388,5 @@ extension RecipesViewController {
 //      }
 //    }
 //  }
-//  
+//
 //}

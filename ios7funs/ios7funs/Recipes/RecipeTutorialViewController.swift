@@ -168,9 +168,10 @@ class RecipeTutorialViewController: UIViewController {
     }
 
     func handleFavoriteUpdateSuccess(favorite: Bool) {
-        recipe.favorite = favorite
+//        recipe.favorite = favorite    
+//      if (favorite) {
         configureFavoriteButton(favorite)
-        showSwitchFavoriteToast(recipe)
+        showSwitchFavoriteToast(favorite, recipeName: recipe.title)
     }
 
     func setupContainerWidth() {
