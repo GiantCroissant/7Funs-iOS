@@ -16,12 +16,13 @@ class SponsorManager {
     let restApiProvider = RxMoyaProvider<RestApi>()
     let disposeBag = DisposeBag()
     
-    func fetchSponsors(onComplete onComplete: ([SponsorUIModel] -> Void) = { _ in },
+    func fetchSponsors(onComplete onComplete: ([SponsorDetailJsonObject] -> Void) = { _ in },
                                    onError: (ErrorType -> Void) = { _ in },
                                    onFinished: (() -> Void) = {}) {
         
-        var sponsors = [SponsorUIModel]()
-        
+//        var sponsors = [SponsorUIModel]()
+      var sponsors = [SponsorDetailJsonObject]()
+
         let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
         let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
         restApiProvider
@@ -30,10 +31,11 @@ class SponsorManager {
             .subscribeOn(scheduler)
             .subscribe(
                 onNext: { response in
-                    for sponsorJson in response.collections {
-                        let sponsor = SponsorUIModel(json: sponsorJson)
-                        sponsors.append(sponsor)
-                    }
+//                    for sponsorJson in response.collections {
+//                        let sponsor = SponsorUIModel(json: sponsorJson)
+//                        sponsors.append(sponsor)
+//                    }
+                  sponsors = response.collections
                 },
                 onError: { error in
                     dispatch_async(dispatch_get_main_queue()) {
