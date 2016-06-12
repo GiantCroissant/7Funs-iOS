@@ -274,7 +274,7 @@ public struct SponsorVideoDataJsonObject{
 
 public struct SponsorVideoDetailJsonObject {
     public let id: Int
-    public let sponsorId: String
+    public let sponsorId: Int
     public let youtubeVideoCode: String
     public let videoData: SponsorVideoDataJsonObject
     public let createdAt: String
