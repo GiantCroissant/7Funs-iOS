@@ -136,7 +136,7 @@ class QandAManager {
   }
 
 
-  func postQuestion(token: String, title: String, description: String,
+  func postQuestion(token: String, title: String, description: String, remark: String,
                     onComplete: (() -> Void) = { _ in },
                     onError: (ErrorType -> Void) = { _ in },
                     onFinished: (() -> Void) = {}) {
@@ -144,7 +144,7 @@ class QandAManager {
     let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
     let scheduler = ConcurrentDispatchQueueScheduler(queue: backgroundQueue)
     self.restApiProvider
-      .request(RestApi.CreateMessage(token: token, title: title, description: description))
+      .request(RestApi.CreateMessage(token: token, title: title, description: description, remark: remark))
       .mapSuccessfulHTTPToObject(MessageCreateResultJsonObject)
       .subscribeOn(scheduler)
       .subscribe(

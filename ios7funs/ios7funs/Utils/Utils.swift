@@ -95,6 +95,26 @@ class FileUtils {
 
 }
 
+struct VersionUtils {
+
+  static func getSystemName() -> String {
+    return UIDevice.currentDevice().systemName
+  }
+
+  static func getSystemVersion() -> String {
+    return UIDevice.currentDevice().systemVersion
+  }
+
+  static func getBuildVersion() -> String {
+    return NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
+  }
+
+  static func getShortBuildVersion() -> String {
+    return NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+  }
+
+}
+
 extension String {
 
     func stringByAppendingPathComponent(path: String) -> String {

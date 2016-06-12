@@ -27,8 +27,9 @@ public enum RestApi {
     case Messages(Int)
     case MessageById(Int)
     case CommentsOfSpecificMessage(Int)
-    case CreateMessage(token: String, title: String, description: String)
-    case CreateMessageComment(id: Int, token: String, comment: String)
+
+  case CreateMessage(token: String, title: String, description: String, remark: String)
+  case CreateMessageComment(id: Int, token: String, comment: String)
     
     //
     case Sponsors(Int)
@@ -81,7 +82,7 @@ extension RestApi : TargetType {
             return "/api/messages/\(id)"
         case .CommentsOfSpecificMessage(let id):
             return "/api/messages/\(id)"
-        case .CreateMessage(_, _, _):
+        case .CreateMessage(_, _, _, _):
             return "/api/messages"
         case .CreateMessageComment(let id, _, _):
             return "/api/messages/\(id)/comments"
@@ -182,11 +183,12 @@ extension RestApi : TargetType {
         case .CommentsOfSpecificMessage(_):
             return [:]
             
-        case .CreateMessage(let token, let title, let description):
+        case .CreateMessage(let token, let title, let description, let remark):
             return [
                 "token": token,
                 "title": title,
-                "description": description
+                "description": description,
+                "remark": remark
             ]
         case .CreateMessageComment(let id, let token, let comment):
             return [
@@ -274,7 +276,7 @@ extension RestApi : TargetType {
         case .CommentsOfSpecificMessage(_):
             return "".dataUsingEncoding(NSUTF8StringEncoding)!
             
-        case .CreateMessage(_, _, _):
+        case .CreateMessage(_, _, _, _):
             return "".dataUsingEncoding(NSUTF8StringEncoding)!
 
         case .CreateMessageComment(_, _, _):
