@@ -14,7 +14,7 @@ class RecipeTableViewCell: UITableViewCell {
   @IBOutlet weak var container: UIView!
   @IBOutlet weak var labelTitle: UILabel!
   @IBOutlet weak var lblInformation: UILabel!
-  @IBOutlet weak var btnAddCollection: UIButton!
+  @IBOutlet weak var btnAddCollection: RecipeFavoriteButton!
   @IBOutlet weak var btnFood: UIButton!
   @IBOutlet weak var indicatorFoodImage: UIActivityIndicatorView!
 

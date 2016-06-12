@@ -229,7 +229,7 @@ extension UIButton {
     let buttonHeight = self.frame.size.height
 
     let imageWidth = image?.size.width
-    let imageHeight = image?.size.height
+//    let imageHeight = image?.size.height
 
     var scaledImage = image
     if (imageWidth < buttonWidth) {
