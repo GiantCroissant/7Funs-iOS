@@ -10,104 +10,107 @@ import UIKit
 
 class VideoPlayerViewController: UIViewController {
 
-    @IBOutlet weak var youtubePlayer: YTPlayerView!
-    @IBOutlet weak var lblVideoLength: UILabel!
-    @IBOutlet weak var warningNoVideo: UIView!
-    @IBOutlet var camButtons: [UIButton]!
+  @IBOutlet weak var youtubePlayer: YTPlayerView!
+  @IBOutlet weak var lblVideoLength: UILabel!
+  @IBOutlet weak var warningNoVideo: UIView!
+  @IBOutlet var camButtons: [UIButton]!
 
 
-    var videoTypeYoutubeIds = [Int : String]()
-    var video: VideoUIModel?
-//  var video: Video!
-    var currentTime: Float = 0
+  var videoTypeYoutubeIds = [Int : String]()
+  var video: VideoUIModel?
+  //  var video: Video!
+  var currentTime: Float = 0
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-        configureCamButtons()
-        configureUILayout()
+    aLog("video = \(video)")
+
+    configureCamButtons()
+    configureUILayout()
+  }
+
+  func configureUILayout() {
+    dLog("hi")
+
+    loadSeriesVideos()
+    if let video = video {
+      dLog("video = \(video.youtubeVideoId)")
+      dLog("video.title = \(video.title)")
+
+      title = video.title
+      lblVideoLength.text = "00:00"
+
+      youtubePlayer.delegate = self
+      youtubePlayer.loadWithVideoId(video.youtubeVideoId)
+      warningNoVideo.hidden = true
     }
+  }
 
-    func configureUILayout() {
-        dLog("hi")
-
-        loadSeriesVideos()
-        if let video = video {
-            dLog("video = \(video.youtubeVideoId)")
-          dLog("video.title = \(video.title)")
-            title = video.title
-            lblVideoLength.text = "00:00"
-
-            youtubePlayer.delegate = self
-            youtubePlayer.loadWithVideoId(video.youtubeVideoId)
-            warningNoVideo.hidden = true
+  func loadSeriesVideos() {
+    if let video = video {
+      VideoManager.sharedInstance.loadVideosWithRecipeId(video.recipeId) { videos in
+        videos.forEach { video in
+          self.videoTypeYoutubeIds[video.type] = video.youtubeVideoId
+          self.configureCamButtons()
         }
+      }
+
+    } else {
+      configureCamButtons()
     }
+  }
 
-    func loadSeriesVideos() {
-        if let video = video {
-            VideoManager.sharedInstance.loadVideosWithRecipeId(video.recipeId) { videos in
-                videos.forEach { video in
-                    self.videoTypeYoutubeIds[video.type] = video.youtubeVideoId
-                    self.configureCamButtons()
-                }
-            }
+  func configureCamButtons() {
+    for button in camButtons {
+      button.enabled = videoTypeYoutubeIds[button.tag] != nil ? true : false
 
-        } else {
-            configureCamButtons()
-        }
+      // TODO: eikiy give new colors for disabled button
+      button.hidden = !button.enabled
+
+      button.layer.cornerRadius = 2
+      button.layer.borderWidth = 1
+      button.layer.borderColor = button.enabled ? UIColor(hexString: "#d4cdc8").CGColor
+        : UIColor.darkGrayColor().CGColor
+
+      button.configureHexColorBGForState("#888888", normal: "#FFFFFF", highlight: "#CCCCCC")
+      button.setTitleColor(UIColor.lightTextColor(), forState: .Disabled)
     }
-
-    func configureCamButtons() {
-        for button in camButtons {
-            button.enabled = videoTypeYoutubeIds[button.tag] != nil ? true : false
-
-            // TODO: eikiy give new colors for disabled button
-            button.hidden = !button.enabled
-
-            button.layer.cornerRadius = 2
-            button.layer.borderWidth = 1
-            button.layer.borderColor = button.enabled ? UIColor(hexString: "#d4cdc8").CGColor
-                : UIColor.darkGrayColor().CGColor
-
-            button.configureHexColorBGForState("#888888", normal: "#FFFFFF", highlight: "#CCCCCC")
-            button.setTitleColor(UIColor.lightTextColor(), forState: .Disabled)
-        }
-    }
+  }
 
 }
 
 
 extension VideoPlayerViewController {
 
-    // save Type ( 1, 2, 3 ) to UIButton's tag in IB
-    @IBAction func onCamButtonClick(sender: UIButton) {
-        let type = sender.tag
-        if let videoId = videoTypeYoutubeIds[type] {
-            youtubePlayer.cueVideoById(
-                videoId,
-                startSeconds: currentTime,
-                suggestedQuality: YTPlaybackQuality.Default
-            )
-            youtubePlayer.seekToSeconds(currentTime, allowSeekAhead: true)
-        }
+  // save Type ( 1, 2, 3 ) to UIButton's tag in IB
+  @IBAction func onCamButtonClick(sender: UIButton) {
+    let type = sender.tag
+    if let videoId = videoTypeYoutubeIds[type] {
+      youtubePlayer.cueVideoById(
+        videoId,
+        startSeconds: currentTime,
+        suggestedQuality: YTPlaybackQuality.Default
+      )
+      youtubePlayer.seekToSeconds(currentTime, allowSeekAhead: true)
     }
+  }
 
 }
 
 
 extension VideoPlayerViewController: YTPlayerViewDelegate {
 
-    func playerView(playerView: YTPlayerView!, didChangeToState state: YTPlayerState) {
-        if state == YTPlayerState.Paused {
-            currentTime = youtubePlayer.currentTime()
-            lblVideoLength.text = UIUtils.getVideoLengthString(Int(currentTime))
-        }
+  func playerView(playerView: YTPlayerView!, didChangeToState state: YTPlayerState) {
+    if state == YTPlayerState.Paused {
+      currentTime = youtubePlayer.currentTime()
+      lblVideoLength.text = UIUtils.getVideoLengthString(Int(currentTime))
     }
+  }
 
-    func playerView(playerView: YTPlayerView!, receivedError error: YTPlayerError) {
-        dLog("YTPlayerError = \(error.rawValue)")
-    }
+  func playerView(playerView: YTPlayerView!, receivedError error: YTPlayerError) {
+    dLog("YTPlayerError = \(error.rawValue)")
+  }
 
 }
 
