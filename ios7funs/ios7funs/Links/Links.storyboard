@@ -202,6 +202,12 @@
                                                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDi-LD-Lty" userLabel="sponsor_image_button">
                                                     <rect key="frame" x="10" y="10" width="355" height="178"/>
                                                 </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_list_gradients" translatesAutoresizingMaskIntoConstraints="NO" id="Z2X-GC-3aI" userLabel="Gradient">
+                                                    <rect key="frame" x="10" y="108" width="355" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="PA0-aU-g3p"/>
+                                                    </constraints>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[ Label ]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0b-DC-sp6">
                                                     <rect key="frame" x="20" y="148" width="93" height="30"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
@@ -217,9 +223,12 @@
                                                 <constraint firstAttribute="trailing" secondItem="aDi-LD-Lty" secondAttribute="trailing" constant="10" id="FTc-fX-S6T"/>
                                                 <constraint firstAttribute="bottom" secondItem="aDi-LD-Lty" secondAttribute="bottom" id="GXz-5X-noF"/>
                                                 <constraint firstAttribute="bottom" secondItem="aDi-LD-Lty" secondAttribute="bottom" constant="10" id="Tke-IH-hkS"/>
+                                                <constraint firstItem="Z2X-GC-3aI" firstAttribute="leading" secondItem="5IK-CN-9yc" secondAttribute="leading" constant="10" id="bxj-6b-irY"/>
+                                                <constraint firstAttribute="bottom" secondItem="Z2X-GC-3aI" secondAttribute="bottom" constant="10" id="fSX-iA-Ch8"/>
                                                 <constraint firstItem="aDi-LD-Lty" firstAttribute="leading" secondItem="5IK-CN-9yc" secondAttribute="leading" constant="10" id="lGl-Os-FFf"/>
                                                 <constraint firstAttribute="bottom" secondItem="f0b-DC-sp6" secondAttribute="bottom" constant="20" id="oU0-6f-cWJ"/>
                                                 <constraint firstItem="aDi-LD-Lty" firstAttribute="leading" secondItem="5IK-CN-9yc" secondAttribute="leading" id="qTr-M4-2BR"/>
+                                                <constraint firstAttribute="trailing" secondItem="Z2X-GC-3aI" secondAttribute="trailing" constant="10" id="r8k-fg-xHF"/>
                                                 <constraint firstItem="f0b-DC-sp6" firstAttribute="leading" secondItem="5IK-CN-9yc" secondAttribute="leading" constant="20" id="uhX-dc-K6j"/>
                                                 <constraint firstAttribute="trailing" secondItem="aDi-LD-Lty" secondAttribute="trailing" id="vdy-AJ-eQa"/>
                                                 <constraint firstItem="aDi-LD-Lty" firstAttribute="top" secondItem="5IK-CN-9yc" secondAttribute="top" constant="10" id="wQ0-2k-hKX"/>
