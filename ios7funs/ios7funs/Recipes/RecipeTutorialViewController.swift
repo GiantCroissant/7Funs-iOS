@@ -12,7 +12,7 @@ class RecipeTutorialViewController: UIViewController {
 
     @IBOutlet var containerHorizontalSpacings: [NSLayoutConstraint]!
     @IBOutlet var containerVertiaclSpacings: [NSLayoutConstraint]!
-    @IBOutlet weak var btnAddFavorite: UIButton!
+    @IBOutlet weak var btnAddFavorite: RecipeFavoriteButton!
     @IBOutlet weak var imgFood: UIImageView!
     @IBOutlet weak var labelFoodTitle: UILabel!
     @IBOutlet weak var foodTitle: UILabel!
@@ -150,26 +150,33 @@ class RecipeTutorialViewController: UIViewController {
         btnAddFavorite.setImage(image, forState: .Normal)
     }
 
-    func requestSwitchFavoriteState(token: String) {
-        let recipeId = recipe.id
-
-        UIUtils.showStatusBarNetworking()
-        RecipeManager.sharedInstance.switchFavorite(recipeId, token: token,
-            onComplete: { favorite in
-                self.handleFavoriteUpdateSuccess(favorite)
-            },
-            onError: { _ in
-                self.showNetworkIsBusyAlertView()
-            },
-            onFinished: {
-                UIUtils.hideStatusBarNetworking()
-            }
-        )
+  func requestSwitchFavoriteState(token: String) {
+    if (btnAddFavorite.isUploading) {
+      return
     }
+    btnAddFavorite.isUploading = true
+    let uploadingImage = UIImage(named: "icon_love_m_pink_uploading")
+    btnAddFavorite.setImage(uploadingImage, forState: .Normal)
+
+    let recipeId = recipe.id
+    UIUtils.showStatusBarNetworking()
+    RecipeManager.sharedInstance.switchFavorite(
+      recipeId,
+      token: token,
+      onComplete: { favorite in
+        self.handleFavoriteUpdateSuccess(favorite)
+      },
+      onError: { _ in
+        self.showNetworkIsBusyAlertView()
+      },
+      onFinished: {
+        UIUtils.hideStatusBarNetworking()
+        self.btnAddFavorite.isUploading = false
+      }
+    )
+  }
 
     func handleFavoriteUpdateSuccess(favorite: Bool) {
-//        recipe.favorite = favorite    
-//      if (favorite) {
         configureFavoriteButton(favorite)
         showSwitchFavoriteToast(favorite, recipeName: recipe.title)
     }

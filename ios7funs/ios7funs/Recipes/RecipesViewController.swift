@@ -343,7 +343,6 @@ extension RecipesViewController {
     let recipeId = favoriteButton.tag
     let index = favoriteButton.row
 
-    //    favoriteButton.imageView?.image = UIImage(named: "icon_love_m_pink_uploading")
     let uploadingImage = UIImage(named: "icon_love_m_pink_uploading")
     favoriteButton.setImage(uploadingImage, forState: .Normal)
     favoriteButton.isUploading = true
@@ -365,7 +364,6 @@ extension RecipesViewController {
       },
       onError: { _ in
         self.showNetworkIsBusyAlertView()
-        //        favoriteButton.imageView?.image = UIImage(named: "icon_love_m")
         favoriteButton.setImage(UIImage(named: "icon_love_m"), forState: .Normal)
       },
       onFinished: {

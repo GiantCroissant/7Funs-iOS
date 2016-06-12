@@ -709,7 +709,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uig-Y0-s2u" userLabel="Add View">
                                                                         <rect key="frame" x="297" y="0.0" width="56" height="48"/>
                                                                         <subviews>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I3V-2V-5Hn" userLabel="Add Fovarite">
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I3V-2V-5Hn" userLabel="Add Fovarite" customClass="RecipeFavoriteButton" customModule="_Funs" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="56" height="48"/>
                                                                                 <state key="normal" image="icon_love_m_pink"/>
                                                                                 <connections>
@@ -863,7 +863,7 @@
                         <outlet property="bgContent" destination="L8V-d6-OEV" id="jKa-Ct-OTX"/>
                         <outlet property="bgTutorial" destination="uax-Na-uPJ" id="Kbg-Qe-nQB"/>
                         <outlet property="bottomToTopHeight" destination="wCR-k0-Veh" id="xHY-fT-6HO"/>
-                        <outlet property="btnAddFavorite" destination="I3V-2V-5Hn" id="lxe-Ar-uU7"/>
+                        <outlet property="btnAddFavorite" destination="I3V-2V-5Hn" id="c7H-8b-NSJ"/>
                         <outlet property="contentScrollView" destination="BRH-2I-fS7" id="tbb-LD-fIV"/>
                         <outlet property="foodTitle" destination="qgF-pY-7sV" id="lL7-GX-xox"/>
                         <outlet property="imgFood" destination="YJK-a9-vOa" id="E2b-oJ-bMU"/>
