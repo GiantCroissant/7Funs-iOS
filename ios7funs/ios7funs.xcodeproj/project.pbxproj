@@ -20,6 +20,8 @@
 		3B23B91A1D0DBA0C00BF0C3F /* SponsorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B23B9191D0DBA0C00BF0C3F /* SponsorViewController.swift */; };
 		3B23B91C1D0DC05E00BF0C3F /* SponsorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B23B91B1D0DC05E00BF0C3F /* SponsorCell.swift */; };
 		3B23B91E1D0DC23500BF0C3F /* UrlUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B23B91D1D0DC23500BF0C3F /* UrlUtils.swift */; };
+		3B23B9201D0DC9DB00BF0C3F /* SponsorVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B23B91F1D0DC9DB00BF0C3F /* SponsorVideoCell.swift */; };
+		3B23B9221D0E28A700BF0C3F /* SponsorVideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B23B9211D0E28A700BF0C3F /* SponsorVideoPlayerViewController.swift */; };
 		3B36CBAD1C27D535003666D7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */; };
 		3B36CBAF1C27D673003666D7 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */; };
 		3B4178611C20B23F006CB7ED /* AYOSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */; };
@@ -108,6 +110,8 @@
 		3B23B9191D0DBA0C00BF0C3F /* SponsorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SponsorViewController.swift; path = Links/SponsorViewController.swift; sourceTree = "<group>"; };
 		3B23B91B1D0DC05E00BF0C3F /* SponsorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SponsorCell.swift; path = Links/SponsorCell.swift; sourceTree = "<group>"; };
 		3B23B91D1D0DC23500BF0C3F /* UrlUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UrlUtils.swift; path = Utils/UrlUtils.swift; sourceTree = "<group>"; };
+		3B23B91F1D0DC9DB00BF0C3F /* SponsorVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SponsorVideoCell.swift; path = Links/SponsorVideoCell.swift; sourceTree = "<group>"; };
+		3B23B9211D0E28A700BF0C3F /* SponsorVideoPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SponsorVideoPlayerViewController.swift; path = Links/SponsorVideoPlayerViewController.swift; sourceTree = "<group>"; };
 		3B36CBAC1C27D535003666D7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Login/RegisterViewController.swift; sourceTree = "<group>"; };
 		3B36CBAE1C27D673003666D7 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForgotPasswordViewController.swift; path = Login/ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		3B4178601C20B23F006CB7ED /* AYOSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AYOSegmentedControl.swift; path = Utils/AYOSegmentedControl.swift; sourceTree = "<group>"; };
@@ -350,8 +354,10 @@
 				3BA2580C1C2824D800FA5A7C /* LinkFriendViewController.swift */,
 				098AD9241CD585C7001DA05C /* SponsorManager.swift */,
 				3B23B91B1D0DC05E00BF0C3F /* SponsorCell.swift */,
+				3B23B91F1D0DC9DB00BF0C3F /* SponsorVideoCell.swift */,
 				3B23B9191D0DBA0C00BF0C3F /* SponsorViewController.swift */,
 				3B23B9171D0DB8F900BF0C3F /* SponsorDetailViewController.swift */,
+				3B23B9211D0E28A700BF0C3F /* SponsorVideoPlayerViewController.swift */,
 			);
 			name = Links;
 			sourceTree = "<group>";
@@ -577,6 +583,7 @@
 				3B36CBAF1C27D673003666D7 /* ForgotPasswordViewController.swift in Sources */,
 				3BDF65C11C28FF370040F5DB /* YTPlayerView.m in Sources */,
 				3B5565891C17F2DA00CFF1B4 /* UIModel.swift in Sources */,
+				3B23B9221D0E28A700BF0C3F /* SponsorVideoPlayerViewController.swift in Sources */,
 				3BC240EE1C291C1600A79E4D /* VideoManager.swift in Sources */,
 				3BD9FB351C468F8400B8FAB3 /* Async.swift in Sources */,
 				3B2296B01C99C3D300B0FA14 /* RecipeSearchViewController.swift in Sources */,
@@ -598,6 +605,7 @@
 				3B4D7BB61C23BFB9009E37AE /* Toast.swift in Sources */,
 				3B23B91A1D0DBA0C00BF0C3F /* SponsorViewController.swift in Sources */,
 				3B12806E1C3A64BF00AE2CC6 /* QandAManager.swift in Sources */,
+				3B23B9201D0DC9DB00BF0C3F /* SponsorVideoCell.swift in Sources */,
 				3BA2580D1C2824D800FA5A7C /* LinkFriendViewController.swift in Sources */,
 				3B5565871C16F67700CFF1B4 /* RecipeDetailViewController.swift in Sources */,
 				3B41D12E1C16C9230054FC10 /* ExtendObservable.swift in Sources */,

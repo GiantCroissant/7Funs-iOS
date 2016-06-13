@@ -22,20 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    testVersionUtils()
-    
-
     startBackgroundLoadRecipes()
     startBackgroundLoadVideos()
     setupCustomNaviationBar()
     return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-  }
-
-  func testVersionUtils() {
-    aLog("getSystemName = \(VersionUtils.getSystemName())")
-    aLog("getSystemVersion = \(VersionUtils.getSystemVersion())")
-    aLog("getBuildVersion = \(VersionUtils.getBuildVersion())")
-    aLog("getShortBuildVersion = \(VersionUtils.getShortBuildVersion())")
   }
 
   func startBackgroundLoadVideos() {

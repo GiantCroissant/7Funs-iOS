@@ -41,6 +41,16 @@ class SponsorViewController: UIViewController {
     )
   }
 
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    self.title = ""
+
+    if segue.identifier == "SponsorToSponsorDetail" {
+      let sponsorDetailVC = segue.destinationViewController as! SponsorDetailViewController
+      let row = (sender?.tag)!
+      sponsorDetailVC.sponsor = sponsors[row]
+    }
+  }
+
 }
 
 extension SponsorViewController: UITableViewDataSource {
@@ -51,7 +61,10 @@ extension SponsorViewController: UITableViewDataSource {
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("sponsor_table_cell", forIndexPath: indexPath) as! SponsorCell
-    cell.sponsor = sponsors[indexPath.row]
+
+    let rowIndex = indexPath.row
+    cell.sponsor = sponsors[rowIndex]
+    cell.sponsorButton.tag = rowIndex
     return cell
   }
 

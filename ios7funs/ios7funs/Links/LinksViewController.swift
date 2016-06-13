@@ -35,7 +35,7 @@ class LinksViewController: UIViewController {
       onComplete: { sponsors -> Void in
         dLog("sponsors.count = \(sponsors.count)")
 
-        self.sponsors = sponsors
+//        self.sponsors = sponsors
         //self.tableQuestions.reloadData()
 
       },

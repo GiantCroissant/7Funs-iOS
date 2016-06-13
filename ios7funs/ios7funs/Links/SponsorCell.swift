@@ -22,8 +22,6 @@ class SponsorCell: UITableViewCell {
   func configureSponsorButton() {
     let imgUrl = UrlUtils.getSponsorImageUrl(sponsor)
     let imgName = "img_sponsor_\(sponsor.id)_\(sponsor.image)"
-    aLog("imgUrl = \(imgUrl)")
-
     ImageLoader.sharedInstance.loadImage(imgName, url: imgUrl) { (image, imageName, fadeIn) in
       self.sponsorButton.setImage(image, forState: .Normal)
       self.sponsorButton.scaleButtonImage(.Center)
